@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "finetick/quicksilver",
+    "description": "The shopping agrecator.",
+    "keywords": ["cart", "shopping", "quicksilver", "telenor", "tonic"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -9,6 +9,7 @@
         "cviebrock/eloquent-sluggable": "^4.3",
         "cviebrock/eloquent-taggable": "^3.2",
         "fideloper/proxy": "~3.3",
+        "gloudemans/shoppingcart": "^2.4",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
