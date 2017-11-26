@@ -4,12 +4,12 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class Attachment extends Model
 {
     /**
      * Get all of the owning commentable models.
      */
-    public function addressable()
+    public function attachable()
     {
         return $this->morphTo();
     }
