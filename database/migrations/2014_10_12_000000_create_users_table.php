@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->char('user_type', 1)->default('W');
             $table->rememberToken();
             $table->jsonb('preferences')->default("{}");
             $table->boolean('activated')->default(false);

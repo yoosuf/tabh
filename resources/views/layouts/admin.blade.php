@@ -18,23 +18,20 @@
 
 
     <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
-        <div class="container">
             <a class="navbar-item" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <div class="navbar-start">
             </div>
             <div class="navbar-end">
-                @guest
-                    <a class="navbar-item" href="{{ route('login') }}">Login</a>
-                    <a class="navbar-item" href="{{ route('register') }}">Register</a>
-                    @else
-                        <div class="navbar-item has-dropdown is-hoverable">
+                @if ( Auth::guard('admin')->check() )
+
+                <div class="navbar-item has-dropdown is-hoverable">
                             <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
-                                {{ Auth::user()->name }}
+                                {{ Auth::guard('admin')->user()->name }}
                             </a>
                             <div class="navbar-dropdown has-dropdown is-active is-boxed">
-                                <a class="navbar-link" href="{{ route('logout') }}"
+                                <a class="navbar-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
                                     Logout
@@ -45,9 +42,8 @@
                                 </form>
                             </div>
                         </div>
-                        @endguest
+                @endif
             </div>
-        </div>
     </nav>
 
 

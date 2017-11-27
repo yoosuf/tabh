@@ -17,7 +17,7 @@ class CheckAdmin
         if(!empty(auth()->guard('admin')->id()))
         {
             $data = DB::table('admins')
-                ->select('admins.usertype','admins.id')
+                ->select('admins.user_type','admins.id')
                 ->where('admins.id',auth()->guard('admin')->id())
                 ->get();
 

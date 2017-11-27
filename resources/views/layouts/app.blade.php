@@ -32,7 +32,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="navbar-dropdown has-dropdown is-active is-boxed">
-                                <a class="navbar-link" href="{{ route('logout') }}"
+                                <a class="navbar-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                                     Logout
