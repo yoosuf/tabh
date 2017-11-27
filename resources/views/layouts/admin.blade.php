@@ -15,6 +15,8 @@
 </head>
 <body>
 <div id="app">
+
+
     <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
         <div class="container">
             <a class="navbar-item" href="{{ url('/') }}">
@@ -34,7 +36,7 @@
                             <div class="navbar-dropdown has-dropdown is-active is-boxed">
                                 <a class="navbar-link" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
+                                   document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -43,25 +45,31 @@
                                 </form>
                             </div>
                         </div>
-                @endguest
+                        @endguest
             </div>
         </div>
     </nav>
 
-    @yield('content')
 
+    <div class="section">
+        <div class="columns">
 
-    <footer class="footer">
-        <div class="container">
-            <div class="content has-text-centered">
-                <p>
-                    <strong>Quicksilver</strong>.
-                </p>
+            <div class="column is-2">
+
+                @include('layouts.admin.sidebar')
+
             </div>
-        </div>
-    </footer>
-</div>
 
+            <div class="column">
+
+
+                @yield('content')
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

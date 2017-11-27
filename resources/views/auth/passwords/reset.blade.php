@@ -1,69 +1,67 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
+    <div class="columns">
+    <div class="column is-4 is-offset-4">
+
+      <div class="auth card">
+          <div class="card-content">
+          <h4 class="card-title">{{ trans('quicksilver.reset.heading')}}</h4>
+
+                    <form class="form" method="POST" action="{{ route('password.request') }}">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="label">{{ trans('quicksilver.email')}}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+                                <input id="email" type="email" class="input" name="email" value="{{ $email or old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        <div class="field{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="label">{{ trans('quicksilver.password')}}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                <input id="password" type="password" class="input" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+
                         </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                        <div class="field{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <label for="password-confirm" class="label">{{ trans('quicksilver.password_confirm')}}</label>
+
+                                <input id="password-confirm" type="password" class="input" name="password_confirmation" required>
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
+                        <div class="field is-grouped">
+                                <button type="submit" class="button is-link is-block">
+                                    {{ trans('quicksilver.reset.button')}}
                                 </button>
-                            </div>
                         </div>
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

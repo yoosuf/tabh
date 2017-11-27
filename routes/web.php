@@ -11,9 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'App'], function () {
+    Route::get('/', 'PagesController@index');
+    Route::get('/search', 'SearchController@index')->name('search');
+
+
+    Route::get('/account', 'AccountController@index')->name('account');
 });
+
+
+
+
+
+
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'DashboardController@index');
+});
+
 
 Auth::routes();
 

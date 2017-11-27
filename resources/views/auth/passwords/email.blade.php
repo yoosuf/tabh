@@ -1,46 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
+  <div class="columns">
+  <div class="column is-4 is-offset-4">
+
+    <div class="auth card">
+        <div class="card-content">
+          <h4 class="card-title">{{ trans('quicksilver.forgot.heading')}}</h4>
+
+          <p>{{ trans('quicksilver.forgot.sub_title')}}</p>
+
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                    <form class="form" method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="label">{{ trans('quicksilver.email')}}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="input" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
+                        <div class="field is-grouped">
+                                <button type="submit" class="button is-link is-block">
+                                  {{ trans('quicksilver.forgot.button')}}
+
                                 </button>
-                            </div>
                         </div>
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
