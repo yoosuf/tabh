@@ -23,4 +23,38 @@ class DashboardController extends Controller
 
     }
 
+
+    public function create(Request $request)
+    {
+
+    }
+
+
+    public function show($id, Request $request)
+    {
+
+    }
+
+
+    public function store(Request $request)
+    {
+
+    }
+
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update($id, Request $request)
+    {
+
+    }
+
+    public function destroy($id, Request $request)
+    {
+
+    }
+
 }
