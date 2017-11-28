@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="card">
+        <div class="card-content">
+            <p class="title">Partners</p>
 
-                    <h1>Partners</h1>
+
 
 
 
@@ -307,5 +309,6 @@
                                 </tbody>
                             </table>
 
+        </div>
     </div>
 @endsection
