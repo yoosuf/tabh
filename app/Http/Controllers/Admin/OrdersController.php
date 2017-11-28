@@ -24,7 +24,7 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-
+        return view('admin.orders.index');
     }
 
     public function create(Request $request)

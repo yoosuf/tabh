@@ -10,7 +10,7 @@
           <div class="card-content">
           <h4 class="card-title">{{ trans('quicksilver.reset.heading')}}</h4>
 
-                    <form class="form" method="POST" action="{{ route('password.request') }}">
+                    <form class="form" method="POST" action="{{ route('password.request') }}" autocomplete="off">
                         {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">

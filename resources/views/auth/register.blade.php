@@ -9,7 +9,7 @@
                     <div class="card-content">
                         <h4 class="card-title">{{ trans('quicksilver.register.heading')}}</h4>
 
-                        <form class="form" method="POST" action="{{ route('register') }}">
+                        <form class="form" method="POST" action="{{ route('register') }}" autocomplete="off">
                             {{ csrf_field() }}
 
                             <div class="field{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -70,7 +70,9 @@
                             <div class="is-divider" data-content="OR"></div>
 
 
-                            <a class="button is-block">
+
+                                <a class="button is-block" href="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signup'])}}">
+
                     <span class="icon">
                       <i class="fa fa-github"></i>
                     </span>

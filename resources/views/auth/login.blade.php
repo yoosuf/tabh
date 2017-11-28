@@ -11,7 +11,7 @@
                         <h4 class="card-title">{{ trans('quicksilver.login.heading')}}</h4>
 
 
-                        <form class="" method="POST" action="{{ route('login') }}">
+                        <form class="" method="POST" action="{{ route('login') }}" autocomplete="off">
                             {{ csrf_field() }}
 
                             <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -77,7 +77,7 @@
                             <div class="is-divider" data-content="OR"></div>
 
 
-                            <a class="button is-block">
+                            <a class="button is-block" href="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signin'])}}">
                     <span class="icon">
                       <i class="fa fa-github"></i>
                     </span>

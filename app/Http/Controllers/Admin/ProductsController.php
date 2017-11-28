@@ -23,7 +23,7 @@ class ProductsController extends Controller
 
     public function index(Request $request)
     {
-
+        return view('admin.products.index');
     }
 
     public function create(Request $request)

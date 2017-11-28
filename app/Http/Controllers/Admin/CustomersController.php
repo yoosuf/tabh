@@ -24,6 +24,7 @@ class CustomersController extends Controller
 
     public function index(Request $request)
     {
+        return view('admin.customers.index');
 
     }
 

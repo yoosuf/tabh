@@ -18,6 +18,7 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
+        return view('admin.settings.users.index');
 
     }
 

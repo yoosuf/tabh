@@ -7,7 +7,6 @@ use App\Entities\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-
 class LoginController extends Controller
 {
 
@@ -55,13 +54,9 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password ]))
-        {
-
+        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password ])) {
             return redirect()->intended('admin');
-        }
-        else
-        {
+        } else {
             return redirect()->intended('admin/login')->with('status', 'Invalid Login Credentials !');
         }
     }
@@ -72,5 +67,4 @@ class LoginController extends Controller
         auth()->guard('admin')->logout();
         return redirect()->intended('admin/login');
     }
-
 }

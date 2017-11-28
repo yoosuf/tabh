@@ -18,6 +18,7 @@ class PartnersController extends Controller
 
     public function index(Request $request)
     {
+        return view('admin.settings.partners.index');
 
     }
 
