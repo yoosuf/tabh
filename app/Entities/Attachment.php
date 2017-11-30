@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attachment extends Model
 {
+    protected $guarded = [];
     /**
      * Get all of the owning commentable models.
      */

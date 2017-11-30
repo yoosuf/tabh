@@ -25,6 +25,37 @@
             </div>
         </div>
 
+        <script type="text/javascript">
+            var file = document.getElementById("image");
+            file.onchange = function(){
+                if(file.files.length > 0)
+                {
+                    document.getElementById('imagename').innerHTML = file.files[0].name;
+                }
+            };
+        </script>
+
+        <div class="field">
+            <label class="label">Image</label>
+            <div class="control">
+                <div class="file has-name is-fullwidth">
+                    <label class="file-label">
+                        <input class="file-input" name="image" id="image" type="file">
+                        <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fa fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Choose a file…
+                        </span>
+                        </span>
+                        <span id="imagename" class="file-name">
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="field">
             <label class="label">HTML Body</label>
             <div class="control">
