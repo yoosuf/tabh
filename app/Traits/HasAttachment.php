@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Attachment;
+use App\Entities\Attachment;
 
 trait HasAttachment
 {

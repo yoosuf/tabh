@@ -96,6 +96,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     });
 });
 
+Route::get('attachments/{filename}', function($filename=null)
+{
+    $path = storage_path().'/app/attachments/'.$filename;
+    if (file_exists($path)) {
+        return Response::download($path);
+    }
+    else{
+        $errors = collect(['Attachment not found',$path]);
+        return redirect()->back()->with('errors', $errors);
+    }
+});
+
 
 
 Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirectToProvider')->name('provider.redirect');

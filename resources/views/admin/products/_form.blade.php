@@ -25,16 +25,6 @@
             </div>
         </div>
 
-        <script type="text/javascript">
-            var file = document.getElementById("image");
-            file.onchange = function(){
-                if(file.files.length > 0)
-                {
-                    document.getElementById('imagename').innerHTML = file.files[0].name;
-                }
-            };
-        </script>
-
         <div class="field">
             <label class="label">Image</label>
             <div class="control">
@@ -55,6 +45,16 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            var file = document.getElementById("image");
+            file.onchange = function(){
+                if(file.files.length > 0)
+                {
+                    document.getElementById('imagename').innerHTML = file.files[0].name;
+                }
+            };
+        </script>
 
         <div class="field">
             <label class="label">HTML Body</label>

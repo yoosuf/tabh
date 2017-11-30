@@ -11,11 +11,19 @@
                 <button onclick="window.history.go(-1); return false;" class="button is-text">Back</button>
             </div>
 
-
             <div class="field">
                 <label class="label">Title</label>
                 <div class="box">
                     <label class="label">{{ isset($product) ? $product->title : '' }}</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Image</label>
+                <div class="box">
+                    <figure class="image is-128x128">
+                        <img src={{ isset($image) ? $image : '' }}>
+                    </figure>
                 </div>
             </div>
 
