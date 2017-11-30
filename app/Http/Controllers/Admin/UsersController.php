@@ -43,7 +43,8 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-
+        $data = User::findOrFail($id);
+        return view('admin.settings.users.edit', compact('data'));
     }
 
     public function update($id, Request $request)

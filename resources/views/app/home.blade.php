@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <section class="hero is-info is-medium">
         <div class="hero-body">
             <div class="container">
@@ -11,7 +10,7 @@
 
                         <h1 class="title has-text-centered">{{ trans('quicksilver.home.heading')}}</h1>
                         <h2 class="subtitle has-text-centered">{{ trans('quicksilver.home.sub_title')}}</h2>
-                        <form action="{{ route('search') }}">
+                        <form action="{{ route('search') }}" method="GET">
                             <div class="field has-addons">
                                 <div class="control is-expanded">
                                     <input class="input is-large" type="text"

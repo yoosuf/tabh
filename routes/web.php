@@ -15,10 +15,25 @@ Route::group(['namespace' => 'App'], function () {
     Route::get('/', 'PagesController@index');
     Route::get('/search', 'SearchController@index')->name('search');
 
-
+    Route::get('login', 'Auth\LoginController@getLoginForm');
+    Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
 
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/account', 'AccountController@index')->name('account');
+
+        Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
+
+
+        Route::group(['middleware' => ['completed']], function () {
+
+            Route::get('/account', 'Account\AccountController@index')->name('account');
+            Route::get('/account/orders', 'Account\AccountController@edit')->name('account.orders');
+            Route::get('/account/profile', 'Account\AccountController@edit')->name('account.profile');
+            Route::patch('/account/profile', 'Account\AccountController@edit')->name('account.profile.update');
+            Route::get('/account/address', 'Account\AccountController@edit')->name('account.address');
+            Route::patch('/account/address', 'Account\AccountController@edit')->name('account.address.update');
+            Route::get('/account/password', 'Account\AccountController@edit')->name('account.password');
+            Route::patch('/account/password', 'Account\AccountController@edit')->name('account.password.update');
+        });
     });
 });
 
@@ -57,7 +72,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('customers', 'CustomersController@index')->name('admin.customers');
         Route::post('customers', 'CustomersController@save');
-        Route::get('customers/{id}/edit', 'CustomersController@edit');
+        Route::get('customers/{id}', 'CustomersController@edit')->name('admin.customers.edit');
         Route::put('customers/{id}', 'CustomersController@update');
         Route::delete('customers/{id}', 'CustomersController@destroy');
 
@@ -65,15 +80,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::group(['prefix' => 'settings'], function () {
 
             Route::get('partners', 'PartnersController@index')->name('admin.partners');
-            Route::post('partners', 'PartnersController@save');
-            Route::get('partners/{id}/edit', 'PartnersController@edit');
-            Route::put('partners/{id}', 'PartnersController@update');
-            Route::delete('partners/{id}', 'PartnersController@destroy');
+            Route::post('partners', 'PartnersController@save')->name('admin.partners.store');
+            Route::get('partners/create', 'PartnersController@create')->name('admin.partners.create');
+            Route::get('partners/{id}/edit', 'PartnersController@edit')->name('admin.partners.edit');
+            Route::put('partners/{id}', 'PartnersController@update')->name('admin.partners.update');
+            Route::delete('partners/{id}', 'PartnersController@destroy')->name('admin.partners.delete');
 
 
             Route::get('users', 'UsersController@index')->name('admin.users');
             Route::post('users', 'UsersController@save');
-            Route::get('users/{id}/edit', 'UsersController@edit');
+            Route::get('users/{id}', 'UsersController@edit')->name('admin.users.edit');
             Route::put('users/{id}', 'UsersController@update');
             Route::delete('users/{id}', 'UsersController@destroy');
         });
@@ -82,7 +98,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 
 
-Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirect')->name('provider.redirect');
-Route::get('/oauth/{provider}/callback', 'Auth\AuthProviderController@callback')->name('provider.callback');
+Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirectToProvider')->name('provider.redirect');
+Route::get('/oauth/{provider}/callback', 'Auth\AuthProviderController@handleProviderCallback')->name('provider.callback');
 
 Auth::routes();

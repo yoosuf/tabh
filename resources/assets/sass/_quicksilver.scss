@@ -1,5 +1,4 @@
 .button {
-
     &.is-block {
       width: 100%;
     }
@@ -15,7 +14,23 @@
   /*cursor: hand;*/
 }
 
+.select {
+  &.is-block {
+
+
+    select {
+      width: 100%;
+
+    }
+    width: 100%;
+  }
+}
+
 
 .auth {
   margin-top: 100px;
+}
+
+body {
+  padding-top: 50px;
 }
