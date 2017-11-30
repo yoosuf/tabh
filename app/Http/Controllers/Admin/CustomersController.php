@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yoosuf
- * Date: 11/27/17
- * Time: 7:08 PM
- */
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Entities\Order;
+use App\Entities\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,11 +19,19 @@ class CustomersController extends Controller
 
     public function index(Request $request)
     {
-        return view('admin.customers.index');
-
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+        $data = User::paginate($limit);
+        return view('admin.customers.index', compact('data'));
     }
 
     public function create(Request $request)
+    {
+
+    }
+
+
+
+    public function store(Request $request)
     {
 
     }
@@ -39,16 +42,11 @@ class CustomersController extends Controller
 
     }
 
-
-    public function store(Request $request)
+    public function edit($id,  Request $request)
     {
-
-    }
-
-
-    public function edit($id)
-    {
-
+        $data = User::findOrFail($id);
+        $orders = Order::get();
+        return view('admin.customers.edit', compact('data', 'orders'));
     }
 
     public function update($id, Request $request)

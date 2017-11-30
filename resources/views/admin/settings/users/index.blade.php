@@ -46,17 +46,13 @@
 
                     @if(count($data) > 0)
                         @foreach($data as $item)
-                        <tr>
-                            <th>1</th>
-                            <td>38</td>
-                            <td>23</td>
-                            <td>12</td>
-                            <td>3</td>
-                            <td>68</td>
-                            <td>36</td>
-                            <td>+32</td>
-                            <td>81</td>
-                        </tr>
+                            <tr>
+                                <th><a href="{{ route('admin.users.edit', [$item->id]) }}">{{ $item->name  }}</a></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
                         @endforeach
                     @else
                         <tr>

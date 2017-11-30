@@ -17,12 +17,17 @@ class CheckUser
             $data = DB::table('users')
                 ->select('users.id')
                 ->where('users.id',auth()->guard('user')->id())
-                ->get();
+                ->first();
 
-            if (!$data[0]->id  )
+            if (!$data->id  )
             {
                 return redirect()->intended('/login')->with('status', 'You do not have access to user admin side');
             }
+
+            if ($data->is_setup == false) {
+                return redirect()->intended('/account/setup');
+            }
+
             return $next($request);
         }
         else

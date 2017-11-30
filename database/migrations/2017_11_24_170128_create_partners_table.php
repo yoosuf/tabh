@@ -23,15 +23,6 @@ class CreatePartnersTable extends Migration
             $table->jsonb('preferences')->default("{}");
             $table->timestamps();
         });
-
-        Schema::create('partner_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
-
-
-
     }
 
     /**
@@ -42,6 +33,5 @@ class CreatePartnersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('partners');
-        Schema::dropIfExists('partner_categories');
     }
 }

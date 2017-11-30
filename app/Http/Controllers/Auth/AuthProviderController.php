@@ -16,7 +16,7 @@ class AuthProviderController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -34,10 +34,9 @@ class AuthProviderController extends Controller
      * @param $provider
      * @return
      */
-    public function redirect($provider)
+    public function redirectToProvider($provider)
     {
-
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->scopes(['public_profile', 'email'])->redirect();
     }
 
     /**
@@ -47,19 +46,11 @@ class AuthProviderController extends Controller
      * @param AuthProviderService $service
      * @return callable URL from facebook
      */
-    public function callback($provider, AuthProviderService $service)
+    public function handleProviderCallback($provider, AuthProviderService $service)
     {
-
         $user = Socialite::driver($provider)->user();
-
-//
-//        $authUser = $this->findOrCreateUser($user, $provider);
-//        Auth::login($authUser, true);
-//        return redirect($this->redirectTo);
-
-
-//        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
-//        auth()->login($user);
-//        return redirect()->to('/home');
+        $auth = $service->createOrGetUser($provider, $user);
+        auth()->login($auth);
+        return redirect($this->redirectTo);
     }
 }

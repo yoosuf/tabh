@@ -16820,6 +16820,18 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
   width: 100%;
 }
 
+.select.is-block {
+  width: 100%;
+}
+
+.select.is-block select {
+  width: 100%;
+}
+
 .auth {
   margin-top: 100px;
+}
+
+body {
+  padding-top: 50px;
 }

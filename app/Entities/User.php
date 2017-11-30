@@ -30,10 +30,28 @@ class User extends Authenticatable
 
 
     /**
+     *
      * Get all of the post's addresses.
      */
     public function addresses()
     {
         return $this->morphMany(Address::class, 'addressable');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function auth_provider()
+    {
+        return $this->hasMany(AuthProvider::class);
+    }
+
+
+
+
+    public function isCompleted()
+    {
+        return $this->is_setup;
     }
 }

@@ -9,36 +9,21 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 class AuthProviderService
 {
 
-
-    public function findUser(ProviderUser $providerUser)
+    public function createOrGetUser($provider, ProviderUser $providerUser)
     {
-
-    }
-
-
-
-
-    public function findOrCreateUser(ProviderUser $providerUser)
-    {
-
-
-    }
-
-
-
-    public function createOrGetUser(ProviderUser $providerUser)
-    {
-        $account = AuthProvider::whereProvider('facebook')
-            ->whereProviderUserId($providerUser->getId())
+        $account = AuthProvider::whereProviderName($provider)
+            ->whereProviderId($providerUser->getId())
             ->first();
+
         if ($account) {
             return $account->user;
         } else {
             $account = new AuthProvider([
-                'provider_user_id' => $providerUser->getId(),
-                'provider' => 'facebook'
+                'provider_id' => $providerUser->getId(),
+                'provider_name' => $provider
             ]);
             $user = User::whereEmail($providerUser->getEmail())->first();
+
             if (!$user) {
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
