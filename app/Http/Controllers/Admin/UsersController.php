@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Entities\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,8 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        return view('admin.settings.users.index');
-
+        $data = User::paginate(10);
+        return view('admin.settings.users.index', compact('data'));
     }
 
     public function create(Request $request)
