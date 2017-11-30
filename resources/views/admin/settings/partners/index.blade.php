@@ -3,6 +3,11 @@
 @section('content')
     <p class="title">Partners</p>
 
+
+    <a href="{{ route('admin.partners.create') }}" class="button is-primary">Add New Partner</a>
+
+
+
     <table class="table is-fullwidth is-striped">
         <thead>
         <tr>

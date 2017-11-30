@@ -80,11 +80,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::group(['prefix' => 'settings'], function () {
 
             Route::get('partners', 'PartnersController@index')->name('admin.partners');
-            Route::post('partners', 'PartnersController@save');
-            Route::get('partners/create', 'PartnersController@create');
-            Route::get('partners/{id}/edit', 'PartnersController@edit');
-            Route::put('partners/{id}', 'PartnersController@update');
-            Route::delete('partners/{id}', 'PartnersController@destroy');
+            Route::post('partners', 'PartnersController@save')->name('admin.partners.store');
+            Route::get('partners/create', 'PartnersController@create')->name('admin.partners.create');
+            Route::get('partners/{id}/edit', 'PartnersController@edit')->name('admin.partners.edit');
+            Route::put('partners/{id}', 'PartnersController@update')->name('admin.partners.update');
+            Route::delete('partners/{id}', 'PartnersController@destroy')->name('admin.partners.delete');
 
 
             Route::get('users', 'UsersController@index')->name('admin.users');
