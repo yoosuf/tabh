@@ -9,6 +9,10 @@
   // }
 }
 
+.clickable-row td {
+  cursor: pointer;
+  /*cursor: hand;*/
+}
 
 .select {
   &.is-block {

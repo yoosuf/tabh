@@ -6,27 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $guarded = [];
+
     public function partner()
     {
         return $this->belongsTo(Partner::class);
     }
 
-
-
-
-    /**
-     * Get the comments for the blog post.
-     */
-    public function variant()
+    public function variants()
     {
-        return $this->hasMany(LineItem::class);
-    }
-
-    /**
-     * Get all of the product's attachments.
-     */
-    public function images()
-    {
-        return $this->morphMany(Attachment::class, 'attachable');
+        return $this->hasMany(ProductVariant::class);
     }
 }
