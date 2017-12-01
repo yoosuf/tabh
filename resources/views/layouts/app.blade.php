@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
+    <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
         <div class="container">
             <a class="navbar-item" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}

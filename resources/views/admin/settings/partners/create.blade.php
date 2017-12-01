@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-    <p class="title">Partners</p>
+    <p class="title">New Partner</p>
 
 
 
-    <form action="" method="POST">
-        @include('admin.settings.partners._form')
+    <form action="{{ route('admin.partners.store')  }}" method="POST" accept-charset="UTF-8">
+    @include('admin.settings.partners._form')
     </form>
 
 @endsection

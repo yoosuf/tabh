@@ -1,66 +1,74 @@
 @extends('layouts.admin')
 
 @section('content')
+
+
+
+
+    <div class="columns">
+        <div class="column">
+            <p class="title">Users</p>
+        </div>
+        <div class="column">
+            <div class="buttons has-addons is-right">
+                <a href ="{{ route('admin.users.create') }}" class="button is-link">Add New User</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
     <div class="card">
         <div class="card-content">
-            <p class="title">Users</p>
 
 
 
 
 
-
-
-
-
-
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th><abbr title="Played">Pld</abbr></th>
-                        <th><abbr title="Won">W</abbr></th>
-                        <th><abbr title="Drawn">D</abbr></th>
-                        <th><abbr title="Lost">L</abbr></th>
-                        <th><abbr title="Goals for">GF</abbr></th>
-                        <th><abbr title="Goals against">GA</abbr></th>
-                        <th><abbr title="Goal difference">GD</abbr></th>
-                        <th><abbr title="Points">Pts</abbr></th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Team</th>
-                        <th><abbr title="Played">Pld</abbr></th>
-                        <th><abbr title="Won">W</abbr></th>
-                        <th><abbr title="Drawn">D</abbr></th>
-                        <th><abbr title="Lost">L</abbr></th>
-                        <th><abbr title="Goals for">GF</abbr></th>
-                        <th><abbr title="Goals against">GA</abbr></th>
-                        <th><abbr title="Goal difference">GD</abbr></th>
-                        <th><abbr title="Points">Pts</abbr></th>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-
-                    @if(count($data) > 0)
-                        @foreach($data as $item)
-                            <tr>
-                                <th><a href="{{ route('admin.users.edit', [$item->id]) }}">{{ $item->name  }}</a></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        @endforeach
-                    @else
+                    <table class="table is-fullwidth is-striped">
+                        <thead>
                         <tr>
-                            <th colspan="5">No users found</th>
+                            <th><abbr title="Played">Name</abbr></th>
+                            <th><abbr title="Won">Email</abbr></th>
+                            <th><abbr title="Drawn">Partner</abbr></th>
+                            <th width="160"><abbr title="Goals for">Actions</abbr></th>
                         </tr>
-                    @endif
-                    </tbody>
-                </table>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th><abbr title="Played">Name</abbr></th>
+                            <th><abbr title="Won">Email</abbr></th>
+                            <th><abbr title="Drawn">Partner</abbr></th>
+                            <th width="160"><abbr title="Goals for">Actions</abbr></th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+
+                        @if(count($data) > 0)
+                            @foreach($data as $item)
+                                <tr>
+                                    <td><a href="{{ route('admin.users.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td>@include('admin.settings.users._menu')</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <th colspan="5">No users found</th>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+
+
+
+
+
+
 
 
 

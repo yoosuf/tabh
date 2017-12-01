@@ -1,12 +1,27 @@
 @extends('layouts.admin')
 
 @section('content')
-    <p class="title">Partners</p>
 
 
-    <a href="{{ route('admin.partners.create') }}" class="button is-primary">Add New Partner</a>
 
 
+    <div class="columns">
+        <div class="column">
+            <p class="title">Partners</p>
+        </div>
+        <div class="column">
+            <div class="buttons has-addons is-right">
+                <a href ="{{ route('admin.partners.create') }}" class="button is-link">Add New Partner</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="card">
+        <div class="card-content">
 
     <table class="table is-fullwidth is-striped">
         <thead>
@@ -16,6 +31,7 @@
             <th><abbr title="Drawn">Orders</abbr></th>
             <th><abbr title="Lost">Last order</abbr></th>
             <th><abbr title="Goals for">Total spent</abbr></th>
+            <th><abbr title="Goals for">Actions</abbr></th>
         </tr>
         </thead>
         <tfoot>
@@ -25,6 +41,7 @@
             <th><abbr title="Drawn">Orders</abbr></th>
             <th><abbr title="Lost">Last order</abbr></th>
             <th><abbr title="Goals for">Total spent</abbr></th>
+            <th><abbr title="Goals for">Actions</abbr></th>
         </tr>
         </tfoot>
         <tbody>
@@ -32,18 +49,22 @@
         @if(count($data) > 0)
             @foreach($data as $item)
                 <tr>
-                    <th><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->name  }}</a></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@include('admin.settings.partners._menu')</td>
                 </tr>
             @endforeach
         @else
             <tr>
-                <th colspan="5">No users found</th>
+                <th colspan="5">No partners found</th>
             </tr>
         @endif
         </tbody>
     </table>
+
+        </div>
+    </div>
 @endsection

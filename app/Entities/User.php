@@ -2,12 +2,15 @@
 
 namespace App\Entities;
 
+use Conner\Tagging\Taggable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Taggable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +31,15 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function auth_provider()
+    {
+        return $this->hasMany(AuthProvider::class);
+    }
+
+
 
     /**
      *
@@ -39,19 +51,65 @@ class User extends Authenticatable
     }
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function auth_provider()
+
+    public function fullName()
     {
-        return $this->hasMany(AuthProvider::class);
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function avatar()
+    {
+        return "";
     }
 
 
+    public function createdAt($format)
+    {
+        switch ($format) {
+            case "human":
+                return $this->created_at->diffForHumans();
+                break;
+            case "atom":
+                return $this->created_at->toAtomString();
+                break;
+            default:
+                return $this->created_at;
+                break;
+        }
+    }
 
+    public function  email()
+    {
+        return isset($this->email) ? $this->email : "No email provided";
+    }
+
+
+    public function  phone()
+    {
+        return isset($this->phone) ? $this->phone : "No phone provided";
+    }
+
+    public function  hasAccount()
+    {
+        return isset($this->password) ? true : "No account";
+    }
 
     public function isCompleted()
     {
-        return $this->is_setup;
+        return $this->verified_email;
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null|string|static
+     */
+    public function primaryAddress()
+    {
+        $data = $this->addresses()->where('default', true)->first();
+        if (isset($data) > 0) {
+            return $data;
+        } else {
+            return "No primary address found";
+        }
     }
 }

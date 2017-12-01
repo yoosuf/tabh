@@ -14,10 +14,10 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div class="app-canvas" id="app">
 
 
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
+    <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
             <a class="navbar-item" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -59,13 +59,13 @@
     <div class="section">
         <div class="columns">
 
-            <div class="column is-2">
+            <div class="app-sidebar column is-2">
 
                 @include('layouts.admin.sidebar')
 
             </div>
 
-            <div class="column">
+            <div class="app-content column">
 
 
                 @yield('content')

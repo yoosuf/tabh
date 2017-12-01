@@ -8,9 +8,22 @@
 @import "~bulma/bulma";
 
 
-@import "~bulma-extensions/extensions";
+.app-canvas {
+
+  position: relative;
+
+
+  .app-sidebar {
+    padding-top: 40px;
+  }
+
+  .app-content {
+    padding-top: 40px;
+  }
+}
 
 
 
-
-
+.field-body > .field:not(.is-narrow) {
+  flex: 1 !important;
+}

@@ -71,16 +71,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 
         Route::get('customers', 'CustomersController@index')->name('admin.customers');
-        Route::post('customers', 'CustomersController@save');
-        Route::get('customers/{id}', 'CustomersController@edit')->name('admin.customers.edit');
-        Route::put('customers/{id}', 'CustomersController@update');
-        Route::delete('customers/{id}', 'CustomersController@destroy');
+        Route::post('customers', 'CustomersController@store')->name('admin.customers.store');
+        Route::get('customers/create', 'CustomersController@create')->name('admin.customers.create');
+        Route::get('customers/{id}/edit', 'CustomersController@edit')->name('admin.customers.edit');
+        Route::get('customers/{id}', 'CustomersController@edit')->name('admin.customers.show');
+        Route::put('customers/{id}', 'CustomersController@update')->name('admin.customers.update');
+        Route::delete('customers/{id}', 'CustomersController@destroy')->name('admin.customers.delete');
 
 
         Route::group(['prefix' => 'settings'], function () {
 
             Route::get('partners', 'PartnersController@index')->name('admin.partners');
-            Route::post('partners', 'PartnersController@save')->name('admin.partners.store');
+            Route::post('partners', 'PartnersController@store')->name('admin.partners.store');
             Route::get('partners/create', 'PartnersController@create')->name('admin.partners.create');
             Route::get('partners/{id}/edit', 'PartnersController@edit')->name('admin.partners.edit');
             Route::put('partners/{id}', 'PartnersController@update')->name('admin.partners.update');
@@ -88,7 +90,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 
             Route::get('users', 'UsersController@index')->name('admin.users');
-            Route::post('users', 'UsersController@save');
+            Route::post('users', 'UsersController@store');
+            Route::get('users/create', 'UsersController@create')->name('admin.users.create');
             Route::get('users/{id}', 'UsersController@edit')->name('admin.users.edit');
             Route::put('users/{id}', 'UsersController@update');
             Route::delete('users/{id}', 'UsersController@destroy');

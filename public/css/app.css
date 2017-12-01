@@ -16820,6 +16820,11 @@ input[type=range].slider.is-danger .has-output-tooltip + output {
   width: 100%;
 }
 
+.clickable-row td {
+  cursor: pointer;
+  /*cursor: hand;*/
+}
+
 .select.is-block {
   width: 100%;
 }

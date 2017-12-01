@@ -10,8 +10,4 @@ class Country extends Model
     protected $guarded = [];
 
 
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }
 }
