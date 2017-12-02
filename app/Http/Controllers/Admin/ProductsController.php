@@ -12,6 +12,7 @@ use App\Entities\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -73,6 +74,17 @@ class ProductsController extends Controller
 
         $product = $this->product->create($productData);
 
+        if($request->hasFile('image'))
+        {
+           $path = Storage::putFile('attachments', $request->file('image'));
+           $product->attachment()->updateOrCreate([
+               'attachable_id'         => $product->id,
+               'attachable_type'       => 'App\Product'],
+               ['attachable_category'   => 'medicine',
+               'path'                  => $path,
+               'file_name'             => $request->image->getClientOriginalName()]);
+        }
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -85,7 +97,9 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = $this->product->find($id);
-        return view('admin.products.show', compact('product'));
+        $image = $this->GetAttachmentURL($product->attachment()->first());
+        return $image;  
+        return view('admin.products.show', compact('product','image'));
     }
 
     /**
@@ -133,6 +147,17 @@ class ProductsController extends Controller
 
         $product->update($productData);
 
+        if($request->has('image'))
+        {
+           $path = Storage::putFile('attachments', $request->file('image'));
+           $product->attachment()->updateOrCreate([
+               'attachable_id'         => $product->id,
+               'attachable_type'       => 'App\Product'],
+               ['attachable_category'   => 'medicine',
+               'path'                  => $path,
+               'file_name'             => $request->image->getClientOriginalName()]);
+        }
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -147,5 +172,19 @@ class ProductsController extends Controller
         //
     }
 
+    public function GetAttachmentURL($attachment)
+    {
+        try {
+            if (isset($attachment)) {
+                return Storage::url($attachment->path);
+            } else {
+                //return  url('/images/placeholder/profile.png');
+            }
+        } catch (\Exception $exception) {
+            //Log::notice($exception);
+            //return  url('/images/placeholder/profile.png');
+            return $exception;
+        }
+    }
 
 }
