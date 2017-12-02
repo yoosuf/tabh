@@ -21,7 +21,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $data = User::paginate($limit);
+        $data = User::with('primaryAddress')->paginate($limit);
         return view('admin.customers.index', compact('data'));
     }
 
@@ -105,7 +105,7 @@ class CustomersController extends Controller
 
     public function edit($id,  Request $request)
     {
-        $item = User::findOrFail($id);
+        $item = User::with('primaryAddress')->findOrFail($id);
         $countries = Country::get();
         return view('admin.customers.edit', get_defined_vars());
     }

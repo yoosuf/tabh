@@ -44,7 +44,7 @@
         <input
                 id="address_customer_phone"
                name="address_customer_phone"
-               class="input {{ $errors->has('address_customer_phone') ? ' is-danger' : '' }}"
+               class="input {{ $errors->has('address_phone') ? ' is-danger' : '' }}"
                value="{{ isset($item->address->phone)? $item->address->phone : old('address_customer_phone') }}"  />
     </div>
     @if ($errors->has('address_customer_phone'))

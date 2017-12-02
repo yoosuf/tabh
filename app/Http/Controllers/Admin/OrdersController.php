@@ -24,7 +24,9 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        return view('admin.orders.index');
+
+        $data = [];
+        return view('admin.orders.index', get_defined_vars());
     }
 
     public function create(Request $request)

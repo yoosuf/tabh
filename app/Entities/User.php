@@ -105,11 +105,8 @@ class User extends Authenticatable
      */
     public function primaryAddress()
     {
-        $data = $this->addresses()->where('default', true)->first();
-        if (isset($data) > 0) {
-            return $data;
-        } else {
-            return "No primary address found";
-        }
+        return $this->morphOne(Address::class, 'addressable');
+
+//        return $this->addresses()->where('default', true);
     }
 }

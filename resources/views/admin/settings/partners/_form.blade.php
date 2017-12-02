@@ -77,6 +77,24 @@
                 </div>
 
 
+                <div class="field">
+                    <label for="partner_website">Website</label>
+
+                    <div class="control is-expanded">
+                        <input
+                                id="partner_website"
+                                type="text"
+                                name="partner_website"
+                                class="input {{ $errors->has('partner_website') ? ' is-danger' : '' }}"
+                                value="{{ isset($item->website)? $item->website : old('partner_website') }}"  />
+                    </div>
+                    @if ($errors->has('partner_website'))
+                        <span class="help is-danger">
+                            {{ $errors->first('partner_website') }}
+                        </span>
+                    @endif
+                </div>
+
             </div>
         </div>
 

@@ -11,30 +11,53 @@
                         <h4 class="card-title">{{ trans('quicksilver.login.heading')}}</h4>
 
 
+                        {{--<label for="address_city">City</label>--}}
+
+                        {{--<div class="control is-expanded">--}}
+                            {{--<input--}}
+                                    {{--id="address_city"--}}
+                                    {{--type="text"--}}
+                                    {{--name="address_city"--}}
+                                    {{--class="input {{ $errors->has('address_city') ? ' is-danger' : '' }}"--}}
+                                    {{--value="{{ isset($item->primaryAddress()->city)? $item->primaryAddress()->city : old('address_city') }}"  />--}}
+                        {{--</div>--}}
+                        {{--@if ($errors->has('address_city'))--}}
+                            {{--<span class="help is-danger">--}}
+                    {{--{{ $errors->first('address_city') }}--}}
+                {{--</span>--}}
+                        {{--@endif--}}
+
+
+
+
                         <form class="" method="POST" action="{{ route('login') }}" autocomplete="off">
                             {{ csrf_field() }}
 
                             <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="label">{{ trans('quicksilver.email') }}</label>
-
-                                <input id="email" type="email" class="input" name="email" value="{{ old('email') }}"
-                                       required autofocus>
-
+                                <label for="email">{{ trans('quicksilver.email') }}</label>
+                                <div class="control is-expanded">
+                                <input id="email" type="email" name="email" value="{{ old('email') }}"
+                                       class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                                       required autofocus />
+                                </div>
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <span class="help is-danger">
+                                    {{ $errors->first('email') }}
                                 </span>
                                 @endif
                             </div>
 
-                            <div class="field{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <div class="field{{ $errors->has('password') ? '  is-danger' : '' }}">
                                 <label for="password" class="label">{{ trans('quicksilver.password') }}</label>
 
-                                <input id="password" type="password" class="input" name="password" required>
+                                <div class="control is-expanded">
+                                <input id="password" type="password" name="password" required
+                                       class="input {{ $errors->has('email') ? ' is-danger' : '' }}" />
 
+                                </div>
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
+                                    <span class="help is-danger">
+                                    {{ $errors->first('password') }}
                                 </span>
                                 @endif
                             </div>

@@ -31,7 +31,7 @@
             <th><abbr title="Drawn">Orders</abbr></th>
             <th><abbr title="Lost">Last order</abbr></th>
             <th><abbr title="Goals for">Total spent</abbr></th>
-            <th><abbr title="Goals for">Actions</abbr></th>
+            <th width="160"><abbr title="Goals for">Actions</abbr></th>
         </tr>
         </thead>
         <tfoot>
@@ -49,7 +49,7 @@
         @if(count($data) > 0)
             @foreach($data as $item)
                 <tr>
-                    <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
+                    <td><a href="{{ route('admin.partners.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -64,6 +64,9 @@
         @endif
         </tbody>
     </table>
+
+            {{$data->links()}}
+
 
         </div>
     </div>

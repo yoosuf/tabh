@@ -22,15 +22,22 @@
                         {{ csrf_field() }}
 
                         <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="label">{{ trans('quicksilver.email')}}</label>
+                            <label for="email">{{ trans('quicksilver.email')}}</label>
 
-                                <input id="email" type="email" class="input" name="email" value="{{ old('email') }}" required>
+                            <div class="control is-expanded">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <input id="email" type="email" name="email" value="{{ old('email') }}"
+                                   class="input {{ $errors->has('email') ? ' is-danger' : '' }}" required />
+                            </div>
+
+                            @if ($errors->has('email'))
+                                <span class="help is-danger">
+                                    {{ $errors->first('email') }}
+                                </span>
+                            @endif
+
+
+
                         </div>
 
                         <div class="field is-grouped">

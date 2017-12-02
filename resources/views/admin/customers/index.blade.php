@@ -74,7 +74,7 @@
                     @foreach($data as $item)
                         <tr>
                             <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->fullName()  }}</a></td>
-                            <td>{{ $item->primaryAddress()->city }}</td>
+                            <td>{{ $item->primaryAddress->city }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
