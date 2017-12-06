@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
 
 
             $address = [
-                'name' => $faker->Name->name_with_middle,
+                'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
                 'address1' => $faker->streetName,
                 'address2' => $faker->streetAddress,
