@@ -38,8 +38,7 @@ class CustomersController extends Controller
 
 
         $request->validate([
-            'customer_first_name' => 'required|string|max:255',
-            'customer_last_name' => 'required|string|max:255',
+            'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255|unique:users',
             'customer_phone' => 'required|string|max:255|unique:users',
             'address_first_name' => 'required|string|max:255',
@@ -52,8 +51,7 @@ class CustomersController extends Controller
             'address_country' => 'required|string|max:255',
             'address_province' => 'required|string|max:255',
         ], [
-            'customer_first_name.required' => 'First name is required',
-            'customer_last_name.required' => 'Last name is required',
+            'customer_name.required' => 'Name is required',
             'customer_email.required' => 'Email is required',
             'customer_email.email' => 'Email must be a valid email address.',
             'customer_phone.required' => 'Phone is required',
@@ -115,8 +113,7 @@ class CustomersController extends Controller
 
 
         $request->validate([
-            'customer_first_name' => 'required|string|max:255',
-            'customer_last_name' => 'required|string|max:255',
+            'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255|unique:users,email,'.$request->id,
             'customer_phone' => 'nullable|max:255|unique:users,phone,'.$request->id,
             'address_first_name' => 'required|string|max:255',
@@ -129,8 +126,7 @@ class CustomersController extends Controller
             'address_country' => 'required|string|max:255',
             'address_province' => 'required|string|max:255',
         ], [
-            'customer_first_name.required' => 'First name is required',
-            'customer_last_name.required' => 'Last name is required',
+            'customer_name.required' => 'Name is required',
             'customer_email.required' => 'Email is required',
             'customer_email.email' => 'Email must be a valid email address.',
             'customer_phone.required' => 'Phone is required',

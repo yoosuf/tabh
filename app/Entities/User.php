@@ -94,10 +94,7 @@ class User extends Authenticatable
         return isset($this->password) ? true : "No account";
     }
 
-    public function isCompleted()
-    {
-        return $this->verified_email;
-    }
+
 
 
     /**
@@ -106,7 +103,23 @@ class User extends Authenticatable
     public function primaryAddress()
     {
         return $this->morphOne(Address::class, 'addressable');
+    }
 
-//        return $this->addresses()->where('default', true);
+
+
+    /**
+     * get complete
+     */
+    public function getCompleted()
+    {
+        return $this->verified_email;
+    }
+
+    /**
+     * set complete
+     */
+    public function setComplete()
+    {
+        return $this->verified_email = 1;
     }
 }

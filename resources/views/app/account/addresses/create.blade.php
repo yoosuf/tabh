@@ -15,17 +15,15 @@
                             General
                         </p>
                         <ul class="menu-list">
-                            <li><a>My Orders</a></li>
+                            <li><a class="" href="{{ route('account.orders') }}">My Orders</a></li>
                         </ul>
                         <p class="menu-label">
                             Settings
                         </p>
                         <ul class="menu-list">
-                            <li><a>My Profile</a></li>
-
-                            <li><a>Addresses</a></li>
-                            <li><a>Password</a></li>
-                            <li><a>Facebook</a></li>
+                            <li><a class="" href="{{ route('account.profile') }}">My Profile</a></li>
+                            <li><a class="" href="{{ route('account.address') }}">Addresses</a></li>
+                            <li><a class="" href="{{ route('account.password') }}">Password</a></li>
                         </ul>
 
                     </aside>

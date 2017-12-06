@@ -42,6 +42,44 @@ class AccountController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'address_name' => 'required|string|max:255',
+            'address_phone' => 'required',
+            'address_address_1' => 'required|string|max:255',
+            'address_address_2' => 'required|string|max:255',
+            'address_city' => 'required|string|max:255',
+            'address_postcode' => 'required|string|max:255',
+            // 'address_country' => 'required|string|max:255',
+            'address_province' => 'required|string|max:255',
+        ], [
+            'address_name.required' => 'Name is required',
+            'address_phone.required' => 'Phone is required',
+            'address_address_1.required' => 'Line 1 is required',
+            'address_address_2.required' => 'Line 2 is required',
+            'address_city.required' => 'City is required',
+            'address_postcode.required' => 'Postcode is required',
+            'address_province.required' => 'Province is required',
+            'address_country.required' => 'Country is required',
+        ]);
 
+
+
+
+        $user = auth()->user();
+        $user->primaryAddress()->create([
+            'name' => $request->get('address_name'),
+            'phone' => $request->get('address_phone'),
+            'address1' => $request->get('address_address_1'),
+            'address2' => $request->get('address_address_2'),
+            'city' => $request->get('address_city'),
+            'postcode' => $request->get('address_postcode'),
+            'province' => $request->get('address_province'),
+            'country' => $request->get('address_country'),
+            'default' => true,
+        ]);
+
+        
+
+        
     }
 }

@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration
 
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->char('user_type', 1)->default('W');
             $table->rememberToken();
             $table->jsonb('preferences')->default("{}");
@@ -40,8 +40,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
@@ -68,8 +67,7 @@ class CreateUsersTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('addressable');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();

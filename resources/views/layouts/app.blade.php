@@ -15,8 +15,21 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
+
+
+
+
+
+
+
+    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
         <div class="container">
+
+           <button class="button navbar-burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
             <a class="navbar-item" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -28,14 +41,16 @@
                     <a class="navbar-item" href="{{ route('register') }}">Register</a>
                     @else
                         <div class="navbar-item has-dropdown is-hoverable">
+
+
                             <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="navbar-dropdown has-dropdown is-active is-boxed">
 
-                              <a class="dropdown-item" href="#">My Orders</a>
-                              <a class="dropdown-item" href="#">My Profile</a>
-                              <a class="dropdown-item" href="#">Password</a>
+                              <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
+                              <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
+                              <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
 
                               <hr class="dropdown-divider">
 
@@ -61,6 +76,8 @@
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
+
+            
                 <p>
                     <strong>Quicksilver</strong>.
                 </p>

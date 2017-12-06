@@ -6,26 +6,18 @@ namespace App\Http\Controllers\App\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class OrdersController extends Controller
 {
+
 
     public function __construct()
     {
         $this->middleware('auth');
-
     }
 
-
-
-    public function edit(Request $request)
+    public function index()
     {
-
-        return view('app.account.profile.edit');
+        return view('app.account.orders.index');
     }
 
-
-    public function update(Request $request)
-    {
-
-    }
 }
