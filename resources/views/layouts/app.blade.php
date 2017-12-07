@@ -66,9 +66,11 @@
                                         
                                         <p>{{ Auth::user()->name }}</p>
 
+                                            @if(auth()->user()->is_complete)
+
                                             <a class="button is-small">Settings</a>
 
-
+                                            @endif
                                         </div>
                                     </article>
 
@@ -76,11 +78,13 @@
 
         
                                 </div>
+                                @if(auth()->user()->is_complete)
                             <hr class="dropdown-divider">
 
                               <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
                               <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
                               <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
+                                @endif
 
                               <hr class="dropdown-divider">
 

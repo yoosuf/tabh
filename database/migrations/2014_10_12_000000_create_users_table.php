@@ -45,8 +45,10 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
+            $table->text('avatar')->nullable();
             $table->boolean('verified_email')->default(false);
             $table->boolean('send_welcome_email')->default(false);
+            $table->boolean('is_complete')->default(false);
             $table->boolean('banned')->default(false);
             $table->jsonb('preferences')->default("{}");
             $table->timestamps();
@@ -59,7 +61,8 @@ class CreateUsersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('provider_id')->index();
-            $table->string('provider_name');
+            $table->string('provider_name')->index();
+            $table->text('avatar')->nullable();
             $table->timestamp('created_at')->nullable();
         });
 

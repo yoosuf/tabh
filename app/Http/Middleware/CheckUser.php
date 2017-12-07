@@ -24,7 +24,7 @@ class CheckUser
                 return redirect()->intended('/login')->with('status', 'You do not have access to user admin side');
             }
 
-            if ($data->is_setup == false) {
+            if ($data->is_complete == false) {
                 return redirect()->intended('/account/setup');
             }
 
