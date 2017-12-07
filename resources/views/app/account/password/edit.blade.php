@@ -15,9 +15,21 @@
 
 
 
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque cum laboriosam qui vel.
-                    Accusamus cumque, ea error esse eum exercitationem explicabo harum ipsam laboriosam minus
-                    perferendis praesentium quisquam veniam.
+                    <form class="form" method="POST" action="{{ route('password.request') }}" autocomplete="off">
+
+                        @include('app.account.password._form')
+
+
+<div class="field is-grouped">
+        <button type="submit" class="button is-link">
+            {{ trans('quicksilver.reset.button')}}
+        </button>
+</div>
+
+                    </form>
+
+
+
 
 
                 </div>

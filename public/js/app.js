@@ -38629,6 +38629,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function toggleModalClasses(event) {
+    var modalId = event.currentTarget.dataset.modalId;
+    var modal = $(modalId);
+    modal.toggleClass('is-active');
+    $('html').toggleClass('is-clipped');
+};
+
+$(function () {
+    $('.open-modal').click(toggleModalClasses);
+
+    $('.close-modal').click(toggleModalClasses);
+});
+
 /***/ }),
 /* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

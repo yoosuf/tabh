@@ -44,9 +44,33 @@
 
 
                             <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
-                                {{ Auth::user()->name }}
+                                Account
                             </a>
-                            <div class="navbar-dropdown has-dropdown is-active is-boxed">
+                            <div class="navbar-dropdown is-right has-dropdown is-active is-boxed">
+
+                              <div class="dropdown-item">
+
+
+
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-24x24">
+      <img src="https://bulma.io/images/placeholders/32x32.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      
+    <p>{{ Auth::user()->name }}</p>
+      
+    </div>
+</article>
+
+
+
+        
+      </div>
+      <hr class="dropdown-divider">
 
                               <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
                               <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>

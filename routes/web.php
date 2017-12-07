@@ -22,7 +22,9 @@ Route::group(['namespace' => 'App'], function () {
 
 
         Route::group(['middleware' => ['completed']], function () {
-            Route::get('/account', 'Account\AccountController@index')->name('account');
+            Route::get('/account', function() {
+                return redirect()->route('account.orders');
+            })->name('account');
             Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
 
             Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
