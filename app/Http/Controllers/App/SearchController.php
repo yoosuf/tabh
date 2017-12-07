@@ -2,28 +2,41 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Entities\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+    private $product;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Product $product)
     {
-//         $this->middleware('user');
+        $this->product = $product;
     }
 
-    /**
-     * Show the application dashboard.
+    /***
+     * Search Products.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('app.results');
+        $search_quary = $request->get('search');
+
+        $products = $this->product->where('title', 'ILIKE', '%'.$search_quary.'%')
+            ->orWhere('generic_name', 'ILIKE', '%'.$search_quary.'%')
+            ->orWhere('product_type', 'ILIKE', '%'.$search_quary.'%')
+            ->orWhere('packsize', 'ILIKE', '%'.$search_quary.'%')
+            ->limit(10)->get();
+
+//        $products = $this->product->paginate(10);
+        return view('app.results', compact('products','search_quary'));
     }
 }
