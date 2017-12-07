@@ -2,52 +2,39 @@
 
 @section('content')
 
-  <section class="hero is-info is-medium">
 
 
 
   <div class="columns">
-    <div class="column">
+    <div class="column is-offset-3 is-6">
+
+        <div class="card">
+            <div class="card-content">
+
+              <form action="{{ route('account.update') }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+
+                <p class="title is-4">Welcome {{ Auth::user()->name }}</p>
 
 
-      <ul class="steps my-step-style has-content-centered">
+                @include('app.account.addresses._address')
 
-      <li class="steps-segment">
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">Step 1</p>
+
+
+
+              
+              <button class="button is-block is-link">Complete</button>
+
+              </form>
+            </div>
+
           </div>
-        </li>
-        <li class="steps-segment">
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">Step 2</p>
-          </div>
-        </li>
-        <li class="steps-segment is-active">
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">Step 3</p>
-          </div>
-        </li>
-        <li class="steps-segment">
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">Step 4</p>
-          </div>
-        </li>
-        <li class="steps-segment">
-          <span class="steps-marker"></span>
-          <div class="steps-content">
-            <p class="is-size-5">Step 5</p>
-          </div>
-        </li>
-      </ul>
+
 
 
     </div>
   </div>
 
-  </section>
 
 @endsection

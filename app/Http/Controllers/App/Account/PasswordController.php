@@ -12,14 +12,14 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
+
 
 
 
     public function edit(Request $request)
     {
-
+        return view('app.account.password.edit');
     }
 
 

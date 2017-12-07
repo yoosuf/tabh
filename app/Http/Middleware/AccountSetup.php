@@ -11,7 +11,7 @@ class AccountSetup
     public function handle($request, Closure $next)
     {
 
-        if (! $request->user()->isCompleted()) {
+        if (! $request->user()->getCompleted()) {
 
             return redirect()->intended('/account/setup');
         }

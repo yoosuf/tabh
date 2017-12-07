@@ -14,28 +14,33 @@
 Route::group(['namespace' => 'App'], function () {
     Route::get('/', 'PagesController@index');
     Route::get('/search', 'SearchController@index')->name('search');
-
     Route::get('login', 'Auth\LoginController@getLoginForm');
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
-
     Route::group(['middleware' => ['auth']], function () {
-
         Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
+        Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
 
 
         Route::group(['middleware' => ['completed']], function () {
+            Route::get('/account', function() {
+                return redirect()->route('account.orders');
+            })->name('account');
+            Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
 
-            Route::get('/account', 'Account\AccountController@index')->name('account');
-            Route::get('/account/orders', 'Account\AccountController@edit')->name('account.orders');
-            Route::get('/account/profile', 'Account\AccountController@edit')->name('account.profile');
-            Route::patch('/account/profile', 'Account\AccountController@edit')->name('account.profile.update');
-            Route::get('/account/address', 'Account\AccountController@edit')->name('account.address');
+            Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
+            Route::patch('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
+            Route::get('/account/address', 'Account\AddressesController@edit')->name('account.address');
+            Route::post('/account/address', 'Account\AccountController@create')->name('account.address.store');
             Route::patch('/account/address', 'Account\AccountController@edit')->name('account.address.update');
-            Route::get('/account/password', 'Account\AccountController@edit')->name('account.password');
-            Route::patch('/account/password', 'Account\AccountController@edit')->name('account.password.update');
+            Route::get('/account/password', 'Account\PasswordController@edit')->name('account.password');
+            Route::patch('/account/password', 'Account\PasswordController@update')->name('account.password.update');
         });
     });
 });
+
+
+
+
 
 
 
@@ -48,18 +53,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['middleware' => ['admin']], function () {
 
         Route::post('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
-
         Route::get('/', 'DashboardController@index')->name('admin.dashboard');
-
-
 
         Route::get('orders', 'OrdersController@index')->name('admin.orders');
         Route::post('orders', 'OrdersController@save');
         Route::get('orders/{id}/edit', 'OrdersController@edit');
         Route::put('orders/{id}', 'OrdersController@update');
         Route::delete('orders/{id}', 'OrdersController@destroy');
-
-
 
         Route::get('products', 'ProductsController@index')->name('admin.products');
         Route::post('products', 'ProductsController@store');
@@ -117,3 +117,4 @@ Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirectToProvider'
 Route::get('/oauth/{provider}/callback', 'Auth\AuthProviderController@handleProviderCallback')->name('provider.callback');
 
 Auth::routes();
+

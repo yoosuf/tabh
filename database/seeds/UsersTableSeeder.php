@@ -18,15 +18,13 @@ class UsersTableSeeder extends Seeder
 
         for ($i=0; $i < 100; $i++) {
             $user  = \App\Entities\User::create([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
+                'name' => $faker->name,
                 'email' => $faker->email,
             ]);
 
 
             $address = [
-                'first_name' => $user->firstName,
-                'last_name' => $user->lastName,
+                'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
                 'address1' => $faker->streetName,
                 'address2' => $faker->streetAddress,

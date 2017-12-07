@@ -5,12 +5,30 @@
     <section class="hero is-info is-medium">
         <div class="hero-body">
             <div class="container">
+
+
+
+                <form action="{{ route('search') }}" method="GET">
+
+                <div class="big">
+                <input id="chb_1" name="chb" type="radio" />
+                <label for="chb_1">This is a div 1 </label>
+                </div>
+
+                <br />
+
+                <div class="big">
+                <input id="chb_2" name="chb" type="radio" />
+                <label for="chb_2">This is a div 2 </label>
+                </div>
+
+
+
                 <div class="columns is-mobile is-centered">
                     <div class="column is-half is-narrow">
 
                         <h1 class="title has-text-centered">{{ trans('quicksilver.home.heading')}}</h1>
                         <h2 class="subtitle has-text-centered">{{ trans('quicksilver.home.sub_title')}}</h2>
-                        <form action="{{ route('search') }}" method="GET">
                             <div class="field has-addons">
                                 <div class="control is-expanded">
                                     <input class="input is-large" type="text"
@@ -22,9 +40,11 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+
+                </form>
             </div>
         </div>
     </section>
