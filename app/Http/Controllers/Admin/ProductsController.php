@@ -10,17 +10,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
+use App\Entities\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Tests\DependencyInjection\RendererService;
 
 class ProductsController extends Controller
 {
     private $product;
+    private $partner;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, Partner $partner)
     {
         $this->product = $product;
+        $this->partner = $partner;
         $this->middleware('admin');
     }
 
@@ -42,25 +47,37 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $partners = $this->partner->all();
+        return view('admin.products.create', compact('partners'));
     }
 
     /***
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return View
+     * @return Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
+            'partner' => 'required',
             'title' => 'required|max:255',
-            'body_html' => 'required|max:2500',
+            'body_html' => 'max:2500',
             'vendor' => 'required|max:255',
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
             'price' => 'required|max:255',
         ]);
+
+        $partner = $this->partner->where('name' , $request->get('partner'))->first();
+        if(!isset($partner))
+        {
+            $errors = [
+                'Partner Not Found'
+                ];
+            $partners = $this->partner->all();
+            return view('admin.products.create', compact('partners', 'errors'));
+        }
 
         $productData = [
             'title' => $request->get('title'),
@@ -72,7 +89,7 @@ class ProductsController extends Controller
             'published' => $request->has('published') ? $request->get('published') : false,
         ];
 
-        $product = $this->product->create($productData);
+        $product = $partner->products()->create($productData);
 
         if($request->hasFile('image'))
         {
@@ -85,7 +102,7 @@ class ProductsController extends Controller
                'file_name'             => $request->image->getClientOriginalName()]);
         }
 
-        return view('admin.products.show', compact('product'));
+        return $this->show($product->id);
     }
 
     /**
@@ -97,9 +114,10 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = $this->product->find($id);
+        $partner = $product->partner()->first();
         $image = $this->GetAttachmentURL($product->attachment()->first());
-        return $image;  
-        return view('admin.products.show', compact('product','image'));
+//        return $image;
+        return view('admin.products.show', compact('product','image', 'partner'));
     }
 
     /**
@@ -111,7 +129,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = $this->product->find($id);
-        return view('admin.products.edit', compact('product'));
+        $partner = $product->partner()->first();
+//        $partners = $this->partner->all();
+        return view('admin.products.edit', compact('product', 'partner'));
     }
 
     /**
@@ -119,14 +139,13 @@ class ProductsController extends Controller
      *
      * @param  int  $id
      * @param Request $request
-     * @return View
+     * @return Response
      */
     public function update(Request $request, $id)
     {
-
         $this->validate($request, [
             'title' => 'required|max:255',
-            'body_html' => 'required|max:2500',
+            'body_html' => 'max:2500',
             'vendor' => 'required|max:255',
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
@@ -158,7 +177,7 @@ class ProductsController extends Controller
                'file_name'             => $request->image->getClientOriginalName()]);
         }
 
-        return view('admin.products.show', compact('product'));
+        return $this->show($product->id);
     }
 
     /**

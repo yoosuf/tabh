@@ -12,6 +12,13 @@
             </div>
 
             <div class="field">
+                <label class="label">Partner</label>
+                <div class="box">
+                    <label class="label">{{ isset($partner) ? $partner->name : '' }}</label>
+                </div>
+            </div>
+
+            <div class="field">
                 <label class="label">Title</label>
                 <div class="box">
                     <label class="label">{{ isset($product) ? $product->title : '' }}</label>
@@ -19,10 +26,17 @@
             </div>
 
             <div class="field">
+                <label class="label">Generic Name</label>
+                <div class="box">
+                    <label class="label">{{ isset($product) ? $product->generic_name : '' }}</label>
+                </div>
+            </div>
+
+            <div class="field">
                 <label class="label">Image</label>
                 <div class="box">
                     <figure class="image is-128x128">
-                        <img src={{ isset($image) ? $image : '' }}>
+                        <img src={{ isset($image) ? asset($image) : '' }}>
                     </figure>
                 </div>
             </div>

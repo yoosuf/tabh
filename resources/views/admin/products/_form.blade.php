@@ -18,6 +18,27 @@
 @endif
 
 {{ csrf_field() }}
+
+        <div class="field">
+            <label class="label">Partner</label>
+            <div class="control">
+                <div class="select has-dropdown is-hoverable">
+                    <select name="partner" id="partner">
+                        @if(isset($partner))
+                            <option selected disabled>{{$partner->name}}</option>
+                        @else
+                            <option selected disabled>Select Partner</option>
+                            @if(isset($partners))
+                                @foreach ($partners as $partner)
+                                    <option>{{$partner->name}}</option>
+                                @endforeach
+                            @endif
+                        @endif
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="field">
             <label class="label">Title</label>
             <div class="control">
@@ -113,7 +134,7 @@
         <div class="field">
             <label class="label">Price</label>
             <div class="control">
-                <input class="input" name="price" id="price" type="number" placeholder="Price" value="{{ isset($product) ? $product->price : old('price') }}">
+                <input class="input" name="price" id="price" type="number" step="0.01" placeholder="Price" value="{{ isset($product) ? $product->price : old('price') }}">
             </div>
         </div>
 

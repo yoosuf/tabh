@@ -18,6 +18,18 @@ class ProductsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
+        $partner = \App\Entities\Partner::firstOrCreate(
+            [
+                'name' => 'partner from seed',
+            ],
+            [
+                'email' => $faker->email,
+                'phone' => $faker->phoneNumber,
+                'website' => $faker->domainName,
+                'api' => $faker->url,
+            ]
+        );
+
 //        \App\Entities\Product::truncate();
         DB::statement('TRUNCATE products CASCADE');
 
@@ -28,8 +40,9 @@ class ProductsTableSeeder extends Seeder
         ];
 
         for ($i=0; $i < 100; $i++) {
-            \App\Entities\Product::create([
+            $partner->products()->create([
                 'title' => $faker->word,
+                'generic_name' => $faker->word,
                 'body_html' => $faker->randomHtml(2, 3),
                 'vendor' => $faker->company,
                 'product_type' => $faker->word,
