@@ -18,11 +18,85 @@
 
 
 
+<nav class="navbar is-info is-fixed-top is-transparent">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+    </div>
+
+    <div class="navbar-end">
+      @guest
+                    <a class="navbar-item" href="{{ route('login') }}">Login</a>
+                    <a class="navbar-item" href="{{ route('register') }}">Register</a>
+                    @else
+                        <div class="navbar-item has-dropdown is-hoverable">
+
+
+                            <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
+                                Account
+                            </a>
+                            <div class="navbar-dropdown is-right has-dropdown is-active is-boxed">
+
+                              <div class="dropdown-item">
 
 
 
+                                    <article class="media">
+                                    <figure class="media-left">
+                                        <p class="image is-24x24">
+                                        <img src="https://bulma.io/images/placeholders/32x32.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                        
+                                        <p>{{ Auth::user()->name }}</p>
+                                        
+                                        </div>
+                                    </article>
 
-    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
+
+
+        
+                                </div>
+                            <hr class="dropdown-divider">
+
+                              <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
+                              <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
+                              <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
+
+                              <hr class="dropdown-divider">
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </div>
+                @endguest
+    </div>
+  </div>
+</nav>
+
+
+
+    <!-- <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="dropdown navigation">
         <div class="container">
 
            <button class="button navbar-burger">
@@ -52,25 +126,25 @@
 
 
 
-<article class="media">
-  <figure class="media-left">
-    <p class="image is-24x24">
-      <img src="https://bulma.io/images/placeholders/32x32.png">
-    </p>
-  </figure>
-  <div class="media-content">
-    <div class="content">
-      
-    <p>{{ Auth::user()->name }}</p>
-      
-    </div>
-</article>
+                                    <article class="media">
+                                    <figure class="media-left">
+                                        <p class="image is-24x24">
+                                        <img src="https://bulma.io/images/placeholders/32x32.png">
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                        
+                                        <p>{{ Auth::user()->name }}</p>
+                                        
+                                        </div>
+                                    </article>
 
 
 
         
-      </div>
-      <hr class="dropdown-divider">
+                                </div>
+                            <hr class="dropdown-divider">
 
                               <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
                               <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
@@ -92,7 +166,7 @@
                 @endguest
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     @yield('content')
 
