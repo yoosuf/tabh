@@ -1,11 +1,26 @@
+
+
+@if ($errors->any())
+    <article class="message is-danger">
+
+
+        <div class="message-body">
+            <p>There is {{ $errors->count()  }} error (s) performing this action.</p>
+        </div>
+    </article>
+    <br>
+@endif
+
 {{ csrf_field() }}
 
+<div class="field">
+    <label for="current-password">{{ trans('quicksilver.account.password.input_current_password')}}</label>
 
-<div class="field{{ $errors->has('current_password') ? ' has-error' : '' }}">
-    <label for="current-password">{{ trans('quicksilver.password')}}</label>
 
-
-        <input id="current-password" type="password" class="input" name="current_password" required>
+        <input id="current-password"
+               type="password"
+               class="input {{ $errors->has('current_password') ? ' is-danger' : '' }}"
+               name="current_password" required />
 
         @if ($errors->has('current_password'))
             <span class="help-block">
@@ -16,28 +31,33 @@
 </div>
 
 
-<div class="field{{ $errors->has('new_password') ? ' has-error' : '' }}">
-    <label for="new-password">{{ trans('quicksilver.password')}}</label>
+<div class="field">
+    <label for="password">{{ trans('quicksilver.account.password.input_new_password') }}</label>
 
 
-        <input id="new-password" type="password" class="input" name="new_password" required>
+        <input id="password"
+               type="password"
+               class="input {{ $errors->has('password') ? ' is-danger' : '' }}"
+               name="password" required />
 
         @if ($errors->has('password'))
-            <span class="help-block">
-                <strong>{{ $errors->first('new_password') }}</strong>
+            <span class="help is-danger">
+                {{ $errors->first('password') }}
             </span>
         @endif
 
 </div>
 
-<div class="field{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-    <label for="password-confirm">{{ trans('quicksilver.password_confirm')}}</label>
+<div class="field">
+    <label for="password-confirm">{{ trans('quicksilver.account.password.input_confirm_password') }}</label>
 
-        <input id="password-confirm" type="password" class="input" name="password_confirmation" required>
+        <input id="password-confirm" type="password"
+               class="input {{ $errors->has('password_confirmation') ? ' is-danger' : '' }}"
+               name="password_confirmation" required />
 
         @if ($errors->has('password_confirmation'))
-            <span class="help-block">
-                <strong>{{ $errors->first('password_confirmation') }}</strong>
+            <span class="help is-danger">
+                {{ $errors->first('password_confirmation') }}
             </span>
         @endif
     

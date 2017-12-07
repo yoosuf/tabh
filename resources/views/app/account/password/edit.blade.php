@@ -8,15 +8,25 @@
         <div class="container">
             <div class="columns">
 
-                <div class="column is-6">
+                <div class="column is-8 is-offset-2">
+
+
 
                     @include('app.account._nav')
 
 
 
 
-                    <form class="form" method="POST" action="{{ route('password.request') }}" autocomplete="off">
+                    <div class="card">
+                        <div class="card-content">
 
+                            <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.password.txt_heading')}}</h1>
+                            <p class="subtitle is-5">{{ trans('quicksilver.account.password.txt_sub_title')}}</p>
+
+
+                            <form class="form" method="POST" action="{{ route('account.password.update') }}" autocomplete="off">
+
+                                {{ method_field('PUT') }}
                         @include('app.account.password._form')
 
 
@@ -28,6 +38,9 @@
 
                     </form>
 
+
+                        </div>
+                    </div>
 
 
 

@@ -8,16 +8,38 @@
         <div class="container">
             <div class="columns">
 
-                <div class="column is-6">
+                <div class="column is-8 is-offset-2">
 
                     @include('app.account._nav')
 
 
 
 
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque cum laboriosam qui vel.
-                    Accusamus cumque, ea error esse eum exercitationem explicabo harum ipsam laboriosam minus
-                    perferendis praesentium quisquam veniam.
+                    <div class="card">
+                        <div class="card-content">
+
+                            <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.profile.txt_heading')}}</h1>
+                            <p class="subtitle is-5">{{ trans('quicksilver.account.profile.txt_sub_title')}}</p>
+
+
+
+                            <form class="form" method="POST" action="{{ route('account.profile.update') }}" autocomplete="off">
+
+                            {{ method_field('PUT') }}
+
+                            @include('app.account.profile._form', ['item' => $data])
+
+
+
+                                <div class="field is-grouped">
+                                    <button type="submit" class="button is-link ">
+                                        {{ trans('quicksilver.reset.button')}}
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
 
 
                 </div>

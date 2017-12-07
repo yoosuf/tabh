@@ -19,8 +19,9 @@
 
 
 <nav class="navbar is-info is-fixed-top is-transparent">
+<div class="container">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
+    <a class="navbar-item" href="/">
       <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
     </a>
     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
@@ -31,6 +32,8 @@
   </div>
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
+  
+
     <div class="navbar-start">
       
     </div>
@@ -62,7 +65,10 @@
                                         <div class="content">
                                         
                                         <p>{{ Auth::user()->name }}</p>
-                                        
+
+                                            <a class="button is-small">Settings</a>
+
+
                                         </div>
                                     </article>
 
@@ -90,6 +96,7 @@
                             </div>
                         </div>
                 @endguest
+                </div>
     </div>
   </div>
 </nav>
