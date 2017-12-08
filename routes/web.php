@@ -12,7 +12,7 @@
 */
 
 Route::group(['namespace' => 'App'], function () {
-    Route::get('/', 'PagesController@index');
+    Route::get('/', 'PagesController@index')->name('home');
     Route::get('/search', 'SearchController@index')->name('search');
     Route::get('login', 'Auth\LoginController@getLoginForm');
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');

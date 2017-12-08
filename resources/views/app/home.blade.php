@@ -6,45 +6,45 @@
         <div class="hero-body">
             <div class="container">
 
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: -webkit-center;">
+                    <figure class="image" style="position: relative;">
+                        <a href="{{ route('search') . '?type=medecine' }}">
+                            <img style="width: 256px; height: 256px" src="https://icon-icons.com/icons2/908/PNG/512/medicine-capsule-symbol-on-a-square-background_icon-icons.com_70678.png">
+                        </a>
+                    </figure>
+                    </td>
 
+                    <td style="text-align: -webkit-center;">
+                    <figure class="image" style="position: relative; ">
+                        <a>
+                            <img style="width: 256px; height: 256px" src="https://bulma.io/images/placeholders/256x256.png">
+                        </a>
+                    </figure>
+                    </td>
+                </tr>
+            </table>
 
-                <form action="{{ route('search') }}" method="GET">
+                {{--<div class="columns is-mobile is-centered">--}}
+                    {{--<div class="column is-half is-narrow">--}}
 
-                <div class="big">
-                <input id="chb_1" name="chb" type="radio" />
-                <label for="chb_1">This is a div 1 </label>
-                </div>
+                        {{--<h1 class="title has-text-centered">{{ trans('quicksilver.home.heading')}}</h1>--}}
+                        {{--<h2 class="subtitle has-text-centered">{{ trans('quicksilver.home.sub_title')}}</h2>--}}
+                            {{--<div class="field has-addons">--}}
+                                {{--<div class="control is-expanded">--}}
+                                    {{--<input class="input is-large" type="text"--}}
+                                           {{--placeholder="{{ trans('quicksilver.home.search_placeholder')}}">--}}
+                                {{--</div>--}}
+                                {{--<div class="control">--}}
+                                    {{--<button class="button is-link is-large" type="submit">--}}
+                                        {{--{{ trans('quicksilver.home.button')}}--}}
+                                    {{--</button>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                <br />
-
-                <div class="big">
-                <input id="chb_2" name="chb" type="radio" />
-                <label for="chb_2">This is a div 2 </label>
-                </div>
-
-
-
-                <div class="columns is-mobile is-centered">
-                    <div class="column is-half is-narrow">
-
-                        <h1 class="title has-text-centered">{{ trans('quicksilver.home.heading')}}</h1>
-                        <h2 class="subtitle has-text-centered">{{ trans('quicksilver.home.sub_title')}}</h2>
-                            <div class="field has-addons">
-                                <div class="control is-expanded">
-                                    <input class="input is-large" type="text"
-                                           placeholder="{{ trans('quicksilver.home.search_placeholder')}}">
-                                </div>
-                                <div class="control">
-                                    <button class="button is-link is-large" type="submit">
-                                        {{ trans('quicksilver.home.button')}}
-                                    </button>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-
-                </form>
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </section>

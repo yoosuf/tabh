@@ -29,14 +29,17 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $search_quary = $request->get('search');
+        $type = $request->get('type');
 
-        $products = $this->product->where('title', 'ILIKE', '%'.$search_quary.'%')
-            ->orWhere('generic_name', 'ILIKE', '%'.$search_quary.'%')
-            ->orWhere('product_type', 'ILIKE', '%'.$search_quary.'%')
-            ->orWhere('packsize', 'ILIKE', '%'.$search_quary.'%')
-            ->limit(10)->get();
+        if($type == 'medecine') {
+            $products = $this->product->where('title', 'ILIKE', '%' . $search_quary . '%')
+                ->orWhere('generic_name', 'ILIKE', '%' . $search_quary . '%')
+                ->orWhere('product_type', 'ILIKE', '%' . $search_quary . '%')
+                ->orWhere('packsize', 'ILIKE', '%' . $search_quary . '%')
+                ->limit(10)->get();
+        }
 
 //        $products = $this->product->paginate(10);
-        return view('app.results', compact('products','search_quary'));
+        return view('app.results', compact('products','search_quary', 'type'));
     }
 }

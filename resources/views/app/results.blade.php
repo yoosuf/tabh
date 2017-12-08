@@ -15,6 +15,7 @@
 
 
                         <form role="form" method="GET" action="{{ route('search') }}">
+                            <input type="hidden" name="type" id="type" value="{{$type}}" >
                             <div class="field has-addons">
                                 <div class="control is-expanded">
                                     <input class="input is-medium" type="text" name="search" id="search"
