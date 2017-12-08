@@ -62,4 +62,30 @@ return [
         'heading' => 'Reset Password',
         'button' => 'Update changes',
     ],
+    'account' => [
+        'orders' => [
+            'txt_title' => 'Orders',
+            'txt_heading' => 'Orders',
+            'txt_sub_title' => 'View your orders',
+        ],
+        'profile' => [
+            'txt_title' => 'Profile',
+            'txt_heading' => 'Profile',
+            'txt_sub_title' => 'Manage your profile details.',
+        ],
+        'address' => [
+            'txt_title' => 'Addresses',
+            'txt_heading' => 'Addresses',
+            'txt_sub_title' => 'Manage your default delivery address.',
+        ],
+        'password' => [
+            'txt_title' => 'Change Password',
+            'txt_heading' => 'Password',
+            'txt_sub_title' => 'Change your password or recover your current one.',
+            'input_current_password' => 'Current Password',
+            'input_new_password' => 'New Password',
+            'input_confirm_password' => 'Confirm Password',
+        ],
+
+    ]
 ];

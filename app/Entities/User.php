@@ -107,12 +107,15 @@ class User extends Authenticatable
 
 
 
+
+
+
     /**
      * get complete
      */
     public function getCompleted()
     {
-        return $this->verified_email;
+        return $this->is_complete;
     }
 
     /**
@@ -120,6 +123,6 @@ class User extends Authenticatable
      */
     public function setComplete()
     {
-        return $this->verified_email = 1;
+        return $this->is_complete = 1;
     }
 }

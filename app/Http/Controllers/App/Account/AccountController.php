@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App\Account;
 
 
+use App\Entities\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -65,8 +66,8 @@ class AccountController extends Controller
 
 
 
-        $user = auth()->user();
-        $user->primaryAddress()->create([
+        $auth = auth()->user();
+        $auth->primaryAddress()->create([
             'name' => $request->get('address_name'),
             'phone' => $request->get('address_phone'),
             'address1' => $request->get('address_address_1'),
@@ -78,6 +79,10 @@ class AccountController extends Controller
             'default' => true,
         ]);
 
+
+        $user = User::find($auth->id);
+        $user->is_complete = true;
+        $user->save();
         
 
         

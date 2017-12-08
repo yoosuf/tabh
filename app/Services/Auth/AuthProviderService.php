@@ -20,7 +20,8 @@ class AuthProviderService
         } else {
             $account = new AuthProvider([
                 'provider_id' => $providerUser->getId(),
-                'provider_name' => $provider
+                'provider_name' => $provider,
+                'avatar'    => $providerUser->getAvatar()
             ]);
             $user = User::whereEmail($providerUser->getEmail())->first();
 
@@ -28,7 +29,8 @@ class AuthProviderService
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
-                    'password' => md5(rand(1, 10000)),
+                    'password' => '',
+                    'avatar'    => $providerUser->getAvatar()
                 ]);
             }
             $account->user()->associate($user);

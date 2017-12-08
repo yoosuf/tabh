@@ -19,6 +19,7 @@
 
 
 <nav class="navbar is-info is-fixed-top is-transparent">
+<div class="container">
   <div class="navbar-brand">
     <a class="navbar-item" href="{{route('home')}}">
       <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
@@ -31,6 +32,8 @@
   </div>
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
+  
+
     <div class="navbar-start">
       
     </div>
@@ -62,7 +65,12 @@
                                         <div class="content">
                                         
                                         <p>{{ Auth::user()->name }}</p>
-                                        
+
+                                            @if(auth()->user()->is_complete)
+
+                                            <a class="button is-small">Settings</a>
+
+                                            @endif
                                         </div>
                                     </article>
 
@@ -70,11 +78,13 @@
 
         
                                 </div>
+                                @if(auth()->user()->is_complete)
                             <hr class="dropdown-divider">
 
                               <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
                               <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
                               <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
+                                @endif
 
                               <hr class="dropdown-divider">
 
@@ -90,6 +100,7 @@
                             </div>
                         </div>
                 @endguest
+                </div>
     </div>
   </div>
 </nav>

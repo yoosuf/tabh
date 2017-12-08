@@ -28,12 +28,16 @@ Route::group(['namespace' => 'App'], function () {
             Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
 
             Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
-            Route::patch('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
-            Route::get('/account/address', 'Account\AddressesController@edit')->name('account.address');
+            Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
+            Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');
             Route::post('/account/address', 'Account\AccountController@create')->name('account.address.store');
-            Route::patch('/account/address', 'Account\AccountController@edit')->name('account.address.update');
+            Route::delete('/account/address/id', 'Account\AccountController@delete')->name('account.address.destroy');
+
+
+
+            Route::put('/account/address', 'Account\AccountController@edit')->name('account.address.update');
             Route::get('/account/password', 'Account\PasswordController@edit')->name('account.password');
-            Route::patch('/account/password', 'Account\PasswordController@update')->name('account.password.update');
+            Route::put('/account/password', 'Account\PasswordController@update')->name('account.password.update');
         });
     });
 });
