@@ -63,6 +63,11 @@ return [
         'button' => 'Update changes',
     ],
     'account' => [
+        'setup' => [
+            'txt_title' => 'Setup',
+            'txt_heading' => 'Hi, add an address and will bring to door step',
+            'txt_sub_title' => 'This will be used as your default business address',
+        ],
         'orders' => [
             'txt_title' => 'Orders',
             'txt_heading' => 'Orders',
@@ -76,6 +81,24 @@ return [
         'address' => [
             'txt_title' => 'Addresses',
             'txt_heading' => 'Addresses',
+            'txt_sub_title' => 'Manage your default delivery address.',
+            'input_full_name' => 'Full name',
+            'input_phone' => 'Phone',
+            'input_line_1' => 'Address line 1',
+            'input_line_2' => 'Address line 2',
+            'input_city' => 'City',
+            'input_post_code' => 'Zip/postal code',
+            'input_country' => 'Country',
+            'input_state' => 'State',
+        ],
+        'address_create' => [
+            'txt_title' => 'New Addresses',
+            'txt_heading' => 'New Addresses',
+            'txt_sub_title' => 'Manage your default delivery address.',
+        ],
+        'address_edit' => [
+            'txt_title' => 'Edit Addresses',
+            'txt_heading' => 'Edit Addresses',
             'txt_sub_title' => 'Manage your default delivery address.',
         ],
         'password' => [

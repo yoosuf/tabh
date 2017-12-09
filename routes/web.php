@@ -30,8 +30,13 @@ Route::group(['namespace' => 'App'], function () {
             Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
             Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
             Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');
-            Route::post('/account/address', 'Account\AccountController@create')->name('account.address.store');
-            Route::delete('/account/address/id', 'Account\AccountController@delete')->name('account.address.destroy');
+            Route::get('/account/address/create', 'Account\AddressesController@create')->name('account.address.create');
+            Route::post('/account/address', 'Account\AddressesController@store')->name('account.address.store');
+            Route::get('/account/address/{id}/edit', 'Account\AddressesController@edit')->name('account.address.edit');
+            Route::put('/account/address/{id}', 'Account\AddressesController@update')->name('account.address.update');
+            Route::delete('/account/address/{id}', 'Account\AddressesController@delete')->name('account.address.destroy');
+            Route::post('/account/address/{id}/default', 'Account\AddressesController@makeDefault')->name('account.address.default');
+
 
 
 

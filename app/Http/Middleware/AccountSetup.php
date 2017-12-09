@@ -16,6 +16,7 @@ class AccountSetup
             return redirect()->intended('/account/setup');
         }
 
+
         return $next($request);
 
     }

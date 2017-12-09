@@ -56,4 +56,15 @@ $(function() {
     $('.open-modal').click(toggleModalClasses);
 
     $('.close-modal').click(toggleModalClasses);
+
+
+
+    $('#newAddress').on('click', function () {
+        alert('sdsds');
+        $( "<div class=\"media js-media\">Hello </div>" ).prependTo( "#addressList" );
+
+
+    })
+
+
 })

@@ -1,10 +1,25 @@
-<div class="tabs is-centered">
-    <ul>
-        <li class="{{ Request::is('account/orders') ? 'is-active' : null }}"><a href="{{ route('account.orders') }}">My Orders</a></li>
-        <li class="{{ Request::is('account/profile') ? 'is-active' : null }}"><a href="{{ route('account.profile') }}">My Profile</a></li>
-        <li class="{{ Request::is('account/address') ? 'is-active' : null }}"><a class="" href="{{ route('account.address') }}">Addresses</a></li>
-        <li class="{{ Request::is('account/password') ? 'is-active' : null }}"><a class="" href="{{ route('account.password') }}">Password</a></li>
+
+
+
+
+<aside class="menu">
+    <figure class="image is-48x48">
+        <img src="https://bulma.io/images/placeholders/256x256.png">
+    </figure>
+    <p class="menu-label">
+        General
+    </p>
+    <ul class="menu-list">
+        <li><a href="{{ route('account.orders') }}" class="{{ Request::is('account/orders') ? 'is-active' : null }}">My Orders</a></li>
+        <li><a href="{{ route('account.profile') }}" class="{{ Request::is('account/profile') ? 'is-active' : null }}">Profile</a></li>
+        <li><a href="{{ route('account.address') }}" class="{{ request()->is('account/address*') ? 'is-active' : null }}">Addresses</a></li>
+        <li><a href="{{ route('account.password') }}" class="{{ Request::is('account/password') ? 'is-active' : null }}">Password</a></li>
+
     </ul>
-</div>
+
+
+</aside>
+
+
 
 
