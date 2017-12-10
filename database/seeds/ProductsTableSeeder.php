@@ -26,7 +26,6 @@ class ProductsTableSeeder extends Seeder
                 'email' => $faker->email,
                 'phone' => $faker->phoneNumber,
                 'website' => $faker->domainName,
-                'api' => $faker->url,
             ]
         );
 

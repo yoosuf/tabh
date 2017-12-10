@@ -3,8 +3,10 @@
 
 
 <aside class="menu">
-    <figure class="image is-48x48">
-        <img src="https://bulma.io/images/placeholders/256x256.png">
+    <figure class="image is-128x128">
+        <img src="{{ getProfileAvatar() }}">
+
+
     </figure>
     <p class="menu-label">
         General

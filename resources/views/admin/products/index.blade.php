@@ -1,13 +1,29 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="card">
-        <div class="card-content">
-            <div class="field is-grouped">
-                <p class="title">Products</p>&nbsp;&nbsp;&nbsp;
+
+
+
+    <div class="columns">
+        <div class="column">
+            <p class="title">Products</p>
+        </div>
+        <div class="column">
+            <div class="buttons has-addons is-right">
                 <button onclick="window.location.href = '/admin/products/create'; return true;" class="button is-primary">Add New Product</button>
+
             </div>
-        <table class="table">
+
+        </div>
+    </div>
+
+
+
+
+
+            <div class="card">
+                <div class="card-content">
+        <table class="table is-fullwidth is-hoverable is-striped">
             <thead>
             <tr>
                 <th>ID</th>

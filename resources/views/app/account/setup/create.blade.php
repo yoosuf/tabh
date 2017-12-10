@@ -8,13 +8,7 @@
   <div class="columns">
     <div class="column is-offset-3 is-6">
 
-        <div class="columns">
-            <div class="column is-offset-3 is-6">
 
-            </div>
-
-
-                <div class="column">
 
 
 

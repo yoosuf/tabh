@@ -16,43 +16,27 @@
         <div class="card">
             <div class="card-content">
                 <p class="title is-4">Customer overview</p>
-                <div class="field is-horizontal">
-                    <div class="field-body">
+
                         <div class="field">
-                            <label for="customer_first_name">First name</label>
+                            <label for="customer_name">Full name</label>
 
                             <div class="control is-expanded">
                                 <input
-                                        id="customer_first_name"
+                                        id="customer_name"
                                         type="text"
-                                        name="customer_first_name"
-                                        class="input {{ $errors->has('customer_first_name') ? ' is-danger' : '' }}"
-                                        value="{{ isset($item->first_name)? $item->first_name : old('customer_first_name') }}"  />
+                                        name="customer_name"
+                                        class="input {{ $errors->has('customer_name') ? ' is-danger' : '' }}"
+                                        value="{{ isset($item->name)? $item->name : old('customer_name') }}"  />
                             </div>
-                            @if ($errors->has('customer_first_name'))
+                            @if ($errors->has('customer_name'))
                                 <span class="help is-danger">
-                                    {{ $errors->first('customer_first_name') }}
+                                    {{ $errors->first('customer_name') }}
                                 </span>
                             @endif
                         </div>
-                        <div class="field">
-                            <label for="customer_last_name">Last name</label>
-                            <div class="control is-expanded">
-                                <input
-                                        id="customer_last_name"
-                                        type="text"
-                                        name="customer_last_name"
-                                        class="input {{ $errors->has('customer_last_name') ? ' is-danger' : '' }}"
-                                        value="{{ isset($item->last_name)? $item->last_name : old('customer_last_name') }}"  />
-                            </div>
-                            @if ($errors->has('customer_last_name'))
-                                <span class="help is-danger">
-                                    {{ $errors->first('customer_last_name') }}
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
                 <div class="field">
                     <label for="customer_email">Email</label>
                     <div class="control is-expanded">
@@ -86,13 +70,16 @@
                         </span>
                     @endif
                 </div>
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card">
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
-                    @include('admin.customers._address')
+                    @include('admin.partials._address', ['item' => isset($address) ? $address : null])
                 </div>
             </div>
         </div>

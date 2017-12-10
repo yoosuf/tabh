@@ -11,7 +11,7 @@
                     <td style="text-align: -webkit-center;">
                     <figure class="image" style="position: relative;">
                         <a href="{{ route('search') . '?type=medecine' }}">
-                            <img style="width: 256px; height: 256px" src="https://icon-icons.com/icons2/908/PNG/512/medicine-capsule-symbol-on-a-square-background_icon-icons.com_70678.png">
+                            <img style="width: 256px; height: 256px" src="/img/pharma.svg">
                         </a>
                     </figure>
                     </td>
@@ -19,7 +19,8 @@
                     <td style="text-align: -webkit-center;">
                     <figure class="image" style="position: relative; ">
                         <a>
-                            <img style="width: 256px; height: 256px" src="https://bulma.io/images/placeholders/256x256.png">
+                            <img style="width: 256px; height: 256px" src="/img/groceries.svg">
+
                         </a>
                     </figure>
                     </td>

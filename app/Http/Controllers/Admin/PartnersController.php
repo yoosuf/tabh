@@ -128,6 +128,7 @@ class PartnersController extends Controller
             'postcode' => $request->get('address_postcode'),
             'province' => $request->get('address_province'),
             'country' => $request->get('address_country'),
+            'default' => true,
         ];
 
         $item->address()->updateOrCreate(['addressable_id' => $item->id, 'addressable_type' => 'App\Entities\Partner'], $addressData);
