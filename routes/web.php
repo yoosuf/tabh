@@ -11,11 +11,18 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::group(['namespace' => 'App'], function () {
     Route::get('/', 'PagesController@index')->name('home');
     Route::get('/search', 'SearchController@index')->name('search');
     Route::get('login', 'Auth\LoginController@getLoginForm');
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
+
+    Route::post('/cart/add', 'CartController@add')->name('cart.add');
+    Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
+    Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
+
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
         Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');

@@ -11,9 +11,8 @@ class SearchController extends Controller
     private $product;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * SearchController constructor.
+     * @param Product $product
      */
     public function __construct(Product $product)
     {
