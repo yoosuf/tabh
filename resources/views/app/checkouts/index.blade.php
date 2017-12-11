@@ -7,9 +7,6 @@
 
             <div class="column">
 
-
-
-
               <ul class="steps is-narrow is-medium is-centered has-content-centered">
                    <li class="steps-segment">
                      <a href="#" class="has-text-dark">
@@ -60,7 +57,18 @@
 
 
 
-                 @include('app.checkouts._login')
+                @include('app.checkouts._login')
+
+                @include('app.checkouts._prescription')
+
+                @include('app.checkouts._address')
+
+                @include('app.checkouts._cart')
+
+
+                @include('app.checkouts._payment')
+
+
 
             </div>
 

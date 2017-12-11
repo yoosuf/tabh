@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class RedirectIfAuthenticated
 {
@@ -26,12 +28,17 @@ class RedirectIfAuthenticated
 
             if ($request->user()->is_complete == true) {
 
-                return redirect()->intended('/account');
+                if (Cart::count() == 0 ) {
+                    return redirect()->intended('/account');
+                } else {
+                    return back()->withInput();
+                }
+
+//                return back()->withInput();
             }
 
-            return redirect('/account');
+            return back()->withInput();
         }
-
 
         return $next($request);
     }
