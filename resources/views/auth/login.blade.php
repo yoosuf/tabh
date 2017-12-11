@@ -8,25 +8,10 @@
 
                 <div class="auth card">
                     <div class="card-content">
-                        <h4 class="card-title">{{ trans('quicksilver.login.heading')}}</h4>
+                        <h4 class="card-title has-text-centered">{{ trans('quicksilver.login.heading')}}</h4>
 
 
-                        {{--<label for="address_city">City</label>--}}
-
-                        {{--<div class="control is-expanded">--}}
-                            {{--<input--}}
-                                    {{--id="address_city"--}}
-                                    {{--type="text"--}}
-                                    {{--name="address_city"--}}
-                                    {{--class="input {{ $errors->has('address_city') ? ' is-danger' : '' }}"--}}
-                                    {{--value="{{ isset($item->primaryAddress()->city)? $item->primaryAddress()->city : old('address_city') }}"  />--}}
-                        {{--</div>--}}
-                        {{--@if ($errors->has('address_city'))--}}
-                            {{--<span class="help is-danger">--}}
-                    {{--{{ $errors->first('address_city') }}--}}
-                {{--</span>--}}
-                        {{--@endif--}}
-
+              
 
 
 

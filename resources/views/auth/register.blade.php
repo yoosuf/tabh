@@ -7,7 +7,7 @@
 
                 <div class="auth card">
                     <div class="card-content">
-                        <h4 class="card-title">{{ trans('quicksilver.register.heading')}}</h4>
+                        <h4 class="card-title has-text-centered">{{ trans('quicksilver.register.heading')}}</h4>
 
                         <form class="form" method="POST" action="{{ route('register') }}" autocomplete="off">
                             {{ csrf_field() }}

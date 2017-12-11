@@ -8,7 +8,7 @@
 
     <div class="auth card">
         <div class="card-content">
-          <h4 class="card-title">{{ trans('quicksilver.forgot.heading')}}</h4>
+          <h4 class="card-title has-text-centered">{{ trans('quicksilver.forgot.heading')}}</h4>
 
           <p>{{ trans('quicksilver.forgot.sub_title')}}</p>
 

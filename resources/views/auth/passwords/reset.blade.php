@@ -8,7 +8,7 @@
 
       <div class="auth card">
           <div class="card-content">
-          <h4 class="card-title">{{ trans('quicksilver.reset.heading')}}</h4>
+          <h4 class="card-title has-text-centered">{{ trans('quicksilver.reset.heading')}}</h4>
 
                     <form class="form" method="POST" action="{{ route('password.request') }}" autocomplete="off">
                         {{ csrf_field() }}
