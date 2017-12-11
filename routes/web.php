@@ -104,6 +104,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
             Route::get('users/{id}', 'UsersController@edit')->name('admin.users.edit');
             Route::put('users/{id}', 'UsersController@update');
             Route::delete('users/{id}', 'UsersController@destroy');
+
+
+            Route::get('/account/profile', 'ProfileController@edit')->name('admin.account.profile');
+            Route::put('/account/profile', 'ProfileController@update')->name('admin.account.profile.update');
+
+            Route::get('/account/password', 'PasswordController@edit')->name('admin.account.password');
+            Route::put('/account/password', 'PasswordController@update')->name('admin.account.password.update');
         });
     });
 });

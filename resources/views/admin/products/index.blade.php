@@ -10,7 +10,7 @@
         </div>
         <div class="column">
             <div class="buttons has-addons is-right">
-                <button onclick="window.location.href = '/admin/products/create'; return true;" class="button is-primary">Add New Product</button>
+                <button onclick="window.location.href = '/admin/products/create'; return true;" class="button is-link">Add New Product</button>
 
             </div>
 
@@ -67,7 +67,7 @@
                 <td>{{$product->updated_at}}</td>
                 <td>
                     <div class="field is-grouped">
-                    <button onclick="window.location.href = '/admin/products/'+ {{$product->id}} +'/edit'; return true;" class="button is-primary">Edit</button>&nbsp;
+                    <button onclick="window.location.href = '/admin/products/'+ {{$product->id}} +'/edit'; return true;" class="button">Edit</button>&nbsp;
                     {{--@if($product->published)--}}
                         {{--<button class="button is-danger">Un-Publish</button>--}}
                     {{--@else--}}

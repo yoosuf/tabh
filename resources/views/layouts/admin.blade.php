@@ -35,8 +35,8 @@
 
                             <div class="navbar-dropdown has-dropdown is-active is-boxed">
 
-                              <a class="dropdown-item" href="#">My Profile</a>
-                              <a class="dropdown-item" href="#">Password</a>
+                              <a class="dropdown-item" href="{{ route('admin.account.profile') }}">My Profile</a>
+                              <a class="dropdown-item" href="{{ route('admin.account.password') }}">Password</a>
 
                               <hr class="dropdown-divider">
 
