@@ -103,8 +103,9 @@ class CustomersController extends Controller
 
     public function edit($id,  Request $request)
     {
-        $item = User::with('primaryAddress')->findOrFail($id);
+        $item = User::findOrFail($id);
         $countries = Country::get();
+        $address = $item->primaryAddress()->get();
         return view('admin.customers.edit', get_defined_vars());
     }
 

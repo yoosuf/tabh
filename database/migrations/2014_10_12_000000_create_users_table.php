@@ -47,7 +47,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->text('avatar')->nullable();
             $table->boolean('verified_email')->default(false);
-            $table->boolean('send_welcome_email')->default(false);
+            $table->boolean('verified_phone')->default(false);
             $table->boolean('is_complete')->default(false);
             $table->boolean('banned')->default(false);
             $table->jsonb('preferences')->default("{}");

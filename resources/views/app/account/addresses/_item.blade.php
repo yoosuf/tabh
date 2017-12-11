@@ -28,13 +28,26 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu6" role="menu">
                 <div class="dropdown-content">
-                    <a href="#" class="dropdown-item">
+
+                    <a  href="{{ route('account.address.edit', [$item->id]) }}" class="dropdown-item">
                         Edit address
+
                     </a>
+
+
                     @if(!$item->default)
-                        <a href="#" class="dropdown-item">
+
+                        <a class="dropdown-item" href="{{ route('account.address.default', $item->id) }}"
+                           onclick="event.preventDefault();
+                                       document.getElementById('mark-default').submit();">
                             Set as Default
                         </a>
+                        <form id="mark-default" action="{{ route('account.address.default', $item->id) }}" method="POST"
+                              style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+
+
                     @endif
                     <hr class="dropdown-divider">
                     <a href="#" class="dropdown-item">

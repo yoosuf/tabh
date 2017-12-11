@@ -1,43 +1,32 @@
 
-
-@if ($errors->any())
-    <article class="message is-danger">
-        <div class="message-body">
-            <p>There is {{ $errors->count()  }} error (s) performing this action.</p>
-        </div>
-    </article>
-    <br>
-@endif
-{{ csrf_field() }}
-
-
-        <div class="field">
-            <label for="address_name">{{ trans('quicksilver.account.address.input_full_name')}}</label>
-            <div class="control is-expanded">
-                <input
-                        id="address_name"
-                        type="text"
-                        name="address_name"
-                        class="input {{ $errors->has('address_name') ? ' is-danger' : '' }}"
-                        value="{{ isset($item->name)? $item->name : old('address_name') }}" />
-            </div>
-            @if ($errors->has('address_name'))
-                <span class="help is-danger">
+<div class="field">
+    <label for="address_name">Full name</label>
+    <div class="control is-expanded">
+        <input
+                id="address_name"
+                type="text"
+                name="address_name"
+                class="input {{ $errors->has('address_name') ? ' is-danger' : '' }}"
+                value="{{ isset($item->name)? $item->name : old('address_name') }}" />
+    </div>
+    @if ($errors->has('address_name'))
+        <span class="help is-danger">
                     {{ $errors->first('address_name') }}
                 </span>
-            @endif
-        </div>
+    @endif
+</div>
+
 
 
 
 <div class="field">
     <div class="control is-expanded">
-        <label for="address_phone">{{ trans('quicksilver.account.address.input_phone')}}</label>
+        <label for="address_phone">Phone</label>
         <input
                 id="address_phone"
-               name="address_phone"
-               class="input {{ $errors->has('address_phone') ? ' is-danger' : '' }}"
-               value="{{ isset($item->phone)? $item->phone : old('address_phone') }}"  />
+                name="address_phone"
+                class="input {{ $errors->has('address_phone') ? ' is-danger' : '' }}"
+                value="{{ isset($item->phone)? $item->phone : old('address_phone') }}"  />
     </div>
     @if ($errors->has('address_phone'))
         <span class="help is-danger">
@@ -48,37 +37,37 @@
 
 
 
-        <div class="field">
-            <div class="control is-expanded">
-                <label for="address_line_1">{{ trans('quicksilver.account.address.input_line_1')}}</label>
-                <input
-                        id="address_line_1"
-                        type="text"
-                        name="address_line_1"
-                        class="input {{ $errors->has('address_line_1') ? ' is-danger' : '' }}"
-                        value="{{ isset($item->address1)? $item->address1 : old('address_line_1') }}"  />
-            </div>
-            @if ($errors->has('address_line_1'))
-                <span class="help is-danger">
-                    {{ $errors->first('address_line_1') }}
+<div class="field">
+    <div class="control is-expanded">
+        <label for="address_address_1">Address line 1</label>
+        <input
+                id="address_address_1"
+                type="text"
+                name="address_address_1"
+                class="input {{ $errors->has('address_address_1') ? ' is-danger' : '' }}"
+                value="{{ isset($item->address1)? $item->address1 : old('address_address_1') }}"  />
+    </div>
+    @if ($errors->has('address_address_1'))
+        <span class="help is-danger">
+                    {{ $errors->first('address_address_1') }}
                 </span>
-            @endif
-        </div>
+    @endif
+</div>
 
 
 <div class="field">
     <div class="control is-expanded">
-        <label for="address_line_2">{{ trans('quicksilver.account.address.input_line_2')}}</label>
+        <label for="address_address_2">Address line 2</label>
         <input
-                id="address_line_2"
+                id="address_address_2"
                 type="text"
-                name="address_line_2"
-                class="input {{ $errors->has('address_line_2') ? ' is-danger' : '' }}"
-                value="{{ !empty($item->address2)? $item->address2 : old('address_line_2') }}"  />
+                name="address_address_2"
+                class="input {{ $errors->has('address_address_2') ? ' is-danger' : '' }}"
+                value="{{ !empty($item->address2)? $item->address2 : old('address_address_2') }}"  />
     </div>
-    @if ($errors->has('address_line_2'))
+    @if ($errors->has('address_address_2'))
         <span class="help is-danger">
-                    {{ $errors->first('address_line_2') }}
+                    {{ $errors->first('address_address_2') }}
                 </span>
     @endif
 </div>
@@ -90,7 +79,7 @@
 <div class="field is-horizontal">
     <div class="field-body">
         <div class="field">
-            <label for="address_city">{{ trans('quicksilver.account.address.input_city')}}</label>
+            <label for="address_city">City</label>
 
             <div class="control is-expanded">
                 <input
@@ -107,7 +96,7 @@
             @endif
         </div>
         <div class="field">
-            <label for="address_postcode">{{ trans('quicksilver.account.address.input_post_code')}}</label>
+            <label for="address_postcode">Zip/postal code</label>
 
             <div class="control is-expanded">
                 <input
@@ -133,21 +122,20 @@
     <div class="field-body">
         <div class="field">
 
-            <label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>
+            <label for="address_country">Country</label>
             <div class="control is-expanded">
 
+                <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}" >
 
-            <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}" >
 
-
-                <select name="address_country" id="address_country" >
-                    <option value="">Select your country</option>
-                    {{--@foreach ($countries as $item)--}}
+                    <select name="address_country" id="address_country">
+                        <option value="">Select your country</option>
+                        {{--@foreach ($countries as $item)--}}
                         {{--<option value="{{ $item->nice_name }}"--}}
 
                         {{-->{{ $item->nice_name }}</option>--}}
-                    {{--@endforeach--}}
-                </select>
+                        {{--@endforeach--}}
+                    </select>
                 </div>
 
             </div>
@@ -158,7 +146,7 @@
             @endif
         </div>
         <div class="field">
-            <label for="address_province">{{ trans('quicksilver.account.address.input_state')}}</label>
+            <label for="address_province">State</label>
 
             <div class="control is-expanded">
                 <input

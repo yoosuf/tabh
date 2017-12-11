@@ -15,6 +15,7 @@ class AccountController extends Controller
     {
         $this->middleware('auth');
 
+
     }
 
     public function index()
@@ -46,8 +47,8 @@ class AccountController extends Controller
         $request->validate([
             'address_name' => 'required|string|max:255',
             'address_phone' => 'required',
-            'address_address_1' => 'required|string|max:255',
-            'address_address_2' => 'required|string|max:255',
+            'address_line_1' => 'required|string|max:255',
+            'address_line_2' => 'required|string|max:255',
             'address_city' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
             // 'address_country' => 'required|string|max:255',
@@ -55,8 +56,8 @@ class AccountController extends Controller
         ], [
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
-            'address_address_1.required' => 'Line 1 is required',
-            'address_address_2.required' => 'Line 2 is required',
+            'address_line_1.required' => 'Line 1 is required',
+            'address_line_2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
@@ -67,23 +68,27 @@ class AccountController extends Controller
 
 
         $auth = auth()->user();
-        $auth->primaryAddress()->create([
+        $addressData = [
             'name' => $request->get('address_name'),
             'phone' => $request->get('address_phone'),
-            'address1' => $request->get('address_address_1'),
-            'address2' => $request->get('address_address_2'),
+            'address1' => $request->get('address_line_1'),
+            'address2' => $request->get('address_line_2'),
             'city' => $request->get('address_city'),
             'postcode' => $request->get('address_postcode'),
             'province' => $request->get('address_province'),
             'country' => $request->get('address_country'),
             'default' => true,
-        ]);
+        ];
 
 
-        $user = User::find($auth->id);
-        $user->is_complete = true;
-        $user->save();
-        
+
+        $auth->addresses()->updateOrCreate(['addressable_id' => $auth->id, 'addressable_type' => 'App\Entities\User'], $addressData);
+
+        $auth->is_complete = true;
+        $auth->save();
+
+
+        return redirect()->route('account');
 
         
     }

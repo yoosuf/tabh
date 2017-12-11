@@ -32,11 +32,21 @@ class User extends Authenticatable
 
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'preferences' => 'array',
+    ];
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function auth_provider()
     {
-        return $this->hasMany(AuthProvider::class);
+        return $this->hasOne(AuthProvider::class);
     }
 
 
@@ -54,7 +64,7 @@ class User extends Authenticatable
 
     public function fullName()
     {
-        return "{$this->first_name} {$this->last_name}";
+        return "{$this->name}";
     }
 
     public function avatar()

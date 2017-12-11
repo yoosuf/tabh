@@ -11,6 +11,18 @@ class Partner extends Model
 
     protected $guarded = [];
 
+
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'preferences' => 'array',
+    ];
+
+
     public function products()
     {
         return $this->hasMany(Product::class);

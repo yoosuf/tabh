@@ -19,7 +19,7 @@ class PartnersTableSeeder extends Seeder
                 'email'=> 'info@epharma.com.bd',
                 'phone'=> '',
                 'website'=> 'http://epharma.com.bd',
-                'api'=> 'http://epharma.com.bd/epharma_web/public/api/product-list',
+                'preferences->api' => 'http://epharma.com.bd/epharma_web/public/api/product-list',
                 'preferences->api_key' => 'TM@The@The@Messenger@ePharma'
             ]);
 

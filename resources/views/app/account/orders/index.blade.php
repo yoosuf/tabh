@@ -10,7 +10,13 @@
 
                 <div class="column is-8 is-offset-2">
 
-                    @include('app.account._nav')
+                    <div class="columns">
+                        <div class="column is-3 is-hidden-mobile">
+                            @include('app.account._nav')
+                        </div>
+
+
+                        <div class="column">
 
 
 
@@ -55,8 +61,7 @@
                                     </div>
 
 
-
-
+</div>
 
 
                                 </div>
@@ -69,5 +74,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

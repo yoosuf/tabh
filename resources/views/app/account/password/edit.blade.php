@@ -10,9 +10,14 @@
 
                 <div class="column is-8 is-offset-2">
 
+                    <div class="columns">
+                        <div class="column is-3 is-hidden-mobile">
+                            @include('app.account._nav')
+                        </div>
 
 
-                    @include('app.account._nav')
+                        <div class="column">
+
 
 
 
@@ -38,6 +43,7 @@
 
                     </form>
 
+                        </div>
 
                         </div>
                     </div>
@@ -48,5 +54,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

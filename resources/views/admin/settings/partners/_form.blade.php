@@ -103,7 +103,7 @@
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
-                    @include('admin.settings.partners._address')
+                    @include('admin.partials._address')
 
                 </div>
             </div>

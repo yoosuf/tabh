@@ -8,36 +8,45 @@
         <div class="container">
             <div class="columns">
 
-                <div class="column is-2">
+                <div class="column is-8 is-offset-2">
 
-                    <aside class="menu">
-                        <p class="menu-label">
-                            General
-                        </p>
-                        <ul class="menu-list">
-                            <li><a class="" href="{{ route('account.orders') }}">My Orders</a></li>
-                        </ul>
-                        <p class="menu-label">
-                            Settings
-                        </p>
-                        <ul class="menu-list">
-                            <li><a class="" href="{{ route('account.profile') }}">My Profile</a></li>
-                            <li><a class="" href="{{ route('account.address') }}">Addresses</a></li>
-                            <li><a class="" href="{{ route('account.password') }}">Password</a></li>
-                        </ul>
-
-                    </aside>
+                    <div class="columns">
+                        <div class="column is-3 is-hidden-mobile">
+                            @include('app.account._nav')
+                        </div>
 
 
-                </div>
+                        <div class="column">
+
+                            <div class="card">
+                                <div class="card-content">
+
+                                    <div class="columns">
+                                        <div class="column">
+                                            <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.address_create.txt_heading')}}</h1>
+                                            <p class="subtitle is-5">{{ trans('quicksilver.account.address_create.txt_sub_title')}}</p>
+
+                                        </div>
+                                    </div>
 
 
-                <div class="column">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque cum laboriosam qui vel.
-                    Accusamus cumque, ea error esse eum exercitationem explicabo harum ipsam laboriosam minus
-                    perferendis praesentium quisquam veniam.
 
 
+                                    <form class="form" method="POST" action="{{ route('account.address.store') }}" autocomplete="off">
+
+                                        @include('app.account.addresses._address')
+
+                                        <div class="field is-grouped">
+                                            <button type="submit" class="button is-link">
+                                                {{ trans('quicksilver.reset.button')}}
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

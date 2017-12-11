@@ -1,29 +1,29 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
 
+    <div class="columns">
+        <div class="column">
+            <p class="title">Profile</p>
 
-    <div class="section">
-        <div class="container">
+        </div>
+    </div>
+
+
+
+
             <div class="columns">
 
-                <div class="column is-8 is-offset-2">
-
-                    <div class="columns">
-                        <div class="column is-3 is-hidden-mobile">
-                            @include('app.account._nav')
-                        </div>
+                <div class="column is-8">
 
 
-                        <div class="column">
 
 
                             <div class="card">
                                 <div class="card-content">
 
-                                    <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.profile.txt_heading')}}</h1>
-                                    <p class="subtitle is-5">{{ trans('quicksilver.account.profile.txt_sub_title')}}</p>
+
 
 
                                     <form class="form" method="POST" action="{{ route('account.profile.update') }}"
@@ -31,7 +31,7 @@
 
                                         {{ method_field('PUT') }}
 
-                                        @include('app.account.profile._form', ['item' => $data])
+                                        @include('admin.account.profile._form', ['item' => $data])
 
 
                                         <div class="field is-grouped">
@@ -46,10 +46,6 @@
 
                         </div>
 
-
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
+
 @endsection
