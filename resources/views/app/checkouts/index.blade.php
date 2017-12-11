@@ -2,37 +2,6 @@
 
 @section('content')
 
-
-
-    <section class="hero is-info">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">{{ trans('quicksilver.search.heading')}}</h1>
-
-
-                <div class="columns">
-                    <div class="column is-half">
-
-
-                        <form action="{{ route('search') }}">
-                            <div class="field has-addons">
-                                <div class="control is-expanded">
-                                    <input class="input is-medium" type="text"
-                                           placeholder="{{ trans('quicksilver.search.search_placeholder')}}">
-                                </div>
-                                <div class="control">
-                                    <button class="button is-link is-medium" type="submit">
-                                        {{ trans('quicksilver.search.button')}}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="container">
         <div class="columns">
 
@@ -87,6 +56,11 @@
                      </div>
                    </li>
                  </ul>
+
+
+
+
+                 @include('app.checkouts._login')
 
             </div>
 
