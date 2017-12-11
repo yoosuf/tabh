@@ -1,5 +1,10 @@
 @if (!auth()->check())
 
+    <div class="card">
+        <div class="card-content">
+
+            <h1 class="title is-4 is-spaced">Log in</h1>
+            <p class="subtitle is-5"></p>
 <form class="" method="POST" action="{{ route('login') }}" autocomplete="off">
                             {{ csrf_field() }}
 
@@ -79,4 +84,7 @@
 
 
 </form>
+
+        </div>
+    </div>
     @endif
