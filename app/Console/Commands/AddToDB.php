@@ -53,9 +53,10 @@ class AddToDB extends Command
             $this->info("\n");
 
 
-            $partner_api = $partner->api;
+            $partner_api = $partner['preferences']['api'];
 
-            $partner_api_key = json_decode($partner->preferences)->api_key;
+            $partner_api_key =$partner['preferences']['api_key'];
+
 
             $res = $client->request('GET', $partner_api . '?page=' . $index,
                 ['headers' => ['api-key' => $partner_api_key]]);
