@@ -1,3 +1,5 @@
+@if (!auth()->check())
+
 <form class="" method="POST" action="{{ route('login') }}" autocomplete="off">
                             {{ csrf_field() }}
 
@@ -77,3 +79,4 @@
 
 
 </form>
+    @endif
