@@ -28,8 +28,6 @@ class CartController extends Controller
      */
     public function add(Request $request)
     {
-//        $url = $request->fullUrl();
-
         $product = $this->product->find($request->id);
 
         Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price]);
