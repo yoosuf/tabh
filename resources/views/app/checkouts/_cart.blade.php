@@ -5,24 +5,28 @@
         <h1 class="title is-4 is-spaced">Your order details</h1>
         <p class="subtitle is-5"></p>
 
+        <h2 class="is-success">Order Summary</h2>
+        <br>
+        <br>
+        <?php $grand_total=0 ?>
+        <?php $grand_discount=0 ?>
+        @foreach($grouped as $key => $partner)
 
-        @foreach(Cart::content() as $row)
+            <h3 class="is-success">by {{$key}}</h3>
+            <?php $partner_total=0 ?>
+            <?php $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
+            <?php $max_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['max_discount_amount'] ?>
 
-            <input type="hidden" name="id" id="id" value="{{$row->id}}">
-            <div class="media">
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png">
-                    </p>
-                </figure>
+
+            @foreach($partner as $item)
+
+                <?php $partner_total=$partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')) ?>
+
+            <div class="media" style="padding-left: 100px;">
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>{{$row->name}}</strong>
-                            <br>
-                            <small>by {{App\Entities\Product::find($row->id)->first()->partner()->first()->name}}</small>
-                            <br>
-                            <medium>&#2547; {{number_format(((float)$row->price), 2, '.', '')}}</medium>
+                            <strong>{{$item['item']->name}} (&#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}}) ({{$item['item']->qty}} units)</strong>
                         </p>
                     </div>
                 </div>
@@ -30,36 +34,99 @@
                     <tr>
                         <div class="media-right">
                             <td>
-                                <form role="form" method="POST" action="{{ route('cart.remove') }}">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" id="id" value="{{$row->rowId}}">
-                                    <button type="submit" class="button is-success">-</button>
-                                </form>
-                            </td>
-                            <td>
-                            <span class="tag is-info">
-                            <strong class="is-success">{{$row->qty}}</strong>
-                            </span>
-                            </td>
-                            <td>
-                                <form role="form" method="POST" action="{{ route('cart.add') }}">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" id="id" value="{{$row->id}}">
-                                    <button type="submit" class="button is-success">+</button>
-                                </form>
+                                <span class="">
+                                    <strong class="is-success">&#2547; {{$item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')}}</strong>
+                                </span>
                             </td>
                         </div>
                     </tr>
                 </table>
             </div>
+            @endforeach
+            <?php $discount_amount=0 ?>
+            @if($max_discount_amount <= $partner_total)
+                <?php $discount_amount= ($partner_total/100) * $discount_percentage ?>
+                <?php $partner_total= $partner_total - $discount_amount ?>
+                <div class="media" style="padding-left: 100px;">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>Discount ({{$discount_percentage}} %)</strong>
+                        </p>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <div class="media-right">
+                            <td>
+                                <span class="">
+                                    <strong class="is-success">-&#2547; {{number_format(((float)$discount_amount), 2, '.', '')}}</strong>
+                                </span>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+            @endif
+            <div class="media" style="padding-left: 100px;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: right">
+                                        <span class="">
+                                            <strong class="is-success">&#2547; {{$partner_total}}</strong>
+                                        </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <?php $grand_total=$grand_total + $partner_total ?>
+            <?php $grand_discount=$grand_discount + $discount_amount ?>
 
         @endforeach
 
-
-
-
+        <div class="card">
+            <div class="card-content">
+                <table style="width: 100%;">
+                    @if($grand_discount > 0)
+                        <tr>
+                            <td style="text-align: left">
+                                <p class="subtitle is-6">Total Discount</p>
+                            </td>
+                            <td style="text-align: right">
+                                <p class="subtitle is-6">-&#2547; {{$grand_discount}}</p>
+                            </td>
+                        </tr>
+                    @endif
+                        <tr>
+                            <td style="text-align: left">
+                                <h1 class="title is-4 is-spaced">Order Total</h1>
+                            </td>
+                            <td style="text-align: right">
+                                <h1 class="title is-4 is-spaced">&#2547; {{$grand_total}}</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left">
+                                <form role="form" method="POST" action="{{ route('order.discard') }}">
+                                    {{ csrf_field() }}
+                                    <br>
+                                    <input type="hidden" name="id" id="id" value="">
+                                    <button type="submit" class="button is-danger">- Discard Order -</button>
+                                </form>
+                            </td>
+                            <td style="text-align: right">
+                                <form role="form" method="POST" action="{{ route('order.add') }}">
+                                    {{ csrf_field() }}
+                                    <br>
+                                    <input type="hidden" name="id" id="id" value="">
+                                    <button type="submit" class="button is-success">- Place Order -</button>
+                                </form>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
 
     </div>
-
 
 </div>

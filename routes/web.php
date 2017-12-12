@@ -23,6 +23,9 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
 
+    Route::post('/order/add', 'OrderController@add')->name('order.add');
+    Route::post('/order/discard', 'OrderController@discard')->name('order.discard');
+
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
         Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');

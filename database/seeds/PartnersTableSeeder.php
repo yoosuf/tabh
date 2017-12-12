@@ -20,7 +20,9 @@ class PartnersTableSeeder extends Seeder
                 'phone'=> '',
                 'website'=> 'http://epharma.com.bd',
                 'preferences->api' => 'http://epharma.com.bd/epharma_web/public/api/product-list',
-                'preferences->api_key' => 'TM@The@The@Messenger@ePharma'
+                'preferences->api_key' => 'TM@The@The@Messenger@ePharma',
+                'preferences->discount_percentage' => 20,
+                'preferences->max_discount_amount' => 2000
             ]);
 
     }

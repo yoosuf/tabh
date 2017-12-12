@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Entities\Partner;
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
 //use Gloudemans\Shoppingcart\Cart;
@@ -12,14 +13,16 @@ use Mockery\Exception;
 class CartController extends Controller
 {
     private $product;
+    private $partner;
 
     /**
      * CartController constructor.
      * @param Product $product
      */
-    public function __construct(Product $product)
+    public function __construct(Product $product, Partner $partner)
     {
         $this->product = $product;
+        $this->partner = $partner;
     }
 
     /**
@@ -44,7 +47,7 @@ class CartController extends Controller
         return back()->withInput();
     }
 
-    public  function show(Request $request)
+    public function show(Request $request)
     {
         try {
             Cart::store($request->session()->getId());
@@ -53,6 +56,39 @@ class CartController extends Controller
         {
 
         }
-        return view('app.checkouts.index');
+
+        $grouped = $this->group_by_partner();
+
+//        foreach ($grouped as $key => $partner)
+//        {
+//            foreach ($partner as $item)
+//            {
+//                return $item['item']->name;
+//            }
+//        }
+
+//        return $grouped->get('epharma');
+
+//        dd($grouped);
+
+        return view('app.checkouts.index', compact('grouped'));
+    }
+
+    private function group_by_partner()
+    {
+        $collection = collect([]);
+        $items = Cart::content();
+
+//        dd($items);
+
+        foreach ($items as $item)
+        {
+            $product = $this->product->find($item->id);
+            $collection->push(['partner' => $product->partner()->first()->name,
+                'item' => $item
+            ]);
+        }
+
+        return $collection->groupBy('partner');
     }
 }
