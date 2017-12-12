@@ -5,7 +5,6 @@
     @if(Cart::count() > 0)
 @foreach(Cart::content() as $row)
 
-    <input type="hidden" name="id" id="id" value="{{$row->id}}">
     <div class="media">
         <figure class="media-left">
             <p class="image is-64x64">
@@ -14,6 +13,7 @@
         </figure>
         <div class="media-content">
             <div class="content">
+                <input type="hidden" name="id" value="{{$row->id}}">
                 <p>
                     <strong>{{$row->name}}</strong>
                     <br>
