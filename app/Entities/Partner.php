@@ -28,6 +28,11 @@ class Partner extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function line_items()
+    {
+        return $this->hasMany(LineItem::class);
+    }
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');

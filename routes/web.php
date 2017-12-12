@@ -23,7 +23,6 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
 
-    Route::post('/order/add', 'OrderController@add')->name('order.add');
     Route::post('/order/discard', 'OrderController@discard')->name('order.discard');
 
     Route::group(['middleware' => ['auth']], function () {
@@ -32,6 +31,9 @@ Route::group(['namespace' => 'App'], function () {
 
 
         Route::group(['middleware' => ['completed']], function () {
+
+            Route::post('/order/add', 'OrderController@add')->name('order.add');
+
             Route::get('/account', function() {
                 return redirect()->route('account.orders');
             })->name('account');

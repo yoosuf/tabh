@@ -4,7 +4,7 @@
 
 <aside class="menu">
     <figure class="image is-128x128">
-        <img src="{{ getProfileAvatar() }}">
+        {{--<img src="{{ getProfileAvatar() }}">--}}
 
 
     </figure>

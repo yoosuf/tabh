@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->belongsTo(Partner::class);
     }
+
+    public function line_items()
+    {
+        return $this->hasMany(LineItem::class);
+    }
 }

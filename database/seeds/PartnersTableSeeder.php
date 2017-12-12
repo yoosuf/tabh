@@ -25,5 +25,16 @@ class PartnersTableSeeder extends Seeder
                 'preferences->max_discount_amount' => 2000
             ]);
 
+        $partner  = \App\Entities\Partner::create([
+            'name'=> 'xyz',
+            'email'=> 'info@xyz.com.bd',
+            'phone'=> '',
+            'website'=> 'http://xyz.com.bd',
+            'preferences->api' => 'http://epharma.com.bd/epharma_web/public/api/product-list',
+            'preferences->api_key' => 'TM@The@The@Messenger@ePharma',
+            'preferences->discount_percentage' => 20,
+            'preferences->max_discount_amount' => 2000
+        ]);
+
     }
 }

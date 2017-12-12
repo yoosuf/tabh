@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
             $user  = \App\Entities\User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
+                'password' => \Illuminate\Support\Facades\Hash::make( 'password' ),
             ]);
 
 

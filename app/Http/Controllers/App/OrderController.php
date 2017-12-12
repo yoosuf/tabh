@@ -2,27 +2,36 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Entities\LineItem;
+use App\Entities\Order;
 use App\Entities\Partner;
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
 //use Gloudemans\Shoppingcart\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Mockery\Exception;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     private $product;
     private $partner;
+    private $order;
+    private $line_item;
 
     /**
-     * CartController constructor.
+     * OrderController constructor.
      * @param Product $product
+     * @param Partner $partner
+     * @param Order $order
      */
-    public function __construct(Product $product, Partner $partner)
+    public function __construct(Product $product, Partner $partner, Order $order, LineItem $line_item)
     {
         $this->product = $product;
         $this->partner = $partner;
+        $this->order = $order;
+        $this->line_item = $line_item;
     }
 
     /**
@@ -31,11 +40,36 @@ class OrderController extends Controller
      */
     public function add(Request $request)
     {
-        $product = $this->product->find($request->id);
+        $identifier = $request->session()->getId() . '/' . Carbon::now();
+        try {
+            Cart::store($identifier);
+        } catch (\Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException $e) {
 
-        Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price]);
+        }
 
-        return back()->withInput();
+        $order = Auth::user()->orders()->create([
+            'cart_identifier' => $identifier,
+            'total_amount'  => $request->has('total_amount') ? $request->total_amount : '0',
+            'total_discount'  => $request->has('total_discount') ? $request->total_discount : '0',
+            'tax'  => $request->has('tax') ? $request->tax : '0',
+        ]);
+
+        foreach (Cart::content() as $item) {
+            $product = $this->product->find($item->id);
+            $partner = $product->partner()->first();
+
+            $line_item = $this->line_item->create([
+                'rowId' => $item->rowId,
+                'quantity' => $item->qty,
+                'order_id' => $order->id,
+                'partner_id' => $partner->id,
+                'product_id' => $product->id
+            ]);
+        }
+        Cart::destroy();
+
+        return redirect()->route('account.orders');
+
     }
 
     public function discard(Request $request)

@@ -38,6 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: right">
+                                        <br>
                                         <button type="submit" class="button is-success">- Proceed to Checkout -</button>
                                     </td>
                                 </tr>

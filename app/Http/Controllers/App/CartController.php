@@ -49,27 +49,7 @@ class CartController extends Controller
 
     public function show(Request $request)
     {
-        try {
-            Cart::store($request->session()->getId());
-        }
-        catch (\Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException $e)
-        {
-
-        }
-
         $grouped = $this->group_by_partner();
-
-//        foreach ($grouped as $key => $partner)
-//        {
-//            foreach ($partner as $item)
-//            {
-//                return $item['item']->name;
-//            }
-//        }
-
-//        return $grouped->get('epharma');
-
-//        dd($grouped);
 
         return view('app.checkouts.index', compact('grouped'));
     }

@@ -19,61 +19,79 @@
                         <div class="column">
 
 
+                            <div class="card">
+                                <div class="card-content">
 
 
-                    <div class="card">
-                        <div class="card-content">
+                                    <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.orders.txt_heading')}}</h1>
+                                    <p class="subtitle is-5">{{ trans('quicksilver.account.orders.txt_sub_title')}}</p>
 
 
-                            <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.orders.txt_heading')}}</h1>
-                            <p class="subtitle is-5">{{ trans('quicksilver.account.orders.txt_sub_title')}}</p>
+                                    <table style="width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <td><strong>Id</strong></td>
+                                            <td><strong>Status</strong></td>
+                                            <td><strong>Created</strong></td>
+                                        </tr>
+                                        </thead>
+
+                                            @foreach($orders as $order)
+                                            <tr>
+                                            <td>
+                                                {{$order->id}}
+                                            </td>
+                                            <td>
+                                                {{$order->status}}
+                                            </td>
+                                                <td>
+                                                    <div class="media">
+
+                                                        {{$order->created_at}}
+                                                        <div class="media-right">
 
 
+                                                            <div class="dropdown is-right is-hoverable">
+                                                                <div class="dropdown-trigger">
+                                                                    <button class="button" aria-haspopup="true"
+                                                                            aria-controls="dropdown-menu6">
+                                                                        <span>Options</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="dropdown-menu" id="dropdown-menu6" role="menu">
+                                                                    <div class="dropdown-content">
+                                                                        <a href="#" class="dropdown-item">
+                                                                            View Order
+                                                                        </a>
+                                                                        {{--<hr class="dropdown-divider">--}}
+                                                                        {{--<a href="#" class="dropdown-item">--}}
+                                                                            {{--Cancel Order--}}
+                                                                        {{--</a>--}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                            <div class="media">
 
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                        </p>
-                                    </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                            </td>
+                                            </tr>
+                                            @endforeach
+
+                                    </table>
+
                                 </div>
-                                <div class="media-right">
 
-
-                                    <div class="dropdown is-right is-hoverable">
-                                        <div class="dropdown-trigger">
-                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu6">
-                                                <span>Options</span>
-                                            </button>
-                                        </div>
-                                        <div class="dropdown-menu" id="dropdown-menu6" role="menu">
-                                            <div class="dropdown-content">
-                                                <a href="#" class="dropdown-item">
-                                                    View Order
-                                                </a>
-                                                <hr class="dropdown-divider">
-                                                <a href="#" class="dropdown-item">
-                                                    Cancel Order
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-</div>
-
-
-                                </div>
                             </div>
-
                         </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

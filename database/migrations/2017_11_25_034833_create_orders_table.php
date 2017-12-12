@@ -15,6 +15,15 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('cart_identifier');
+            $table->string('status')->default('initiated');
+            $table->boolean('is_approved_by_admin')->default(false);
+            $table->string('total_amount');
+            $table->string('total_discount');
+            $table->string('tax');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
