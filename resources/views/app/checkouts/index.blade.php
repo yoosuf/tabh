@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns">
 
-            <div class="column">
+            <div class="column is-6 is-offset-3">
 
               <ul class="steps is-narrow is-medium is-centered has-content-centered">
                    <li class="steps-segment">

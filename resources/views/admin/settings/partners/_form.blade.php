@@ -18,6 +18,10 @@
                 <p class="title is-4">Partner overview</p>
 
 
+
+
+
+
                 <div class="field">
                     <label for="partner_name">Partner name</label>
 
@@ -38,43 +42,57 @@
 
 
 
-                <div class="field">
-                    <label for="partner_email">Email</label>
 
-                    <div class="control is-expanded">
-                        <input
-                                id="partner_email"
-                                type="text"
-                                name="partner_email"
-                                class="input {{ $errors->has('partner_email') ? ' is-danger' : '' }}"
-                                value="{{ isset($item->email)? $item->email : old('partner_email') }}"  />
+
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label for="partner_email">Email</label>
+
+                            <div class="control is-expanded">
+                                <input
+                                        id="partner_email"
+                                        type="text"
+                                        name="partner_email"
+                                        class="input {{ $errors->has('partner_email') ? ' is-danger' : '' }}"
+                                        value="{{ isset($item->email)? $item->email : old('partner_email') }}"  />
+                            </div>
+                            @if ($errors->has('partner_email'))
+                                <span class="help is-danger">
+                                    {{ $errors->first('partner_email') }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <label for="partner_phone">Phone</label>
+
+                            <div class="control is-expanded">
+                                <input
+                                        id="partner_phone"
+                                        type="text"
+                                        name="partner_phone"
+                                        class="input {{ $errors->has('partner_phone') ? ' is-danger' : '' }}"
+                                        value="{{ isset($item->phone)? $item->phone : old('partner_phone') }}"  />
+                            </div>
+                            @if ($errors->has('partner_phone'))
+                                <span class="help is-danger">
+                                    {{ $errors->first('partner_phone') }}
+                                </span>
+                            @endif
+                        </div>
+
                     </div>
-                    @if ($errors->has('partner_email'))
-                        <span class="help is-danger">
-                            {{ $errors->first('partner_email') }}
-                        </span>
-                    @endif
                 </div>
 
 
 
-                <div class="field">
-                    <label for="partner_phone">Phone</label>
 
-                    <div class="control is-expanded">
-                        <input
-                                id="partner_phone"
-                                type="text"
-                                name="partner_phone"
-                                class="input {{ $errors->has('partner_phone') ? ' is-danger' : '' }}"
-                                value="{{ isset($item->phone)? $item->phone : old('partner_phone') }}"  />
-                    </div>
-                    @if ($errors->has('partner_phone'))
-                        <span class="help is-danger">
-                            {{ $errors->first('partner_phone') }}
-                        </span>
-                    @endif
-                </div>
+
+
+
+                
 
 
                 <div class="field">
