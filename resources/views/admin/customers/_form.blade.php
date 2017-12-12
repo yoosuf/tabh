@@ -37,39 +37,39 @@
 
                 <div class="field is-horizontal">
                     <div class="field-body">
-                <div class="field">
-                    <label for="customer_email">Email</label>
-                    <div class="control is-expanded">
-                        <input
-                                id="customer_email"
-                                type="email"
-                                name="customer_email"
-                                class="input {{ $errors->has('customer_email') ? ' is-danger' : '' }}"
-                                value="{{ isset($item->email)? $item->email : old('customer_email') }}"  />
+                        <div class="field">
+                            <label for="customer_email">Email</label>
+                            <div class="control is-expanded">
+                                <input
+                                        id="customer_email"
+                                        type="email"
+                                        name="customer_email"
+                                        class="input {{ $errors->has('customer_email') ? ' is-danger' : '' }}"
+                                        value="{{ isset($item->email)? $item->email : old('customer_email') }}"  />
 
-                    </div>
-                    @if ($errors->has('customer_email'))
-                        <span class="help is-danger">
-                        {{ $errors->first('customer_email') }}
-                    </span>
-                    @endif
-                </div>
+                            </div>
+                            @if ($errors->has('customer_email'))
+                                <span class="help is-danger">
+                                {{ $errors->first('customer_email') }}
+                            </span>
+                            @endif
+                        </div>
 
-                <div class="field">
-                    <label for="customer_phone">Phone</label>
-                    <div class="control is-expanded">
-                        <input
-                                id="customer_phone"
-                                type="text"
-                                name="customer_phone"
-                                class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
-                    </div>
-                    @if ($errors->has('customer_phone'))
-                        <span class="help is-danger">
-                            {{ $errors->first('customer_phone') }}
-                        </span>
-                    @endif
-                </div>
+                        <div class="field">
+                            <label for="customer_phone">Phone</label>
+                            <div class="control is-expanded">
+                                <input
+                                        id="customer_phone"
+                                        type="text"
+                                        name="customer_phone"
+                                        class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
+                            </div>
+                            @if ($errors->has('customer_phone'))
+                                <span class="help is-danger">
+                                    {{ $errors->first('customer_phone') }}
+                                </span>
+                            @endif
+                        </div>
 
                     </div>
                 </div>

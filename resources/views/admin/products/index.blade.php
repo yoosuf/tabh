@@ -51,7 +51,7 @@
             <tbody>
             @foreach ($products as $product)
             <tr>
-                <th><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->id}}</a></th>
+                <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->id}}</a></td>
                 <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->title}}</a></td>
                 <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->generic_name}}</a></td>
                 <td>{{$product->vendor}}</td>
@@ -66,14 +66,16 @@
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
                 <td>
-                    <div class="field is-grouped">
-                    <button onclick="window.location.href = '/admin/products/'+ {{$product->id}} +'/edit'; return true;" class="button">Edit</button>&nbsp;
+                    @include('admin.products._menu', ['item' => $product])
+
+                    {{--<div class="field is-grouped">--}}
+                    {{--<button onclick="window.location.href = '/admin/products/'+ {{$product->id}} +'/edit'; return true;" class="button">Edit</button>&nbsp;--}}
                     {{--@if($product->published)--}}
                         {{--<button class="button is-danger">Un-Publish</button>--}}
                     {{--@else--}}
                         {{--<button class="button is-primary">Publish</button>--}}
                     {{--@endif--}}
-                    </div>
+                    {{--</div>--}}
                 </td>
             </tr>
             @endforeach

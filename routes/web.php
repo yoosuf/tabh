@@ -78,12 +78,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('orders/{id}', 'OrdersController@destroy');
 
         Route::get('products', 'ProductsController@index')->name('admin.products');
-        Route::post('products', 'ProductsController@store');
-        Route::get('products/create', 'ProductsController@create');
-        Route::get('products/{id}/edit', 'ProductsController@edit');
-        Route::get('products/{id}', 'ProductsController@show');
+        Route::post('products', 'ProductsController@store')->name('admin.products.store');
+        Route::get('products/create', 'ProductsController@create')->name('admin.products.create');
+        Route::get('products/{id}/edit', 'ProductsController@edit')->name('admin.products.edit');
+//        Route::get('products/{id}', 'ProductsController@show')->name('admin.products.edit');
         Route::put('products/{id}', 'ProductsController@update')->name('admin.products.update');
-        Route::delete('products/{id}', 'ProductsController@destroy');
+        Route::delete('products/{id}', 'ProductsController@destroy')->name('admin.products.delete');
 
 
         Route::get('customers', 'CustomersController@index')->name('admin.customers');
