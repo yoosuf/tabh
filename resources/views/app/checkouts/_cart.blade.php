@@ -8,6 +8,8 @@
         <h2 class="is-success">Order Summary</h2>
         <br>
         <br>
+        <?php $grand_total=0 ?>
+        <?php $grand_discount=0 ?>
         @foreach($grouped as $key => $partner)
 
             <h3 class="is-success">by {{$key}}</h3>
@@ -41,6 +43,31 @@
                 </table>
             </div>
             @endforeach
+            <?php $discount_amount=0 ?>
+            @if($max_discount_amount <= $partner_total)
+                <?php $discount_amount= ($partner_total/100) * $discount_percentage ?>
+                <?php $partner_total= $partner_total - $discount_amount ?>
+                <div class="media" style="padding-left: 100px;">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>Discount ({{$discount_percentage}} %)</strong>
+                        </p>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <div class="media-right">
+                            <td>
+                                <span class="">
+                                    <strong class="is-success">-&#2547; {{number_format(((float)$discount_amount), 2, '.', '')}}</strong>
+                                </span>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+            @endif
             <div class="media" style="padding-left: 100px;">
                 <table style="width: 100%;">
                     <tr>
@@ -52,8 +79,53 @@
                     </tr>
                 </table>
             </div>
+            <?php $grand_total=$grand_total + $partner_total ?>
+            <?php $grand_discount=$grand_discount + $discount_amount ?>
 
         @endforeach
+
+        <div class="card">
+            <div class="card-content">
+                <table style="width: 100%;">
+                    @if($grand_discount > 0)
+                        <tr>
+                            <td style="text-align: left">
+                                <p class="subtitle is-6">Total Discount</p>
+                            </td>
+                            <td style="text-align: right">
+                                <p class="subtitle is-6">-&#2547; {{$grand_discount}}</p>
+                            </td>
+                        </tr>
+                    @endif
+                        <tr>
+                            <td style="text-align: left">
+                                <h1 class="title is-4 is-spaced">Order Total</h1>
+                            </td>
+                            <td style="text-align: right">
+                                <h1 class="title is-4 is-spaced">&#2547; {{$grand_total}}</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left">
+                                <form role="form" method="POST" action="{{ route('order.discard') }}">
+                                    {{ csrf_field() }}
+                                    <br>
+                                    <input type="hidden" name="id" id="id" value="">
+                                    <button type="submit" class="button is-danger">- Discard Order -</button>
+                                </form>
+                            </td>
+                            <td style="text-align: right">
+                                <form role="form" method="POST" action="{{ route('order.add') }}">
+                                    {{ csrf_field() }}
+                                    <br>
+                                    <input type="hidden" name="id" id="id" value="">
+                                    <button type="submit" class="button is-success">- Place Order -</button>
+                                </form>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
 
     </div>
 

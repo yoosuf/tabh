@@ -34,7 +34,7 @@
                                     <td style="text-align: right">{{Cart::count()}} Items</td>
                                     {{--<td>Subtotal : &#2547; {{ Cart::subtotal() }}</td>--}}
                                     {{--<td>Tax : &#2547; {{ Cart::tax() }}</td>--}}
-                                    <td style="text-align: right">Total : &#2547; {{ Cart::total() }}</td>
+                                    <td style="text-align: right">Total : &#2547; {{ Cart::subtotal() }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: right">
