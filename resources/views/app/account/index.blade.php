@@ -2,52 +2,18 @@
 
 @section('content')
 
-    <section class="hero is-info is-medium">
-
-
-
-        <div class="columns">
-            <div class="column">
-
-
-                <ul class="steps my-step-style has-content-centered">
-
-                    <li class="steps-segment">
-                        <span class="steps-marker"></span>
-                        <div class="steps-content">
-                            <p class="is-size-5">Step 1</p>
-                        </div>
-                    </li>
-                    <li class="steps-segment">
-                        <span class="steps-marker"></span>
-                        <div class="steps-content">
-                            <p class="is-size-5">Step 2</p>
-                        </div>
-                    </li>
-                    <li class="steps-segment is-active">
-                        <span class="steps-marker"></span>
-                        <div class="steps-content">
-                            <p class="is-size-5">Step 3</p>
-                        </div>
-                    </li>
-                    <li class="steps-segment">
-                        <span class="steps-marker"></span>
-                        <div class="steps-content">
-                            <p class="is-size-5">Step 4</p>
-                        </div>
-                    </li>
-                    <li class="steps-segment">
-                        <span class="steps-marker"></span>
-                        <div class="steps-content">
-                            <p class="is-size-5">Step 5</p>
-                        </div>
-                    </li>
-                </ul>
-
-
+    <section class="hero is-info">
+        @include('layouts.app._nav')
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-6">
+                    </div>
+                    <div class="column is-4 is-offset-2">
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
 
 @endsection

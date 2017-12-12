@@ -80,20 +80,27 @@
 
 
                             </div>
-
+                        </form>
 
                             <div class="is-divider" data-content="OR"></div>
 
 
-                            <a class="button is-block" href="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signin'])}}">
+                        <form class="" method="GET" action="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signin'])}}" autocomplete="off">
+
+                        {{ csrf_field() }}
+
+                                <button class="button is-block is-facebook" type="submit">
                     <span class="icon">
                       <i class="fa fa-github"></i>
                     </span>
-                                <span>Sign in with Facebook</span>
-                            </a>
+                                    <span>Sign in with Facebook</span>
+                                </button>
+                            </form>
 
 
-                        </form>
+
+
+
 
                     </div>
 
