@@ -5,7 +5,7 @@
         <label class="label is-pulled-right">Total : &#2547; {{ Cart::subtotal() }}</label>
 
         <div class="control">
-            <button type="submit" class="button is-success is-fullwidth">Proceed to Checkout</button>
+            <button type="submit" class="button is-success is-medium is-fullwidth">Proceed to Checkout</button>
         </div>
 
     </div>
