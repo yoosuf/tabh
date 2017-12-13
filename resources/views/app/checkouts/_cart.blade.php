@@ -118,7 +118,10 @@
                                 <form role="form" method="POST" action="{{ route('order.add') }}">
                                     {{ csrf_field() }}
                                     <br>
-                                    <input type="hidden" name="id" id="id" value="">
+                                    <input type="hidden" name="total_amount" id="total_amount" value="{{$grand_total}}">
+                                    <input type="hidden" name="total_discount" id="total_discount" value="{{$grand_discount}}">
+                                    <input type="hidden" name="tax" id="tax" value="0">
+
                                     <button type="submit" class="button is-success">- Place Order -</button>
                                 </form>
                             </td>

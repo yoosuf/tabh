@@ -33,6 +33,7 @@ Route::group(['namespace' => 'App'], function () {
         Route::group(['middleware' => ['completed']], function () {
 
             Route::post('/order/add', 'OrderController@add')->name('order.add');
+            Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
 
             Route::get('/account', function() {
                 return redirect()->route('account.orders');
@@ -78,7 +79,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('orders', 'OrdersController@index')->name('admin.orders');
         Route::post('orders', 'OrdersController@save');
-        Route::get('orders/{id}/edit', 'OrdersController@edit');
+//        Route::get('orders/{id}/edit', 'OrdersController@edit')->name('admin.orders.edit');
+        Route::get('orders/{id}/approve', 'OrdersController@approve')->name('admin.orders.approve');
+        Route::get('orders/{id}/reject', 'OrdersController@reject')->name('admin.orders.reject');
+        Route::get('orders/{id}', 'OrdersController@show')->name('admin.orders.show');
         Route::put('orders/{id}', 'OrdersController@update');
         Route::delete('orders/{id}', 'OrdersController@destroy');
 

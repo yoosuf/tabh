@@ -51,9 +51,21 @@
             <tbody>
             @foreach ($products as $product)
             <tr>
-                <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->id}}</a></td>
-                <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->title}}</a></td>
-                <td><a href="/admin/products/{{$product->id}}" class="level-item">{{$product->generic_name}}</a></td>
+                <td>
+                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
+                        {{$product->id}}
+                    {{--</a>--}}
+                </td>
+                <td>
+                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
+                        {{$product->title}}
+                    {{--</a>--}}
+                </td>
+                <td>
+                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
+                        {{$product->generic_name}}
+                    {{--</a>--}}
+                </td>
                 <td>{{$product->vendor}}</td>
                 <td>@if($product->published)
                         published

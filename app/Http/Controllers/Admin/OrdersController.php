@@ -9,24 +9,25 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Entities\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+    private $order;
 
-    public function __construct()
+    public function __construct(Order $order)
     {
+        $this->order = $order;
         $this->middleware('admin');
     }
-
-
 
     public function index(Request $request)
     {
 
-        $data = [];
-        return view('admin.orders.index', get_defined_vars());
+        $orders = $this->order->All();
+        return view('admin.orders.index', compact('orders'));
     }
 
     public function create(Request $request)
@@ -34,12 +35,38 @@ class OrdersController extends Controller
 
     }
 
+    public function approve($id, Request $request)
+    {
+        $order = $this->order->find($id);
+
+        $order->status = 'Approved by Admin';
+        $order->is_approved_by_admin = true;
+
+        $order->save();
+
+        return back()->withInput();
+    }
+
+    public function reject($id, Request $request)
+    {
+        $order = $this->order->find($id);
+
+        $order->status = 'Rejected by Admin';
+        $order->is_approved_by_admin = false;
+
+        $order->save();
+
+        return back()->withInput();
+    }
 
     public function show($id, Request $request)
     {
+        $order = $this->order->find($id);
 
+        $line_items = $order->line_items()->get();
+
+        return view('admin.orders.show', compact('order', 'line_items'));
     }
-
 
     public function store(Request $request)
     {
