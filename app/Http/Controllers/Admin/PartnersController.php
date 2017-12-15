@@ -51,6 +51,13 @@ class PartnersController extends Controller
             'partner_website' => 'required|max:255',
             'partner_status' => 'required|boolean',
 
+            'partner_api' => 'nullable|url|max:255',
+            'partner_api_key' => 'nullable|string|max:255',
+            'partner_min_discount_amount' => 'nullable|numeric',
+            'partner_discount_percentage' => 'nullable|numeric',
+
+
+
             'address_first_name' => 'nullable|max:255',
             'address_last_name' => 'nullable|max:255',
             'address_phone' => 'nullable|max:255',
@@ -126,10 +133,12 @@ class PartnersController extends Controller
             'partner_name' => 'required|string|max:255',
             'partner_email' => 'required|email|max:255|unique:partners,email,'.$id,
             'partner_phone' => 'required|max:255|unique:partners,phone,'.$id,
-            'partner_website' => 'required|max:255',
+            'partner_website' => 'nullable|url|max:255',
             'partner_status' => 'required|boolean',
-
-
+            'partner_api' => 'nullable|url|max:255',
+            'partner_api_key' => 'nullable|string|max:255',
+            'partner_min_discount_amount' => 'nullable|numeric',
+            'partner_discount_percentage' => 'nullable|numeric',
 
             'address_first_name' => 'nullable|max:255',
             'address_last_name' => 'nullable|max:255',

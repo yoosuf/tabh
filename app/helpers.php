@@ -16,11 +16,11 @@ if (!function_exists('getProfileAvatar')) {
 }
 
 if (!function_exists('render_countries')) {
-    function render_countries($iso = null) {
+    function render_countries($iso = null, $fieldName = null) {
 
         $countries = \App\Entities\Country::all();
 
-        $html = "<select name='address_country' id='address_country'>";
+        $html = "<select name='$fieldName' id='$fieldName'>";
 
         if($iso == null)
             $html .= "<option value='' selected>Select your country</option>";

@@ -50,7 +50,15 @@
                     <td><a href="{{ route('admin.partners.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->phone }}</td>
-                    <td>{{ $item->is_active ?  "Active" : "De-active"  }}</td>
+                    <td>
+                        @if($item->is_active)
+                            <span class="tag is-link">Activated</span>
+                        @else
+                            <span class="tag is-warning">De-activated</span>
+
+                        @endif
+
+                    </td>
                     <td>@include('admin.settings.partners._menu')</td>
                 </tr>
             @endforeach
