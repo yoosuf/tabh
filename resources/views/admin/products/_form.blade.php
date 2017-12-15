@@ -172,24 +172,24 @@
                                     @else
                                         <option selected disabled>Select dropdown</option>
                                     @endif
-                                    <option>CAPSULES	mg</option>
-                                    <option>CHEWING GUM	mg</option>
-                                    <option>EAR DROPS	ml</option>
-                                    <option>EYE DROPS	ml</option>
-                                    <option>EYE OINT	g</option>
-                                    <option>GEL(TOPICAL)	g</option>
-                                    <option>GRANULES	mg</option>
-                                    <option>INHALER	md</option>
-                                    <option>INJECTION	ml</option>
-                                    <option>LOTION	ml</option>
-                                    <option>LOZENGES	mg</option>
-                                    <option>NASAL SPRAY	ml</option>
-                                    <option>OINTMENT	g</option>
-                                    <option>POWDER	g</option>
-                                    <option>SOLUTION	ml</option>
-                                    <option>SYRUP	ml</option>
-                                    <option>TABLET	mg</option>
-                                    <option>VAPOCAPS	mp</option>
+                                    <option>CAPSULES</option>
+                                    <option>CHEWING GUM</option>
+                                    <option>EAR DROPS</option>
+                                    <option>EYE DROPS</option>
+                                    <option>EYE OINT</option>
+                                    <option>GEL(TOPICAL)</option>
+                                    <option>GRANULES</option>
+                                    <option>INHALER</option>
+                                    <option>INJECTION</option>
+                                    <option>LOTION</option>
+                                    <option>LOZENGES</option>
+                                    <option>NASAL SPRAY</option>
+                                    <option>OINTMENT</option>
+                                    <option>POWDER</option>
+                                    <option>SOLUTION</option>
+                                    <option>SYRUP</option>
+                                    <option>TABLET</option>
+                                    <option>VAPOCAPS</option>
                                 </select>
                             </div>
                         </div>
