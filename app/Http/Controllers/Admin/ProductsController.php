@@ -130,8 +130,9 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $partner = $product->partner()->first();
+        $image = $this->GetAttachmentURL($product->attachment()->first());
 //        $partners = $this->partner->all();
-        return view('admin.products.edit', compact('product', 'partner'));
+        return view('admin.products.edit', compact('product', 'partner','image'));
     }
 
     /**
@@ -168,8 +169,10 @@ class ProductsController extends Controller
 
         if($request->has('image'))
         {
-           $path = Storage::putFile('attachments', $request->file('image'));
-           $product->attachment()->updateOrCreate([
+            $product->attachment()->delete();
+
+            $path = Storage::putFile('attachments', $request->file('image'));
+            $product->attachment()->updateOrCreate([
                'attachable_id'         => $product->id,
                'attachable_type'       => 'App\Product'],
                ['attachable_category'   => 'medicine',

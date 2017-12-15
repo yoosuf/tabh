@@ -145,15 +145,15 @@
 
                 <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}" >
 
-
-                    <select name="address_country" id="address_country" >
-                        <option value="">Select your country</option>
+                    {!! render_countries() !!}
+                    {{--<select name="address_country" id="address_country" >--}}
+                        {{--<option value="">Select your country</option>--}}
                         {{--@foreach ($countries as $item)--}}
                         {{--<option value="{{ $item->nice_name }}"--}}
 
                         {{-->{{ $item->nice_name }}</option>--}}
                         {{--@endforeach--}}
-                    </select>
+                    {{--</select>--}}
                 </div>
 
             </div>

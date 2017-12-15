@@ -65,8 +65,15 @@
 
                     <p class="title is-4">Product Images</p>
 
-
-
+{{$image}}
+                    <div class="field">
+                        <label class="label">Image</label>
+                        <div class="box">
+                            <figure class="image is-128x128">
+                                <img src={{ isset($image) ? asset($image) : '' }}>
+                            </figure>
+                        </div>
+                    </div>
 
 
             <div class="field">
@@ -74,7 +81,7 @@
                 <div class="control">
                     <div class="file has-name is-fullwidth">
                         <label class="file-label">
-                            <input class="file-input" name="image" id="image" type="file">
+                            <input class="file-input" name="image" id="image" type="file" multiple accept='image/*'>
                             <span class="file-cta">
                         <span class="file-icon">
                             <i class="fa fa-upload"></i>
