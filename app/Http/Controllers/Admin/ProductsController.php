@@ -36,14 +36,17 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
+//        return $request->get('partner_id');
 
-        if($request->has('partner_id') & $request->get('partner_id') != '')
+        if($request->has('partner_id') && $request->get('partner_id') != '')
         {
+            $partner_id = $request->get('partner_id');
             $partner = $this->partner->find($request->get('partner_id'));
 
-            if($request->has('status') & $request->get('status') != '')
+            if($request->has('status') && $request->get('status') != '')
             {
-                $products = $partner->products()->where('published', $request->get('partner_id'))->orderBy('id', 'asc')->paginate(10);
+                $status = $request->get('status');
+                $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
             }
             else
             {
@@ -52,8 +55,9 @@ class ProductsController extends Controller
         }
         else
         {
-            if($request->has('status') & $request->get('status') != '')
+            if($request->has('status') && $request->get('status') != '')
             {
+                $status = $request->get('status');
                 $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
             }
             else
@@ -63,7 +67,13 @@ class ProductsController extends Controller
 
         }
 
-        return view('admin.products.index', compact('products'));
+        $querystringArray = ['partner_id' => $request->get('partner_id'), 'status' => $request->get('status')];
+
+        $partners = $this->partner->get();
+
+        $products->appends($querystringArray);
+
+        return view('admin.products.index', compact('products', 'partners', 'status', 'partner_id'));
     }
 
     /**
