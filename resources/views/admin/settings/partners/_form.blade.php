@@ -162,13 +162,13 @@
 
 
                     <div class="field">
-                        <label for="partner_max_discount_amount">Max Discount rate</label>
+                        <label for="partner_min_discount_amount">Min Discount rate</label>
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                <input class="input" type="number"
-                                       id="partner_max_discount_amount"
-                                       name="partner_max_discount_amount"
-                                       value="{{ isset($item->preferences)?  $item->preferences['max_discount_amount'] : old('partner_max_discount_amount') }}"/>
+                                <input class="input" type="text"
+                                       id="partner_min_discount_amount"
+                                       name="partner_min_discount_amount"
+                                       value="{{ isset($item->preferences)?  $item->preferences['min_discount_amount'] : old('partner_min_discount_amount') }}"/>
                             </div>
                             <div class="control">
                                 <a class="button is-static">
@@ -176,8 +176,8 @@
                                 </a>
                             </div>
                         </div>
-                        @if ($errors->has('partner_max_discount_amount'))
-                            <span class="help is-danger">{{ $errors->first('partner_max_discount_amount') }}</span>
+                        @if ($errors->has('partner_min_discount_amount'))
+                            <span class="help is-danger">{{ $errors->first('partner_min_discount_amount') }}</span>
                         @endif
                     </div>
 
