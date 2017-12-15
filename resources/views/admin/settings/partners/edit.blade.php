@@ -9,9 +9,9 @@
         <div class="column is-12">
 
 
-            <p class="title">Edit customer</p>
+            <p class="title">Edit Partner</p>
 
-
+            @include('flash::message')
         </div>
     </div>
 

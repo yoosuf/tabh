@@ -1,6 +1,5 @@
-
 <div class="field">
-    <label for="address_name">Full name</label>
+    <label for="address_name">Contact name</label>
     <div class="control is-expanded">
         <input
                 id="address_name"
@@ -21,7 +20,7 @@
 
 <div class="field">
     <div class="control is-expanded">
-        <label for="address_phone">Phone</label>
+        <label for="address_phone">Contact phone</label>
         <input
                 id="address_phone"
                 name="address_phone"
@@ -39,17 +38,17 @@
 
 <div class="field">
     <div class="control is-expanded">
-        <label for="address_address_1">Address line 1</label>
+        <label for="address_line1">Address line 1</label>
         <input
-                id="address_address_1"
+                id="address_line1"
                 type="text"
-                name="address_address_1"
-                class="input {{ $errors->has('address_address_1') ? ' is-danger' : '' }}"
-                value="{{ isset($item->address1)? $item->address1 : old('address_address_1') }}"  />
+                name="address_line1"
+                class="input {{ $errors->has('address_line1') ? ' is-danger' : '' }}"
+                value="{{ isset($item->address1)? $item->address1 : old('address_line1') }}"  />
     </div>
-    @if ($errors->has('address_address_1'))
+    @if ($errors->has('address_line1'))
         <span class="help is-danger">
-                    {{ $errors->first('address_address_1') }}
+                    {{ $errors->first('address_line1') }}
                 </span>
     @endif
 </div>
@@ -57,17 +56,17 @@
 
 <div class="field">
     <div class="control is-expanded">
-        <label for="address_address_2">Address line 2</label>
+        <label for="address_line2">Address line 2</label>
         <input
-                id="address_address_2"
+                id="address_line2"
                 type="text"
-                name="address_address_2"
-                class="input {{ $errors->has('address_address_2') ? ' is-danger' : '' }}"
-                value="{{ !empty($item->address2)? $item->address2 : old('address_address_2') }}"  />
+                name="address_line2"
+                class="input {{ $errors->has('address_line2') ? ' is-danger' : '' }}"
+                value="{{ !empty($item->address2)? $item->address2 : old('address_line2') }}"  />
     </div>
-    @if ($errors->has('address_address_2'))
+    @if ($errors->has('address_line2'))
         <span class="help is-danger">
-                    {{ $errors->first('address_address_2') }}
+                    {{ $errors->first('address_line2') }}
                 </span>
     @endif
 </div>
