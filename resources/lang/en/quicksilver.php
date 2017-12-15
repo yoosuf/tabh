@@ -40,7 +40,7 @@ return [
         'heading' => 'Create your Quicksilver account.',
         'button' => 'Create your Quicksilver account',
         'have_login_txt' => 'Already have an account?',
-        'login_txt' => 'Sign in.',
+        'login_txt' => 'Sign in',
     ],
     'login' => [
         'title' => 'Login',
@@ -65,8 +65,8 @@ return [
     'account' => [
         'setup' => [
             'txt_title' => 'Setup',
-            'txt_heading' => 'Hi, add an address and will bring to door step',
-            'txt_sub_title' => 'This will be used as your default business address',
+            'txt_heading' => 'Hi, add an address and we\'ll deliver to your door step',
+            'txt_sub_title' => 'This will be used as your default address',
         ],
         'orders' => [
             'txt_title' => 'Orders',
@@ -81,7 +81,7 @@ return [
         'address' => [
             'txt_title' => 'Addresses',
             'txt_heading' => 'Addresses',
-            'txt_sub_title' => 'Manage your default delivery address.',
+            'txt_sub_title' => 'Manage your delivery addresses.',
             'input_full_name' => 'Full name',
             'input_phone' => 'Phone',
             'input_line_1' => 'Address line 1',
@@ -94,17 +94,17 @@ return [
         'address_create' => [
             'txt_title' => 'New Addresses',
             'txt_heading' => 'New Addresses',
-            'txt_sub_title' => 'Manage your default delivery address.',
+            'txt_sub_title' => 'Manage your delivery addresses.',
         ],
         'address_edit' => [
             'txt_title' => 'Edit Addresses',
             'txt_heading' => 'Edit Addresses',
-            'txt_sub_title' => 'Manage your default delivery address.',
+            'txt_sub_title' => 'Manage your delivery addresses.',
         ],
         'password' => [
             'txt_title' => 'Change Password',
             'txt_heading' => 'Password',
-            'txt_sub_title' => 'Change your password or recover your current one.',
+            'txt_sub_title' => 'Change your password.',
             'input_current_password' => 'Current Password',
             'input_new_password' => 'New Password',
             'input_confirm_password' => 'Confirm Password',
