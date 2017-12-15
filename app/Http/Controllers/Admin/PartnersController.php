@@ -48,7 +48,7 @@ class PartnersController extends Controller
             'partner_name' => 'required|string|max:255',
             'partner_email' => 'required|email|max:255|unique:partners,email',
             'partner_phone' => 'required|max:255|unique:partners,phone',
-            'partner_website' => 'required|max:255',
+            'partner_website' => 'nullable|url|max:255',
             'partner_status' => 'required|boolean',
 
             'partner_api' => 'nullable|url|max:255',
