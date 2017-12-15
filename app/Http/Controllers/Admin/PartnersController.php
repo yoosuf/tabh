@@ -30,7 +30,7 @@ class PartnersController extends Controller
     public function create(Request $request)
     {
 
-        $countries  = [];
+        $countries = [];
         $address = [];
         return view('admin.settings.partners.create', get_defined_vars());
     }
@@ -55,7 +55,6 @@ class PartnersController extends Controller
             'partner_api_key' => 'nullable|string|max:255',
             'partner_min_discount_amount' => 'nullable|numeric',
             'partner_discount_percentage' => 'nullable|numeric',
-
 
 
             'address_first_name' => 'nullable|max:255',
@@ -86,13 +85,21 @@ class PartnersController extends Controller
             'address_country.required' => 'Country is required',
         ]);
 
+        $partnerData = [
+            'api' => $request->get('partner_api'),
+            'api_key' => $request->get('partner_api_key'),
+            'min_discount_amount' => $request->get('partner_min_discount_amount'),
+            'discount_percentage' => $request->get('partner_discount_percentage'),
+        ];
+
 
         $partner = Partner::create([
             'name' => $request->get('partner_name'),
             'email' => $request->get('partner_email'),
             'phone' => $request->get('partner_phone'),
             'website' => $request->get('partner_website'),
-            'is_active'  => $request->get('partner_status')
+            'preferences' => $partnerData,
+            'is_active' => $request->get('partner_status')
 
         ]);
         $addressData = [
@@ -131,8 +138,8 @@ class PartnersController extends Controller
 
         $request->validate([
             'partner_name' => 'required|string|max:255',
-            'partner_email' => 'required|email|max:255|unique:partners,email,'.$id,
-            'partner_phone' => 'required|max:255|unique:partners,phone,'.$id,
+            'partner_email' => 'required|email|max:255|unique:partners,email,' . $id,
+            'partner_phone' => 'required|max:255|unique:partners,phone,' . $id,
             'partner_website' => 'nullable|url|max:255',
             'partner_status' => 'required|boolean',
             'partner_api' => 'nullable|url|max:255',
@@ -168,11 +175,21 @@ class PartnersController extends Controller
             'address_country.required' => 'Country is required',
         ]);
 
-        $item->name     = $request->get('partner_name');
-        $item->email    = $request->get('partner_email');
-        $item->phone    = $request->get('partner_phone');
-        $item->website  = $request->get('partner_website');
-        $item->is_active  = $request->get('partner_status');
+
+        $partnerData = [
+            'api' => $request->get('partner_api'),
+            'api_key' => $request->get('partner_api_key'),
+            'min_discount_amount' => $request->get('partner_min_discount_amount'),
+            'discount_percentage' => $request->get('partner_discount_percentage'),
+        ];
+
+
+        $item->name = $request->get('partner_name');
+        $item->email = $request->get('partner_email');
+        $item->phone = $request->get('partner_phone');
+        $item->website = $request->get('partner_website');
+        $item->preferences = $partnerData;
+        $item->is_active = $request->get('partner_status');
 
 
         $item->update();
