@@ -19,7 +19,7 @@
                     <br>
                     <small>by {{App\Entities\Product::find($row->id)->first()->partner()->first()->name}}</small>
                     <br>
-                    <medium>&#2547; {{number_format(((float)$row->price), 2, '.', '')}}</medium>
+                    <medium>&#2547; {{number_format(((float)$row->price) * (float)$row->qty, 2, '.', '')}}</medium>
                 </p>
             </div>
         </div>
@@ -28,21 +28,23 @@
 
         <div class="media-right">
 
-            <form role="form" method="POST" action="{{ route('cart.remove') }}">
-                {{ csrf_field() }}
-
-
                 <div class="buttons has-addons is-right">
-                    <a class="button is-info is-outlined">
+                    <form role="form" method="POST" action="{{ route('cart.remove') }}">
+                        {{ csrf_field() }}
+                    <button class="button is-info is-outlined">
                         -
-                    </a>
+                    </button>
+                        <input type="hidden" name="id" id="id" value="{{$row->rowId}}">
+                    </form>
                     <span class="button is-info ">{{$row->qty}}</span>
-                    <a class="button is-info is-outlined">
+                    <form role="form" method="POST" action="{{ route('cart.add') }}">
+                        {{ csrf_field() }}
+                    <button class="button is-info is-outlined">
                         +
-                    </a>
+                    </button>
+                        <input type="hidden" name="id" id="id" value="{{$row->id}}">
+                    </form>
                 </div>
-
-
 
             </form>
 
