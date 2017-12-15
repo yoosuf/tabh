@@ -116,7 +116,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $partner = $product->partner()->first();
-        $image = $this->GetAttachmentURL($product->attachment()->first());
+        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
 //        return $image;
         return view('admin.products.show', compact('product','image', 'partner'));
     }

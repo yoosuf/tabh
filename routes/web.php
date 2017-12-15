@@ -133,14 +133,20 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 Route::get('attachments/{filename}', function($filename=null)
 {
-    $path = storage_path().'/app/attachments/'.$filename;
-    if (file_exists($path)) {
-        return Response::download($path);
+
+    $path = storage_path('app/attachments/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
     }
-    else{
-        $errors = collect(['Attachment not found',$path]);
-        return redirect()->back()->with('errors', $errors);
-    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
 });
 
 

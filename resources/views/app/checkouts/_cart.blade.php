@@ -15,7 +15,7 @@
             <h3 class="is-success">by {{$key}}</h3>
             <?php $partner_total=0 ?>
             <?php $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
-            <?php $max_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['max_discount_amount'] ?>
+            <?php $min_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
 
 
             @foreach($partner as $item)
@@ -44,7 +44,7 @@
             </div>
             @endforeach
             <?php $discount_amount=0 ?>
-            @if($max_discount_amount <= $partner_total)
+            @if($min_discount_amount <= $partner_total)
                 <?php $discount_amount= ($partner_total/100) * $discount_percentage ?>
                 <?php $partner_total= $partner_total - $discount_amount ?>
                 <div class="media" style="padding-left: 100px;">
