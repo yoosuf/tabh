@@ -165,7 +165,6 @@
                                     <option value="0" {{ isset($item->is_active) &&  $item->is_active == 0 ? 'selected':  null }}>De-active</option>
                                 </select>
                             </div>
-
                         </div>
                         @if ($errors->has('partner_status'))
                             <span class="help is-danger">

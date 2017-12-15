@@ -1,9 +1,5 @@
 @if ($errors->any())
     <article class="message is-danger">
-        <div class="message-header">
-            <p>Error</p>
-            {{--<button class="delete" aria-label="delete"></button>--}}
-        </div>
         <div class="message-body">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -31,7 +27,7 @@
 
 
         <div class="field">
-            <label class="label">Title</label>
+            <label for="title">Title</label>
             <div class="control">
                 <input class="input" name="title" id="title" type="text" placeholder="Title" value="{{ isset($product) ? $product->title : old('title') }}">
             </div>
@@ -39,18 +35,41 @@
 
 
         <div class="field">
-            <label class="label">HTML Body</label>
+            <label for="body_html">HTML Body</label>
             <div class="control">
-                <textarea class="textarea" name="body_html" id="body_html" placeholder="HTML Body">{{ isset($product) ? $product->body_html : old('body_html') }}</textarea>
+                <textarea class="textarea" name="body_html" id="body_html" placeholder="Body">{{ isset($product) ? $product->body_html : old('body_html') }}</textarea>
             </div>
         </div>
 
+
+
+
+
+
+
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+
         <div class="field">
-            <label class="label">Vendor</label>
+            <label for="vendor">Vendor</label>
             <div class="control">
                 <input class="input" name="vendor" id="vendor" type="text" placeholder="Vendor" value="{{ isset($product) ? $product->vendor : old('vendor') }}">
             </div>
         </div>
+
+
+
+                        <div class="field">
+                            <label for="generic_name">Generic name</label>
+                            <div class="control">
+                                <input class="input" name="generic_name" id="generic_name" type="text" placeholder="Generic name" value="{{ isset($product) ? $product->generic_name : old('generic_name') }}">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
 
 
@@ -192,14 +211,31 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="field">
-                        <div class="control">
-                            <label class="checkbox">
-                                <input type="checkbox" name="published" id="published" {{ isset($product) && $product->published == true ? 'checked' : old('published') }}>
-                                published
-                            </label>
+
+                        <label for="published">Status</label>
+                        <div class="control is-expanded">
+
+                            <div class="select is-fullwidth {{ $errors->has('published') ? ' is-danger' : '' }}" >
+
+                                <select name="published" id="published">
+                                    <option value="">Publish status</option>
+                                    <option value="1" {{ isset($product->published) &&  $product->published == 1 ? 'selected':  null }}>Active</option>
+                                    <option value="0" {{ isset($product->published) &&  $product->published == 0 ? 'selected':  null }}>De-active</option>
+                                </select>
+                            </div>
                         </div>
+                        @if ($errors->has('partner_status'))
+                            <span class="help is-danger">
+                    {{ $errors->first('partner_status') }}
+                </span>
+                        @endif
                     </div>
+
+
 
                 </div>
             </div>
