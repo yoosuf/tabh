@@ -67,6 +67,7 @@ class ProductsController extends Controller
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
             'price' => 'required|max:255',
+            'published' => 'required|boolean',
         ]);
 
         $partner = $this->partner->where('name' , $request->get('partner'))->first();
@@ -143,13 +144,15 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'title' => 'required|max:255',
             'body_html' => 'max:2500',
             'vendor' => 'required|max:255',
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
             'price' => 'required|max:255',
+            'published' => 'required|boolean',
+
         ]);
 
         $productData = [
@@ -177,7 +180,7 @@ class ProductsController extends Controller
                'file_name'             => $request->image->getClientOriginalName()]);
         }
 
-        return $this->show($product->id);
+        return redirect()->route('admin.products.edit', ['id' => $product->id]);
     }
 
     /**

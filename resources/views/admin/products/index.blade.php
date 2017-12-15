@@ -10,15 +10,11 @@
         </div>
         <div class="column">
             <div class="buttons has-addons is-right">
-                <button onclick="window.location.href = '/admin/products/create'; return true;" class="button is-link">Add New Product</button>
-
+                <a href="{{ route('admin.products.create') }}" class="button is-link">Add New Product</a>
             </div>
 
         </div>
     </div>
-
-
-
 
 
             <div class="card">
@@ -27,11 +23,12 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Generic Name</th>
-                <th>Vendor</th>
-                <th>Published</th>
-                <th>Created</th>
+                <th>Name</th>
+                <th>Product Type</th>
+
+                <th>Price</th>
+                <th>Partner</th>
+                <th>Status</th>
                 <th>Updated</th>
                 <th>Actions</th>
             </tr>
@@ -39,11 +36,12 @@
             <tfoot>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Generic Name</th>
-                <th>Vendor</th>
-                <th>Published</th>
-                <th>Created</th>
+                <th>Name</th>
+                <th>Product Type</th>
+                <th>Price</th>
+                <th>Partner</th>
+                <th>Status</th>
+
                 <th>Updated</th>
                 <th>Actions</th>
             </tr>
@@ -52,31 +50,27 @@
             @foreach ($products as $product)
             <tr>
                 <td>
-                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
                         {{$product->id}}
-                    {{--</a>--}}
                 </td>
                 <td>
-                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
                         {{$product->title}}
-                    {{--</a>--}}
                 </td>
                 <td>
-                    {{--<a href="/admin/products/{{$product->id}}" class="level-item">--}}
-                        {{$product->generic_name}}
-                    {{--</a>--}}
+                    {{$product->kind}}
                 </td>
-                <td>{{$product->vendor}}</td>
+
+                <td>৳ {{$product->price}}</td>
+                <td>
+                    {{$product->partner->name }}
+                </td>
                 <td>@if($product->published)
-                        published
+                        <span class="tag is-link">Activated</span>
                     @else
-                        <span class="icon">
-                          <i class="fa fa-home"></i>
-                        </span>
+                        <span class="tag is-warning">De-activated</span>
+
                     @endif
                 </td>
                 <td>{{$product->created_at}}</td>
-                <td>{{$product->updated_at}}</td>
                 <td>
                     @include('admin.products._menu', ['item' => $product])
 
