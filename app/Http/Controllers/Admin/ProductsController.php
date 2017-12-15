@@ -36,7 +36,33 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-        $products = $this->product->paginate(10);
+
+        if($request->has('partner_id') & $request->get('partner_id') != '')
+        {
+            $partner = $this->partner->find($request->get('partner_id'));
+
+            if($request->has('status') & $request->get('status') != '')
+            {
+                $products = $partner->products()->where('published', $request->get('partner_id'))->orderBy('id', 'asc')->paginate(10);
+            }
+            else
+            {
+                $products = $partner->products()->orderBy('id', 'asc')->paginate(10);
+            }
+        }
+        else
+        {
+            if($request->has('status') & $request->get('status') != '')
+            {
+                $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
+            }
+            else
+            {
+                $products = $this->product->orderBy('id', 'asc')->paginate(10);
+            }
+
+        }
+
         return view('admin.products.index', compact('products'));
     }
 
@@ -131,7 +157,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $partner = $product->partner()->first();
-        $image = $this->GetAttachmentURL($product->attachment()->first());
+        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
 //        $partners = $this->partner->all();
         return view('admin.products.edit', compact('product', 'partner','image'));
     }

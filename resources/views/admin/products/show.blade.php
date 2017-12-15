@@ -36,7 +36,9 @@
                 <label class="label">Image</label>
                 <div class="box">
                     <figure class="image is-128x128">
-                        <img src={{ isset($image) ? asset($image) : '' }}>
+                        @if(isset($image) && $image != '')
+                                        <img src={{ url('/attachments/'. $image) }}>
+                        @endif
                     </figure>
                 </div>
             </div>

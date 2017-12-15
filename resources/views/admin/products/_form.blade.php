@@ -84,15 +84,16 @@
 
                     <p class="title is-4">Product Images</p>
 
-{{$image}}
+                    @if(isset($image) && $image != '')
                     <div class="field">
                         <label class="label">Image</label>
                         <div class="box">
                             <figure class="image is-128x128">
-                                <img src={{ isset($image) ? asset($image) : '' }}>
+                                <img src={{ url('/attachments/'. $image) }}>
                             </figure>
                         </div>
                     </div>
+                    @endif
 
 
             <div class="field">
