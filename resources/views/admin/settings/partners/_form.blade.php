@@ -3,7 +3,7 @@
 @if ($errors->any())
     <article class="message is-danger">
         <div class="message-body">
-            <p>There is {{ $errors->count()  }} error (s) with this customer creation</p>
+            <p>There is {{ $errors->count()  }} error (s) with this action</p>
         </div>
     </article>
     <br>
@@ -121,7 +121,9 @@
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
-                    @include('admin.partials._address')
+
+
+                    @include('admin.partials._address', ['item' => isset($address) ? $address : []])
 
                 </div>
             </div>
@@ -149,9 +151,35 @@
                 <div class="content">
                     <p class="title is-6">Tags</p>
 
+
+                    <div class="field">
+
+                        <label for="partner_status">Status</label>
+                        <div class="control is-expanded">
+
+                            <div class="select is-fullwidth {{ $errors->has('partner_status') ? ' is-danger' : '' }}" >
+
+                                <select name="partner_status" id="partner_status">
+                                    <option value="">Publish status</option>
+                                    <option value="1" {{ isset($item->is_active) &&  $item->is_active == 1 ? 'selected':  null }}>Active</option>
+                                    <option value="0" {{ isset($item->is_active) &&  $item->is_active == 0 ? 'selected':  null }}>De-active</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        @if ($errors->has('partner_status'))
+                            <span class="help is-danger">
+                    {{ $errors->first('partner_status') }}
+                </span>
+                        @endif
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
+
 
         <div class="card">
             <div class="card-content">

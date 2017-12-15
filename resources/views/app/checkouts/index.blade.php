@@ -72,8 +72,6 @@
                  </ul>
 
 
-
-
                 @include('app.checkouts._login')
 
                 @include('app.checkouts._prescription')
@@ -82,10 +80,7 @@
 
                 @include('app.checkouts._cart')
 
-
                 @include('app.checkouts._payment')
-
-
 
             </div>
 

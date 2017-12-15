@@ -57,7 +57,12 @@
 
 
     <div class="section">
+
+
+
         <div class="columns">
+
+
 
             <div class="app-sidebar column is-2">
 
@@ -66,8 +71,6 @@
             </div>
 
             <div class="app-content column">
-
-
                 @yield('content')
             </div>
 

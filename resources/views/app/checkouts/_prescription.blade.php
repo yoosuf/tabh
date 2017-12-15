@@ -1,3 +1,4 @@
+@if (auth()->check())
 <div class="card">
     <div class="card-content">
 
@@ -32,3 +33,5 @@
 
     </div>
 </div>
+
+@endif

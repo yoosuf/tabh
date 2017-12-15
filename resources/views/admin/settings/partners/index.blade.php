@@ -27,20 +27,18 @@
         <thead>
         <tr>
             <th><abbr title="Played">Name</abbr></th>
-            <th><abbr title="Won">Location</abbr></th>
-            <th><abbr title="Drawn">Orders</abbr></th>
-            <th><abbr title="Lost">Last order</abbr></th>
-            <th><abbr title="Goals for">Total spent</abbr></th>
+            <th><abbr title="Won">Email</abbr></th>
+            <th><abbr title="Drawn">Phone</abbr></th>
+            <th><abbr title="Lost">Status</abbr></th>
             <th width="160"><abbr title="Goals for">Actions</abbr></th>
         </tr>
         </thead>
         <tfoot>
         <tr>
             <th><abbr title="Played">Name</abbr></th>
-            <th><abbr title="Won">Location</abbr></th>
-            <th><abbr title="Drawn">Orders</abbr></th>
-            <th><abbr title="Lost">Last order</abbr></th>
-            <th><abbr title="Goals for">Total spent</abbr></th>
+            <th><abbr title="Won">Email</abbr></th>
+            <th><abbr title="Drawn">Phone</abbr></th>
+            <th><abbr title="Lost">Status</abbr></th>
             <th><abbr title="Goals for">Actions</abbr></th>
         </tr>
         </tfoot>
@@ -50,10 +48,9 @@
             @foreach($data as $item)
                 <tr>
                     <td><a href="{{ route('admin.partners.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>{{ $item->is_active ?  "Active" : "De-active"  }}</td>
                     <td>@include('admin.settings.partners._menu')</td>
                 </tr>
             @endforeach
