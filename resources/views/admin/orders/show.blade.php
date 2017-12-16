@@ -17,6 +17,13 @@
             </div>
 
             <div class="field">
+                <label class="label">User</label>
+                <div class="box">
+                    <label class="label">{{ isset($order->user()->first()->email) ? $order->user()->first()->email : '' }}</label>
+                </div>
+            </div>
+
+            <div class="field">
                 <label class="label">Status</label>
                 <div class="box">
                     <label class="label">{{ isset($order->status) ? $order->status : '' }}</label>
