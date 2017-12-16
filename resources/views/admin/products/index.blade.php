@@ -7,6 +7,7 @@
         <div class="column">
             <p class="title">Products</p>
 
+            @include('flash::message')
             <br>
             <div class="card">
                 <div class="card-content">

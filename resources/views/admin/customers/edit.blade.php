@@ -14,7 +14,7 @@
 
         </div>
     </div>
-
+    @include('flash::message')
 
 
     <form action="{{ route('admin.customers.update', [$item->id])  }}" method="POST" accept-charset="UTF-8">

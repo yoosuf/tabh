@@ -17,7 +17,7 @@
 
 
 
-
+    @include('flash::message')
 
 
             <div class="card">

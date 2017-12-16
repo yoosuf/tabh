@@ -87,6 +87,7 @@ class OrdersController extends Controller
 
         $order->save();
 
+        flash('Approved')->success();
         return back()->withInput();
     }
 
@@ -99,6 +100,7 @@ class OrdersController extends Controller
 
         $order->save();
 
+        flash('Rejected')->success();
         return back()->withInput();
     }
 

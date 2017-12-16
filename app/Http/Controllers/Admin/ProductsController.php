@@ -139,7 +139,8 @@ class ProductsController extends Controller
                'file_name'             => $request->image->getClientOriginalName()]);
         }
 
-        return $this->show($product->id);
+        flash('Successfully created')->success();
+        return  redirect()->back();
     }
 
     /**
@@ -219,6 +220,7 @@ class ProductsController extends Controller
                'file_name'             => $request->image->getClientOriginalName()]);
         }
 
+        flash('Successfully updated')->success();
         return redirect()->route('admin.products.edit', ['id' => $product->id]);
     }
 

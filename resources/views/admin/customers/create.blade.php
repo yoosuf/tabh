@@ -14,7 +14,7 @@
 
         </div>
     </div>
-
+    @include('flash::message')
 
 
     <form action="{{ route('admin.customers.store')  }}" method="POST" accept-charset="UTF-8">

@@ -21,8 +21,10 @@
                                 <option value='' selected>Select Customer</option>
                             @endif
                             @foreach($customers as $customer)
-                                @if(isset($customer_id) && ($customer_id == $customer->id))
-                                    <option value='{{$customer->id}}' selected>{{$customer->email}}</option>
+                                @if(isset($customer_id))
+                                    @if($customer_id == $customer->id)
+                                        <option value='{{$customer->id}}' selected>{{$customer->email}}</option>
+                                    @endif
                                 @else
                                     <option value='{{$customer->id}}'>{{$customer->email}}</option>
                                 @endif
