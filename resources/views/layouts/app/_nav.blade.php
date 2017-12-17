@@ -43,7 +43,7 @@
                                                 <p>{{ auth()->user()->name }}</p>
 
 
-                                                <a class="button is-small">Settings</a>
+                                                {{--<a class="button is-small">Settings</a>--}}
 
                                             </div>
                                         </div>
