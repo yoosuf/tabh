@@ -16,7 +16,7 @@ class AuthProviderController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/search?type=pharmaceutical';
 
     /**
      * Create a new controller instance.
