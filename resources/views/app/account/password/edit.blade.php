@@ -40,6 +40,7 @@
                             <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.password.txt_heading')}}</h1>
                             <p class="subtitle is-5">{{ trans('quicksilver.account.password.txt_sub_title')}}</p>
 
+                            @include('flash::message')
 
                             <form class="form" method="POST" action="{{ route('account.password.update') }}" autocomplete="off">
 

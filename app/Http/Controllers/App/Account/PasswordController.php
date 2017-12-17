@@ -29,11 +29,11 @@ class PasswordController extends Controller
     public function update(Request $request)
     {
 
-        $validator = $request->validate([
-            'current_password' => 'required|max:20',
-            'password' => 'required|string|min:6|max:20',
-            'password_confirmation' => 'required|same:password'
-        ]);
+//        $validator = $request->validate([
+//            'current_password' => 'required|max:20',
+//            'password' => 'required|string|min:6|max:20',
+//            'password_confirmation' => 'required|same:password'
+//        ]);
 
 
 //        $validator->after(function($validator) use ($request) {
@@ -59,24 +59,28 @@ class PasswordController extends Controller
 
 
 
-//
-//        $requestData = $request->only('current_password', 'password', 'password_confirmation');
-//
-//
-//        $current_password = Auth::User()->password;
-//        if(Hash::check($requestData['current_password'], $current_password))
-//        {
-//            $user_id = $request->user()->id;
-//            $obj_user = User::find($user_id);
-//            $obj_user->password = Hash::make($requestData['password']);;
-//            $obj_user->save();
-//            return "ok";
-//        }
-//        else
-//        {
+
+        $requestData = $request->only('current_password', 'password', 'password_confirmation');
+
+
+        $current_password = Auth::user()->password;
+        if(Hash::check($requestData['current_password'], $current_password))
+        {
+            $user_id = $request->user()->id;
+            $obj_user = User::find($user_id);
+            $obj_user->password = Hash::make($requestData['password']);;
+            $obj_user->save();
+            flash('Password has been changed')->success();
+            return redirect()->back();
+        }
+        else
+        {
 //            $error = array('current-password' => 'Please enter correct current password');
 //            return response()->json(array('error' => $error), 400);
-//        }
+
+            flash('Please enter correct current password')->error();
+            return redirect()->back();
+        }
 
 
     }
