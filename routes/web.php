@@ -32,7 +32,7 @@ Route::group(['namespace' => 'App'], function () {
 //        Route::group(['middleware' => []], function () {
 
             Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
-            Route::post('/order/discard', 'OrderController@discard')->name('order.discard');
+            Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
 
             Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
 

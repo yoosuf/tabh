@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 //use Gloudemans\Shoppingcart\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 
 class CartController extends Controller
@@ -51,7 +52,13 @@ class CartController extends Controller
     {
         $grouped = $this->group_by_partner();
 
-        return view('app.checkouts.index', compact('grouped'));
+        $addresses = [];
+        if (Auth::check())
+        {
+            $addresses = Auth::user()->addresses()->get();
+        }
+
+        return view('app.checkouts.index', compact('grouped', 'addresses'));
     }
 
     private function group_by_partner()

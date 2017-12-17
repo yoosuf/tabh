@@ -8,6 +8,7 @@ use App\Entities\Order;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OrdersController extends Controller
 {
@@ -41,7 +42,24 @@ class OrdersController extends Controller
 
 //        dd($line_items);
 
-        return view('app.account.orders.order', compact('order','line_items'));
+        $prescription = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($order->attachment()->first()));
+
+        return view('app.account.orders.order', compact('order','line_items', 'prescription'));
+    }
+
+    public function GetAttachmentURL($attachment)
+    {
+        try {
+            if (isset($attachment)) {
+                return Storage::url($attachment->path);
+            } else {
+                //return  url('/images/placeholder/profile.png');
+            }
+        } catch (\Exception $exception) {
+            //Log::notice($exception);
+            //return  url('/images/placeholder/profile.png');
+            return $exception;
+        }
     }
 
 }
