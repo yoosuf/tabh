@@ -17,7 +17,7 @@
                                 <strong>{{$row->name}}</strong>
                                 <br>
                                 <small>
-                                    by {{App\Entities\Product::find($row->id)->first()->partner()->first()->name}}</small>
+                                    by {{ App\Entities\Product::find($row->id)->first()->partner()->first()->name }}</small>
                                 <br>
                                 <medium>
                                     &#2547; {{number_format(((float)$row->price) * (float)$row->qty, 2, '.', '')}}</medium>
@@ -50,36 +50,6 @@
 
                     </div>
 
-
-                    {{--button is-info is-outlined--}}
-
-                    {{--<table>--}}
-                    {{--<tr>--}}
-
-                    {{--<td>--}}
-                    {{--<form role="form" method="POST" action="{{ route('cart.remove') }}">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--<input type="hidden" name="id" id="id" value="{{$row->rowId}}">--}}
-
-
-                    {{--<button type="submit" class="button is-success">-</button>--}}
-                    {{--</form>--}}
-                    {{--</td>--}}
-                    {{--<td>--}}
-                    {{--<span class="tag is-info">--}}
-                    {{--<strong class="is-success">{{$row->qty}}</strong>--}}
-                    {{--</span>--}}
-                    {{--</td>--}}
-                    {{--<td>--}}
-                    {{--<form role="form" method="POST" action="{{ route('cart.add') }}">--}}
-                    {{--{{ csrf_field() }}--}}
-                    {{--<input type="hidden" name="id" id="id" value="{{$row->id}}">--}}
-                    {{--<button type="submit" class="button is-success">+</button>--}}
-                    {{--</form>--}}
-                    {{--</td>--}}
-                    {{--</div>--}}
-                    {{--</tr>--}}
-                    {{--</table>--}}
                 </div>
 
             @endforeach

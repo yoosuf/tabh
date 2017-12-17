@@ -139,18 +139,18 @@
                             <div class="select is-fullwidth">
                                 <select name="product_kind" id="product_kind">
 
-                                        <option value="">Select one</option>
-                                        <option value="pharmaceutical" {{ isset($product->kind) &&  $product->kind == 'pharmaceutical' ? 'selected':  null }}>
-                                            Pharmaceutical
-                                        </option>
-                                        <option value="" {{ isset($product->kind) &&  $product->kind == 'grocery' ? 'selected':  null }}>
-                                            Grocery
-                                        </option>
+
+                                    <option value="">Select one</option>
+                                    <option value="pharmaceutical" {{ isset($product->kind) &&  $product->kind == 'pharmaceutical' ? 'selected':  null }}>
+                                        Pharmaceutical
+                                    </option>
+                                    <option value="grocery" {{ isset($product->kind) &&  $product->kind == 'grocery' ? 'selected':  null }}>
+                                        Grocery
+                                    </option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
 
 
                     <div class="field">
@@ -158,11 +158,11 @@
                         <div class="control is-expanded">
                             <div class="select is-fullwidth">
                                 <select name="partner" id="partner">
-                               
+
                                     <option value="">Select Partner</option>
-                                        @foreach ($partners as $partner)
-                                            <option value="{{$partner->id}}">{{$partner->name}}</option>
-                                        @endforeach
+                                    @foreach ($partners as $partner)
+                                        <option value="{{$partner->id}}">{{$partner->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -219,7 +219,6 @@
 
 
                     <div class="field">
-
                         <label for="published">Status</label>
                         <div class="control is-expanded">
 
@@ -238,8 +237,8 @@
                         </div>
                         @if ($errors->has('partner_status'))
                             <span class="help is-danger">
-                    {{ $errors->first('partner_status') }}
-                </span>
+                                {{ $errors->first('partner_status') }}
+                            </span>
                         @endif
                     </div>
 
