@@ -28,44 +28,28 @@ Route::group(['namespace' => 'App'], function () {
         Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
         Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
 
+        Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
+        Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
 
-//        Route::group(['middleware' => []], function () {
+        Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
 
-            Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
-            Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
-
-            Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
-
-            Route::get('/account', function() {
-                return redirect()->route('account.orders');
-            })->name('account');
-            Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
-
-            Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
-            Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
-            Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');
-            Route::get('/account/address/create', 'Account\AddressesController@create')->name('account.address.create');
-            Route::post('/account/address', 'Account\AddressesController@store')->name('account.address.store');
-            Route::get('/account/address/{id}/edit', 'Account\AddressesController@edit')->name('account.address.edit');
-            Route::put('/account/address/{id}', 'Account\AddressesController@update')->name('account.address.update');
-            Route::delete('/account/address/{id}', 'Account\AddressesController@delete')->name('account.address.destroy');
-            Route::post('/account/address/{id}/default', 'Account\AddressesController@makeDefault')->name('account.address.default');
-
-
-
-
-            Route::put('/account/address', 'Account\AccountController@edit')->name('account.address.update');
-            Route::get('/account/password', 'Account\PasswordController@edit')->name('account.password');
-            Route::put('/account/password', 'Account\PasswordController@update')->name('account.password.update');
-//        });
+        Route::get('/account', function () {
+            return redirect()->route('account.orders');
+        })->name('account');
+        Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
+        Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
+        Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
+        Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');
+        Route::get('/account/address/create', 'Account\AddressesController@create')->name('account.address.create');
+        Route::post('/account/address', 'Account\AddressesController@store')->name('account.address.store');
+        Route::delete('/account/address/{id}', 'Account\AddressesController@delete')->name('account.address.destroy');
+        Route::put('/account/address/{id}', 'Account\AddressesController@update')->name('account.address.update');
+        Route::get('/account/address/{id}/edit', 'Account\AddressesController@edit')->name('account.address.edit');
+        Route::post('/account/address/{id}/default', 'Account\AddressesController@makeDefault')->name('account.address.default');
+        Route::get('/account/password', 'Account\PasswordController@edit')->name('account.password');
+        Route::put('/account/password', 'Account\PasswordController@update')->name('account.password.update');
     });
 });
-
-
-
-
-
-
 
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -130,8 +114,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     });
 });
 
-Route::get('attachments/{filename}', function($filename=null)
-{
+Route::get('attachments/{filename}', function ($filename = null) {
 
     $path = storage_path('app/attachments/' . $filename);
 
@@ -149,11 +132,10 @@ Route::get('attachments/{filename}', function($filename=null)
 });
 
 
-
 Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirectToProvider')->name('provider.redirect');
 Route::get('/oauth/{provider}/callback', 'Auth\AuthProviderController@handleProviderCallback')->name('provider.callback');
 
-Route::get('/facebook/javascript', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+Route::get('/facebook/javascript', function (SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
     try {
         $token = $fb->getJavaScriptHelper()->getAccessToken();
     } catch (Facebook\Exceptions\FacebookSDKException $e) {
@@ -163,7 +145,7 @@ Route::get('/facebook/javascript', function(SammyK\LaravelFacebookSdk\LaravelFac
 
     // $token will be null if no cookie was set or no OAuth data
     // was found in the cookie's signed request data
-    if (! $token) {
+    if (!$token) {
 
         // User hasn't logged in using the JS SDK yet
     }

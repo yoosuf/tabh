@@ -58,6 +58,8 @@ class AddressesController extends Controller
 
         $data->update(['addressable_id' => $user->id, 'addressable_type' => 'App\Entities\User'], $addressData);
 
+
+        flash('Successfully updated')->success();
         return redirect()->back();
     }
 
