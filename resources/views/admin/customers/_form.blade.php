@@ -9,18 +9,7 @@
     <br>
 @endif
 
-@if ($errors->any())
-    <article class="message is-danger">
-        <div class="message-body">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li class="">{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    </article>
-    <br>
-@endif
+
 {{ csrf_field() }}
 
 

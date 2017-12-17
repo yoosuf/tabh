@@ -1,11 +1,7 @@
 @if ($errors->any())
     <article class="message is-danger">
         <div class="message-body">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li class="">{{ $error }}</li>
-                @endforeach
-            </ul>
+            <p>There is {{ $errors->count()  }} error (s) with this customer creation</p>
         </div>
     </article>
     <br>
@@ -22,20 +18,38 @@
 
 
                 <div class="field">
-                    <label for="title">Title</label>
-                    <div class="control">
-                        <input class="input" name="title" id="title" type="text" placeholder="Title"
-                               value="{{ isset($product) ? $product->title : old('title') }}">
+                    <label for="product_name">Title</label>
+
+                    <div class="control is-expanded">
+                        <input
+                                id="product_name"
+                                type="text"
+                                name="product_name"
+                                class="input {{ $errors->has('product_name') ? ' is-danger' : '' }}"
+                                value="{{ isset($item->title)? $item->title : old('product_name') }}"/>
                     </div>
+                    @if ($errors->has('product_name'))
+                        <span class="help is-danger">
+                            {{ $errors->first('product_name') }}
+                        </span>
+                    @endif
                 </div>
 
 
                 <div class="field">
-                    <label for="body_html">Description</label>
+                    <label for="product_body">Description</label>
                     <div class="control">
-                        <textarea class="textarea" name="body_html" id="body_html"
-                                  placeholder="Body">{{ isset($product) ? $product->body_html : old('body_html') }}</textarea>
+                        <textarea class="textarea"
+                                  name="product_body"
+                                  id="product_body"
+                                  placeholder="Body">{{ isset($item->body_html) ? $item->body_html : old('product_body') }}</textarea>
                     </div>
+
+                    @if ($errors->has('product_body'))
+                        <span class="help is-danger">
+                            {{ $errors->first('product_body') }}
+                        </span>
+                    @endif
                 </div>
 
 
@@ -43,21 +57,37 @@
                     <div class="field-body">
 
                         <div class="field">
-                            <label for="vendor">Vendor</label>
+                            <label for="product_vendor">Vendor</label>
                             <div class="control">
-                                <input class="input" name="vendor" id="vendor" type="text" placeholder="Vendor"
-                                       value="{{ isset($product) ? $product->vendor : old('vendor') }}">
+                                <input
+                                        class="input {{ $errors->has('product_name') ? ' is-danger' : '' }}"
+                                        name="product_vendor" id="product_vendor" type="text" placeholder="Vendor"
+                                        value="{{ isset($item->vendor) ? $item->vendor : old('product_vendor') }}"/>
                             </div>
+
+                            @if ($errors->has('product_vendor'))
+                                <span class="help is-danger">
+		                            {{ $errors->first('product_vendor') }}
+		                        </span>
+                            @endif
                         </div>
 
 
                         <div class="field">
-                            <label for="generic_name">Generic name</label>
+                            <label for="product_generic_name">Generic name</label>
                             <div class="control">
-                                <input class="input" name="generic_name" id="generic_name" type="text"
-                                       placeholder="Generic name"
-                                       value="{{ isset($product) ? $product->generic_name : old('generic_name') }}">
+                                <input
+                                        class="input {{ $errors->has('product_name') ? ' is-danger' : '' }}"
+                                        name="product_generic_name" id="product_generic_name" type="text"
+                                        placeholder="Generic name"
+                                        value="{{ isset($item->generic_name) ? $item->generic_name : old('product_generic_name') }}"/>
                             </div>
+
+                            @if ($errors->has('product_generic_name'))
+                                <span class="help is-danger">
+		                            {{ $errors->first('product_generic_name') }}
+		                        </span>
+                            @endif
                         </div>
 
                     </div>
@@ -136,28 +166,35 @@
                     <div class="field">
                         <label for="product_kind">Product Type</label>
                         <div class="control is-expanded">
-                            <div class="select is-fullwidth">
+
+                            <div class="select is-fullwidth {{ $errors->has('product_kind') ? ' is-danger' : '' }}">
+
                                 <select name="product_kind" id="product_kind">
 
 
                                     <option value="">Select one</option>
-                                    <option value="pharmaceutical" {{ isset($product->kind) &&  $product->kind == 'pharmaceutical' ? 'selected':  null }}>
+                                    <option value="pharmaceutical" {{ isset($item->kind) &&  $item->kind == 'pharmaceutical' ? 'selected':  null }}>
                                         Pharmaceutical
                                     </option>
-                                    <option value="grocery" {{ isset($product->kind) &&  $product->kind == 'grocery' ? 'selected':  null }}>
+                                    <option value="grocery" {{ isset($item->kind) &&  $item->kind == 'grocery' ? 'selected':  null }}>
                                         Grocery
                                     </option>
                                 </select>
                             </div>
                         </div>
+                        @if ($errors->has('product_kind'))
+                            <span class="help is-danger">
+		                            {{ $errors->first('product_kind') }}
+		                        </span>
+                        @endif
                     </div>
 
 
                     <div class="field">
-                        <label for="partner">Partner</label>
+                        <label for="product_partner">Partner</label>
                         <div class="control is-expanded">
-                            <div class="select is-fullwidth">
-                                <select name="partner" id="partner">
+                            <div class="select is-fullwidth {{ $errors->has('product_partner') ? ' is-danger' : '' }}">
+                                <select name="product_partner" id="product_partner">
 
                                     <option value="">Select Partner</option>
                                     @foreach ($partners as $partner)
@@ -166,14 +203,21 @@
                                 </select>
                             </div>
                         </div>
+
+                        @if ($errors->has('product_partner'))
+                            <span class="help is-danger">
+		                            {{ $errors->first('product_partner') }}
+		                        </span>
+                        @endif
                     </div>
                     <div class="field">
                         <label for="product_type">Product Type</label>
                         <div class="control is-expanded">
-                            <div class="select is-fullwidth">
+                            <div class="select is-fullwidth {{ $errors->has('product_type') ? ' is-danger' : '' }}">
+
                                 <select name="product_type" id="product_type">
-                                    @if(isset($product))
-                                        <option selected>{{$product->product_type}}</option>
+                                    @if(isset($item))
+                                        <option selected>{{$item->product_type}}</option>
                                     @else
                                         <option selected disabled>Select dropdown</option>
                                     @endif
@@ -198,46 +242,66 @@
                                 </select>
                             </div>
                         </div>
+                        @if ($errors->has('product_type'))
+                            <span class="help is-danger">
+		                            {{ $errors->first('product_type') }}
+		                        </span>
+                        @endif
                     </div>
 
 
                     <div class="field">
-                        <label for="packsize">Pack Size</label>
+                        <label for="product_size">Pack Size</label>
                         <div class="control">
-                            <input class="input" name="packsize" id="packsize" type="text" placeholder="Pack Size"
-                                   value="{{ isset($product) ? $product->packsize : old('packsize') }}">
+                            <input
+                                    class="input {{ $errors->has('product_size') ? ' is-danger' : '' }}"
+                                    name="product_size" id="product_size" type="text" placeholder="Pack Size"
+                                    value="{{ isset($item) ? $item->packsize : old('product_size') }}">
                         </div>
+                        @if ($errors->has('product_size'))
+                            <span class="help is-danger">
+		                            {{ $errors->first('product_size') }}
+		                        </span>
+                        @endif
                     </div>
 
                     <div class="field">
-                        <label for="price">Price</label>
+                        <label for="product_price">Price</label>
                         <div class="control">
-                            <input class="input" name="price" id="price" type="number" step="0.01" placeholder="Price"
-                                   value="{{ isset($product) ? $product->price : old('price') }}">
+                            <input
+                                    class="input {{ $errors->has('product_price') ? ' is-danger' : '' }}"
+                                    name="product_price" id="product_price" type="number" step="0.01"
+                                    placeholder="Price"
+                                    value="{{ isset($item) ? $item->price : old('product_price') }}">
                         </div>
+                        @if ($errors->has('product_price'))
+                            <span class="help is-danger">
+		                            {{ $errors->first('product_price') }}
+		                        </span>
+                        @endif
                     </div>
 
 
                     <div class="field">
-                        <label for="published">Status</label>
+                        <label for="product_published">Status</label>
                         <div class="control is-expanded">
 
-                            <div class="select is-fullwidth {{ $errors->has('published') ? ' is-danger' : '' }}">
+                            <div class="select is-fullwidth {{ $errors->has('product_published') ? ' is-danger' : '' }}">
 
-                                <select name="published" id="published">
+                                <select name="product_published" id="product_published">
                                     <option value="">Publish status</option>
-                                    <option value="1" {{ isset($product->published) &&  $product->published == 1 ? 'selected':  null }}>
+                                    <option value="1" {{ isset($item->published) &&  $item->published == 1 ? 'selected':  null }}>
                                         Active
                                     </option>
-                                    <option value="0" {{ isset($product->published) &&  $product->published == 0 ? 'selected':  null }}>
+                                    <option value="0" {{ isset($item->published) &&  $item->published == 0 ? 'selected':  null }}>
                                         De-active
                                     </option>
                                 </select>
                             </div>
                         </div>
-                        @if ($errors->has('partner_status'))
+                        @if ($errors->has('product_published'))
                             <span class="help is-danger">
-                                {{ $errors->first('partner_status') }}
+                                {{ $errors->first('product_published') }}
                             </span>
                         @endif
                     </div>
