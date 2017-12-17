@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+// var FB = require('fb');
+
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52,18 +54,22 @@ function toggleModalClasses(event) {
 
 
 
+// FB.init({
+//     appId      : '1917322048296717',
+//     cookie     : true,
+//     version    : 'v2.10'
+// });
+
+
 $(function() {
     $('.open-modal').click(toggleModalClasses);
 
     $('.close-modal').click(toggleModalClasses);
 
 
-
     $('#newAddress').on('click', function () {
         alert('sdsds');
         $( "<div class=\"media js-media\">Hello </div>" ).prependTo( "#addressList" );
-
-
     })
 
 

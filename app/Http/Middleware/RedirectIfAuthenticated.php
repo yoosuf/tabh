@@ -26,18 +26,18 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
 
 
-            if ($request->user()->is_complete == true) {
-
-                if (Cart::count() == 0 ) {
+//            if ($request->user()->is_complete == true) {
+//
+//                if (Cart::count() == 0 ) {
                     return redirect()->intended('/account');
-                } else {
-                    return back()->withInput();
-                }
+//                } else {
+//                    return back()->withInput();
+//                }
 
 //                return back()->withInput();
-            }
-
-            return back()->withInput();
+//            }
+//
+//            return back()->withInput();
         }
 
         return $next($request);

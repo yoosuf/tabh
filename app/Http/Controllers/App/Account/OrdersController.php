@@ -21,15 +21,19 @@ class OrdersController extends Controller
         $this->line_item = $line_item;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = $this->order->all();
+        $user = $request->user();
+
+        $orders = $this->order->where('user_id', $user->id)->get();
         return view('app.account.orders.index', compact('orders'));
     }
 
     public function show(Request $request)
     {
-        $order = $this->order->find($request->id);
+        $user = $request->user();
+
+        $order = $this->order->where('user_id', $user->id)->find($request->id);
 
 //        dd($order);
 

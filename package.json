@@ -27,6 +27,7 @@
         "redux-thunk": "^2.2.0"
     },
     "dependencies": {
+        "fb": "^2.0.0",
         "react-places-autocomplete": "^5.4.3"
     }
 }

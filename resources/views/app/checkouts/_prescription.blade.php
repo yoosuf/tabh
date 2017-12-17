@@ -1,21 +1,19 @@
 @if (auth()->check())
-<div class="card">
-    <div class="card-content">
+    <div class="card">
+        <div class="card-content">
 
-        <h1 class="title is-4 is-spaced">Add Prescription</h1>
-        <p class="subtitle is-5">Add prescription</p>
+            <h1 class="title is-4 is-spaced">Add Prescription</h1>
+            <p class="subtitle is-5">Add prescription</p>
 
-<form action="" method="POST">
+            <form action="" method="POST">
 
-    {{ csrf_field() }}
-
-
+                {{ csrf_field() }}
 
 
-    <div class="file">
-        <label class="file-label">
-            <input class="file-input" type="file" name="resume">
-            <span class="file-cta">
+                <div class="file">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="resume">
+                        <span class="file-cta">
       <span class="file-icon">
         <i class="fa fa-upload"></i>
       </span>
@@ -23,15 +21,14 @@
         Choose a file…
       </span>
     </span>
-        </label>
+                    </label>
+                </div>
+
+
+            </form>
+
+
+        </div>
     </div>
-
-
-
-</form>
-
-
-    </div>
-</div>
 
 @endif

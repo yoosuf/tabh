@@ -23,16 +23,17 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
 
-    Route::post('/order/discard', 'OrderController@discard')->name('order.discard');
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
         Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
 
 
-        Route::group(['middleware' => ['completed']], function () {
+//        Route::group(['middleware' => []], function () {
 
-            Route::post('/order/add', 'OrderController@add')->name('order.add');
+            Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
+            Route::post('/order/discard', 'OrderController@discard')->name('order.discard');
+
             Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
 
             Route::get('/account', function() {
@@ -56,7 +57,7 @@ Route::group(['namespace' => 'App'], function () {
             Route::put('/account/address', 'Account\AccountController@edit')->name('account.address.update');
             Route::get('/account/password', 'Account\PasswordController@edit')->name('account.password');
             Route::put('/account/password', 'Account\PasswordController@update')->name('account.password.update');
-        });
+//        });
     });
 });
 
@@ -153,6 +154,22 @@ Route::get('attachments/{filename}', function($filename=null)
 
 Route::get('/oauth/{provider}', 'Auth\AuthProviderController@redirectToProvider')->name('provider.redirect');
 Route::get('/oauth/{provider}/callback', 'Auth\AuthProviderController@handleProviderCallback')->name('provider.callback');
+
+Route::get('/facebook/javascript', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+    try {
+        $token = $fb->getJavaScriptHelper()->getAccessToken();
+    } catch (Facebook\Exceptions\FacebookSDKException $e) {
+        // Failed to obtain access token
+        dd($e->getMessage());
+    }
+
+    // $token will be null if no cookie was set or no OAuth data
+    // was found in the cookie's signed request data
+    if (! $token) {
+
+        // User hasn't logged in using the JS SDK yet
+    }
+});
 
 Auth::routes();
 

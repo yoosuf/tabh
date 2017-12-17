@@ -38,8 +38,25 @@ class OrderController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function add(Request $request)
+    public function placeOrder(Request $request)
     {
+
+        $request->validate([
+            'total_amount' => 'required',
+            'address_id' => 'required|exists:addresses,id',
+            'attachment_id' => 'required|exists:attachments,id',
+            'user_id' => 'required|exists:users,id',
+        ], [
+            'total_amount.required' => 'Empty value is not allowed',
+            'attachment_id.required' => 'A prescription is required',
+            'attachment_id.exists' => 'Not an existing prescription ID',
+            'address_id.required' => 'An address is required',
+            'address_id.exists' => 'Not an existing prescription ID',
+            'user_id.required' => 'A User is required',
+            'user_id.exists' => 'Not an existing user ID',
+        ]);
+
+
         $identifier = $request->session()->getId() . '/' . Carbon::now();
         try {
             Cart::store($identifier);

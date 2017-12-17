@@ -5,12 +5,6 @@
         <p class="subtitle is-5"></p>
 
 
-
-
-
-
-
-
     </div>
 
 

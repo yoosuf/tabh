@@ -18,15 +18,15 @@
     </section>
 
     <section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-8">
-                @include('app._products')
-            </div>
-            <div class="column is-4">
-                @include('app._cart')
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8">
+                    @include('app._products')
+                </div>
+                <div class="column is-4">
+                    @include('app._cart')
+                </div>
             </div>
         </div>
-    </div>
     </section>
 @endsection

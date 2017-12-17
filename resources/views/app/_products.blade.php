@@ -1,25 +1,25 @@
 <div class="card">
     <div class="card-content">
-@if(count($products) > 0)
+        @if(count($products) > 0)
 
-<div class="content">
-    <strong>Search Results {{ count($products) }}</strong>
-</div>
+            <div class="content">
+                <strong>Search Results {{ count($products) }}</strong>
+            </div>
 
 
-    @foreach ($products as $product)
-        @include('app._item')
-    @endforeach
-@else
+            @foreach ($products as $product)
+                @include('app._item')
+            @endforeach
+        @else
 
-    <div class="content">
-        <strong>Search Results 0 </strong>
-    </div>
+            <div class="content">
+                <strong>Search Results 0 </strong>
+            </div>
 
-    <div class="media">
-        No results found for {{$search_query}}
-    </div>
-@endif
+            <div class="media">
+                No results found for {{$search_query}}
+            </div>
+        @endif
 
     </div>
 

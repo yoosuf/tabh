@@ -21,7 +21,10 @@ class CreateOrdersTable extends Migration
             $table->string('total_amount');
             $table->string('total_discount');
             $table->string('tax');
-
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->integer('attachment_id')->unsigned();
+            $table->foreign('attachment_id')->references('id')->on('attachments')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

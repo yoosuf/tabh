@@ -11,9 +11,6 @@
                         <h4 class="card-title has-text-centered">{{ trans('quicksilver.login.heading')}}</h4>
 
 
-              
-
-
 
                         <form class="" method="POST" action="{{ route('login') }}" autocomplete="off">
                             {{ csrf_field() }}
@@ -33,7 +30,7 @@
                             </div>
 
                             <div class="field{{ $errors->has('password') ? '  is-danger' : '' }}">
-                                <label for="password" class="label">{{ trans('quicksilver.password') }}</label>
+                                <label for="password">{{ trans('quicksilver.password') }}</label>
 
                                 <div class="control is-expanded">
                                 <input id="password" type="password" name="password" required
