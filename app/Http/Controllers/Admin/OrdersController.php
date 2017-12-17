@@ -29,30 +29,21 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        if($request->has('customer_id') && $request->get('customer_id') != '')
-        {
+        if ($request->has('customer_id') && $request->get('customer_id') != '') {
             $customer_id = $request->get('customer_id');
             $customer = $this->customer->find($request->get('customer_id'));
 
-            if($request->has('status') && $request->get('status') != '')
-            {
+            if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
                 $orders = $customer->orders()->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
-            }
-            else
-            {
+            } else {
                 $orders = $customer->orders()->orderBy('id', 'asc')->paginate(10);
             }
-        }
-        else
-        {
-            if($request->has('status') && $request->get('status') != '')
-            {
+        } else {
+            if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
                 $orders = $this->order->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
-            }
-            else
-            {
+            } else {
                 $orders = $this->order->orderBy('id', 'asc')->paginate(10);
             }
 
@@ -69,8 +60,7 @@ class OrdersController extends Controller
             ->groupBy('status')
             ->get();
 
-//        $orders = $this->order->All();
-        return view('admin.orders.index', compact('orders', 'customers','request_status', 'status', 'customer_id'));
+        return view('admin.orders.index', compact('orders', 'customers', 'request_status', 'status', 'customer_id'));
     }
 
     public function create(Request $request)

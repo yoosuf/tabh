@@ -116,11 +116,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 
             Route::get('users', 'UsersController@index')->name('admin.users');
-            Route::post('users', 'UsersController@store');
+            Route::post('users', 'UsersController@store')->name('admin.users.store');
             Route::get('users/create', 'UsersController@create')->name('admin.users.create');
             Route::get('users/{id}', 'UsersController@edit')->name('admin.users.edit');
-            Route::put('users/{id}', 'UsersController@update');
-            Route::delete('users/{id}', 'UsersController@destroy');
+            Route::put('users/{id}', 'UsersController@update')->name('admin.users.update');
+            Route::delete('users/{id}', 'UsersController@destroy')->name('admin.users.delete');
 
 
             Route::get('/account/profile', 'ProfileController@edit')->name('admin.account.profile');

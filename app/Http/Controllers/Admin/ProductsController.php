@@ -38,30 +38,21 @@ class ProductsController extends Controller
     {
 //        return $request->get('partner_id');
 
-        if($request->has('partner_id') && $request->get('partner_id') != '')
-        {
+        if ($request->has('partner_id') && $request->get('partner_id') != '') {
             $partner_id = $request->get('partner_id');
             $partner = $this->partner->find($request->get('partner_id'));
 
-            if($request->has('status') && $request->get('status') != '')
-            {
+            if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
                 $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
-            }
-            else
-            {
+            } else {
                 $products = $partner->products()->orderBy('id', 'asc')->paginate(10);
             }
-        }
-        else
-        {
-            if($request->has('status') && $request->get('status') != '')
-            {
+        } else {
+            if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
                 $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
-            }
-            else
-            {
+            } else {
                 $products = $this->product->orderBy('id', 'asc')->paginate(10);
             }
 
@@ -103,15 +94,16 @@ class ProductsController extends Controller
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
             'price' => 'required|max:255',
+            'product_kind' => 'required',
+            'generic_name' => 'required',
             'published' => 'required|boolean',
         ]);
 
-        $partner = $this->partner->where('name' , $request->get('partner'))->first();
-        if(!isset($partner))
-        {
+        $partner = $this->partner->where('name', $request->get('partner'))->first();
+        if (!isset($partner)) {
             $errors = [
                 'Partner Not Found'
-                ];
+            ];
             $partners = $this->partner->all();
             return view('admin.products.create', compact('partners', 'errors'));
         }
@@ -122,7 +114,9 @@ class ProductsController extends Controller
             'vendor' => $request->get('vendor'),
             'product_type' => $request->get('product_type'),
             'packsize' => $request->get('packsize'),
+            'generic_name'  => $request->get('generic_name'),
             'price' => $request->get('price'),
+            'kind' => $request->get('product_kind'),
             'published' => $request->has('published') ? $request->get('published') : false,
         ];
 
@@ -140,13 +134,13 @@ class ProductsController extends Controller
         }
 
         flash('Successfully created')->success();
-        return  redirect()->back();
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($id)
@@ -155,28 +149,28 @@ class ProductsController extends Controller
         $partner = $product->partner()->first();
         $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
 //        return $image;
-        return view('admin.products.show', compact('product','image', 'partner'));
+        return view('admin.products.show', compact('product', 'image', 'partner'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
     {
         $product = $this->product->find($id);
-        $partner = $product->partner()->first();
+        // $partner = $product->partner()->first();
         $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
-//        $partners = $this->partner->all();
-        return view('admin.products.edit', compact('product', 'partner','image'));
+       $partners = $this->partner->all();
+        return view('admin.products.edit', get_defined_vars());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @param Request $request
      * @return Response
      */
@@ -189,7 +183,9 @@ class ProductsController extends Controller
             'product_type' => 'required|max:255',
             'packsize' => 'required|max:255',
             'price' => 'required|max:255',
+            'product_kind' => 'required',
             'published' => 'required|boolean',
+            'generic_name' => 'required'
 
         ]);
 
@@ -200,6 +196,8 @@ class ProductsController extends Controller
             'product_type' => $request->get('product_type'),
             'packsize' => $request->get('packsize'),
             'price' => $request->get('price'),
+            'generic_name'  => $request->get('generic_name'),
+            'kind' => $request->get('product_kind'),
             'published' => $request->has('published') ? $request->get('published') : false,
         ];
 
@@ -207,17 +205,16 @@ class ProductsController extends Controller
 
         $product->update($productData);
 
-        if($request->has('image'))
-        {
+        if ($request->has('image')) {
             $product->attachment()->delete();
 
             $path = Storage::putFile('attachments', $request->file('image'));
             $product->attachment()->updateOrCreate([
-               'attachable_id'         => $product->id,
-               'attachable_type'       => 'App\Product'],
-               ['attachable_category'   => 'medicine',
-               'path'                  => $path,
-               'file_name'             => $request->image->getClientOriginalName()]);
+                'attachable_id' => $product->id,
+                'attachable_type' => 'App\Product'],
+                ['attachable_category' => 'medicine',
+                    'path' => $path,
+                    'file_name' => $request->image->getClientOriginalName()]);
         }
 
         flash('Successfully updated')->success();
@@ -227,7 +224,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)

@@ -74,7 +74,7 @@ class AddressesController extends Controller
             'address_line_2' => 'required|string|max:255',
             'address_city' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
-            // 'address_country' => 'required|string|max:255',
+             'address_country' => 'required|string|max:255',
             'address_province' => 'required|string|max:255',
         ], [
             'address_name.required' => 'Name is required',

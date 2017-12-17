@@ -21,8 +21,11 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $data = User::with('primaryAddress')->paginate($limit);
-        return view('admin.customers.index', compact('data'));
+        $data = User::with(['primaryAddress', 'orders'])->paginate($limit);
+
+
+
+        return view('admin.customers.index', get_defined_vars());
     }
 
     public function create(Request $request)
@@ -41,11 +44,12 @@ class CustomersController extends Controller
             'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255|unique:users',
             'customer_phone' => 'required|string|max:255|unique:users',
-            'address_first_name' => 'required|string|max:255',
-            'address_last_name' => 'required|string|max:255',
-            'address_customer_phone' => 'required',
-            'address_address_1' => 'required|string|max:255',
-            'address_address_2' => 'required|string|max:255',
+
+
+            'address_name' => 'required|string|max:255',
+            'address_phone' => 'required',
+            'address_line_1' => 'required|string|max:255',
+            'address_line_2' => 'required|string|max:255',
             'address_city' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
             'address_country' => 'required|string|max:255',
@@ -55,11 +59,12 @@ class CustomersController extends Controller
             'customer_email.required' => 'Email is required',
             'customer_email.email' => 'Email must be a valid email address.',
             'customer_phone.required' => 'Phone is required',
-            'address_first_name.required' => 'First name is required',
-            'address_last_name.required' => 'Last name is required',
-            'address_customer_phone.required' => 'Phone is required',
-            'address_address_1.required' => 'Line 1 is required',
-            'address_address_2.required' => 'Line 2 is required',
+
+
+            'address_name.required' => 'Name is required',
+            'address_phone.required' => 'Phone is required',
+            'address_line_1.required' => 'Line 1 is required',
+            'address_line_2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
@@ -67,29 +72,30 @@ class CustomersController extends Controller
         ]);
 
 
-//        $user  = User::create([
-//            'first_name' => $faker->firstName,
-//            'last_name' => $faker->lastName,
-//            'email' => $faker->email,
-//        ]);
-//
-//
-//        $address = [
-//            'first_name' => $user->firstName,
-//            'last_name' => $user->lastName,
-//            'phone' => $faker->phoneNumber,
-//            'address1' => $faker->streetName,
-//            'address2' => $faker->streetAddress,
-//            'city' => $faker->city,
-//            'province' => $faker->streetAddress,
-//            'postcode' => $faker->postcode,
-//            'country' => $faker->country,
-//            'default' => 1,
-//        ];
-//
-//        $user->addresses()->create($address);
+        $user  = User::create([
+            'name' => $request->get('customer_name'),
+            'phone' =>$request->get('customer_phone'),
+            'email' => $request->get('customer_email'),
+        ]);
 
 
+        $address = [
+            'name' => $request->get('customer_name'),
+            'phone' => $request->get('customer_name'),
+            'address1' => $request->get('address_address_1'),
+            'address2' => $request->get('address_address_2'),
+            'city' => $request->get('address_city'),
+            'province' => $request->get('address_province'),
+            'postcode' => $request->get('address_postcode'),
+            'country' => $request->get('address_country'),
+            'default' => 1,
+        ];
+
+        $user->addresses()->create($address);
+
+
+        flash('Successfully created')->success();
+        return redirect()->route('admin.customers.edit', ['id' => $user->id]);
     }
 
 
@@ -117,25 +123,27 @@ class CustomersController extends Controller
             'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255|unique:users,email,'.$request->id,
             'customer_phone' => 'nullable|max:255|unique:users,phone,'.$request->id,
-            'address_first_name' => 'required|string|max:255',
-            'address_last_name' => 'required|string|max:255',
-            'address_customer_phone' => 'required',
-            'address_address_1' => 'required|string|max:255',
-            'address_address_2' => 'required|string|max:255',
+
+
+            'address_name' => 'required|string|max:255',
+            'address_phone' => 'required',
+            'address_line1' => 'required|string|max:255',
+            'address_line2' => 'required|string|max:255',
             'address_city' => 'required|string|max:255',
-            'address_postcode' => 'required|max:255',
+            'address_postcode' => 'required|string|max:255',
             'address_country' => 'required|string|max:255',
             'address_province' => 'required|string|max:255',
+
         ], [
             'customer_name.required' => 'Name is required',
             'customer_email.required' => 'Email is required',
             'customer_email.email' => 'Email must be a valid email address.',
             'customer_phone.required' => 'Phone is required',
-            'address_first_name.required' => 'First name is required',
-            'address_last_name.required' => 'Last name is required',
-            'address_customer_phone.required' => 'Phone is required',
-            'address_address_1.required' => 'Line 1 is required',
-            'address_address_2.required' => 'Line 2 is required',
+
+            'address_name.required' => 'Name is required',
+            'address_phone.required' => 'Phone is required',
+            'address_line1.required' => 'Line 1 is required',
+            'address_line2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
@@ -143,6 +151,8 @@ class CustomersController extends Controller
         ]);
 
 
+        flash('Successfully updated')->success();
+        return redirect()->back();
 
 
     }

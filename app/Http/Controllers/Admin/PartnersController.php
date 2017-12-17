@@ -57,15 +57,14 @@ class PartnersController extends Controller
             'partner_discount_percentage' => 'nullable|numeric',
 
 
-            'address_first_name' => 'nullable|max:255',
-            'address_last_name' => 'nullable|max:255',
-            'address_phone' => 'nullable|max:255',
-            'address_line1' => 'nullable|max:255',
-            'address_line2' => 'nullable|max:255',
-            'address_city' => 'nullable|max:255',
-            'address_postcode' => 'nullable|max:255',
-            'address_province' => 'nullable|max:255',
-            'address_country' => 'nullable|max:255',
+            'address_name' => 'string|max:255',
+            'address_phone' => 'required',
+            'address_line_1' => 'string|max:255',
+            'address_line_2' => 'string|max:255',
+            'address_city' => 'string|max:255',
+            'address_postcode' => 'string|max:255',
+            'address_country' => 'string|max:255',
+            'address_province' => 'string|max:255',
 
 
         ], [
@@ -74,11 +73,11 @@ class PartnersController extends Controller
             'partner_email.email' => 'Email must be a valid email address.',
             'partner_phone.required' => 'Phone is required',
             'partner_website.required' => 'website is required',
-            'address_first_name.required' => 'First name is required',
-            'address_last_name.required' => 'Last name is required',
+
+            'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
-            'address_line1.required' => 'Line 1 is required',
-            'address_line2.required' => 'Line 2 is required',
+            'address_line_1.required' => 'Line 1 is required',
+            'address_line_2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
@@ -147,15 +146,14 @@ class PartnersController extends Controller
             'partner_min_discount_amount' => 'nullable|numeric',
             'partner_discount_percentage' => 'nullable|numeric',
 
-            'address_first_name' => 'nullable|max:255',
-            'address_last_name' => 'nullable|max:255',
-            'address_phone' => 'nullable|max:255',
-            'address_line1' => 'nullable|max:255',
-            'address_line2' => 'nullable|max:255',
-            'address_city' => 'nullable|max:255',
-            'address_postcode' => 'nullable|max:255',
-            'address_province' => 'nullable|max:255',
-            'address_country' => 'nullable|max:255',
+            'address_name' => 'string|max:255',
+            'address_phone' => 'required',
+            'address_line_1' => 'string|max:255',
+            'address_line_2' => 'string|max:255',
+            'address_city' => 'string|max:255',
+            'address_postcode' => 'string|max:255',
+            'address_country' => 'string|max:255',
+            'address_province' => 'string|max:255',
 
 
         ], [

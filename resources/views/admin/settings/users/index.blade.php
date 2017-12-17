@@ -32,7 +32,6 @@
                         <tr>
                             <th><abbr title="Played">Name</abbr></th>
                             <th><abbr title="Won">Email</abbr></th>
-                            <th><abbr title="Drawn">Partner</abbr></th>
                             <th width="160"><abbr title="Goals for">Actions</abbr></th>
                         </tr>
                         </thead>
@@ -40,7 +39,6 @@
                         <tr>
                             <th><abbr title="Played">Name</abbr></th>
                             <th><abbr title="Won">Email</abbr></th>
-                            <th><abbr title="Drawn">Partner</abbr></th>
                             <th width="160"><abbr title="Goals for">Actions</abbr></th>
                         </tr>
                         </tfoot>
@@ -50,8 +48,7 @@
                             @foreach($data as $item)
                                 <tr>
                                     <td><a href="{{ route('admin.users.edit', [$item->id]) }}">{{ $item->name  }}</a></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $item->email }}</td>
 
                                     <td>@include('admin.settings.users._menu')</td>
                                 </tr>

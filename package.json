@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "fb": "^2.0.0",
-        "react-places-autocomplete": "^5.4.3"
+        "react-places-autocomplete": "^5.4.3",
+        "selectize": "^0.12.4"
     }
 }

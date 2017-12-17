@@ -6,8 +6,7 @@
     <p class="title">Product Edit</p>
     @include('flash::message')
     <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.products.update', [$product->id]) }}">
-
-        <input type="hidden" name="_method" value="put" />
+        {{ method_field('PUT') }}
         @include('admin.products._form')
     </form>
 
