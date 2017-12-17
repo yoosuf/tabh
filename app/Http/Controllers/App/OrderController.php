@@ -45,6 +45,8 @@ class OrderController extends Controller
     public function placeOrder(Request $request)
     {
 
+
+        dd($request->all());
         $request->validate([
             'total_amount' => 'required',
             'address' => 'required',
