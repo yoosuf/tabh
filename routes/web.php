@@ -25,8 +25,8 @@ Route::group(['namespace' => 'App'], function () {
 
 
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
-        Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
+//        Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
+//        Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
 
         Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
         Route::get('/order/discard', 'OrderController@discard')->name('order.discard');

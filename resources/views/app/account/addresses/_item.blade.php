@@ -11,7 +11,7 @@
                 {{ $item->address1 }} <br />
                 {{ $item->address2 }} <br />
 
-                {{ $item->city }}, {{ $item->province }}, {{ $item->postcode }}, {{ \App\Entities\Country::where('iso',$item->country)->first()->nice_name  }}
+                {{ $item->city }}, {{ $item->province }}, {{ $item->postcode }}, {{ \App\Entities\Country::where('iso',$item->country)->first() != null ? \App\Entities\Country::where('iso',$item->country)->first()->nice_name : ''}}
             </address>
 
             </p>

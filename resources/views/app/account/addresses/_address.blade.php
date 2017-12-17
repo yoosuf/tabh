@@ -123,25 +123,25 @@
 
 <div class="field is-horizontal">
     <div class="field-body">
-        <div class="field">
+        {{--<div class="field">--}}
 
-            <label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>
-            <div class="control is-expanded">
+            {{--<label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>--}}
+            {{--<div class="control is-expanded">--}}
 
 
-                <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">
+                {{--<div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">--}}
 
-                    {!! render_countries(isset($item->country)? $item->country : old('address_country'), 'address_country') !!}
+                    {{--{!! render_countries(isset($item->country)? $item->country : old('address_country'), 'address_country') !!}--}}
 
-                </div>
+                {{--</div>--}}
 
-            </div>
-            @if ($errors->has('address_country'))
-                <span class="help is-danger">
-                    {{ $errors->first('address_country') }}
-                </span>
-            @endif
-        </div>
+            {{--</div>--}}
+            {{--@if ($errors->has('address_country'))--}}
+                {{--<span class="help is-danger">--}}
+                    {{--{{ $errors->first('address_country') }}--}}
+                {{--</span>--}}
+            {{--@endif--}}
+        {{--</div>--}}
         <div class="field">
             <label for="address_province">{{ trans('quicksilver.account.address.input_state')}}</label>
 
@@ -161,6 +161,8 @@
                 </span>
             @endif
         </div>
+
+        {{--<input type="hidden" name="address_country" id="address_country" value="BD">--}}
         <div class="field">
 
             <label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>

@@ -32,6 +32,10 @@ if (!function_exists('render_countries')) {
                 $html .= "<option value='". $country->iso ."' selected>". $country->nice_name ."</option>";
 
             }
+            else if($country->iso == 'BD')
+            {
+                $html .= "<option value='". $country->iso ."' selected>". $country->nice_name ."</option>";
+            }
             else
             {
                 $html .= "<option value='". $country->iso ."'>". $country->nice_name ."</option>";

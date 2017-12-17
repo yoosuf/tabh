@@ -45,6 +45,8 @@ class OrderController extends Controller
     public function placeOrder(Request $request)
     {
 
+
+//        dd($request->all());
         $request->validate([
             'total_amount' => 'required',
             'address' => 'required',
@@ -64,7 +66,7 @@ class OrderController extends Controller
                 'address_line_2' => 'required|string|max:255',
                 'address_city' => 'required|string|max:255',
                 'address_postcode' => 'required|string|max:255',
-                // 'address_country' => 'required|string|max:255',
+                'address_country' => 'required|string|max:255',
                 'address_province' => 'required|string|max:255',
             ], [
                 'address_name.required' => 'Name is required',
@@ -83,16 +85,16 @@ class OrderController extends Controller
                 'address1' => $request->get('address_line_1'),
                 'address2' => $request->get('address_line_2'),
                 'city' => $request->get('address_city'),
-                'province' => $request->get('address_postcode'),
-                'postcode' => $request->get('address_country'),
-                'country' => $request->get('address_province'),
+                'province' => $request->get('address_province'),
+                'postcode' => $request->get('address_postcode'),
+                'country' => $request->get('address_country'),
             ]);
 
             $addressData = [
                 'name' => $request->get('address_name'),
                 'phone' => $request->get('address_phone'),
-                'address1' => $request->get('address_line1'),
-                'address2' => $request->get('address_line2'),
+                'address1' => $request->get('address_line_1'),
+                'address2' => $request->get('address_line_2'),
                 'city' => $request->get('address_city'),
                 'postcode' => $request->get('address_postcode'),
                 'province' => $request->get('address_province'),
