@@ -223,7 +223,7 @@
 
                                 <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">
 
-                                    {!! render_countries() !!}
+                                    {!! render_countries(isset($item->country) ? $item->country : old('address_country'), 'address_country') !!}
 
                                 </div>
 
