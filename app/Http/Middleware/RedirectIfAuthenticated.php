@@ -29,7 +29,7 @@ class RedirectIfAuthenticated
 //            if ($request->user()->is_complete == true) {
 //
 //                if (Cart::count() == 0 ) {
-                    return redirect()->intended('/account');
+                    return redirect()->url('/search?type=pharmaceutical');
 //                } else {
 //                    return back()->withInput();
 //                }
