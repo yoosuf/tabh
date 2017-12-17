@@ -8,6 +8,19 @@
     </article>
     <br>
 @endif
+
+@if ($errors->any())
+    <article class="message is-danger">
+        <div class="message-body">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </article>
+    <br>
+@endif
 {{ csrf_field() }}
 
 
@@ -60,7 +73,7 @@
                             <div class="control is-expanded">
                                 <input
                                         id="customer_phone"
-                                        type="text"
+                                        type="tel"
                                         name="customer_phone"
                                         class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
                             </div>
@@ -79,7 +92,7 @@
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
-                    @include('admin.partials._address', ['item' => isset($address) ? $address : null])
+                    @include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])
                 </div>
             </div>
         </div>

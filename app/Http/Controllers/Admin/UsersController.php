@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $data = Admin::paginate(10);
-        return view('admin.settings.users.index', compact('data'));
+        return view('admin.settings.users.index', get_defined_vars());
     }
 
     public function create(Request $request)
@@ -44,8 +44,8 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        $data = Admin::findOrFail($id);
-        return view('admin.settings.users.edit', compact('data'));
+        $item = Admin::findOrFail($id);
+        return view('admin.settings.users.edit', get_defined_vars());
     }
 
     public function update($id, Request $request)

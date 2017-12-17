@@ -23,29 +23,7 @@
             <div class="card">
                 <div class="card-content">
 
-            {{--<form action="{{ route('admin.customers') }}" method="GET">--}}
-
-            {{--<div class="field has-addons">--}}
-                {{--<div class="control">--}}
-    {{--<span class="select">--}}
-      {{--<select>--}}
-        {{--<option value="">Filter Customers</option>--}}
-        {{--<option>£</option>--}}
-        {{--<option>€</option>--}}
-      {{--</select>--}}
-    {{--</span>--}}
-                {{--</div>--}}
-                {{--<div class="control is-expanded">--}}
-                    {{--<input class="input" type="text" name="q" placeholder="Search customers" value="{{ old('q') }}" />--}}
-                {{--</div>--}}
-                {{--<div class="control">--}}
-                    {{--<button class="button" type="submit">--}}
-                        {{--Search--}}
-                    {{--</button>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            {{--</form>--}}
+                    @include('admin.customers._filter')
 
             <table class="table is-fullwidth is-hoverable is-striped">
                 <thead>
@@ -75,7 +53,7 @@
                         <tr>
                             <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->fullName()  }}</a></td>
                             <td>{{ isset($item->primaryAddress->city) ? $item->primaryAddress->city : null }}</td>
-                            <td></td>
+                            <td>{{ $item->orders->count() }}</td>
                             <td></td>
                             <td></td>
                             <td>
