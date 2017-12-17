@@ -42,6 +42,39 @@
                                     <br>
                                     <h2 class="is-success">Order Status : {{$order->status}}</h2>
                                     <br>
+                                    <h2 class="is-success">Order Address : </h2>
+                                    {{--@include('app.account.addresses._item', ['item' => $order->address()->first()])--}}
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>{{ $order->address()->first()->name }}</strong>
+                                                <br>
+                                                <strong>{{ $order->address()->first()->phone }}</strong>
+
+                                            <address>
+                                                {{ $order->address()->first()->address1 }} <br>
+                                                {{ $order->address()->first()->address2 }} <br>
+
+                                                {{ $order->address()->first()->city }}, {{ $order->address()->first()->province }}, {{ $order->address()->first()->postcode }}, {{ $order->address()->first()->country }}
+                                            </address>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h2 class="is-success">Order Prescription : </h2>
+                                    @if(isset($prescription) && $prescription != '')
+                                        <div class="field">
+                                            <label class="label">Prescription</label>
+                                            <div class="box">
+                                                <figure class="image is-128x128">
+                                                    <img src={{ url('/attachments/'. $prescription) }}>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <br>
+                                    <h2 class="is-success">Order Items : </h2>
                                     @foreach($line_items as $line_item)
 
                                         <h3 class="is-success">by {{$line_item->partner()->first()->name}}</h3>

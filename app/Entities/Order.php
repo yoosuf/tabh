@@ -2,10 +2,12 @@
 
 namespace App\Entities;
 
+use App\Traits\HasAttachment;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use HasAttachment;
     protected $guarded = [];
 
     public function user()
@@ -19,5 +21,10 @@ class Order extends Model
     public function line_items()
     {
         return $this->hasMany(LineItem::class);
+    }
+
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
     }
 }

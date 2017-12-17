@@ -133,7 +133,7 @@ class ProductsController extends Controller
            $path = Storage::putFile('attachments', $request->file('image'));
            $product->attachment()->updateOrCreate([
                'attachable_id'         => $product->id,
-               'attachable_type'       => 'App\Product'],
+               'attachable_type'       => 'App\Entities\Product'],
                ['attachable_category'   => 'medicine',
                'path'                  => $path,
                'file_name'             => $request->image->getClientOriginalName()]);

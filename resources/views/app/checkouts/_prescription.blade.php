@@ -2,33 +2,38 @@
     <div class="card">
         <div class="card-content">
 
-            <h1 class="title is-4 is-spaced">Add Prescription</h1>
-            <p class="subtitle is-5">Add prescription</p>
-
-            <form action="" method="POST">
-
-                {{ csrf_field() }}
-
-
-                <div class="file">
-                    <label class="file-label">
-                        <input class="file-input" type="file" name="resume">
-                        <span class="file-cta">
-      <span class="file-icon">
-        <i class="fa fa-upload"></i>
-      </span>
-      <span class="file-label">
-        Choose a file…
-      </span>
-    </span>
-                    </label>
+            <div class="field">
+                <h1 class="title is-4 is-spaced">Add Prescription</h1>
+                <div class="control">
+                    <div class="file has-name is-fullwidth">
+                        <label class="file-label">
+                            <input class="file-input" name="prescription" id="prescription" type="file" multiple accept='image/*'>
+                            <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fa fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Choose a file…
+                        </span>
+                        </span>
+                            <span id="imagename" class="file-name">
+                        </span>
+                        </label>
+                    </div>
                 </div>
-
-
-            </form>
-
+            </div>
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        var file = document.getElementById("prescription");
+        file.onchange = function(){
+            if(file.files.length > 0)
+            {
+                document.getElementById('imagename').innerHTML = file.files[0].name;
+            }
+        };
+    </script>
 
 @endif
