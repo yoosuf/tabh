@@ -46,6 +46,8 @@ class AddressesController extends Controller
         $data = $user->addresses->find($id);
 
         $addressData = [
+            'addressable_id' => $user->id,
+            'addressable_type' => 'App\Entities\User',
             'name' => $request->get('address_name'),
             'phone' => $request->get('address_phone'),
             'address1' => $request->get('address_address_1'),
@@ -56,7 +58,7 @@ class AddressesController extends Controller
             'country' => $request->get('address_country'),
         ];
 
-        $data->update(['addressable_id' => $user->id, 'addressable_type' => 'App\Entities\User'], $addressData);
+        $data->update($addressData);
 
 
         flash('Successfully updated')->success();
