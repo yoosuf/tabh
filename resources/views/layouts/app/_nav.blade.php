@@ -5,7 +5,7 @@
 
                 <span class="navbar-item">
                     <a href="{{ url('/') }}">
-                        Tab - H
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </span>
 
@@ -31,7 +31,7 @@
                                 <div class="dropdown-item">
 
 
-                                    <article class="media">
+                                    <div class="media">
                                         <figure class="media-left">
                                             <p class="image is-24x24">
                                                 <img src="https://bulma.io/images/placeholders/32x32.png">
@@ -40,62 +40,40 @@
                                         <div class="media-content">
                                             <div class="content">
 
-                                                <p>{{ Auth::user()->name }}</p>
+                                                <p>{{ auth()->user()->name }}</p>
 
-                                                @if(auth()->user()->is_complete)
 
-                                                    <a class="button is-small">Settings</a>
+                                                <a class="button is-small">Settings</a>
 
-                                                @endif
                                             </div>
-                                    </article>
+                                        </div>
 
 
-                                </div>
-                                @if(auth()->user()->is_complete)
+                                    </div>
                                     <hr class="dropdown-divider">
 
                                     <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
                                     <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
                                     <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
-                                @endif
 
-                                <hr class="dropdown-divider">
+                                    <hr class="dropdown-divider">
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
                             </div>
+                            @endguest
+
+
                         </div>
-                    @endguest
-
-
-
-                    {{--<a class="navbar-item is-active">--}}
-                    {{--Home--}}
-                    {{--</a>--}}
-                    {{--<a class="navbar-item">--}}
-                    {{--Examples--}}
-                    {{--</a>--}}
-                    {{--<a class="navbar-item">--}}
-                    {{--Documentation--}}
-                    {{--</a>--}}
-                    {{--<span class="navbar-item">--}}
-                    {{--<a class="button is-primary is-inverted">--}}
-                    {{--<span class="icon">--}}
-                    {{--<i class="fa fa-github"></i>--}}
-                    {{--</span>--}}
-                    {{--<span>Download</span>--}}
-                    {{--</a>--}}
-                    {{--</span>--}}
                 </div>
             </div>
-        </div>
     </nav>
 </div>
