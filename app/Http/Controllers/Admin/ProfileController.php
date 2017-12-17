@@ -18,8 +18,7 @@ class ProfileController extends Controller
     public function edit(Request $request)
     {
 
-
-        $data = auth()->user();
+        $item = auth()->guard('admin')->user();
 
         return view('admin.account.profile.edit', get_defined_vars());
     }
@@ -28,13 +27,21 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
 
-        $user = $request->user();
+        $user = auth()->guard('admin')->user();
 
         $request->validate([
-            'full_name' => 'required|max:256',
-            'customer_email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-            'customer_phone' => 'required|max:20|unique:users,phone,'.$user->id
+            'name' => 'required|max:256',
+            'email' => 'required|string|email|max:255|unique:admins,email,'.$user->id,
         ]);
+
+        $user->name = $request->get('name');
+        $user->name = $request->get('email');
+        $user->save();
+
+        flash('Successfully created')->success();
+
+        return redirect()->route('admin.account.profile');
+
     }
 
 }

@@ -57,14 +57,14 @@ class PartnersController extends Controller
             'partner_discount_percentage' => 'nullable|numeric',
 
 
-            'address_name' => 'string|max:255',
-            'address_phone' => 'required',
-            'address_line_1' => 'string|max:255',
-            'address_line_2' => 'string|max:255',
-            'address_city' => 'string|max:255',
-            'address_postcode' => 'string|max:255',
-            'address_country' => 'string|max:255',
-            'address_province' => 'string|max:255',
+            'address_name' => 'nullable|string|max:255',
+            'address_phone' => 'nullable|required',
+            'address_line_1' => 'nullable|string|max:255',
+            'address_line_2' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_postcode' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_province' => 'nullable|string|max:255',
 
 
         ], [
@@ -138,7 +138,7 @@ class PartnersController extends Controller
         $request->validate([
             'partner_name' => 'required|string|max:255',
             'partner_email' => 'required|email|max:255|unique:partners,email,' . $id,
-            'partner_phone' => 'required|max:255|unique:partners,phone,' . $id,
+            'partner_phone' => 'nullable|max:255|unique:partners,phone,' . $id,
             'partner_website' => 'nullable|url|max:255',
             'partner_status' => 'required|boolean',
             'partner_api' => 'nullable|url|max:255',
@@ -146,14 +146,14 @@ class PartnersController extends Controller
             'partner_min_discount_amount' => 'nullable|numeric',
             'partner_discount_percentage' => 'nullable|numeric',
 
-            'address_name' => 'string|max:255',
-            'address_phone' => 'required',
-            'address_line_1' => 'string|max:255',
-            'address_line_2' => 'string|max:255',
-            'address_city' => 'string|max:255',
-            'address_postcode' => 'string|max:255',
-            'address_country' => 'string|max:255',
-            'address_province' => 'string|max:255',
+            'address_name' => 'nullable|string|max:255',
+            'address_phone' => 'nullable',
+            'address_line_1' => 'nullable|string|max:255',
+            'address_line_2' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_postcode' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_province' => 'nullable|string|max:255',
 
 
         ], [
