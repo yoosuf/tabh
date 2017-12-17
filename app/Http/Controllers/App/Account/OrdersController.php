@@ -42,24 +42,9 @@ class OrdersController extends Controller
 
 //        dd($line_items);
 
-        $prescription = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($order->attachment()->first()));
+        $prescription = get_attachment($order->attachment()->first());
 
         return view('app.account.orders.order', compact('order','line_items', 'prescription'));
-    }
-
-    public function GetAttachmentURL($attachment)
-    {
-        try {
-            if (isset($attachment)) {
-                return Storage::url($attachment->path);
-            } else {
-                //return  url('/images/placeholder/profile.png');
-            }
-        } catch (\Exception $exception) {
-            //Log::notice($exception);
-            //return  url('/images/placeholder/profile.png');
-            return $exception;
-        }
     }
 
 }

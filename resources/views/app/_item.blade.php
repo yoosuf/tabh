@@ -3,7 +3,11 @@
 
     <figure class="media-left">
         <p class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
+            @if($product->attachment()->first() != null)
+                <img src="{{get_attachment($product->attachment()->first())}}">
+                @else
+                <img src="https://bulma.io/images/placeholders/128x128.png">
+            @endif
         </p>
     </figure>
     <div class="media-content">

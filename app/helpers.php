@@ -1,7 +1,7 @@
 <?php
 
 
-
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('getProfileAvatar')) {
     function getProfileAvatar() {
@@ -42,5 +42,28 @@ if (!function_exists('render_countries')) {
 
         return $html;
 
+    }
+}
+
+if (!function_exists('get_attachment')) {
+
+    function GetAttachmentURL($attachment)
+    {
+        try {
+            if (isset($attachment)) {
+                return Storage::url($attachment->path);
+            } else {
+                //return  url('/images/placeholder/profile.png');
+            }
+        } catch (\Exception $exception) {
+            //Log::notice($exception);
+            //return  url('/images/placeholder/profile.png');
+            return $exception;
+        }
+    }
+
+    function get_attachment($attachment = null)
+    {
+        return str_replace("/storage/attachments/", "", GetAttachmentURL($attachment));
     }
 }

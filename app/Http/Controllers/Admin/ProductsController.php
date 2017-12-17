@@ -147,7 +147,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $partner = $product->partner()->first();
-        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
+        $image = get_attachment($product->attachment()->first());
 //        return $image;
         return view('admin.products.show', compact('product', 'image', 'partner'));
     }
@@ -162,7 +162,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         // $partner = $product->partner()->first();
-        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
+        $image = get_attachment($product->attachment()->first());
        $partners = $this->partner->all();
         return view('admin.products.edit', get_defined_vars());
     }
@@ -230,21 +230,6 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function GetAttachmentURL($attachment)
-    {
-        try {
-            if (isset($attachment)) {
-                return Storage::url($attachment->path);
-            } else {
-                //return  url('/images/placeholder/profile.png');
-            }
-        } catch (\Exception $exception) {
-            //Log::notice($exception);
-            //return  url('/images/placeholder/profile.png');
-            return $exception;
-        }
     }
 
 }
