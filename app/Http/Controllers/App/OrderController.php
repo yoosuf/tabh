@@ -46,7 +46,7 @@ class OrderController extends Controller
     {
 
 
-        dd($request->all());
+//        dd($request->all());
         $request->validate([
             'total_amount' => 'required',
             'address' => 'required',
