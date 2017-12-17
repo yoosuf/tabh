@@ -132,25 +132,6 @@
 <div class="field is-horizontal">
     <div class="field-body">
         <div class="field">
-
-            <label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>
-            <div class="control is-expanded">
-
-
-            <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}" >
-
-                {!! render_countries(isset($item->country)? $item->country : old('address_country'), 'address_country') !!}
-
-            </div>
-
-            </div>
-            @if ($errors->has('address_country'))
-                <span class="help is-danger">
-                    {{ $errors->first('address_country') }}
-                </span>
-            @endif
-        </div>
-        <div class="field">
             <label for="address_province">{{ trans('quicksilver.account.address.input_state')}}</label>
 
             <div class="control is-expanded">
@@ -166,6 +147,25 @@
             @if ($errors->has('address_province'))
                 <span class="help is-danger">
                     {{ $errors->first('address_province') }}
+                </span>
+            @endif
+        </div>
+        <div class="field">
+
+            <label for="address_country">{{ trans('quicksilver.account.address.input_country')}}</label>
+            <div class="control is-expanded">
+
+
+                <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}" >
+
+                    {!! render_countries(isset($item->country) ? $item->country : old('address_country'), 'address_country') !!}
+
+                </div>
+
+            </div>
+            @if ($errors->has('address_country'))
+                <span class="help is-danger">
+                    {{ $errors->first('address_country') }}
                 </span>
             @endif
         </div>

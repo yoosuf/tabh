@@ -29,12 +29,12 @@ if (!function_exists('render_countries')) {
         {
             if($country->iso == $iso)
             {
-                $html .= "<option value='". $country->nice_name ."' selected>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->iso ."' selected>". $country->nice_name ."</option>";
 
             }
             else
             {
-                $html .= "<option value='". $country->nice_name ."'>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->iso ."'>". $country->nice_name ."</option>";
             }
         }
 

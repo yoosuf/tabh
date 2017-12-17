@@ -63,19 +63,19 @@
                                                         <div class="media-right">
 
 
-                                                            <div class="dropdown is-right is-hoverable">
-                                                                <div class="dropdown-trigger">
-                                                                    <button class="button" aria-haspopup="true"
-                                                                            aria-controls="dropdown-menu6">
-                                                                        <span>Options</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="dropdown-menu" id="dropdown-menu6" role="menu">
-                                                                    <div class="dropdown-content">
+                                                            {{--<div class="dropdown is-right is-hoverable">--}}
+                                                                {{--<div class="dropdown-trigger">--}}
+                                                                    {{--<button class="button" aria-haspopup="true"--}}
+                                                                            {{--aria-controls="dropdown-menu6">--}}
+                                                                        {{--<span>Options</span>--}}
+                                                                    {{--</button>--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="dropdown-menu" id="dropdown-menu6" role="menu">--}}
+                                                                    {{--<div class="dropdown-content">--}}
                                                                         <form role="form" method="POST" action="{{ route('account.order.show') }}">
                                                                             {{ csrf_field() }}
                                                                             <input type="hidden" name="id" id="id" value="{{$order->id}}">
-                                                                        <button class="dropdown-item">
+                                                                        <button class="button">
                                                                             View Order
                                                                         </button>
                                                                         {{--<hr class="dropdown-divider">--}}
@@ -83,9 +83,9 @@
                                                                             {{--Cancel Order--}}
                                                                         {{--</a>--}}
                                                                         </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
 
 
                                                         </div>
