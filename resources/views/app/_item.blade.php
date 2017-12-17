@@ -6,7 +6,7 @@
             @if($product->attachment()->first() != null)
                 <img src="{{url('attachments/' . get_attachment($product->attachment()->first()))}}">
                 @else
-                <img src="https://bulma.io/images/placeholders/128x128.png">
+                <img src="http://quicksilver.dev/img/DefaultImage.png">
             @endif
         </p>
     </figure>

@@ -31,7 +31,8 @@ class SearchController extends Controller
         $type = $request->get('type');
 
         if($type == 'pharmaceutical') {
-            $products = $this->product->where('title', 'ILIKE', '%' . $search_query . '%')
+            $products = $this->product->where('published', true)
+                ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
