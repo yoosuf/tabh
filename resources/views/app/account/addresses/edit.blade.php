@@ -43,7 +43,7 @@
 
 
 
-                                    <form class="form" method="POST" action="{{ route('account.address.update', [$data->id]) }}" autocomplete="off">
+                                    <form class="form" method="POST" action="{{ route('account.address.update', ['id' => $data->id]) }}" autocomplete="off">
                                         {{ method_field('PUT') }}
 
                                         @include('app.account.addresses._address', ['item' => $data])

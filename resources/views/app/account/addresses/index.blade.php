@@ -21,6 +21,24 @@
             <div class="columns">
 
                 <div class="column is-8 is-offset-2">
+                    <div class="columns">
+                        <div class="column is-6 is-offset-3">
+                            @if ($errors->any())
+                                <article class="message is-danger">
+                                    <div class="message-body">
+                                        <p>There is {{ $errors->count()  }} error (s) performing this action.</p>
+                                    </div>
+                                    @foreach($errors->all() as $error)
+                                        <div class="message-body">
+                                            <p>{{ $error }}.</p>
+                                        </div>
+                                        <br>
+                                    @endforeach
+                                </article>
+                                <br>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="columns">
                         <div class="column is-3 is-hidden-mobile">

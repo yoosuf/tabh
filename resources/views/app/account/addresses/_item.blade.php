@@ -35,24 +35,30 @@
                     </a>
 
 
-                    @if(!$item->default)
+                    {{--@if(!$item->default)--}}
 
-                        <a class="dropdown-item" href="{{ route('account.address.default', $item->id) }}"
-                           onclick="event.preventDefault();
-                                       document.getElementById('mark-default').submit();">
-                            Set as Default
-                        </a>
-                        <form id="mark-default" action="{{ route('account.address.default', $item->id) }}" method="POST"
-                              style="display: none;">
+                        {{--<a class="dropdown-item" href="{{ route('account.address.default', $item->id) }}"--}}
+                           {{--onclick="event.preventDefault();--}}
+                                       {{--document.getElementById('mark-default').submit();">--}}
+                            {{--Set as Default--}}
+                        {{--</a>--}}
+                        {{--<form id="mark-default" action="{{ route('account.address.default', $item->id) }}" method="POST"--}}
+                              {{--style="display: none;">--}}
+                            {{--{{ csrf_field() }}--}}
+                        {{--</form>--}}
+
+
+                    {{--@endif--}}
+                    @if(count($data) != 1)
+                        <hr class="dropdown-divider">
+                        <form id="mark-default" action="{{route('account.address.destroy', $item->id)}}" method="POST">
                             {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="dropdown-item">
+                                Delete
+                            </button>
                         </form>
-
-
                     @endif
-                    <hr class="dropdown-divider">
-                    <a href="#" class="dropdown-item">
-                        Delete
-                    </a>
                 </div>
             </div>
         </div>

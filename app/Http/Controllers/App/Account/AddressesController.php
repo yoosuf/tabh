@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 class AddressesController extends Controller
 {
@@ -45,7 +46,7 @@ class AddressesController extends Controller
         $data = $user->addresses->find($id);
 
         $addressData = [
-            'first_name' => $request->get('address_name'),
+            'name' => $request->get('address_name'),
             'phone' => $request->get('address_phone'),
             'address1' => $request->get('address_address_1'),
             'address2' => $request->get('address_address_2'),
@@ -55,9 +56,9 @@ class AddressesController extends Controller
             'country' => $request->get('address_country'),
         ];
 
-        $data->update(['addressable_id' => $data->id, 'addressable_type' => 'App\Entities\User'], $addressData);
-        return redirect()->back();
+        $data->update(['addressable_id' => $user->id, 'addressable_type' => 'App\Entities\User'], $addressData);
 
+        return redirect()->back();
     }
 
 
@@ -74,7 +75,7 @@ class AddressesController extends Controller
             'address_line_2' => 'required|string|max:255',
             'address_city' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
-             'address_country' => 'required|string|max:255',
+            //'address_country' => 'required|string|max:255',
             'address_province' => 'required|string|max:255',
         ], [
             'address_name.required' => 'Name is required',
@@ -93,14 +94,13 @@ class AddressesController extends Controller
             'address1' => $request->get('address_line_1'),
             'address2' => $request->get('address_line_2'),
             'city' => $request->get('address_city'),
-            'province' => $request->get('address_postcode'),
-            'postcode' => $request->get('address_country'),
-            'country' => $request->get('address_province'),
+            'province' => $request->get('address_province'),
+            'postcode' => $request->get('address_postcode'),
+            'country' => $request->get('address_country'),
         ]);
 
+        flash('Successfully added')->success();
         return redirect()->back();
-
-
 
     }
 
@@ -108,8 +108,19 @@ class AddressesController extends Controller
     public function delete($id)
     {
         $data = auth()->user()->addresses->find($id);
-        $data->delete();
-        return response()->json(['message' => 'deleted'], 202);
+//        if(count(auth()->user()->addresses) > 1)
+            $data->delete();
+//        else
+//        {
+//            $errors = new MessageBag();
+//
+//            // add your error messages:
+//            $errors->add('Not Possible', 'Delete not possible');
+//
+//            return redirect()->back()->withErrors($errors);
+//
+//        }
+        return redirect()->back();
     }
 
 

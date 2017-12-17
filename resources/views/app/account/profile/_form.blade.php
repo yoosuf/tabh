@@ -57,7 +57,8 @@
                                 id="customer_phone"
                                 type="text"
                                 name="customer_phone"
-                                class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
+                                class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}"
+                                value="{{ isset($item->phone)? $item->phone : old('customer_phone') }}"/>
                     </div>
                     @if ($errors->has('customer_phone'))
                         <span class="help is-danger">

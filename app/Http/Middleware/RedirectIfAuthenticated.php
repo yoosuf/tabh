@@ -25,11 +25,13 @@ class RedirectIfAuthenticated
 
         if (Auth::guard($guard)->check()) {
 
+            return $next($request);
+
 
 //            if ($request->user()->is_complete == true) {
 //
 //                if (Cart::count() == 0 ) {
-                    return redirect()->url('/search?type=pharmaceutical');
+//                    return redirect()->to('/search?type=pharmaceutical');
 //                } else {
 //                    return back()->withInput();
 //                }

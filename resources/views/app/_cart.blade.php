@@ -7,8 +7,11 @@
                 <div class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                            <img src="https://bulma.io/images/placeholders/128x128.png">
-                        </p>
+                            @if(\App\Entities\Product::find($row->id)->attachment()->first() != null)
+                                <img src="{{url('attachments/' . get_attachment(\App\Entities\Product::find($row->id)->attachment()->first()))}}">
+                            @else
+                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                            @endif                        </p>
                     </figure>
                     <div class="media-content">
                         <div class="content">

@@ -37,5 +37,13 @@ class ProfileController extends Controller
             'customer_email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'customer_phone' => 'required|max:20|unique:users,phone,'.$user->id
         ]);
+
+        $user->name = $request->get('full_name');
+        $user->email = $request->get('customer_email');
+        $user->phone = $request->get('customer_phone');
+
+        $user->save();
+
+        return $this->edit($request);
     }
 }

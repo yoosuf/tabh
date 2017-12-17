@@ -26,7 +26,7 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>{{$item['item']->name}} (&#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}}) ({{$item['item']->qty}} units)</strong>
+                            <strong>{{$item['item']->name}} | &#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}} | {{$item['item']->qty}} units</strong>
                         </p>
                     </div>
                 </div>

@@ -83,9 +83,7 @@
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>
-                                                        <strong>{{$line_item->product()->first()->title}}
-                                                            (&#2547; {{number_format(((float)$line_item->product()->first()->price), 2, '.', '')}}
-                                                            ) ({{$line_item->quantity}} units)</strong>
+                                                        <strong>{{$line_item->product()->first()->title}} | &#2547; {{number_format(((float)$line_item->product()->first()->price), 2, '.', '')}} | {{$line_item->quantity}} units</strong>
                                                     </p>
                                                 </div>
                                             </div>

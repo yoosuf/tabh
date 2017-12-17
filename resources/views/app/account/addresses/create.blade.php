@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
 
-
+                                    @include('flash::message')
 
 
                                     <form class="form" method="POST" action="{{ route('account.address.store') }}" autocomplete="off">
