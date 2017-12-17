@@ -46,8 +46,6 @@ class CreateOrdersTable extends Migration
             $table->dropForeign('orders_attachment_id_foreign');
         });
 
-
-
         Schema::dropIfExists('orders');
     }
 }
