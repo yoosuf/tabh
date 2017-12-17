@@ -1,6 +1,7 @@
+
 <div class="card">
     <div class="card-content">
-        @if(count($products) > 0)
+        @if(isset($products) && count($products) > 0)
 
             <div class="content">
                 <strong>Search Results {{ count($products) }}</strong>

@@ -80,7 +80,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('orders', 'OrdersController@index')->name('admin.orders');
         Route::post('orders', 'OrdersController@save');
-//        Route::get('orders/{id}/edit', 'OrdersController@edit')->name('admin.orders.edit');
         Route::get('orders/{id}/approve', 'OrdersController@approve')->name('admin.orders.approve');
         Route::get('orders/{id}/reject', 'OrdersController@reject')->name('admin.orders.reject');
         Route::get('orders/{id}', 'OrdersController@show')->name('admin.orders.show');
@@ -91,7 +90,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('products', 'ProductsController@store')->name('admin.products.store');
         Route::get('products/create', 'ProductsController@create')->name('admin.products.create');
         Route::get('products/{id}/edit', 'ProductsController@edit')->name('admin.products.edit');
-//        Route::get('products/{id}', 'ProductsController@show')->name('admin.products.edit');
         Route::put('products/{id}', 'ProductsController@update')->name('admin.products.update');
         Route::delete('products/{id}', 'ProductsController@destroy')->name('admin.products.delete');
 

@@ -6,9 +6,13 @@
 
         @if(Cart::count() > 0)
             <div class="control">
-                <button type="submit" class="button is-success is-medium is-fullwidth">Proceed to Checkout</button>
+                <button type="submit" class="button is-success is-medium is-fullwidth">Proceed to checkout</button>
             </div>
+		@else
+			<div class="control">
+            	<a href="#" class="button is-medium is-fullwidth">Your cart is empty</a>
+			</div>
         @endif
 
     </div>
-</form>
+</form>        

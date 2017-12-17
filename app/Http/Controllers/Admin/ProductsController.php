@@ -72,7 +72,7 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $partners = $this->partner->all();
         return view('admin.products.create', compact('partners'));
@@ -86,71 +86,57 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'partner' => 'required',
-            'title' => 'required|max:255',
-            'body_html' => 'max:2500',
-            'vendor' => 'required|max:255',
+        $request->validate([
+            'product_name' => 'required|max:255',
+            'product_body' => 'max:2500',
+            'product_vendor' => 'required|max:255',
+            'product_generic_name' => 'required',
             'product_type' => 'required|max:255',
-            'packsize' => 'required|max:255',
-            'price' => 'required|max:255',
+            'product_size' => 'required|max:255',
+            'product_price' => 'required|max:255',
             'product_kind' => 'required',
-            'generic_name' => 'required',
-            'published' => 'required|boolean',
+            'product_partner' => 'required',
+            'product_published' => 'required|boolean',
         ]);
 
-        $partner = $this->partner->where('name', $request->get('partner'))->first();
+        $partner = $this->partner->where('id', $request->get('product_partner'))->first();
         if (!isset($partner)) {
             $errors = [
                 'Partner Not Found'
             ];
             $partners = $this->partner->all();
-            return view('admin.products.create', compact('partners', 'errors'));
+            return view('admin.products.create', get_defined_vars());
         }
 
         $productData = [
-            'title' => $request->get('title'),
-            'body_html' => $request->get('body_html'),
-            'vendor' => $request->get('vendor'),
+            'title' => $request->get('product_name'),
+            'body_html' => $request->get('product_body'),
+            'vendor' => $request->get('product_vendor'),
+            'generic_name' => $request->get('product_generic_name'),
             'product_type' => $request->get('product_type'),
-            'packsize' => $request->get('packsize'),
-            'generic_name'  => $request->get('generic_name'),
-            'price' => $request->get('price'),
+            'packsize' => $request->get('product_size'),
+            'price' => $request->get('product_price'),
             'kind' => $request->get('product_kind'),
-            'published' => $request->has('published') ? $request->get('published') : false,
+            'published' => $request->has('product_published') ? $request->get('product_published') : false,
         ];
 
         $product = $partner->products()->create($productData);
 
-        if($request->hasFile('image'))
-        {
-           $path = Storage::putFile('attachments', $request->file('image'));
-           $product->attachment()->updateOrCreate([
-               'attachable_id'         => $product->id,
-               'attachable_type'       => 'App\Entities\Product'],
-               ['attachable_category'   => 'medicine',
-               'path'                  => $path,
-               'file_name'             => $request->image->getClientOriginalName()]);
+        if ($request->hasFile('image')) {
+            $path = Storage::putFile('attachments', $request->file('image'));
+            $product->attachment()->updateOrCreate([
+                'attachable_id' => $product->id,
+                'attachable_type' => 'App\Entities\Product'],
+                ['attachable_category' => 'medicine',
+                    'path' => $path,
+                    'file_name' => $request->image->getClientOriginalName()]);
         }
 
         flash('Successfully created')->success();
-        return redirect()->back();
+        return redirect()->route('admin.products.edit', ['id' => $product->id]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $product = $this->product->find($id);
-        $partner = $product->partner()->first();
-        $image = get_attachment($product->attachment()->first());
-//        return $image;
-        return view('admin.products.show', compact('product', 'image', 'partner'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -158,12 +144,12 @@ class ProductsController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $product = $this->product->find($id);
         // $partner = $product->partner()->first();
-        $image = get_attachment($product->attachment()->first());
-       $partners = $this->partner->all();
+        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
+        $partners = $this->partner->all();
         return view('admin.products.edit', get_defined_vars());
     }
 
@@ -174,31 +160,32 @@ class ProductsController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'body_html' => 'max:2500',
-            'vendor' => 'required|max:255',
+            'product_name' => 'required|max:255',
+            'product_body' => 'max:2500',
+            'product_vendor' => 'required|max:255',
+            'product_generic_name' => 'required',
             'product_type' => 'required|max:255',
-            'packsize' => 'required|max:255',
-            'price' => 'required|max:255',
+            'product_size' => 'required|max:255',
+            'product_price' => 'required|max:255',
             'product_kind' => 'required',
-            'published' => 'required|boolean',
-            'generic_name' => 'required'
+            'product_partner' => 'required',
+            'product_published' => 'required|boolean',
 
         ]);
 
         $productData = [
-            'title' => $request->get('title'),
-            'body_html' => $request->get('body_html'),
-            'vendor' => $request->get('vendor'),
+            'title' => $request->get('product_name'),
+            'body_html' => $request->get('product_body'),
+            'vendor' => $request->get('product_vendor'),
             'product_type' => $request->get('product_type'),
-            'packsize' => $request->get('packsize'),
-            'price' => $request->get('price'),
-            'generic_name'  => $request->get('generic_name'),
+            'generic_name' => $request->get('product_generic_name'),
+            'packsize' => $request->get('product_size'),
+            'price' => $request->get('product_price'),
             'kind' => $request->get('product_kind'),
-            'published' => $request->has('published') ? $request->get('published') : false,
+            'published' => $request->has('product_published') ? $request->get('product_published') : false,
         ];
 
         $product = $this->product->find($id);
