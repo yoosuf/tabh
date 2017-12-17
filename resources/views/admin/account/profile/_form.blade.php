@@ -50,22 +50,5 @@
                     @endif
                 </div>
 
-                <div class="field">
-                    <label for="customer_phone">Phone</label>
-                    <div class="control is-expanded">
-                        <input
-                                id="customer_phone"
-                                type="text"
-                                name="customer_phone"
-                                class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
-                    </div>
-                    @if ($errors->has('customer_phone'))
-                        <span class="help is-danger">
-                            {{ $errors->first('customer_phone') }}
-                        </span>
-                    @endif
-                </div>
-
-
-
+                
 

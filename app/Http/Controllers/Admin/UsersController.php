@@ -39,6 +39,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
 
+        flash('Successfully updated')->success();
+        return redirect()->back();
+
     }
 
 
@@ -50,6 +53,10 @@ class UsersController extends Controller
 
     public function update($id, Request $request)
     {
+
+
+        flash('Successfully updated')->success();
+        return redirect()->back();
 
     }
 

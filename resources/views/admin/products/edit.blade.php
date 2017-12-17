@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <p class="title">Product Edit</p>
+    <p class="title">Edit product</p>
     @include('flash::message')
     <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.products.update', [$product->id]) }}">
         {{ method_field('PUT') }}

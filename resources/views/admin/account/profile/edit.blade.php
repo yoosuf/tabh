@@ -26,12 +26,12 @@
 
 
 
-                                    <form class="form" method="POST" action="{{ route('account.profile.update') }}"
+                                    <form class="form" method="POST" action="{{ route('admin.account.profile.update') }}"
                                           autocomplete="off">
 
                                         {{ method_field('PUT') }}
 
-                                        @include('admin.account.profile._form', ['item' => $data])
+                                        @include('admin.account.profile._form')
 
 
                                         <div class="field is-grouped">

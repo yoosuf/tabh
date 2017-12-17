@@ -46,14 +46,14 @@ class CustomersController extends Controller
             'customer_phone' => 'required|string|max:255|unique:users',
 
 
-            'address_name' => 'required|string|max:255',
-            'address_phone' => 'required',
-            'address_line_1' => 'required|string|max:255',
-            'address_line_2' => 'required|string|max:255',
-            'address_city' => 'required|string|max:255',
-            'address_postcode' => 'required|string|max:255',
-            'address_country' => 'required|string|max:255',
-            'address_province' => 'required|string|max:255',
+            'address_name' => 'nullable|string|max:255',
+            'address_phone' => 'nullable',
+            'address_line_1' => 'nullable|string|max:255',
+            'address_line_2' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_postcode' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_province' => 'nullable|string|max:255',
         ], [
             'customer_name.required' => 'Name is required',
             'customer_email.required' => 'Email is required',
@@ -125,14 +125,14 @@ class CustomersController extends Controller
             'customer_phone' => 'nullable|max:255|unique:users,phone,'.$request->id,
 
 
-            'address_name' => 'required|string|max:255',
-            'address_phone' => 'required',
-            'address_line1' => 'required|string|max:255',
-            'address_line2' => 'required|string|max:255',
-            'address_city' => 'required|string|max:255',
-            'address_postcode' => 'required|string|max:255',
-            'address_country' => 'required|string|max:255',
-            'address_province' => 'required|string|max:255',
+            'address_name' => 'nullable|string|max:255',
+            'address_phone' => 'nullable',
+            'address_line_1' => 'nullable|string|max:255',
+            'address_line_2' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_postcode' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_province' => 'nullable|string|max:255',
 
         ], [
             'customer_name.required' => 'Name is required',
