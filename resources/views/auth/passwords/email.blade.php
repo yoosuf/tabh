@@ -13,8 +13,10 @@
           <p>{{ trans('quicksilver.forgot.sub_title')}}</p>
 
                     @if (session('status'))
-                        <div class="alert alert-success">
+                           <article class="message is-danger">
+        <div class="message-body">
                             {{ session('status') }}
+                        </div>
                         </div>
                     @endif
 
