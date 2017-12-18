@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Entities\Address;
+use App\Entities\Country;
 use App\Entities\LineItem;
 use App\Entities\Order;
 use App\Entities\Partner;
@@ -63,7 +64,7 @@ class OrderController extends Controller
                 'address_name' => 'required|string|max:255',
                 'address_phone' => 'required',
                 'address_line_1' => 'required|string|max:255',
-                'address_line_2' => 'required|string|max:255',
+                'address_line_2' => 'string|max:255',
                 'address_city' => 'required|string|max:255',
                 'address_postcode' => 'required|string|max:255',
                 'address_country' => 'required|string|max:255',
@@ -72,7 +73,7 @@ class OrderController extends Controller
                 'address_name.required' => 'Name is required',
                 'address_phone.required' => 'Phone is required',
                 'address_line_1.required' => 'Line 1 is required',
-                'address_line_2.required' => 'Line 2 is required',
+                //'address_line_2.required' => 'Line 2 is required',
                 'address_city.required' => 'City is required',
                 'address_postcode.required' => 'Postcode is required',
                 'address_province.required' => 'Province is required',
@@ -88,6 +89,7 @@ class OrderController extends Controller
                 'province' => $request->get('address_province'),
                 'postcode' => $request->get('address_postcode'),
                 'country' => $request->get('address_country'),
+                'default' => true,
             ]);
 
             $addressData = [

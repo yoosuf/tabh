@@ -59,8 +59,13 @@ class PasswordController extends Controller
 
 
 
+        $request->validate(
+            ['password' => 'required|string|min:6|confirmed',]
+        );
+
 
         $requestData = $request->only('current_password', 'password', 'password_confirmation');
+
 
 
         $current_password = Auth::user()->password;
