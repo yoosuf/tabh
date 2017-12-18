@@ -10,7 +10,7 @@
                             @if(\App\Entities\Product::find($row->id)->attachment()->first() != null)
                                 <img src="{{url('attachments/' . get_attachment(\App\Entities\Product::find($row->id)->attachment()->first()))}}">
                             @else
-                                <img src="http://quicksilver.dev/img/DefaultImage.png">
+                                <img src="/img/DefaultImage.png">
                             @endif                        </p>
                     </figure>
                     <div class="media-content">

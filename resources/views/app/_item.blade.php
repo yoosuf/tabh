@@ -6,7 +6,7 @@
             @if($product->attachment()->first() != null)
                 <img src="{{url('attachments/' . get_attachment($product->attachment()->first()))}}">
                 @else
-                <img src="http://quicksilver.dev/img/DefaultImage.png">
+                <img src="/img/DefaultImage.png">
             @endif
         </p>
     </figure>
