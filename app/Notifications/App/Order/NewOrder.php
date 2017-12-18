@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\App\Order;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Queue\SerializesModels;
 
-class VerifyPhone extends Notification
+class NewOrder extends Notification
 {
-    use Queueable, SerializesModels;
-
-
-
-    public $user;
+    use Queueable;
 
     /**
      * Create a new notification instance.
      *
-     * @param $user
+     * @return void
      */
-    public function __construct($user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
