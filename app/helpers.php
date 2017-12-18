@@ -16,29 +16,29 @@ if (!function_exists('getProfileAvatar')) {
 }
 
 if (!function_exists('render_countries')) {
-    function render_countries($iso = null, $fieldName = null) {
+    function render_countries($nice_name = null, $fieldName = null) {
 
         $countries = \App\Entities\Country::all();
 
         $html = "<select name='$fieldName' id='$fieldName'>";
 
-        if($iso == null)
+        if($nice_name == null)
             $html .= "<option value='' selected>Select your country</option>";
 
         foreach ($countries as $country)
         {
-            if($country->iso == $iso)
+            if($country->nice_name == $nice_name)
             {
-                $html .= "<option value='". $country->iso ."' selected>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->nice_name ."' selected>". $country->nice_name ."</option>";
 
             }
             else if($country->iso == 'BD')
             {
-                $html .= "<option value='". $country->iso ."' selected>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->nice_name ."' selected>". $country->nice_name ."</option>";
             }
             else
             {
-                $html .= "<option value='". $country->iso ."'>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->nice_name ."'>". $country->nice_name ."</option>";
             }
         }
 

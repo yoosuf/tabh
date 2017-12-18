@@ -44,6 +44,7 @@ class ProfileController extends Controller
 
         $user->save();
 
+        flash('Successfully updated')->success();
         return $this->edit($request);
     }
 }

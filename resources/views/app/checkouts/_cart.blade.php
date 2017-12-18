@@ -35,7 +35,7 @@
                         <div class="media-right">
                             <td>
                                 <span class="">
-                                    <strong class="is-success">&#2547; {{$item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')}}</strong>
+                                    <strong class="is-success">&#2547; {{number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '')}}</strong>
                                 </span>
                             </td>
                         </div>
@@ -73,7 +73,7 @@
                     <tr>
                         <td style="text-align: right">
                                         <span class="">
-                                            <strong class="is-success">&#2547; {{$partner_total}}</strong>
+                                            <strong class="is-success">&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</strong>
                                         </span>
                         </td>
                     </tr>
@@ -93,7 +93,7 @@
                                 <p class="subtitle is-6">Total Discount</p>
                             </td>
                             <td style="text-align: right">
-                                <p class="subtitle is-6">-&#2547; {{$grand_discount}}</p>
+                                <p class="subtitle is-6">-&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
                             </td>
                         </tr>
                     @endif
@@ -102,7 +102,7 @@
                                 <h1 class="title is-4 is-spaced">Order Total</h1>
                             </td>
                             <td style="text-align: right">
-                                <h1 class="title is-4 is-spaced">&#2547; {{$grand_total}}</h1>
+                                <h1 class="title is-4 is-spaced">&#2547; {{number_format(((float)$grand_total), 2, '.', '')}}</h1>
                             </td>
                         </tr>
                         <tr>

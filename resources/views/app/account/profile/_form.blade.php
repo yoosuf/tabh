@@ -11,7 +11,7 @@
 {{ csrf_field() }}
 
 
-
+@include('flash::message')
 
                         <div class="field">
                             <label for="full-name">Full name</label>
