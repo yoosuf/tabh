@@ -64,7 +64,7 @@ class OrderController extends Controller
                 'address_name' => 'required|string|max:255',
                 'address_phone' => 'required',
                 'address_line_1' => 'required|string|max:255',
-                'address_line_2' => 'string|max:255',
+                'address_line_2' => 'nullable|string|max:255',
                 'address_city' => 'required|string|max:255',
                 'address_postcode' => 'required|string|max:255',
                 'address_country' => 'required|string|max:255',
