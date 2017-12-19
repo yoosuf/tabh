@@ -10,7 +10,7 @@
     <section class="section">
 
         <div class="container">
-            <div class="columns">
+            <!-- <div class="columns">
 
                 <div class="column is-6 is-offset-3">
 
@@ -63,7 +63,7 @@
 
 
                 </div>
-            </div>
+            </div> -->
 
             <div class="columns">
                 <div class="column is-6 is-offset-3">

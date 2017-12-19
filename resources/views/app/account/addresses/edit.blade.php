@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <div class="section">
+    <div class="section account-address-edit">
         <div class="container">
             <div class="columns">
 

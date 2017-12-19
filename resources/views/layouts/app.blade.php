@@ -12,26 +12,27 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/temp_styles.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+    <div id="app">
 
-    @yield('content')
+        @yield('content')
 
 
-    <footer class="footer">
-        <div class="container">
-            <div class="content has-text-centered">
-                <p>
-                    <strong>{{ config('app.name', 'Laravel') }}</strong>.
-                </p>
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>{{ config('app.name', 'Laravel') }}</strong>.
+                    </p>
+                </div>
             </div>
-        </div>
-    </footer>
-</div>
+        </footer>
+    </div>
 
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

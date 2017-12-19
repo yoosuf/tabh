@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    <div class="section">
+    <div class="section my-orders">
         <div class="container">
             <div class="columns">
 

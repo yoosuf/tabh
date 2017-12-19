@@ -31,7 +31,7 @@
                         <div class="column">
 
 
-                            <div class="card">
+                            <div class="card account-profile-card">
                                 <div class="card-content">
 
                                     <h1 class="title is-4 is-spaced">{{ trans('quicksilver.account.profile.txt_heading')}}</h1>
