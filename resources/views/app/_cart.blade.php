@@ -1,6 +1,11 @@
 <div class="card" id="cart">
     <div class="card-content">
 
+
+                  <div class="content">
+                      <strong>My cart</strong>
+                  </div>
+
         @if(Cart::count() > 0)
             @foreach(Cart::content() as $row)
 
@@ -11,7 +16,7 @@
                                 <img src="{{url('attachments/' . get_attachment(\App\Entities\Product::find($row->id)->attachment()->first()))}}">
                             @else
                                 <img src="/img/DefaultImage.png">
-                        @endif                        
+                        @endif
                         </p>
                     </figure>
                     <div class="media-content">
@@ -22,12 +27,9 @@
                                 <br>
                                 <small>
                                     by {{ App\Entities\Product::find($row->id)->first()->partner()->first()->name }}</small>
-                                <br>
-                                <medium>
-                                    &#2547; {{number_format(((float)$row->price) * (float)$row->qty, 2, '.', '')}}</medium>
+
                             </p>
                         </div>
-                    </div>
 
 
                     <div class="media-right">
@@ -51,6 +53,9 @@
                         </div>
 
                     </div>
+
+
+
 
                 </div>
 

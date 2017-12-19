@@ -51,7 +51,7 @@ if (!function_exists('render_countries')) {
 
 if (!function_exists('get_attachment')) {
 
-    function GetAttachmentURL($attachment)
+    function getAttachmentURL($attachment)
     {
         try {
             if (isset($attachment)) {
@@ -68,6 +68,6 @@ if (!function_exists('get_attachment')) {
 
     function get_attachment($attachment = null)
     {
-        return str_replace("/storage/attachments/", "", GetAttachmentURL($attachment));
+        return str_replace("/storage/attachments/", "", getAttachmentURL($attachment));
     }
 }

@@ -7,7 +7,7 @@
     <div class="hero-body home-header">
     </div>
 </section>
-<section class="hero home-body">
+<section class="section home-body">
     <div class="container has-text-centered">
         <div class="columns">
             <div class="column home-tab-item">
