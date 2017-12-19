@@ -74,3 +74,32 @@ $(function() {
 
 
 })
+
+
+
+const cart  = $('#cart');
+const cartMini = $('#cart_mini');
+
+
+$('.media .button').on('click', function (e) {
+    e.preventDefault();
+    const button = $(this);
+    button.addClass('is-loading');
+    axios.post('/cart/add', {
+            id: 203
+        }).then(function (response) {
+            cart.load(document.URL + ' #cart');
+            cartMini.load(document.URL + ' #cart_mini');
+            button.removeClass('is-loading');
+        }).catch(function (error) {
+            button.removeClass('is-loading');
+            console.log(error);
+        });
+});
+
+
+
+
+$('.media .button').on('click', function(e) {
+    // alert('sdsd') ;
+});

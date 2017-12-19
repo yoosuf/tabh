@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="cart">
     <div class="card-content">
 
         @if(Cart::count() > 0)
@@ -11,7 +11,8 @@
                                 <img src="{{url('attachments/' . get_attachment(\App\Entities\Product::find($row->id)->attachment()->first()))}}">
                             @else
                                 <img src="/img/DefaultImage.png">
-                            @endif                        </p>
+                        @endif                        
+                        </p>
                     </figure>
                     <div class="media-content">
                         <div class="content">

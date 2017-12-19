@@ -1,4 +1,4 @@
-<form role="form" method="GET" action="{{ route('cart.show') }}">
+<form role="form" id="cart_mini" method="GET" action="{{ route('cart.show') }}">
 
     <div class="field">
         <label class="label is-pulled-left">{{Cart::count()}} Items</label>
