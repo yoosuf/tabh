@@ -46,7 +46,7 @@ section.hero.is-info .hero-head, section.hero.is-info .hero-body{
 .home-tab-item a{
 	border: 1px solid #35ace7;
 	min-height: 70px;
-	display: block;	
+	display: block;
 	padding: 25px 0px;
 	transition: all .3s;
 }
@@ -101,33 +101,33 @@ section.hero.is-info .hero-body a.button:hover {
 	background-color: #79a6c5;
 }
 
-.card {
-	-webkit-box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
-	box-shadow: 0 2px 3px hsl(196, 72%, 68%), 0 0 0 1px hsl(196, 72%, 68%);
-	color: #395990;
-}
+// .card {
+// 	-webkit-box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
+// 	box-shadow: 0 2px 3px hsl(196, 72%, 68%), 0 0 0 1px hsl(196, 72%, 68%);
+// 	color: #395990;
+// }
 
-.card .media-content p strong {
-	color: #395990;
-}
+// .card .media-content p strong {
+// 	color: #395990;
+// }
 
-.card .button.is-info.is-outlined:hover {
-	background-color: transparent;
-	border-color: #35ace7;
-	color: #35ace7;
-}
+// .card .button.is-info.is-outlined:hover {
+// 	background-color: transparent;
+// 	border-color: #35ace7;
+// 	color: #35ace7;
+// }
 
-.card .button.is-info.is-outlined {
-	background-color: #35ace7;
-	border-color: #35ace7;
-	color: #fff;
-}
+// .card .button.is-info.is-outlined {
+// 	background-color: #35ace7;
+// 	border-color: #35ace7;
+// 	color: #fff;
+// }
 
-.cart-added .button.is-info.is-outlined{
-	background-color: transparent;
-	border-color: #35ace7;
-	color: #35ace7;
-}
+// .cart-added .button.is-info.is-outlined{
+// 	background-color: transparent;
+// 	border-color: #35ace7;
+// 	color: #35ace7;
+// }
 
 .cart-added .button.is-info.is-outlined:hover{
 	background-color: rgba(32, 156, 238, 0.12941176470588237);
@@ -399,4 +399,33 @@ section.hero.is-info .hero-body a.button:hover {
 
 .forgot-password-page .email-box{
 	margin-top: 10px;
+}
+
+
+
+
+
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }

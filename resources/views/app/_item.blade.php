@@ -1,6 +1,8 @@
 <form role="form" class="media" id="item-{{$product->id}}" method="POST" action="{{ route('cart.add') }}">
     {{ csrf_field() }}
 
+    <input type="hidden" name="id" id="id" value="{{$product->id}}">
+
     <figure class="media-left">
         <p class="image is-64x64">
             @if($product->attachment()->first() != null)
@@ -23,14 +25,29 @@
                 {{$product->packsize}}
                 <br>
                 <small>by {{$product->partner()->first()->name}}</small>
-                <br>
-                <medium>&#2547; {{number_format(((float)$product->price), 2, '.', '')}}</medium>
+
             </p>
-            <input type="hidden" name="id" id="id" value="{{$product->id}}">
         </div>
+
+
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <medium>&#2547; {{number_format(((float)$product->price), 2, '.', '')}}</medium>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <button type="submit" class="button is-info is-outlined">Add to Cart</button>
+
+            </div>
+          </div>
+        </nav>
+
     </div>
-    <div class="media-right">
-        <button type="submit" class="button is-info is-outlined">Add to Cart</button>
-    </div>
+
+
+
+
 
 </form>
