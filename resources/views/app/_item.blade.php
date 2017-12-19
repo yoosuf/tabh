@@ -1,7 +1,8 @@
-<form role="form" class="media" id="item-{{$product->id}}" method="POST" action="{{ route('cart.add') }}">
+<form role="form" class="media item-form" id="item-{{$product->id}}" method="POST" action="{{ route('cart.add') }}">
     {{ csrf_field() }}
 
-    <input type="hidden" name="id" id="id" value="{{$product->id}}">
+    <input type="hidden" class="item-id" name="id" value="{{$product->id}}">
+
 
     <figure class="media-left">
         <p class="image is-64x64">
@@ -27,7 +28,6 @@
                 <small>by {{$product->partner()->first()->name}}</small>
 
             </p>
-        
 
 
         <nav class="level">
@@ -38,16 +38,12 @@
           </div>
           <div class="level-right">
             <div class="level-item">
-              <button type="submit" class="button is-info is-outlined">Add to Cart</button>
+              <button type="submit" class="button is-info is-outlined item-button">Add to Cart</button>
 
             </div>
           </div>
         </nav>
 
     </div>
-
-
-
-
 
 </form>

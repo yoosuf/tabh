@@ -3,8 +3,8 @@
 
     <label for="" class="label">{{ trans('quicksilver.search.heading')}}</label>
     <div class="field has-addons">
-        <div class="control is-expanded">
-            <input class="input is-medium" type="text" name="q" id="q"
+        <div class="control is-expanded" id="remote">
+            <input class="input is-medium typeahead" type="text" name="q" id="q"
                    value="{{$search_query}}"
                    placeholder="{{ trans('quicksilver.search.search_placeholder')}}">
         </div>

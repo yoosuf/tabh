@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Http\Request;
-
 Route::group(['namespace' => 'App'], function () {
     Route::get('/', 'PagesController@index')->name('home');
     Route::get('/search', 'SearchController@index')->name('search');
@@ -22,6 +20,8 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/add', 'CartController@add')->name('cart.add');
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
+
+    Route::get('/products', 'SearchController@titles');
 
 
     Route::group(['middleware' => ['auth']], function () {

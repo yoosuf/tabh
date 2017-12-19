@@ -36,7 +36,6 @@ class CartController extends Controller
 
         Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price]);
 
-
         if($request->ajax()){
             return response()->json(['message' => $product->title . ' added to cart', 'statusText'=> 'OK'], 200);
         }
@@ -51,7 +50,7 @@ class CartController extends Controller
         Cart::update($request->id, $item->qty-1);
 
         if($request->ajax()){
-            return response()->json(['message' => $product->title . ' removed from cart', 'statusText'=> 'OK'], 200);
+            return response()->json(['message' => 'Item removed from the cart', 'statusText'=> 'OK'], 200);
         }
 
         return back()->withInput();

@@ -20,7 +20,7 @@
                         </p>
                     </figure>
                     <div class="media-content">
-                            <input type="hidden" name="id" value="{{$row->id}}">
+                            {{--<input type="hidden" name="id" value="{{$row->id}}">--}}
                             <p>
                                 <strong>{{$row->name}}</strong>
                                 <small>{{ App\Entities\Product::find($row->id)->first()->generic_name }}</small>
@@ -32,41 +32,45 @@
 
 
 
-
                         <nav class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <medium>&#2547; {{number_format(((float)$row->price), 2, '.', '')}}</medium>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <div class="level-item  field has-addons is-right">
 
-                          <div class="level-left">
-                            <div class="level-item">
-                              <medium>&#2547; {{number_format(((float)$row->price) * (float)$row->qty, 2, '.', '')}}</medium>
+                                        <form role="form" class="control cart-minus-item-form" id="cart-minus-item-{{$row->id}}" method="POST" action="{{ route('cart.remove') }}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" class="item-id" name="id" value="{{$row->rowId}}">
+                                            <button class="button is-info is-outlined item-button">
+                                                -
+                                            </button>
+                                        </form>
+                                    <span class="control">
+                                        <span class="button is-info ">{{$row->qty}}</span>
+                                        </span>
+                                        <form role="form" class="control cart-plus-item-form" id="cart-plus-item-{{$row->id}}" method="POST" action="{{ route('cart.add') }}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" class="item-id" name="id" value="{{$row->id}}">
+                                            <button class="button is-info is-outlined item-button">
+                                                +
+                                            </button>
+                                        </form>
+
+
+                                </div>
                             </div>
-                          </div>
-                          <div class="level-right">
-                            <div class="level-item">
-                              <div class="buttons has-addons is-right">
-                                  <form role="form" method="POST" action="{{ route('cart.remove') }}">
-                                      {{ csrf_field() }}
-                                      <button class="button is-info is-outlined">
-                                          -
-                                      </button>
-                                      <input type="hidden" name="id" id="id" value="{{$row->rowId}}">
-                                  </form>
-                                  <span class="button is-info ">{{$row->qty}}</span>
-                                  <form role="form" method="POST" action="{{ route('cart.add') }}">
-                                      {{ csrf_field() }}
-                                      <button class="button is-info is-outlined">
-                                          +
-                                      </button>
-                                      <input type="hidden" name="id" id="id" value="{{$row->id}}">
-                                  </form>
-                              </div>
-                            </div>
-                          </div>
                         </nav>
-                    </div>
 
 
 
 
+
+
+
+                </div>
                 </div>
 
             @endforeach

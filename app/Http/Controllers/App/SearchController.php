@@ -41,6 +41,29 @@ class SearchController extends Controller
             $products = [];
         }
 
+//        if($request->ajax()){
+//            return response()->json(['message' => 'Searched', 'statusText'=> 'OK'], 200);
+//        }
+
         return view('app.results', get_defined_vars());
+    }
+
+    public function titles(Request $request)
+    {
+        $search_query = $request->get('q');
+        $type = $request->get('type');
+
+        if($type == 'pharmaceutical') {
+            $products = $this->product->where('published', true)
+                ->where('title', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->pluck('generic_name')->toArray();
+        } else if ($type == "groceries") {
+            $products = [];
+        }
+
+        return $products;
     }
 }
