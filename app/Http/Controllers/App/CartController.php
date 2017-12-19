@@ -50,6 +50,10 @@ class CartController extends Controller
 
         Cart::update($request->id, $item->qty-1);
 
+        if($request->ajax()){
+            return response()->json(['message' => $product->title . ' removed from cart', 'statusText'=> 'OK'], 200);
+        }
+
         return back()->withInput();
     }
 
