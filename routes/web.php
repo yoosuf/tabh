@@ -23,6 +23,8 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
 
+    Route::get('/products', 'SearchController@titles');
+
 
     Route::group(['middleware' => ['auth']], function () {
 //        Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');

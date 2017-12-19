@@ -17,6 +17,10 @@ require('./bootstrap');
 
 require('./components/Search');
 
+require('typeahead.js');
+
+let Bloodhound = require('bloodhound-js');
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -79,14 +83,18 @@ $(function() {
 
 const cart  = $('#cart');
 const cartMini = $('#cart_mini');
+const product_list = $('#product_list');
 
 
-$('.media .button').on('click', function (e) {
+$('.item-form').on('submit', function (e) {
     e.preventDefault();
-    const button = $(this);
+    const button = $(this).find('.item-button');
+    const id = $(this).find('.item-id').val();
     button.addClass('is-loading');
+    console.log(id);
+
     axios.post('/cart/add', {
-            id: 203
+            id: id
         }).then(function (response) {
             cart.load(document.URL + ' #cart');
             cartMini.load(document.URL + ' #cart_mini');
@@ -97,8 +105,83 @@ $('.media .button').on('click', function (e) {
         });
 });
 
+$('.cart-plus-item-form').on('submit', function (e) {
+    e.preventDefault();
+    const button = $(this).find('.item-button');
+    const id = $(this).find('.item-id').val();
+    button.addClass('is-loading');
+    console.log(id);
 
+    axios.post('/cart/add', {
+        id: id
+    }).then(function (response) {
+        cart.load(document.URL + ' #cart');
+        cartMini.load(document.URL + ' #cart_mini');
+        button.removeClass('is-loading');
+    }).catch(function (error) {
+        button.removeClass('is-loading');
+        console.log(error);
+    });
+});
 
+$('.cart-minus-item-form').on('submit', function (e) {
+    e.preventDefault();
+    const button = $(this).find('.item-button');
+    const id = $(this).find('.item-id').val();
+    button.addClass('is-loading');
+    console.log(id);
+
+    axios.post('/cart/remove', {
+        id: id
+    }).then(function (response) {
+        cart.load(document.URL + ' #cart');
+        cartMini.load(document.URL + ' #cart_mini');
+        button.removeClass('is-loading');
+    }).catch(function (error) {
+        button.removeClass('is-loading');
+        console.log(error);
+    });
+});
+
+let products = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '/products?type=pharmaceutical',
+    remote: {
+        url: '/products?type=pharmaceutical&q=%QUERY',
+        wildcard: '%QUERY'
+    }
+});
+
+$('#remote .typeahead').typeahead(
+    {
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'Products',
+        source: products
+    }
+);
+
+// $('#remote .typeahead').bind('typeahead:selected', function(obj, datum, name) {
+//     console.log(obj);
+//     console.log(datum);
+//     console.log('/search?type=pharmaceutical&q=' + datum);
+//     axios.get('/search?type=pharmaceutical',
+//         {params: {
+//         q: datum
+//     }}
+//     ).then(function (response) {
+//         // cart.load(document.URL + ' #cart');
+//         // cartMini.load(document.URL + ' #cart_mini');
+//         console.log(response);
+//         product_list.load(document.URL + ' #product_list');
+//     }).catch(function (error) {
+//             console.error(error);
+//         });
+// });
 
 $('.media .button').on('click', function(e) {
     // alert('sdsd') ;

@@ -33,24 +33,22 @@
                     <div class="media-right">
 
                         <div class="buttons has-addons is-right">
-                            <form role="form" method="POST" action="{{ route('cart.remove') }}">
+                            <form role="form" class="media cart-minus-item-form" id="cart-minus-item-{{$row->id}}" method="POST" action="{{ route('cart.remove') }}">
                                 {{ csrf_field() }}
-                                <button class="button is-info is-outlined">
+                                <input type="hidden" class="item-id" name="id" value="{{$row->rowId}}">
+                                <button class="button is-info is-outlined item-button">
                                     -
                                 </button>
-                                <input type="hidden" name="id" id="id" value="{{$row->rowId}}">
                             </form>
                             <span class="button is-info ">{{$row->qty}}</span>
-                            <form role="form" method="POST" action="{{ route('cart.add') }}">
+                            <form role="form" class="media cart-plus-item-form" id="cart-plus-item-{{$row->id}}" method="POST" action="{{ route('cart.add') }}">
                                 {{ csrf_field() }}
-                                <button class="button is-info is-outlined">
+                                <input type="hidden" class="item-id" name="id" value="{{$row->id}}">
+                                <button class="button is-info is-outlined item-button">
                                     +
                                 </button>
-                                <input type="hidden" name="id" id="id" value="{{$row->id}}">
                             </form>
                         </div>
-
-                        </form>
 
                     </div>
 

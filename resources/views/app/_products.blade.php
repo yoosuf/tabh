@@ -1,6 +1,6 @@
 
 <div class="card">
-    <div class="card-content">
+    <div id="product_list" class="card-content">
         @if(isset($products) && count($products) > 0)
 
             <div class="content">
