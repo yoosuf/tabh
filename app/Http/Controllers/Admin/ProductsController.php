@@ -36,8 +36,6 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-//        return $request->get('partner_id');
-
         if ($request->has('partner_id') && $request->get('partner_id') != '') {
             $partner_id = $request->get('partner_id');
             $partner = $this->partner->find($request->get('partner_id'));
@@ -147,8 +145,8 @@ class ProductsController extends Controller
     public function edit($id, Request $request)
     {
         $product = $this->product->find($id);
-        // $partner = $product->partner()->first();
-        $image = str_replace("/storage/attachments/", "", $this->GetAttachmentURL($product->attachment()->first()));
+
+        $image = str_replace("/storage/attachments/", "", getAttachmentURL($product->attachment()->first()));
         $partners = $this->partner->all();
         return view('admin.products.edit', get_defined_vars());
     }
