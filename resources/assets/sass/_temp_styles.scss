@@ -404,6 +404,10 @@ section.hero.is-info .hero-body a.button:hover {
 
 
 
+section.hero.is-info .hero-body, section.hero.is-info .hero-head {
+	z-index: 1000000000 !important;
+}
+
 
 
 html {

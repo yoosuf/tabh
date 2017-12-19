@@ -13,7 +13,7 @@
         </p>
     </figure>
     <div class="media-content">
-        <div class="content">
+
             <p>
                 <strong>{{$product->title}}</strong>
                 <small>{{$product->generic_name}}</small>
@@ -27,7 +27,7 @@
                 <small>by {{$product->partner()->first()->name}}</small>
 
             </p>
-        </div>
+        
 
 
         <nav class="level">

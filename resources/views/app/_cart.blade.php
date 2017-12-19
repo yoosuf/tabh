@@ -20,16 +20,15 @@
                         </p>
                     </figure>
                     <div class="media-content">
-                        <div class="content">
                             <input type="hidden" name="id" value="{{$row->id}}">
                             <p>
                                 <strong>{{$row->name}}</strong>
+                                <small>{{ App\Entities\Product::find($row->id)->first()->generic_name }}</small>
                                 <br>
-                                <small>
-                                    by {{ App\Entities\Product::find($row->id)->first()->partner()->first()->name }}</small>
+                                by {{ App\Entities\Product::find($row->id)->first()->partner()->first()->name }}
+                                <br>
 
                             </p>
-                        </div>
 
 
 
