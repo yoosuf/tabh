@@ -1,4 +1,4 @@
-<aside class="menu">
+<aside class="menu is-hidden-tablet-only is-hidden-mobile">
     <p class="menu-label">
         General
     </p>
