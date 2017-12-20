@@ -16,44 +16,59 @@
 <body>
 <div class="app-canvas" id="app">
 
+<nav class="navbar is-link">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ url('/') }}">
+      {{ config('app.name', 'Laravel') }}
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
-    <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="dropdown navigation">
-            <a class="navbar-item" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-            <div class="navbar-start">
-            </div>
-            <div class="navbar-end">
-                @if ( Auth::guard('admin')->check() )
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-start">
 
-                <div class="navbar-item has-dropdown is-hoverable">
-                            <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
-                                {{ Auth::guard('admin')->user()->name }}
-                            </a>
+      
+    </div>
 
-
-
-                            <div class="navbar-dropdown has-dropdown is-active is-boxed">
-
-                              <a class="dropdown-item" href="{{ route('admin.account.profile') }}">My Profile</a>
-                              <a class="dropdown-item" href="{{ route('admin.account.password') }}">Password</a>
-
-                              <hr class="dropdown-divider">
-
-                                <a class="dropdown-item" href="{{ route('admin.logout') }}"
+    <div class="navbar-end">
+      
+        <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="{{ route('admin.account.profile') }}">
+          {{ Auth::guard('admin')->user()->name }}
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" href="{{ route('admin.account.profile') }}">
+            My Profile
+          </a>
+          <a class="navbar-item" href="{{ route('admin.account.password') }}">
+            Password
+          </a>
+          
+          <hr class="dropdown-divider">
+          <a class="navbar-item" href="{{ route('admin.logout') }}"
                                    onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+            Logout
+          </a>
+
+          <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                                       style="display: none;">
                                     {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </div>
-                @endif
-            </div>
-    </nav>
+            </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+
+    
 
 
     <div class="section">
