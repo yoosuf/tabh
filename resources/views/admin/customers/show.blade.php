@@ -66,7 +66,7 @@
                     <div class="content">
                         <p class="title is-6">Contact</p>
 
-                        <p> <a href="mailto:{{ $data->email() }}">{{ $data->email() }}</a></p>
+                        <p><a href="mailto:{{ $data->email() }}">{{ $data->email() }}</a></p>
 
                         <p>{{ $data->phone() }}</p>
 
@@ -97,7 +97,6 @@
 
 
                         {!!  $data->primaryAddress() !!}
-
 
 
                     </div>

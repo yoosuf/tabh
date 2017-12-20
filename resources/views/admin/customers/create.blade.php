@@ -20,7 +20,7 @@
     <form action="{{ route('admin.customers.store')  }}" method="POST" accept-charset="UTF-8">
 
 
-    @include('admin.customers._form')
+        @include('admin.customers._form')
 
 
     </form>

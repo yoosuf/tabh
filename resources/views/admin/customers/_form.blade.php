@@ -1,5 +1,3 @@
-
-
 @if ($errors->any())
     <article class="message is-danger">
         <div class="message-body">
@@ -19,23 +17,23 @@
             <div class="card-content">
                 <p class="title is-4">Customer overview</p>
 
-                        <div class="field">
-                            <label for="customer_name">Full name</label>
+                <div class="field">
+                    <label for="customer_name">Full name</label>
 
-                            <div class="control is-expanded">
-                                <input
-                                        id="customer_name"
-                                        type="text"
-                                        name="customer_name"
-                                        class="input {{ $errors->has('customer_name') ? ' is-danger' : '' }}"
-                                        value="{{ isset($item->name)? $item->name : old('customer_name') }}"  />
-                            </div>
-                            @if ($errors->has('customer_name'))
-                                <span class="help is-danger">
+                    <div class="control is-expanded">
+                        <input
+                                id="customer_name"
+                                type="text"
+                                name="customer_name"
+                                class="input {{ $errors->has('customer_name') ? ' is-danger' : '' }}"
+                                value="{{ isset($item->name)? $item->name : old('customer_name') }}"/>
+                    </div>
+                    @if ($errors->has('customer_name'))
+                        <span class="help is-danger">
                                     {{ $errors->first('customer_name') }}
                                 </span>
-                            @endif
-                        </div>
+                    @endif
+                </div>
 
                 <div class="field is-horizontal">
                     <div class="field-body">
@@ -47,7 +45,7 @@
                                         type="email"
                                         name="customer_email"
                                         class="input {{ $errors->has('customer_email') ? ' is-danger' : '' }}"
-                                        value="{{ isset($item->email)? $item->email : old('customer_email') }}"  />
+                                        value="{{ isset($item->email)? $item->email : old('customer_email') }}"/>
 
                             </div>
                             @if ($errors->has('customer_email'))
@@ -64,7 +62,7 @@
                                         id="customer_phone"
                                         type="tel"
                                         name="customer_phone"
-                                        class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}" />
+                                        class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}"/>
                             </div>
                             @if ($errors->has('customer_phone'))
                                 <span class="help is-danger">

@@ -9,7 +9,7 @@
         </div>
         <div class="column">
             <div class="buttons has-addons is-right">
-                <a href ="{{ route('admin.customers.create') }}" class="button is-link">Add New Customer</a>
+                <a href="{{ route('admin.customers.create') }}" class="button is-link">Add New Customer</a>
             </div>
 
         </div>
@@ -20,10 +20,10 @@
     @include('flash::message')
 
 
-            <div class="card">
-                <div class="card-content">
+    <div class="card">
+        <div class="card-content">
 
-                    @include('admin.customers._filter')
+            @include('admin.customers._filter')
 
             <table class="table is-fullwidth is-hoverable is-striped">
                 <thead>
@@ -51,7 +51,8 @@
                 @if(count($data) > 0)
                     @foreach($data as $item)
                         <tr>
-                            <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->fullName()  }}</a></td>
+                            <td><a href="{{ route('admin.customers.edit', [$item->id]) }}">{{ $item->fullName()  }}</a>
+                            </td>
                             <td>{{ isset($item->primaryAddress->city) ? $item->primaryAddress->city : null }}</td>
                             <td>{{ $item->orders->count() }}</td>
                             <td></td>
@@ -70,8 +71,8 @@
             </table>
 
             {{$data->links()}}
-            </div>
+        </div>
 
-            </div>
+    </div>
 
 @endsection
