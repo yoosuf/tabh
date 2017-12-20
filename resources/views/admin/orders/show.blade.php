@@ -2,6 +2,13 @@
 
 @section('content')
 
+    <div class="columns">
+        <div class="column">
+            <p class="title">Orders</p>
+        </div>
+    </div>
+
+
     <div class="card">
         <div class="card-content">
             <div class="field is-grouped">

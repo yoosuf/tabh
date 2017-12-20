@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yoosuf
- * Date: 11/27/17
- * Time: 7:08 PM
- */
 
 namespace App\Http\Controllers\Admin;
-
 
 use App\Entities\Order;
 use App\Entities\User;
@@ -29,29 +22,31 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+
         if ($request->has('customer_id') && $request->get('customer_id') != '') {
             $customer_id = $request->get('customer_id');
             $customer = $this->customer->find($request->get('customer_id'));
 
             if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
-                $orders = $customer->orders()->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
+                $orders = $customer->orders()->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
             } else {
-                $orders = $customer->orders()->orderBy('id', 'asc')->paginate(10);
+                $orders = $customer->orders()->orderBy('id', 'asc')->paginate($limit);
             }
         } else {
             if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
-                $orders = $this->order->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
+                $orders = $this->order->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
             } else {
-                $orders = $this->order->orderBy('id', 'asc')->paginate(10);
+                $orders = $this->order->orderBy('id', 'asc')->paginate($limit);
             }
 
         }
 
         $querystringArray = ['customer_id' => $request->get('customer_id'), 'status' => $request->get('status')];
 
-        $customers = $this->customer->orderBy('id', 'asc')->get();
+        $customers = $this->customer->orderBy('id', 'desc')->get();
 
         $orders->appends($querystringArray);
 
@@ -60,7 +55,7 @@ class OrdersController extends Controller
             ->groupBy('status')
             ->get();
 
-        return view('admin.orders.index', compact('orders', 'customers', 'request_status', 'status', 'customer_id'));
+        return view('admin.orders.index', get_defined_vars());
     }
 
     public function create(Request $request)
@@ -100,7 +95,7 @@ class OrdersController extends Controller
 
         $line_items = $order->line_items()->get();
 
-        return view('admin.orders.show', compact('order', 'line_items'));
+        return view('admin.orders.show', get_defined_vars());
     }
 
     public function store(Request $request)

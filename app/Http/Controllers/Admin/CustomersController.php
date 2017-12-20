@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Entities\Country;
 use App\Entities\Order;
 use App\Entities\User;
 use App\Http\Controllers\Controller;
@@ -11,9 +10,12 @@ use Illuminate\Http\Request;
 class CustomersController extends Controller
 {
 
-    public function __construct()
+    protected $user;
+
+    public function __construct(User $user)
     {
         $this->middleware('admin');
+        $this->user = $user;
     }
 
 
@@ -21,13 +23,15 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $data = User::with(['primaryAddress', 'orders'])->paginate($limit);
-
-
+        $data = $this->user->with(['primaryAddress', 'orders'])->paginate($limit);
 
         return view('admin.customers.index', get_defined_vars());
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Request $request)
     {
         return view('admin.customers.create');
@@ -35,7 +39,10 @@ class CustomersController extends Controller
     }
 
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
 
@@ -72,7 +79,7 @@ class CustomersController extends Controller
         ]);
 
 
-        $user  = User::create([
+        $user  = $this->user->create([
             'name' => $request->get('customer_name'),
             'phone' =>$request->get('customer_phone'),
             'email' => $request->get('customer_email'),
@@ -99,22 +106,36 @@ class CustomersController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id, Request $request)
     {
-        $data = User::findOrFail($id);
+        $data = $this->user->findOrFail($id);
         $orders = Order::get();
-        return view('admin.customers.show', compact('data', 'orders'));
+        return view('admin.customers.show', get_defined_vars());
 
     }
 
-    public function edit($id,  Request $request)
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id, Request $request)
     {
-        $item = User::findOrFail($id);
-        $countries = Country::get();
+        $item = $this->user->findOrFail($id);
         $address = $item->primaryAddress()->get();
         return view('admin.customers.edit', get_defined_vars());
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update($id, Request $request)
     {
 
@@ -157,6 +178,10 @@ class CustomersController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     */
     public function destroy($id, Request $request)
     {
 

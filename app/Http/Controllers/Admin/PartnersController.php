@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 
@@ -11,25 +10,35 @@ use Illuminate\Http\Request;
 
 class PartnersController extends Controller
 {
+    protected $partner;
 
-    public function __construct()
+    public function __construct(Partner $partner)
     {
         $this->middleware('admin');
 
+        $this->partner = $partner;
+
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $data = Partner::paginate($limit);
-        return view('admin.settings.partners.index', compact('data'));
+        $data = $this->partner->orderBy('id', 'desc')->paginate($limit);
+        return view('admin.settings.partners.index', get_defined_vars());
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Request $request)
     {
-
         $countries = [];
         $address = [];
         return view('admin.settings.partners.create', get_defined_vars());
