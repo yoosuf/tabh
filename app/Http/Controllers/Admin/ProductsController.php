@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yoosuf
- * Date: 11/27/17
- * Time: 7:09 PM
- */
 
 namespace App\Http\Controllers\Admin;
 
@@ -32,26 +26,29 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request)
     {
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+
         if ($request->has('partner_id') && $request->get('partner_id') != '') {
             $partner_id = $request->get('partner_id');
             $partner = $this->partner->find($request->get('partner_id'));
 
             if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
-                $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
+                $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
             } else {
-                $products = $partner->products()->orderBy('id', 'asc')->paginate(10);
+                $products = $partner->products()->orderBy('id', 'asc')->paginate($limit);
             }
         } else {
             if ($request->has('status') && $request->get('status') != '') {
                 $status = $request->get('status');
-                $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate(10);
+                $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
             } else {
-                $products = $this->product->orderBy('id', 'asc')->paginate(10);
+                $products = $this->product->orderBy('id', 'asc')->paginate($limit);
             }
 
         }
@@ -62,18 +59,19 @@ class ProductsController extends Controller
 
         $products->appends($querystringArray);
 
-        return view('admin.products.index', compact('products', 'partners', 'status', 'partner_id'));
+        return view('admin.products.index', get_defined_vars());
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function create(Request $request)
     {
         $partners = $this->partner->all();
-        return view('admin.products.create', compact('partners'));
+        return view('admin.products.create', get_defined_vars());
     }
 
     /***

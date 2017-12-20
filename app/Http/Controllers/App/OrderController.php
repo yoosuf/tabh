@@ -24,19 +24,25 @@ class OrderController extends Controller
     private $line_item;
     private $address;
 
+    private $cart;
+
     /**
      * OrderController constructor.
      * @param Product $product
      * @param Partner $partner
      * @param Order $order
+     * @param LineItem $line_item
+     * @param Address $address
+     * @param Cart $cart
      */
-    public function __construct(Product $product, Partner $partner, Order $order, LineItem $line_item, Address $address)
+    public function __construct(Product $product, Partner $partner, Order $order, LineItem $line_item, Address $address, Cart $cart)
     {
         $this->product = $product;
         $this->partner = $partner;
         $this->order = $order;
         $this->line_item = $line_item;
         $this->address = $address;
+        $this->cart = $cart;
     }
 
     /**

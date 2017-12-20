@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 
@@ -11,15 +10,22 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
 
-    public function __construct()
+    protected $user;
+
+    public function __construct(Admin $user)
     {
+
         $this->middleware('admin');
+
+        $this->user = $user;
     }
 
 
     public function index(Request $request)
     {
-        $data = Admin::paginate(10);
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+
+        $data = $this->user->paginate($limit);
         return view('admin.settings.users.index', get_defined_vars());
     }
 
