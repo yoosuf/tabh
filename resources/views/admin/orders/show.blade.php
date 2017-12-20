@@ -8,6 +8,9 @@
         </div>
     </div>
 
+    <div class="columns">
+        <div class="column column is-8">
+
 
     <div class="card">
         <div class="card-content">
@@ -134,5 +137,6 @@
 
         </div>
     </div>
-
+      </div>
+    </div>
 @endsection
