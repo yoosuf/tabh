@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('orders', 'OrdersController@save');
         Route::get('orders/{id}/approve', 'OrdersController@approve')->name('admin.orders.approve');
         Route::get('orders/{id}/reject', 'OrdersController@reject')->name('admin.orders.reject');
+        Route::get('orders/{id}/change_status', 'OrdersController@change_status')->name('admin.orders.change_status');
         Route::get('orders/{id}', 'OrdersController@show')->name('admin.orders.show');
         Route::put('orders/{id}', 'OrdersController@update');
         Route::delete('orders/{id}', 'OrdersController@destroy');

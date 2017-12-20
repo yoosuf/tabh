@@ -67,7 +67,7 @@ class OrdersController extends Controller
     {
         $order = $this->order->find($id);
 
-        $order->status = 'Approved by Admin';
+        $order->status = 'Approved';
         $order->is_approved_by_admin = true;
 
         $order->save();
@@ -80,12 +80,31 @@ class OrdersController extends Controller
     {
         $order = $this->order->find($id);
 
-        $order->status = 'Rejected by Admin';
+        $order->status = 'Rejected';
         $order->is_approved_by_admin = false;
 
         $order->save();
 
         flash('Rejected')->success();
+        return back()->withInput();
+    }
+
+    public function change_status($id, Request $request)
+    {
+        $order = $this->order->find($id);
+
+        if ($request->has('status')) {
+            $order->status = $request->get('status');
+
+            $order->save();
+
+            flash('Status Changed to ' . $request->get('status'))->success();
+        }
+        else
+        {
+            flash('Something went wrong')->success();
+        }
+
         return back()->withInput();
     }
 

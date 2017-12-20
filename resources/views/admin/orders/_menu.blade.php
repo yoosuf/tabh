@@ -11,5 +11,23 @@
                 Reject
             </a>
         </div>
+        @elseif($order->is_approved_by_admin == true && $order->status == 'Approved')
+        <div class="control">
+            <a class="button" href="{{ route('admin.orders.change_status', ['id' => $order->id, 'status' => 'Packed']) }}">
+                Packed
+            </a>
+        </div>
+    @elseif($order->is_approved_by_admin == true && $order->status == 'Packed')
+        <div class="control">
+            <a class="button" href="{{ route('admin.orders.change_status', ['id' => $order->id, 'status' => 'Shipped']) }}">
+                Shipped
+            </a>
+        </div>
+    @elseif($order->is_approved_by_admin == true && $order->status == 'Shipped')
+        <div class="control">
+            <a class="button" href="{{ route('admin.orders.change_status', ['id' => $order->id, 'status' => 'Completed']) }}">
+                Completed
+            </a>
+        </div>
     @endif
 </div>
