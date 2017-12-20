@@ -4,19 +4,24 @@ namespace App\Http\Controllers\App;
 
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
+use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     private $product;
 
+    private $cart;
+
     /**
      * SearchController constructor.
      * @param Product $product
      */
-    public function __construct(Product $product)
+    public function __construct(Product $product, Cart $cart)
     {
         $this->product = $product;
+
+        $this->cart = $cart;
     }
 
     /***
@@ -40,6 +45,14 @@ class SearchController extends Controller
         } else if ($type == "groceries") {
             $products = [];
         }
+
+
+
+        $cart = $this->cart->content();
+
+
+
+
 
 //        if($request->ajax()){
 //            return response()->json(['message' => 'Searched', 'statusText'=> 'OK'], 200);

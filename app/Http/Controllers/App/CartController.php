@@ -34,7 +34,7 @@ class CartController extends Controller
     {
         $product = $this->product->find($request->id);
 
-        Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price]);
+        Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price])->associate(Product::class);
 
         if($request->ajax()){
             return response()->json(['message' => $product->title . ' added to cart', 'statusText'=> 'OK'], 200);

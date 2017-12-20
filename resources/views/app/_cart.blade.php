@@ -2,34 +2,33 @@
     <div class="card-content">
 
 
-                  <div class="content">
-                      <strong>My cart</strong>
-                  </div>
+        <div class="content">
+            <strong>My cart</strong>
+        </div>
 
-        @if(Cart::count() > 0)
-            @foreach(Cart::content() as $row)
+        @if(count($cart) > 0)
+            @foreach($cart as $row)
 
                 <div class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                            @if(\App\Entities\Product::find($row->id)->attachment()->first() != null)
-                                <img src="{{url('attachments/' . get_attachment(\App\Entities\Product::find($row->id)->attachment()->first()))}}">
+                            @if($row->model->attachment()->first() != null)
+                                <img src="{{asset('attachments/' . get_attachment($row->model->attachment()->first() )) }}">
                             @else
-                                <img src="/img/DefaultImage.png">
-                        @endif
+                                <img src="{{ asset('/img/DefaultImage.png') }}">
+                            @endif
                         </p>
                     </figure>
                     <div class="media-content">
-                            {{--<input type="hidden" name="id" value="{{$row->id}}">--}}
-                            <p>
-                                <strong>{{$row->name}}</strong>
-                                <small>{{ App\Entities\Product::find($row->id)->first()->generic_name }}</small>
-                                <br>
-                                by {{ App\Entities\Product::find($row->id)->first()->partner()->first()->name }}
-                                <br>
+                        {{--<input type="hidden" name="id" value="{{$row->id}}">--}}
+                        <p>
+                            <strong>{{$row->name}}</strong>
+                            <small>{{ $row->model->generic_name }}</small>
+                            <br>
+                            by {{ $row->model->partner->name }}
+                            <br>
 
-                            </p>
-
+                        </p>
 
 
                         <nav class="level">
@@ -41,23 +40,27 @@
                             <div class="level-right">
                                 <div class="level-item  field has-addons is-right">
 
-                                        <form role="form" class="control cart-minus-item-form" id="cart-minus-item-{{$row->id}}" method="POST" action="{{ route('cart.remove') }}">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" class="item-id" name="id" value="{{$row->rowId}}">
-                                            <button class="button is-info is-outlined item-button">
-                                                -
-                                            </button>
-                                        </form>
+                                    <form role="form" class="control cart-minus-item-form"
+                                          id="cart-minus-item-{{$row->id}}" method="POST"
+                                          action="{{ route('cart.remove') }}">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" class="item-id" name="id" value="{{$row->rowId}}">
+                                        <button class="button is-info is-outlined item-button">
+                                            -
+                                        </button>
+                                    </form>
                                     <span class="control">
                                         <span class="button is-info ">{{$row->qty}}</span>
                                         </span>
-                                        <form role="form" class="control cart-plus-item-form" id="cart-plus-item-{{$row->id}}" method="POST" action="{{ route('cart.add') }}">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" class="item-id" name="id" value="{{$row->id}}">
-                                            <button class="button is-info is-outlined item-button">
-                                                +
-                                            </button>
-                                        </form>
+                                    <form role="form" class="control cart-plus-item-form"
+                                          id="cart-plus-item-{{$row->id}}" method="POST"
+                                          action="{{ route('cart.add') }}">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" class="item-id" name="id" value="{{$row->id}}">
+                                        <button class="button is-info is-outlined item-button">
+                                            +
+                                        </button>
+                                    </form>
 
 
                                 </div>
@@ -65,12 +68,7 @@
                         </nav>
 
 
-
-
-
-
-
-                </div>
+                    </div>
                 </div>
 
             @endforeach
