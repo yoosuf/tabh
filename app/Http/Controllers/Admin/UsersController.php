@@ -25,7 +25,7 @@ class UsersController extends Controller
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
 
-        $data = $this->user->paginate($limit);
+        $data = $this->user->orderBy('id', 'desc')->paginate($limit);
         return view('admin.settings.users.index', get_defined_vars());
     }
 
