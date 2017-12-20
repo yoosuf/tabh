@@ -40,9 +40,16 @@ class SearchController extends Controller
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
-                ->limit(10)->get();
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->filter(function ($item, $key)
+                {
+                    return $item->partner()->first()->is_active == true;
+                })->take(10);
         } else if ($type == "groceries") {
+            $products = [];
+        }
+        else
+        {
             $products = [];
         }
 
@@ -71,9 +78,17 @@ class SearchController extends Controller
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->filter(function ($item, $key)
+                {
+                    return $item->partner()->first()->is_active == true;
+                })
                 ->pluck('generic_name')->toArray();
         } else if ($type == "groceries") {
+            $products = [];
+        }
+        else
+        {
             $products = [];
         }
 
