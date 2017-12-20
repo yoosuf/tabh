@@ -207,13 +207,13 @@
 
 
                     <div class="field">
-                        <label for="partner_min_delivery_amount">Min delivery amount</label>
+                        <label for="partner_min_delivery_value">Min delivery value</label>
                         <div class="field has-addons">
                             <div class="control is-expanded">
                                 <input class="input" type="text"
-                                       id="partner_min_delivery_amount"
-                                       name="partner_min_delivery_amount"
-                                       value="{{ isset($item->preferences['min_delivery_amount'])?  $item->preferences['min_delivery_amount'] : old('partner_min_delivery_amount') }}"/>
+                                       id="partner_min_delivery_value"
+                                       name="partner_min_delivery_value"
+                                       value="{{ isset($item->preferences['min_delivery_value'])?  $item->preferences['min_delivery_value'] : old('partner_min_delivery_value') }}"/>
                             </div>
                             <div class="control">
                                 <a class="button is-static">
@@ -221,8 +221,8 @@
                                 </a>
                             </div>
                         </div>
-                        @if ($errors->has('partner_min_delivery_amount'))
-                            <span class="help is-danger">{{ $errors->first('partner_min_delivery_amount') }}</span>
+                        @if ($errors->has('partner_min_delivery_value'))
+                            <span class="help is-danger">{{ $errors->first('partner_min_delivery_value') }}</span>
                         @endif
                     </div>
 
