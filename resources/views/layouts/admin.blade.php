@@ -92,7 +92,7 @@
 
 
 
-            <div class="app-sidebar column is-2">
+            <div class="app-sidebar column is-2 is-hidden-tablet-only">
 
                 @include('layouts.admin.sidebar')
 
