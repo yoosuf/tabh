@@ -47,35 +47,34 @@ class OrderController extends Controller
     {
         $request->validate([
             'total_amount' => 'required',
+            'prescription' => 'required',
             'address' => 'required',
-            'prescription' => 'required'
-            ], [
+        ], [
             'total_amount.required' => 'Empty value is not allowed',
-            'address.required' => 'An address is required',
+            'address.required' => 'A delivery address is required',
             'prescription.required' => 'A prescription is required',
         ]);
 
-        if($request->get('address') == "-1")
-        {
-            // $request->validate([
-            //     'address_name' => 'required|string|max:255',
-            //     'address_phone' => 'required',
-            //     'address_line_1' => 'required|string|max:255',
-            //     'address_line_2' => 'nullable|string|max:255',
-            //     'address_city' => 'required|string|max:255',
-            //     'address_postcode' => 'required|string|max:255',
-            //     'address_country' => 'required|string|max:255',
-            //     'address_province' => 'required|string|max:255',
-            // ], [
-            //     'address_name.required' => 'Name is required',
-            //     'address_phone.required' => 'Phone is required',
-            //     'address_line_1.required' => 'Line 1 is required',
-            //     //'address_line_2.required' => 'Line 2 is required',
-            //     'address_city.required' => 'City is required',
-            //     'address_postcode.required' => 'Postcode is required',
-            //     'address_province.required' => 'Province is required',
-            //     'address_country.required' => 'Country is required',
-            // ]);
+        if ($request->get('address') == "-1") {
+             $request->validate([
+                 'address_name' => 'required|string|max:255',
+                 'address_phone' => 'required',
+                 'address_line_1' => 'required|string|max:255',
+                 'address_line_2' => 'nullable|string|max:255',
+                 'address_city' => 'required|string|max:255',
+                 'address_postcode' => 'required|string|max:255',
+                 'address_country' => 'required|string|max:255',
+                 'address_province' => 'required|string|max:255',
+             ], [
+                 'address_name.required' => 'Name is required',
+                 'address_phone.required' => 'Phone is required',
+                 'address_line_1.required' => 'Line 1 is required',
+                 //'address_line_2.required' => 'Line 2 is required',
+                 'address_city.required' => 'City is required',
+                 'address_postcode.required' => 'Postcode is required',
+                 'address_province.required' => 'Province is required',
+                 'address_country.required' => 'Country is required',
+             ]);
 
             $address = Auth::user()->addresses()->create([
                 'name' => $request->get('address_name'),
@@ -100,9 +99,7 @@ class OrderController extends Controller
                 'country' => $request->get('address_country'),
                 'default' => true,
             ];
-        }
-        else
-        {
+        } else {
             $address = $this->address->find($request->get('address'));
 
             $addressData = [
@@ -127,22 +124,21 @@ class OrderController extends Controller
 
         $order = Auth::user()->orders()->create([
             'cart_identifier' => $identifier,
-            'total_amount'  => $request->has('total_amount') ? $request->total_amount : '0',
-            'total_discount'  => $request->has('total_discount') ? $request->total_discount : '0',
-            'tax'  => $request->has('tax') ? $request->tax : '0',
+            'total_amount' => $request->has('total_amount') ? $request->total_amount : '0',
+            'total_discount' => $request->has('total_discount') ? $request->total_discount : '0',
+            'tax' => $request->has('tax') ? $request->tax : '0',
         ]);
 
         $order->address()->updateOrCreate(['addressable_id' => $order->id, 'addressable_type' => 'App\Entities\Order'], $addressData);
 
-        if($request->hasFile('prescription'))
-        {
+        if ($request->hasFile('prescription')) {
             $path = Storage::putFile('attachments', $request->file('prescription'));
             $order->attachment()->updateOrCreate([
-                'attachable_id'         => $order->id,
-                'attachable_type'       => 'App\Entities\Order'],
-                ['attachable_category'   => 'medicine',
-                    'path'                  => $path,
-                    'file_name'             => $request->prescription->getClientOriginalName()]);
+                'attachable_id' => $order->id,
+                'attachable_type' => 'App\Entities\Order'],
+                ['attachable_category' => 'medicine',
+                    'path' => $path,
+                    'file_name' => $request->prescription->getClientOriginalName()]);
         }
 
         foreach (Cart::content() as $item) {
