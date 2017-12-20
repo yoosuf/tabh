@@ -98,6 +98,8 @@ class PartnersController extends Controller
             'api_key' => $request->get('partner_api_key'),
             'min_discount_amount' => $request->get('partner_min_discount_amount'),
             'discount_percentage' => $request->get('partner_discount_percentage'),
+            'min_delivery_amount' => $request->get('partner_min_delivery_amount'),
+            'delivery_charge' => $request->get('partner_delivery_charge'),
         ];
 
 
@@ -188,6 +190,8 @@ class PartnersController extends Controller
             'api_key' => $request->get('partner_api_key'),
             'min_discount_amount' => $request->get('partner_min_discount_amount'),
             'discount_percentage' => $request->get('partner_discount_percentage'),
+            'min_delivery_amount' => $request->get('partner_min_delivery_amount'),
+            'delivery_charge' => $request->get('partner_delivery_charge'),
         ];
 
 

@@ -205,6 +205,50 @@
                     </div>
 
 
+
+                    <div class="field">
+                        <label for="partner_min_delivery_amount">Min delivery amount</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" type="text"
+                                       id="partner_min_delivery_amount"
+                                       name="partner_min_delivery_amount"
+                                       value="{{ isset($item->preferences['min_delivery_amount'])?  $item->preferences['min_delivery_amount'] : old('partner_min_delivery_amount') }}"/>
+                            </div>
+                            <div class="control">
+                                <a class="button is-static">
+                                    ৳
+                                </a>
+                            </div>
+                        </div>
+                        @if ($errors->has('partner_min_delivery_amount'))
+                            <span class="help is-danger">{{ $errors->first('partner_min_delivery_amount') }}</span>
+                        @endif
+                    </div>
+
+
+
+                    <div class="field">
+                        <label for="partner_delivery_charge">Delivery amount</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" type="text"
+                                       id="partner_delivery_charge"
+                                       name="partner_delivery_charge"
+                                       value="{{ isset($item->preferences['delivery_charge'])?  $item->preferences['delivery_charge'] : old('partner_delivery_charge') }}"/>
+                            </div>
+                            <div class="control">
+                                <a class="button is-static">
+                                    ৳
+                                </a>
+                            </div>
+                        </div>
+                        @if ($errors->has('partner_delivery_charge'))
+                            <span class="help is-danger">{{ $errors->first('partner_delivery_charge') }}</span>
+                        @endif
+                    </div>
+
+
                         {{--<div class="control is-expanded">--}}
                             {{--<input--}}
                                     {{--id="partner_website"--}}
