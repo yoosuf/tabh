@@ -2,7 +2,7 @@
     <div class="card checkouts-order-details-card">
         <div class="card-content">
 
-            <h1 class="title is-4 is-spaced">Your order details</h1>
+            <h1 class="title is-4 is-spaced">Your Order Details</h1>
             <p class="subtitle is-5"></p>
 
             <!-- <h2 class="is-success">Order Summary</h2> -->
@@ -13,7 +13,7 @@
             <?php $delivery_charges_for_partners = collect([]) ?>
             @foreach($grouped as $key => $partner)
 
-                <h3 class="is-success"><strong>by {{$key}}</strong></h3>
+                <h3 class="is-success"><strong>By {{$key}}</strong></h3>
                 <?php $partner_total = 0 ?>
                 <?php $discount_percentage  = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
                 <?php $min_discount_amount  = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
