@@ -11,7 +11,6 @@
 
 
 
-            {{ dd($row) }}
 
                 <div class="media">
                     <figure class="media-left">
