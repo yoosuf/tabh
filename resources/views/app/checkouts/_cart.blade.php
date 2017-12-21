@@ -2,7 +2,7 @@
     <div class="card checkouts-order-details-card">
         <div class="card-content">
 
-            <h1 class="title is-4 is-spaced">Your order details</h1>
+            <h1 class="title is-4 is-spaced">Your Order Details</h1>
             <p class="subtitle is-5"></p>
 
             <!-- <h2 class="is-success">Order Summary</h2> -->
@@ -10,13 +10,15 @@
             <!-- <br> -->
             <?php $grand_total = 0 ?>
             <?php $grand_discount = 0 ?>
+            <?php $delivery_charges_for_partners = collect([]) ?>
             @foreach($grouped as $key => $partner)
 
-                <h3 class="is-success"><strong>by {{$key}}</strong></h3>
+                <h3 class="is-success"><strong>By {{$key}}</strong></h3>
                 <?php $partner_total = 0 ?>
-                <?php $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
-                <?php $min_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
+                <?php $discount_percentage  = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
+                <?php $min_discount_amount  = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
 
+                <?php $delivery_charge      = \App\Entities\Partner::where('name', $key)->first()['preferences']['delivery_charge'] ?>
 
                 @foreach($partner as $item)
 
@@ -35,7 +37,7 @@
                                 <div class="media-right">
                                     <td>
                             <span class="">
-                                <strong class="is-success">&#2547; {{$item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')}}</strong>
+                                <strong class="is-success">&#2547; {{number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '')}}</strong>
                             </span>
                                     </td>
                                 </div>
@@ -69,12 +71,37 @@
                         </table>
                     </div>
                 @endif
+                        <?php $delivery_charges_for_partners->put(\App\Entities\Partner::where('name', $key)->first()->id, $delivery_charge); ?>
+                @if($delivery_charge != 0)
+                    <?php $partner_total = $partner_total + $delivery_charge ?>
+                    <div class="media item-discount" style="">
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong style="color: #ca8c27;">Delivery Charge</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <div class="media-right">
+                                    <td>
+                                        <span class="">
+                                            <strong class="is-dark"
+                                                    style="color: #ca8c27;">&#2547; {{number_format(((float)$delivery_charge), 2, '.', '')}}</strong>
+                                        </span>
+                                    </td>
+                                </div>
+                            </tr>
+                        </table>
+                    </div>
+                @endif
                 <div class="media" style="padding-left: 100px;">
                     <table style="width: 100%;">
                         <tr>
                             <td style="text-align: right">
                         <span class="">
-                            <strong class="is-success">&#2547; {{$partner_total}}</strong>
+                            <strong class="is-success">&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</strong>
                         </span>
                             </td>
                         </tr>
@@ -94,7 +121,7 @@
                                     <p class="subtitle is-6">Total Discount</p>
                                 </td>
                                 <td style="text-align: right">
-                                    <p class="subtitle is-6">-&#2547; {{$grand_discount}}</p>
+                                    <p class="subtitle is-6">-&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
                                 </td>
                             </tr>
                         @endif
@@ -103,7 +130,7 @@
                                 <h1 class="title is-4 is-spaced">Total Payable Amount</h1>
                             </td>
                             <td style="text-align: right">
-                                <h1 class="title is-4 is-spaced">&#2547; {{$grand_total}}</h1>
+                                <h1 class="title is-4 is-spaced">&#2547; {{number_format(((float)$grand_total), 2, '.', '')}}</h1>
                             </td>
                         </tr>
                         <tr class="action-buttons">
@@ -123,7 +150,13 @@
                                 <input type="hidden" name="total_discount" id="total_discount"
                                        value="{{$grand_discount}}">
                                 <input type="hidden" name="tax" id="tax" value="0">
+{{--{{dd($delivery_charges_for_partners->toArray())}}--}}
 
+
+                                @foreach($delivery_charges_for_partners as $key => $value)
+                                          <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
+                                @endforeach
+                                {{--<input type="hidden" name="delivery" id="delivery" value="{{$delivery_charges_for_partners}}">--}}
                                 <button type="submit" class="button is-success">- Place Order -</button>
                                 {{--</form>--}}
                             </td>

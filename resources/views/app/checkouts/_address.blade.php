@@ -2,7 +2,7 @@
 <div class="card checkouts-address-card">
     <div class="card-content">
 
-        <h1 class="title is-4 is-spaced">Delivery address</h1>
+        <h1 class="title is-4 is-spaced">Delivery Address</h1>
         {{--<p class="subtitle is-5">select or add an address</p>--}}
 
         @if($addresses->count() != 0)

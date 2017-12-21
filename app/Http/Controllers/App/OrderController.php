@@ -128,11 +128,26 @@ class OrderController extends Controller
 
         }
 
+        $deliveryDataArray = collect([]);
+        if($request->has('delivery'))
+        {
+            foreach ($request->get('delivery') as $item)
+            {
+                $deliveryData = collect([]);
+                $pieces = explode("-", $item);
+                $deliveryData->put('partner_id',$pieces[0]);
+                $deliveryData->put('delivery_amount',$pieces[1]);
+
+                $deliveryDataArray->push($deliveryData);
+            }
+        }
+
         $order = Auth::user()->orders()->create([
             'cart_identifier' => $identifier,
             'total_amount' => $request->has('total_amount') ? $request->total_amount : '0',
             'total_discount' => $request->has('total_discount') ? $request->total_discount : '0',
             'tax' => $request->has('tax') ? $request->tax : '0',
+            'meta' => $deliveryDataArray,
         ]);
 
         $order->address()->updateOrCreate(['addressable_id' => $order->id, 'addressable_type' => 'App\Entities\Order'], $addressData);

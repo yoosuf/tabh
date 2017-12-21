@@ -37,7 +37,7 @@
                         <nav class="level">
                             <div class="level-left">
                                 <div class="level-item">
-                                    <medium>&#2547; {{number_format(((float)$row->price), 2, '.', '')}}</medium>
+                                    <medium>&#2547; {{number_format(((float)$row->qty * (float)$row->price), 2, '.', '')}}</medium>
                                 </div>
                             </div>
                             <div class="level-right">
