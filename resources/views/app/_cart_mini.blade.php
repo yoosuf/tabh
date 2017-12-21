@@ -2,7 +2,7 @@
 
 
     <div class="field">
-        <label class="label is-pulled-left">{{ Cart::count() }} Items</label>
+        <label class="label is-pulled-left">{{ count($cart) }} Items</label>
         <label class="label is-pulled-right">Total : &#2547; {{ Cart::subtotal() }}</label>
 
         @if(count($cart) > 0)

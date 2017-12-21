@@ -9,6 +9,9 @@
         @if(count($cart) > 0)
             @foreach($cart as $row)
 
+
+
+
                 <div class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
