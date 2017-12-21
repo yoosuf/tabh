@@ -1,5 +1,5 @@
 @if (!auth()->check())
-    <div class="auth card login-box">
+    <div class="card login-box">
         <div class="card-content">
             <h4 class="card-title has-text-centered">{{ trans('quicksilver.login.heading')}}</h4>
 
