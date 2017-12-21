@@ -94,7 +94,7 @@
 
                             @else
 
-                                There is no orders placed yet, <a href="{{ url('/') }}">start shopping now with {{ config('app,name') }}</a>.
+                                There is no orders placed yet, <a href="{{ url('/') }}">start shopping now with {{ config('app.name', 'Laravel') }}</a>.
 
 
                             @endif
