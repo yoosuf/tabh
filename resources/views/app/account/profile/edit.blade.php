@@ -6,7 +6,7 @@
         @include('layouts.app._nav')
     </section>
 
-    <div class="section">
+    <div class="section account-container">
         <div class="container">
             <div class="columns">
 

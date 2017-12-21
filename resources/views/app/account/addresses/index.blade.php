@@ -6,14 +6,14 @@
     @include('layouts.app._nav')
 </section>
 
-<div class="section account-address">
+<div class="section account-address account-container">
     <div class="container">
         <div class="columns">
 
             <div class="column is-8 is-offset-2">
                 <div class="columns">
+                    @if ($errors->any())
                     <div class="column is-6 is-offset-3">
-                        @if ($errors->any())
                         <article class="message is-danger">
                             <div class="message-body">
                                 <p>There is {{ $errors->count()  }} error (s) performing this action.</p>
@@ -26,8 +26,8 @@
                             @endforeach
                         </article>
                         <br>
-                        @endif
                     </div>
+                    @endif
                 </div>
 
                 <div class="columns">

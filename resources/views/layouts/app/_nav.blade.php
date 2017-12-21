@@ -3,7 +3,7 @@
         <div class="container">
             <div class="navbar-brand">
 
-                <span class="navbar-item">
+                <span class="navbar-item Logo">
                     <a href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
@@ -20,16 +20,14 @@
                     @guest
                     <span class="navbar-item"><a class="button is-link is-inverted" href="{{ route('login') }}">Sign in</a></span>
                     @else
-                    <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-item has-dropdowna is-hoverablea">
 
-
-                        <a href="#" class="navbar-link" role="button" aria-expanded="false" aria-haspopup="true">
-                            {{ auth()->user()->name }}
-                        </a>
-                        <div class="navbar-dropdown is-right has-dropdown is-active is-boxed">
-
-                            <div class="dropdown-item">
-
+                        <a class="navbar-link" href="{{ route('account.orders') }}">My Orders</a>
+                        <a class="navbar-link" href="{{ route('account.profile') }}" role="button" aria-expanded="false" aria-haspopup="true">{{ auth()->user()->name }}</a>
+                        <!-- <a class="navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> -->
+                        <a class="navbar-link btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="logout-icon"></span><span class="logout-text">Logout</span></a>
+                        <!-- <div class="navbar-dropdown is-right has-dropdown is-active is-boxed"> -->
+                            <!-- <div class="dropdown-item"> -->
 
                                 <!-- <div class="media">
                                     <div class="media-content">
@@ -47,28 +45,22 @@
                                 </div> -->
                                 <!-- <hr class="dropdown-divider"> -->
 
-                                <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a>
-                                <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a>
-                                <a class="dropdown-item" href="{{ route('account.password') }}">Password</a>
+                                <!-- <a class="dropdown-item" href="{{ route('account.orders') }}">My Orders</a> -->
+                                <!-- <a class="dropdown-item" href="{{ route('account.profile') }}">My Profile</a> -->
+                                <!-- <a class="dropdown-item" href="{{ route('account.password') }}">Password</a> -->
 
-                                <hr class="dropdown-divider">
+                                <!-- <hr class="dropdown-divider"> -->
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                                <!-- <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> -->
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                <!-- </div> -->
+                                <!-- </div> -->
+                                @endguest
+                            </div>
+                        </div>
                     </div>
                 </div>
-                @endguest
-
-
-            </div>
+            </nav>
         </div>
-    </div>
-</nav>
-</div>
