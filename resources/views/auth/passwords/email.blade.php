@@ -14,10 +14,18 @@
 
                         <p class="email-description">{{ trans('quicksilver.forgot.sub_title')}}</p>
 
+
+
+
+
+
+
                         @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
+    <article class="message is-success">
+        <div class="message-body">
+                                        {{ session('status') }}
+        </div>
+    </article>
                         @endif
 
                         <form class="form" method="POST" action="{{ route('password.email') }}" autocomplete="off">
