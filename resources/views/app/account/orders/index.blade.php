@@ -29,6 +29,9 @@
                                 <p class="subtitle is-5">{{ trans('quicksilver.account.orders.txt_sub_title')}}</p>
 
 
+
+                                @if(count($orders) > 0)
+
                                 <table style="width: 100%;" class="my-orders-table">
                                     <thead>
                                         <tr>
@@ -88,6 +91,15 @@
                                 @endforeach
 
                             </table>
+
+                            @else
+
+                                There is no orders placed yet, <a href="{{ url('/') }}">start shopping now with {{ config('app,name') }}</a>.
+
+
+                            @endif
+
+
 
                         </div>
 
