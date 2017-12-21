@@ -25,7 +25,7 @@
                         <a class="navbar-link" href="{{ route('account.orders') }}">My Orders</a>
                         <a class="navbar-link" href="{{ route('account.profile') }}" role="button" aria-expanded="false" aria-haspopup="true">{{ auth()->user()->name }}</a>
                         <!-- <a class="navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> -->
-                        <a class="navbar-link btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="logout-icon"></span><span class="logout-text">Logout</span></a>
+                        <a class="navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         <!-- <div class="navbar-dropdown is-right has-dropdown is-active is-boxed"> -->
                             <!-- <div class="dropdown-item"> -->
 
