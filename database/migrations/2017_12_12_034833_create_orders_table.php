@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('tax');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->jsonb('meta')->default("{}");
             $table->timestamps();
         });
     }
