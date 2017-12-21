@@ -109,8 +109,15 @@
                         </th>
                     </tr>
 
-
-
+                <tr>
+                    <th colspan="3"></th>
+                    <th>
+                        Delivery Charges
+                    </th>
+                    <th>
+                        &#2547; {{ isset($delivery_charges) ? $delivery_charges : '' }}
+                    </th>
+                </tr>
 
                     <tr>
                         <th colspan="3"></th>

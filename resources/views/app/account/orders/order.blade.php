@@ -86,6 +86,29 @@
                                             </tr>
                                         </table>
                                     </div>
+                                    @foreach($order->meta as $meta)
+{{--                                        {{dd($meta)}}--}}
+                                    @if($meta['partner_id'] == $line_item->partner_id && $meta['delivery_amount'] != 0)
+                                    <div class="media" style="">
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>Delivery Amount</p>
+                                            </div>
+                                        </div>
+                                        <table>
+                                            <tr>
+                                                <div class="media-right">
+                                                    <td>
+                                                        <span class="">
+                                                            <strong class="is-success">&#2547; {{number_format(((float)$meta['delivery_amount']), 2, '.', '')}}</strong>
+                                                        </span>
+                                                    </td>
+                                                </div>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    @endif
+                                    @endforeach
                                 </div>
                                 @endforeach
 

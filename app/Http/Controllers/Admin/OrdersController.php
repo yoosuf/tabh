@@ -115,6 +115,12 @@ class OrdersController extends Controller
     {
         $order = $this->order->find($id);
 
+        $delivery_charges = 0;
+        foreach ($order->meta as $meta)
+        {
+            $delivery_charges += $meta['delivery_amount'];
+        }
+
         $line_items = $order->line_items()->get();
 
         return view('admin.orders.show', get_defined_vars());
