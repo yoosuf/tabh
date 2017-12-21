@@ -19,48 +19,46 @@
 
                             <input type="hidden" name="token" value="{{ $token }}">
 
-                            <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" >{{ trans('quicksilver.email')}}</label>
 
-                                <input id="email" type="email" class="input" name="email"
-                                       value="{{ $email or old('email') }}" required autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-
+                        <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email">{{ trans('quicksilver.email') }}</label>
+                            <div class="control is-expanded">
+                                <input id="email" type="email" name="email" value="{{ old('email') }}"
+                                class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                                required autofocus />
                             </div>
+                            @if ($errors->has('email'))
+                            <span class="help is-danger">
+                                {{ $errors->first('email') }}
+                            </span>
+                            @endif
+                        </div>
 
-                            <div class="field{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" >{{ trans('quicksilver.password')}}</label>
 
 
-                                <input id="password" type="password" class="input" name="password" required>
+   
+                        <div class="field{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password">{{ trans('quicksilver.password')}}</label>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <input id="password" type="password"  name="password" required
+                            class="input {{ $errors->has('password') ? ' is-danger' : '' }}" />
 
-                            </div>
+                            @if ($errors->has('password'))
+                            <span class="help is-danger">
+                                {{ $errors->first('password') }}
+                            </span>
+                            @endif
+                        </div>
 
-                            <div class="field{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm"
-                                       >{{ trans('quicksilver.password_confirm')}}</label>
+                        <div class="field">
+                            <label for="password-confirm">{{ trans('quicksilver.password_confirm')}}</label>
 
-                                <input id="password-confirm" type="password" class="input" name="password_confirmation"
-                                       required>
+                            <input id="password-confirm" type="password"  name="password_confirmation"
+                            class="input {{ $errors->has('password_confirmation') ? ' is-danger' : '' }}" required />
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-
-                            </div>
+                        </div>
+                        
 
                             <div class="field is-grouped">
                                 <button type="submit" class="button is-link is-block">
