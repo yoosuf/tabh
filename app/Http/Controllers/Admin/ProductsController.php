@@ -33,25 +33,27 @@ class ProductsController extends Controller
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
 
-        if ($request->has('partner_id') && $request->get('partner_id') != '') {
-            $partner_id = $request->get('partner_id');
-            $partner = $this->partner->find($request->get('partner_id'));
+        // if ($request->has('partner_id') && $request->get('partner_id') != '') {
+        //     $partner_id = $request->get('partner_id');
+        //     $partner = $this->partner->find($request->get('partner_id'));
 
-            if ($request->has('status') && $request->get('status') != '') {
-                $status = $request->get('status');
-                $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
-            } else {
-                $products = $partner->products()->orderBy('id', 'asc')->paginate($limit);
-            }
-        } else {
-            if ($request->has('status') && $request->get('status') != '') {
-                $status = $request->get('status');
-                $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
-            } else {
-                $products = $this->product->orderBy('id', 'asc')->paginate($limit);
-            }
+        //     if ($request->has('status') && $request->get('status') != '') {
+        //         $status = $request->get('status');
+        //         $products = $partner->products()->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
+        //     } else {
+        //         $products = $partner->products()->orderBy('id', 'asc')->paginate($limit);
+        //     }
+        // } else {
+        //     if ($request->has('status') && $request->get('status') != '') {
+        //         $status = $request->get('status');
+        //         $products = $this->product->where('published', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
+        //     } else {
+        //         $products = $this->product->orderBy('id', 'asc')->paginate($limit);
+        //     }
 
-        }
+        // }
+
+        $products = $this->product->orderBy('id', 'desc')->paginate($limit);
 
         $querystringArray = ['partner_id' => $request->get('partner_id'), 'status' => $request->get('status')];
 

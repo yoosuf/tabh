@@ -23,7 +23,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $data = $this->user->with(['primaryAddress', 'orders'])->paginate($limit);
+        $data = $this->user->with(['primaryAddress', 'orders'])->orderBy('id', 'desc')->paginate($limit);
 
         return view('admin.customers.index', get_defined_vars());
     }

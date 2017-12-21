@@ -6,7 +6,7 @@
     @include('layouts.app._nav')
 </section>
 
-<div class="section account-password">
+<div class="section account-password account-container">
     <div class="container">
         <div class="columns">
 

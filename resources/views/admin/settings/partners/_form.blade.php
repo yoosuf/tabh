@@ -205,7 +205,7 @@
                     </div>
 
 
-
+{{--
                     <div class="field">
                         <label for="partner_min_delivery_value">Min delivery value</label>
                         <div class="field has-addons">
@@ -225,7 +225,7 @@
                             <span class="help is-danger">{{ $errors->first('partner_min_delivery_value') }}</span>
                         @endif
                     </div>
-
+--}}
 
 
                     <div class="field">
@@ -249,35 +249,6 @@
                     </div>
 
 
-                        {{--<div class="control is-expanded">--}}
-                            {{--<input--}}
-                                    {{--id="partner_website"--}}
-                                    {{--type="text"--}}
-                                    {{--name="partner_website"--}}
-                                    {{--class="input {{ $errors->has('partner_website') ? ' is-danger' : '' }}"--}}
-                                    {{--value="{{ isset($item->preferences)?  $item->preferences['max_discount_amount'] : old('partner_website') }}"/>--}}
-                        {{--</div>--}}
-                        {{--@if ($errors->has('partner_status'))--}}
-                            {{--<span class="help is-danger">{{ $errors->first('partner_status') }}</span>--}}
-                        {{--@endif--}}
-                    {{--</div>--}}
-
-
-                    {{--<div class="field">--}}
-
-                        {{--<label for="partner_status">Discount percentage</label>--}}
-                        {{--<div class="control is-expanded">--}}
-                            {{--<input--}}
-                                    {{--id="partner_website"--}}
-                                    {{--type="text"--}}
-                                    {{--name="partner_website"--}}
-                                    {{--class="input {{ $errors->has('partner_website') ? ' is-danger' : '' }}"--}}
-                                    {{--value="{{ isset($item->preferences)? $item->preferences['discount_percentage'] : old('partner_website') }}"/>--}}
-                        {{--</div>--}}
-                        {{--@if ($errors->has('partner_status'))--}}
-                            {{--<span class="help is-danger">{{ $errors->first('partner_status') }}</span>--}}
-                        {{--@endif--}}
-                    {{--</div>--}}
 
 
                     <div class="field">

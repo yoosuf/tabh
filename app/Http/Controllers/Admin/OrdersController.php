@@ -24,25 +24,28 @@ class OrdersController extends Controller
     {
         $limit = $request->has('limit') ? $request->get('limit') : 10;
 
-        if ($request->has('customer_id') && $request->get('customer_id') != '') {
-            $customer_id = $request->get('customer_id');
-            $customer = $this->customer->find($request->get('customer_id'));
+        // if ($request->has('customer_id') && $request->get('customer_id') != '') {
+        //     $customer_id = $request->get('customer_id');
+        //     $customer = $this->customer->find($request->get('customer_id'));
 
-            if ($request->has('status') && $request->get('status') != '') {
-                $status = $request->get('status');
-                $orders = $customer->orders()->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
-            } else {
-                $orders = $customer->orders()->orderBy('id', 'asc')->paginate($limit);
-            }
-        } else {
-            if ($request->has('status') && $request->get('status') != '') {
-                $status = $request->get('status');
-                $orders = $this->order->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
-            } else {
-                $orders = $this->order->orderBy('id', 'asc')->paginate($limit);
-            }
+        //     if ($request->has('status') && $request->get('status') != '') {
+        //         $status = $request->get('status');
+        //         $orders = $customer->orders()->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
+        //     } else {
+        //         $orders = $customer->orders()->orderBy('id', 'asc')->paginate($limit);
+        //     }
+        // } else {
+        //     if ($request->has('status') && $request->get('status') != '') {
+        //         $status = $request->get('status');
+        //         $orders = $this->order->where('status', $request->get('status'))->orderBy('id', 'asc')->paginate($limit);
+        //     } else {
+        //         $orders = $this->order->orderBy('id', 'asc')->paginate($limit);
+        //     }
 
-        }
+        // }
+
+
+        $orders = $this->order->orderBy('id', 'desc')->paginate($limit);
 
         $querystringArray = ['customer_id' => $request->get('customer_id'), 'status' => $request->get('status')];
 

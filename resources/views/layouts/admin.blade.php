@@ -37,6 +37,8 @@
         <a href="{{ route('admin.customers') }}" class="navbar-item {{ Request::is('admin/customers*') ? 'is-active' : null }}">Customers</a>
         <a href="{{ route('admin.partners') }}" class="navbar-item  {{ Request::is('admin/settings/partners*') ? 'is-active' : null }}">Partners</a>
         <a href="{{ route('admin.users') }}" class="navbar-item  {{ Request::is('admin/settings/users*') ? 'is-active' : null }}">Users</a>
+        <hr class="dropdown-divider">
+
     </div>
 
     <div class="navbar-end">

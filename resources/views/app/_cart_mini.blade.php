@@ -11,7 +11,7 @@
             </div>
 		@else
 			<div class="control">
-            	<a href="#" class="button is-medium is-fullwidth">Your cart is empty</a>
+               <a href="#" class="button is-medium is-fullwidth btn-cart-empty">Your cart is empty</a>
 			</div>
         @endif
 

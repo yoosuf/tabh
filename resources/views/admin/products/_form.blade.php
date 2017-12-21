@@ -250,6 +250,29 @@
                     </div>
 
 
+
+                    <div class="field">
+                        <label for="product_size">Pack Size</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input {{ $errors->has('product_size') ? ' is-danger' : '' }}" type="text"
+                                       id="product_size"
+                                       name="product_size"
+                                       value="{{ isset($item->packsize)?  $item->packsize : old('product_size') }}"/>
+                            </div>
+                            <div class="control">
+                                <a class="button is-static">
+                                    Size
+                                </a>
+                            </div>
+                        </div>
+                        @if ($errors->has('product_size'))
+                            <span class="help is-danger">{{ $errors->first('product_size') }}</span>
+                        @endif
+                    </div>
+
+
+{{-- 
                     <div class="field">
                         <label for="product_size">Pack Size</label>
                         <div class="control">
@@ -264,7 +287,32 @@
 		                        </span>
                         @endif
                     </div>
+--}}
 
+
+
+
+                    <div class="field">
+                        <label for="product_price">Price</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input {{ $errors->has('product_price') ? ' is-danger' : '' }}" type="text"
+                                       id="product_price"
+                                       name="product_price"
+                                       value="{{ isset($item->price)?  $item->price : old('product_price') }}"/>
+                            </div>
+                            <div class="control">
+                                <a class="button is-static">
+                                    ৳
+                                </a>
+                            </div>
+                        </div>
+                        @if ($errors->has('product_price'))
+                            <span class="help is-danger">{{ $errors->first('product_price') }}</span>
+                        @endif
+                    </div>
+
+{{-- 
                     <div class="field">
                         <label for="product_price">Price</label>
                         <div class="control">
@@ -280,7 +328,7 @@
 		                        </span>
                         @endif
                     </div>
-
+--}}
 
                     <div class="field">
                         <label for="product_published">Status</label>
