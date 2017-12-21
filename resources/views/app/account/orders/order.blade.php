@@ -63,10 +63,12 @@
                                 @endif
                                 <br>
                                 <h2 class="is-success"><strong>Order Items</strong> : </h2>
+
+                                <br>
                                 @foreach($line_items as $line_item)
+                                    <h3 class="is-success"><strong>by {{$line_item->partner()->first()->name}}</strong></h3>
 
                                 <div class="order-item">
-                                    <h3 class="is-success"><strong>by {{$line_item->partner()->first()->name}}</strong></h3>
 
                                     <div class="media" style="">
                                         <div class="media-content">
@@ -86,31 +88,34 @@
                                             </tr>
                                         </table>
                                     </div>
+                                </div>
+                                @endforeach
+                                <br>
+                                <br>
                                     @foreach($order->meta as $meta)
-{{--                                        {{dd($meta)}}--}}
-                                    @if($meta['partner_id'] == $line_item->partner_id && $meta['delivery_amount'] != 0)
-                                    <div class="media" style="">
-                                        <div class="media-content">
-                                            <div class="content">
-                                                <p>Delivery Amount</p>
-                                            </div>
-                                        </div>
-                                        <table>
-                                            <tr>
-                                                <div class="media-right">
-                                                    <td>
+                                    <h3 class="is-success"><strong>by {{\App\Entities\Partner::find($meta['partner_id'])->name}}</strong></h3>
+
+                                    <div class="order-item">
+                                            <div class="media" style="">
+                                                <div class="media-content">
+                                                    <div class="content">
+                                                        <p>Delivery Amount</p>
+                                                    </div>
+                                                </div>
+                                                <table>
+                                                    <tr>
+                                                        <div class="media-right">
+                                                            <td>
                                                         <span class="">
                                                             <strong class="is-success">&#2547; {{number_format(((float)$meta['delivery_amount']), 2, '.', '')}}</strong>
                                                         </span>
-                                                    </td>
-                                                </div>
-                                            </tr>
-                                        </table>
+                                                            </td>
+                                                        </div>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                     </div>
-                                    @endif
                                     @endforeach
-                                </div>
-                                @endforeach
 
                                 <div class="card order-total">
                                     <div class="card-content">
@@ -118,10 +123,10 @@
                                             @if($order->total_discount > 0)
                                             <tr>
                                                 <td style="text-align: left">
-                                                    <p class="subtitle is-6">Total Discount</p>
+                                                    <p class="subtitle is-6" style="color: white">Total Discount</p>
                                                 </td>
                                                 <td style="text-align: right">
-                                                    <p class="subtitle is-6">
+                                                    <p class="subtitle is-6" style="color: white">
                                                         -&#2547; {{number_format(((float)$order->total_discount), 2, '.', '')}}</p>
                                                     </td>
                                                 </tr>
