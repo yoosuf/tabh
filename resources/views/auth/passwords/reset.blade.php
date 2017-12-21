@@ -5,9 +5,12 @@
 
     <div class="columns">
     <div class="column is-4 is-offset-4">
-
-      <div class="auth card">
+        <div class="logo text-center">
+            <h1>TAB-H</h1>
+        </div>
+      <div class="auth card email-box">
           <div class="card-content">
+          
           <h4 class="card-title has-text-centered">{{ trans('quicksilver.reset.heading')}}</h4>
 
                     <form class="form" method="POST" action="{{ route('password.request') }}" autocomplete="off">
