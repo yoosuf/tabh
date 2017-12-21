@@ -6,6 +6,7 @@ use App\Entities\Product;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -36,7 +37,7 @@ class SearchController extends Controller
         $type = $request->get('type');
 
         if($type == 'pharmaceutical') {
-            $products = $this->product->where('published', true)
+            $products = $this->product->inRandomOrder()->where('published', true)
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
