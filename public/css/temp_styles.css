@@ -8,6 +8,22 @@
   text-align: center;
 }
 
+.navbar-item.Logo{
+  padding: 0px;
+  padding-left: 5px;
+}
+
+.navbar-item.Logo a{
+  max-height: 52px;
+}
+
+.navbar-item.Logo img{
+  height: 52px;
+  max-height: initial;
+  margin-bottom: 0px;
+  box-sizing: border-box;
+}
+
 section.hero.is-info .home-header {
   background-size: 80%;
   background: #efefef url('../img/top_bg.jpg') no-repeat center;
