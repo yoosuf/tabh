@@ -4,8 +4,9 @@
             <div class="navbar-brand">
 
                 <span class="navbar-item Logo">
+                    <!-- {{ config('app.name', 'Laravel') }} -->
                     <a href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="img/logo.png">
                     </a>
                 </span>
 
