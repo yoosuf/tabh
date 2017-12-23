@@ -19,7 +19,10 @@
                         <span id="imagename" class="file-name">
                         </span>
                     </label>
+
                 </div>
+                <p class="help">The prescription must be upload to make an order.</p>
+
             </div>
         </div>
 

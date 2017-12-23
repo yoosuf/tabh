@@ -76,7 +76,7 @@ $(function () {
         const button = $(this).find('.item-button');
         const id = $(this).find('.item-id').val();
         button.addClass('is-loading');
-        console.log(id);
+        // console.log(id);
 
         axios.post('/cart/add', {
             id: id
@@ -86,7 +86,7 @@ $(function () {
             button.removeClass('is-loading');
         }).catch(function (error) {
             button.removeClass('is-loading');
-            console.log(error);
+            // console.log(error);
         });
     });
 
@@ -95,7 +95,7 @@ $(function () {
         const button = $(this).find('.item-button');
         const id = $(this).find('.item-id').val();
         button.addClass('is-loading');
-        console.log(id);
+        // console.log(id);
 
         axios.post('/cart/add', {
             id: id
@@ -105,7 +105,7 @@ $(function () {
             button.removeClass('is-loading');
         }).catch(function (error) {
             button.removeClass('is-loading');
-            console.log(error);
+            // console.log(error);
         });
     });
 
@@ -114,7 +114,7 @@ $(function () {
         const button = $(this).find('.item-button');
         const id = $(this).find('.item-id').val();
         button.addClass('is-loading');
-        console.log(id);
+        // console.log(id);
 
         axios.post('/cart/remove', {
             id: id
@@ -124,7 +124,7 @@ $(function () {
             button.removeClass('is-loading');
         }).catch(function (error) {
             button.removeClass('is-loading');
-            console.log(error);
+            // console.log(error);
         });
     });
 
@@ -150,28 +150,29 @@ $(function () {
         }
     );
 
-    // $('#remote .typeahead').bind('typeahead:selected', function (obj, datum, name) {
-    //     console.log(obj);
-    //     console.log(datum);
-    //     console.log('/search?type=pharmaceutical&q=' + datum);
-    //     axios.get('/search?type=pharmaceutical',
-    //         {
-    //             params: {
-    //                 q: datum
-    //             }
-    //         }
-    //     ).then(function (response) {
-    //         // cart.load(document.URL + ' #cart');
-    //         // cartMini.load(document.URL + ' #cart_mini');
-    //         console.log(response);
-    //         product_list.load(document.URL + ' #product_list');
-    //     }).catch(function (error) {
-    //         console.error(error);
-    //     });
-    // });
+    $('#remote .typeahead').bind('typeahead:selected', function (obj, datum, name) {
+        console.log(obj);
+        console.log(datum);
+        console.log('/search?type=pharmaceutical&q=' + datum);
 
-// $('.media .button').on('click', function(e) {
-//     // alert('sdsd') ;
-// });
+        $('#cart-search-form').submit();
+        
+        // axios.get('/search?type=pharmaceutical',
+        //     {
+        //         params: {
+        //             q: datum
+        //         }
+        //     }
+        // ).then(function (response) {
+        //     // cart.load(document.URL + ' #cart');
+        //     // cartMini.load(document.URL + ' #cart_mini');
+        //     console.log(response);
+        //     product_list.load(document.URL + ' #product_list');
+        // }).catch(function (error) {
+        //     console.error(error);
+        // });
+    });
+
+
 
 })

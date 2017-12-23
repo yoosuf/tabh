@@ -36,4 +36,21 @@ class Order extends Model
     {
         return $this->morphOne(Address::class, 'addressable');
     }
+
+
+
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function($order)
+        {
+
+//            if (!empty($question->notify_to)) {
+//                $question->notify(new QuestionSubmitted($question));
+//            }
+        });
+    }
+
+
+
 }

@@ -80,17 +80,10 @@
                                                 {{--</div>--}}
                                                 {{--<div class="dropdown-menu" id="dropdown-menu6" role="menu">--}}
                                                     {{--<div class="dropdown-content">--}}
-                                                        <form role="form" method="POST" action="{{ route('account.order.show') }}">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="id" id="id" value="{{$order->id}}">
-                                                            <button class="button">
-                                                                View Order
-                                                            </button>
-                                                            {{--<hr class="dropdown-divider">--}}
-                                                            {{--<a href="#" class="dropdown-item">--}}
-                                                                {{--Cancel Order--}}
-                                                            {{--</a>--}}
-                                                        </form>
+
+
+                                                <a href="{{ route('account.orders.show', [$order->id]) }}" class="button">View Order</a>
+
                                                     {{--</div>--}}
                                                 {{--</div>--}}
                                             {{--</div>--}}
