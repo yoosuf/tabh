@@ -6,9 +6,7 @@ namespace App\Http\Controllers\App\Account;
 use App\Entities\LineItem;
 use App\Entities\Order;
 use App\Http\Controllers\Controller;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class OrdersController extends Controller
 {
@@ -26,9 +24,14 @@ class OrdersController extends Controller
     {
         $user = $request->user();
 
-        $orders = $this->order->where('user_id', $user->id)->get();
-        return view('app.account.orders.index', compact('orders'));
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+
+        $orders = $this->order->where('user_id', $user->id)->paginate($limit);
+
+        return view('app.account.orders.index', get_defined_vars());
     }
+
+
 
     public function show(Request $request)
     {
@@ -44,7 +47,7 @@ class OrdersController extends Controller
 
         $prescription = get_attachment($order->attachment()->first());
 
-        return view('app.account.orders.order', compact('order','line_items', 'prescription'));
+        return view('app.account.orders.order', get_defined_vars());
     }
 
 }

@@ -10,6 +10,7 @@ use App\Entities\Partner;
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
 //use Gloudemans\Shoppingcart\Cart;
+use App\Notifications\App\Order\NewOrder;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -51,6 +52,9 @@ class OrderController extends Controller
      */
     public function placeOrder(Request $request)
     {
+
+        $user = $request->user();
+
         $request->validate([
             'total_amount' => 'required',
             'prescription' => 'required',
@@ -175,6 +179,8 @@ class OrderController extends Controller
             ]);
         }
         Cart::destroy();
+
+        $user->notify(new NewOrder($order));
 
         return redirect()->route('account.orders');
 
