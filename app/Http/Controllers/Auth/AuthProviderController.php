@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Services\Auth\AuthProviderService;
 
@@ -46,11 +47,13 @@ class AuthProviderController extends Controller
      * @param AuthProviderService $service
      * @return callable URL from facebook
      */
-    public function handleProviderCallback($provider, AuthProviderService $service)
+    public function handleProviderCallback(Request $request, $provider, AuthProviderService $service)
     {
         $user = Socialite::driver($provider)->user();
         $auth = $service->createOrGetUser($provider, $user);
         auth()->login($auth);
-        return redirect()->back();
+//        return redirect()->back();
+
+        return redirect()->intended($this->redirectTo);
     }
 }
