@@ -81,7 +81,7 @@
                     <p class="title is-4">Address</p>
 
 
-                    @if(count($addresses) > 0)
+                    @if( isset($addresses) && count($addresses) > 0)
                         @foreach($addresses as $address)
                             {{ $addres }}
                         @endforeach
