@@ -157,7 +157,7 @@
                                           <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
                                 @endforeach
                                 {{--<input type="hidden" name="delivery" id="delivery" value="{{$delivery_charges_for_partners}}">--}}
-                                <button type="submit" class="button is-success">- Place Order -</button>
+                                <button type="submit" class="button is-success">Place order</button>
                                 {{--</form>--}}
                             </td>
                         </tr>
