@@ -127,6 +127,9 @@ class CustomersController extends Controller
     public function edit($id, Request $request)
     {
         $item = $this->user->findOrFail($id);
+
+        $addresses = $item->addresses;
+
         $address = $item->primaryAddress()->get();
         return view('admin.customers.edit', get_defined_vars());
     }

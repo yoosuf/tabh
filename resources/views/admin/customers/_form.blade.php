@@ -79,6 +79,15 @@
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
+
+
+                    @if(count($addresses) > 0)
+                        @foreach($addresses as $address)
+                            {{ $addres }}
+                        @endforeach
+
+                    @endif
+
                     @include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])
                 </div>
             </div>
