@@ -51,6 +51,6 @@ class AuthProviderController extends Controller
         $user = Socialite::driver($provider)->user();
         $auth = $service->createOrGetUser($provider, $user);
         auth()->login($auth);
-        return redirect($this->redirectTo);
+        return redirect()->intended();
     }
 }
