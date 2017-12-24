@@ -25,7 +25,6 @@ Route::group(['prefix' => 'v1'], function ($route) {
     $route->post('login', 'Api\V1\AuthController@authenticate');
     $route->post('reset', 'Api\V1\EmailPasswordController@reset');
 
-
     $route->get('me', 'Api\V1\ProfileController@me');
     $route->put('account/profile', 'Api\V1\ProfileController@update');
     $route->put('account/email', 'Api\V1\AccountEmailController@update');
@@ -38,7 +37,6 @@ Route::group(['prefix' => 'v1'], function ($route) {
     $route->delete('addresses/{id}', 'Api\V1\AddressesController@destroy');
     $route->post('addresses/{id}/default', 'Api\V1\AddressesController@setDefault');
 
-
     $route->get('cart', 'Api\V1\CartController@index');
     $route->post('cart', 'Api\V1\CartController@store');
     $route->get('cart/search', 'Api\V1\CartController@search');
@@ -50,7 +48,6 @@ Route::group(['prefix' => 'v1'], function ($route) {
     $route->get('orders/search', 'Api\V1\OrderController@search');
     $route->get('orders/{id}', 'Api\V1\OrderController@show');
     $route->put('orders/{id}', 'Api\V1\OrderController@update');
-
 
     $route->get('search', 'Api\V1\SearchController@index');
     $route->get('search/suggestions', 'Api\V1\SearchController@suggestion');
