@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CartController extends ApiController
 {
@@ -15,7 +14,7 @@ class CartController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api', ['except' => ['index', 'store', 'update', 'destroy']]);
     }
 
 
@@ -37,6 +36,12 @@ class CartController extends ApiController
 
 
     public function destroy($id, Request $request)
+    {
+
+    }
+
+
+    public function search(Request $request)
     {
 
     }

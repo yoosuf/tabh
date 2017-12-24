@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SearchController extends ApiController
 {
@@ -15,20 +14,17 @@ class SearchController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api', ['except' => ['index', 'search']]);
     }
-
 
 
     public function index(Request $request) {
 
     }
 
-    public function search(Request $request) {
+    public function suggestion(Request $request) {
 
     }
-
-
 
 
 

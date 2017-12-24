@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProfileController extends ApiController
 {
@@ -15,5 +14,22 @@ class ProfileController extends ApiController
     public function __construct()
     {
         $this->middleware('auth:api');
+    }
+
+
+
+    public function me()
+    {
+
+    }
+
+
+    /**
+     * @param $id
+     * @param Request $request
+     */
+    public function update($id, Request $request)
+    {
+
     }
 }

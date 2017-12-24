@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class OrderController extends ApiController
 {
@@ -40,7 +39,7 @@ class OrderController extends ApiController
     }
 
 
-    public function destroy($id, Request $request)
+    public function search(Request $request)
     {
 
     }
