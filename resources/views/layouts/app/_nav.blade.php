@@ -6,7 +6,7 @@
                 <span class="navbar-item Logo">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     <a href="{{ url('/') }}">
-                        <img src="img/logo.png">
+                        <img src="/img/logo.png">
                     </a>
                 </span>
 
@@ -37,7 +37,7 @@
                                             <p>{{ auth()->user()->name }}</p>
 
 
-                                            {{--<a class="button is-small">Settings</a>--}}
+                                            {{-- <a class="button is-small">Settings</a>--}}
 
                                         </div>
                                     </div>
