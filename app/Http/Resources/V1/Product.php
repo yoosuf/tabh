@@ -16,14 +16,14 @@ class Product extends Resource
     {
         return [
             "id" => $this->id,
-            "title" => $this->title,
-            "generic_name" => $this->generic_name,
-            "description" => $this->body_html,
-            "vendor" => $this->vendor,
-            "product_type" => $this->product_type,
-            "price" => $this->price,
-            "packsize" => $this->packsize,
-            "created_at" => $this->created_at,
+            "title" => (string) $this->title,
+            "generic_name" => (string) $this->generic_name,
+            "description" =>(string) $this->body_html,
+            "vendor" => (string) $this->vendor,
+            "product_type" => (string) $this->product_type,
+            "price" => (string) $this->price,
+            "packsize" => (string) $this->packsize,
+            "created_at" => (string) $this->created_at->toDateTimeString(),
             "provider" => new Partner($this->partner),
         ];
     }

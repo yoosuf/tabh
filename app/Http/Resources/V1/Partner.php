@@ -16,10 +16,10 @@ class Partner extends Resource
     {
         return [
             "name" => $this->name,
-            "delivery_charge" => $this->preferences['delivery_charge'],
-            "min_delivery_value" => $this->preferences['min_delivery_value'],
-            "discount_percentage" => $this->preferences['discount_percentage'],
-            "min_discount_amount" => $this->preferences['min_discount_amount'],
+            "delivery_charge" => (string) $this->preferences['delivery_charge'],
+            "min_delivery_value" => (string) $this->preferences['min_delivery_value'],
+            "discount_percentage" => (string) $this->preferences['discount_percentage'],
+            "min_discount_amount" => (string) $this->preferences['min_discount_amount'],
         ];
      
     }
