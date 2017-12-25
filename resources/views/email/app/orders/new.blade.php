@@ -41,19 +41,3 @@
 <p>The   {{ config('app.name', 'Laravel')  }}.</p>
 <p>This is a system-generated email. Please do not reply.</p>
 
-<div style="visibility: hidden;"
-<div itemscope itemtype="http://schema.org/Invoice">
-  <span itemprop="accountId">123-456-789</span>
-  <div itemprop="minimumPaymentDue" itemscope itemtype="http://schema.org/PriceSpecification">
-    <span itemprop="price">{{ $order->total_amount }}</span>
-  </div>
-  <span itemprop="paymentDue">2015-11-22T08:00:00+00:00</span>
-  <span itemprop="paymentStatus">PaymentAutomaticallyApplied</span>
-  <div itemprop="provider" itemscope itemtype="http://schema.org/Organization">
-    <span itemprop="name">Mountain View Utilities</span>
-  </div>
-  <div itemprop="totalPaymentDue" itemscope itemtype="http://schema.org/PriceSpecification">
-    <span itemprop="price">{{ $order->total_amount }}</span>
-  </div>
-</div>
-</div>
