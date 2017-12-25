@@ -3,23 +3,49 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
+use App\Entities\Product;
+use App\Http\Resources\V1\Product as ProductResource;
+
 
 class SearchController extends ApiController
 {
+    protected $product;
 
     /**
-     * Create a new SearchController instance.
-     *
-     * @return void
+     * SearchController constructor.
+     * @param Product $product
      */
-    public function __construct()
+    public function __construct(Product $product)
     {
-        $this->middleware('auth:api', ['except' => ['index', 'search']]);
+        $this->product = $product;
     }
 
 
     public function index(Request $request) {
+        $search_query = $request->get('q');
+        $type = $request->get('type');
 
+        if($type == 'pharmaceutical') {
+            $products = $this->product->inRandomOrder()->where('published', true)
+                ->where('title', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->filter(function ($item, $key)
+                {
+                    return $item->partner()->first()->is_active == true;
+                })->take(10);
+        } else if ($type == "groceries") {
+            $products = [];
+        }
+        else {
+            $products = [];
+        }
+
+
+        $data = ProductResource::collection($products);
+
+        return response()->json($data, 200);
     }
 
     public function suggestion(Request $request) {

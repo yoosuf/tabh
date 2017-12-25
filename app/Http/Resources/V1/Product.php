@@ -14,6 +14,20 @@ class Product extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+            "title" => $this->title,
+            "generic_name" => $this->generic_name,
+            "description" => $this->body_html,
+            "vendor" => $this->vendor,
+            "product_type" => $this->product_type,
+            "price" => $this->price,
+            "packsize" => $this->packsize,
+            "created_at" => $this->created_at,
+            "provider" => new Partner($this->partner),
+        ];
     }
+
+
+
 }

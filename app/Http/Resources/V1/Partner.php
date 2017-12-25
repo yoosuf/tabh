@@ -14,6 +14,13 @@ class Partner extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "name" => $this->name,
+            "delivery_charge" => $this->preferences['delivery_charge'],
+            "min_delivery_value" => $this->preferences['min_delivery_value'],
+            "discount_percentage" => $this->preferences['discount_percentage'],
+            "min_discount_amount" => $this->preferences['min_discount_amount'],
+        ];
+     
     }
 }
