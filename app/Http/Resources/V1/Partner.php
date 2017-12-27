@@ -16,11 +16,15 @@ class Partner extends Resource
     {
         return [
             "name" => $this->name,
-            "delivery_charge" => (string) $this->preferences['delivery_charge'],
-            "min_delivery_value" => (string) $this->preferences['min_delivery_value'],
-            "discount_percentage" => (string) $this->preferences['discount_percentage'],
-            "min_discount_amount" => (string) $this->preferences['min_discount_amount'],
+
+
+
+
+            "delivery_charge" => number_format(((float) $this->preferences['delivery_charge']), 2, '.', ''),
+            "min_delivery_value" => number_format(((float) $this->preferences['min_delivery_value']), 2, '.', ''),
+            "discount_percentage" => number_format(((float) $this->preferences['discount_percentage']), 2, '.', ''),
+            "min_discount_amount" => number_format(((float) $this->preferences['min_discount_amount']), 2, '.', ''),
         ];
-     
+
     }
 }

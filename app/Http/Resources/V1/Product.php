@@ -21,10 +21,10 @@ class Product extends Resource
             "description" =>(string) $this->body_html,
             "vendor" => (string) $this->vendor,
             "product_type" => (string) $this->product_type,
-            "price" => (string) $this->price,
             "packsize" => (string) $this->packsize,
-            "created_at" => (string) $this->created_at->toDateTimeString(),
+            "price" => number_format(((float)$this->price), 2, '.', ''),
             "provider" => new Partner($this->partner),
+            "attachment" => isset($this->attachment) ? new Attachment($this->attachment) : json_decode("{}"),
         ];
     }
 

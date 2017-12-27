@@ -93,6 +93,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('customers/{id}', 'CustomersController@destroy')->name('admin.customers.delete');
 
 
+        Route::get('files', 'AttachmentsController@index')->name('admin.files');
+
+
         Route::group(['prefix' => 'settings'], function () {
 
             Route::get('partners', 'PartnersController@index')->name('admin.partners');

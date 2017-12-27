@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
 
 class AuthController extends ApiController
 {
-
     /**
      * Create a new AuthController instance.
      *
@@ -18,44 +15,8 @@ class AuthController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['authenticate']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
     }
-
-    /**
-     * Authenticate an user.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        $validator = Validator::make($credentials, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return response()
-                ->json([
-                    'code' => 1,
-                    'message' => 'Validation failed.',
-                    'errors' => $validator->errors()
-                ], 422);
-        }
-
-        $token = JWTAuth::attempt($credentials);
-
-        if ($token) {
-            return response()->json(['token' => $token]);
-        } else {
-            return response()->json(['code' => 2, 'message' => 'Invalid credentials.'], 401);
-        }
-    }
-
-
-
 
     /**
      * Get a JWT token via given credentials.
@@ -74,26 +35,6 @@ class AuthController extends ApiController
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
-
-
-
-
-    /**
-     * Get the user by token.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getUser(Request $request)
-    {
-        JWTAuth::setToken($request->input('token'));
-        $user = JWTAuth::toUser();
-        return response()->json($user);
-    }
-
-
-
-
 
     /**
      * Get the authenticated User
@@ -117,7 +58,6 @@ class AuthController extends ApiController
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-
     /**
      * Refresh a token.
      *
@@ -139,7 +79,7 @@ class AuthController extends ApiController
     {
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'bearer',
+            'token_type' => 'Bearer',
             'expires_in' => $this->guard()->factory()->getTTL() * 60
         ]);
     }
@@ -153,5 +93,4 @@ class AuthController extends ApiController
     {
         return Auth::guard();
     }
-
 }

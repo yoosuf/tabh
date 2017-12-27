@@ -30,7 +30,8 @@ class SearchController extends ApiController
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->get()
                 ->filter(function ($item, $key)
                 {
                     return $item->partner()->first()->is_active == true;
@@ -58,12 +59,14 @@ class SearchController extends ApiController
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->get()
                 ->filter(function ($item, $key)
                 {
                     return $item->partner()->first()->is_active == true;
                 })
                 ->pluck('generic_name')->toArray();
+
                 $status_code = 200;
         } else if ($type == "groceries") {
             $products = ["error" => true, 'message' => 'No titles found'];
