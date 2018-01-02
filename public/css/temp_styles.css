@@ -1208,10 +1208,13 @@ table.mobile-card-ui td:before {
 @media screen and (max-width: 768px) {
   .section.search-results .card-content .media-content .level .level-left{
     float: left;
+    margin-top: 10px;
+    font-weight: bold;
   }
 
   .section.search-results .card-content .media-content .level .level-right{
     float: right;
+    margin-top: 0px;
   }
 
   .accounts-menu {
