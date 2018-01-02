@@ -10,7 +10,7 @@
     <div class="container">
         <div class="columns">
 
-            <div class="column is-8 is-offset-2">
+            <div class="column is-12 fullwidth">
 
                 <div class="columns">
                     <div class="column is-3 is-hidden-mobile">

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="columns">
 
-            <div class="column is-8 is-offset-2">
+            <div class="column is-12 fullwidth">
 
                 <div class="columns">
                     <div class="column is-3 is-hidden-mobile">
@@ -82,7 +82,7 @@
                                                     {{--<div class="dropdown-content">--}}
 
 
-                                                <a href="{{ route('account.orders.show', [$order->id]) }}" class="button">View Order</a>
+                                                        <a href="{{ route('account.orders.show', [$order->id]) }}" class="button">View Order</a>
 
                                                     {{--</div>--}}
                                                 {{--</div>--}}

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="columns">
 
-            <div class="column is-8 is-offset-2">
+            <div class="column is-12 fullwidth">
 
                 <div class="columns">
                     <div class="column is-3 is-hidden-mobile">
@@ -66,7 +66,7 @@
 
                                 <br>
                                 @foreach($line_items as $line_item)
-                                    <h3 class="is-success"><strong>by {{$line_item->partner()->first()->name}}</strong></h3>
+                                <h3 class="is-success"><strong>by {{$line_item->partner()->first()->name}}</strong></h3>
 
                                 <div class="order-item">
 
@@ -92,30 +92,30 @@
                                 @endforeach
                                 <br>
                                 <br>
-                                    @foreach($order->meta as $meta)
-                                    <h3 class="is-success"><strong>by {{\App\Entities\Partner::find($meta['partner_id'])->name}}</strong></h3>
+                                @foreach($order->meta as $meta)
+                                <h3 class="is-success"><strong>by {{\App\Entities\Partner::find($meta['partner_id'])->name}}</strong></h3>
 
-                                    <div class="order-item">
-                                            <div class="media" style="">
-                                                <div class="media-content">
-                                                    <div class="content">
-                                                        <p>Delivery Amount</p>
-                                                    </div>
-                                                </div>
-                                                <table>
-                                                    <tr>
-                                                        <div class="media-right">
-                                                            <td>
+                                <div class="order-item">
+                                    <div class="media" style="">
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>Delivery Amount</p>
+                                            </div>
+                                        </div>
+                                        <table>
+                                            <tr>
+                                                <div class="media-right">
+                                                    <td>
                                                         <span class="">
                                                             <strong class="is-success">&#2547; {{number_format(((float)$meta['delivery_amount']), 2, '.', '')}}</strong>
                                                         </span>
-                                                            </td>
-                                                        </div>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                                    </td>
+                                                </div>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    @endforeach
+                                </div>
+                                @endforeach
 
                                 <div class="card order-total">
                                     <div class="card-content">

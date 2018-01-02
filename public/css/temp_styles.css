@@ -18,10 +18,14 @@
 }
 
 .navbar-item.Logo img{
-  height: 52px;
+  height: 42px;
   max-height: initial;
   margin-bottom: 0px;
   box-sizing: border-box;
+}
+
+.sign-in-btn.navbar-link.is-link:after{
+  display: none;
 }
 
 section.hero.is-info .home-header {
@@ -497,6 +501,7 @@ section.hero.is-info .hero-head {
   font-weight: bold;
   color: #fff !important;
   font-style: italic;
+  padding-top: 5px
 }
 
 .btn-logout:hover .logout-icon {
@@ -754,14 +759,12 @@ section.hero.is-info .hero-body button.is-success {
   color: #216eb4;
 }
 
-section.account-container .column.is-8.is-offset-2, .section.account-container .column.is-8.is-offset-2 {
+section.account-container .column.is-12.fullwidth, .section.account-container .column.is-12.fullwidth {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 3px hsla(0, 0%, 4%, .1), 0 0 0 1px hsla(0, 0%, 4%, .1);
   box-shadow: 0 2px 3px hsla(0, 0%, 4%, .1), 0 0 0 1px hsla(0, 0%, 4%, .1);
   box-sizing: border-box;
   padding: 20px;
-  margin: auto;
-  width: 100%;
 }
 
 .status-icon-container{
@@ -1075,6 +1078,66 @@ table.mobile-card-ui td:before {
   font-size:14px
 }
 
+/*/////////////////////// admin styling ///////////////////*/
+
+.section.admin-body-container{
+  padding: 0px;
+}
+
+.section.admin-body-container .app-sidebar.column.is-2.is-hidden-tablet-only:before{
+  content: "";
+  background-color: #111;
+}
+
+.canvas{
+  position: relative;
+  min-height: 100%;
+}
+
+.admin-navbar{
+  background-color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.admin-navbar .navbar-link:after{
+  display: none !important;
+}
+
+.admin-side-menu{
+  background-color: #fff;
+  padding: 15px;
+  -webkit-box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
+  box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
+}
+
+.column.dashboard-top-card:nth-child(1) .card{
+  background-color: #1bbf89 !important
+}
+
+.column.dashboard-top-card:nth-child(2) .card{
+  background-color: #0f83c9 !important
+}
+
+.column.dashboard-top-card:nth-child(3) .card{
+  background-color: #db524b !important
+}
+
+.column.dashboard-top-card:nth-child(4) .card{
+  background-color: #f6a821 !important
+}
+
+.column.dashboard-top-card .card .card-content{
+  text-align: center;
+  padding: 30px 5px;
+  color: #fff;
+  text-shadow: 0px 0px 5px #111111fc;
+}
+
+.column.dashboard-top-card .card .card-content h1.title.is-1{
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
 @media screen and (min-width: 1024px) {
   .logout-icon {
     display: block;
@@ -1139,6 +1202,99 @@ table.mobile-card-ui td:before {
     position: absolute;
     top: 100%;
     left: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section.search-results .card-content .media-content .level .level-left{
+    float: left;
+  }
+
+  .section.search-results .card-content .media-content .level .level-right{
+    float: right;
+  }
+
+  .accounts-menu {
+    padding-bottom: 0px;
+  }
+
+  .accounts-menu aside.menu{
+    background-color: #fff;
+  }
+
+  .accounts-menu aside.menu ul.menu-list{
+    min-height: 40px;
+  }
+
+  .accounts-menu aside.menu ul.menu-list li{
+    width: 25%;
+    float: left;
+    display: inline-block;
+  }
+
+  section.account-container .column.is-12.fullwidth, .section.account-container .column.is-12.fullwidth {
+    padding: 0px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .my-order-item > div.status .status-icons .status-icon {
+    width: 100%;
+  }
+
+  .my-order-item > div .status-icon p.my-order-item-item-title{
+    float: left;
+    margin: 0px;
+    font-size: 12px;
+  }
+
+  .status-icon-container{
+    width: 18px;
+    height: 18px;
+    background-size: 75px;
+    float: right;
+  }
+
+  .status-icon-ordered .status-icon-container{
+    background-position-x: 0px; 
+  }
+
+  .status-icon-ordered.is-active .status-icon-container{
+    background-position-y: 19px; 
+  }
+
+  .status-icon-packed .status-icon-container{
+    background-position-x: -19px;
+  }
+
+  .status-icon-packed.is-active .status-icon-container{
+    background-position-y: 19px;
+  }
+
+  .status-icon-shipped .status-icon-container{
+    background-position-x: -38px;
+  }
+
+  .status-icon-shipped.is-active .status-icon-container{
+    background-position-y: 19px;
+  }
+
+  .status-icon-delivered .status-icon-container{
+    background-position-x: -57px;
+  }
+
+  .status-icon-delivered.is-active .status-icon-container{
+    background-position-y: 19px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .my-order-item > div .status-icon p.my-order-item-item-title{
+    width: auto;
+    float: none;
+  }
+  .status-icon-container{
+    float: none;
   }
 }
 
