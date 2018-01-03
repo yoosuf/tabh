@@ -22,8 +22,10 @@
             <div class="card-content">
 
 
-                @include('admin.products._filter')
 
+                {{-- 
+                @include('admin.products._filter')
+                --}}
 
                 <table class="table is-fullwidth is-hoverable is-striped">
                     <thead>
