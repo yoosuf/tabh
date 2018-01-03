@@ -30,6 +30,7 @@
                                 <h2 class="is-success"><strong>Order Id </strong>: &nbsp;&nbsp; {{$order->id}}</h2>
                                 <h2 class="is-success"><strong>Order Placed </strong>: &nbsp;&nbsp; {{$order->created_at}}</h2>
                                 <h2 class="is-success"><strong>Order Status </strong>: &nbsp;&nbsp; {{$order->status}}</h2>
+                                <h2 class="is-success"><strong>Order Via </strong>: &nbsp;&nbsp; {{$order->payment_type}}</h2>
                                 <h2 class="is-success"><strong>Order Address </strong>: &nbsp;&nbsp; </h2>
                                 {{--@include('app.account.addresses._item', ['item' => $order->address()->first()])--}}
                                 <div class="media-content order-address">

@@ -147,6 +147,7 @@ class OrderController extends Controller
             'total_amount' => $request->has('total_amount') ? $request->total_amount : '0',
             'total_discount' => $request->has('total_discount') ? $request->total_discount : '0',
             'tax' => $request->has('tax') ? $request->tax : '0',
+            'payment_type' => $request->has('payment_type') ? $request->payment_type : 'cash',
             'meta' => $deliveryDataArray,
         ]);
 
