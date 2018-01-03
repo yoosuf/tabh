@@ -16915,10 +16915,6 @@ section.hero.is-info .hero-body .label {
   color: #ffffff;
 }
 
-section.hero.is-info .hero-body input {
-  color: #216eb4;
-}
-
 section.hero.is-info .hero-body button {
   background-color: #216eb4;
 }
@@ -16971,11 +16967,6 @@ section.hero.is-info .hero-body a.button:hover {
 }
 
 .checkouts-address-card .title {
-  color: #0168b5;
-}
-
-.checkouts-address-card input, .checkouts-address-card select {
-  border-color: #35ace7;
   color: #0168b5;
 }
 
@@ -17038,11 +17029,6 @@ section.hero.is-info .hero-body a.button:hover {
   color: #0168b5;
 }
 
-.account-profile-card input {
-  border-color: #35ace7;
-  color: #0168b5;
-}
-
 .my-orders p, .my-orders h1, .my-orders td, .my-orders td strong {
   color: #0168b5;
 }
@@ -17065,26 +17051,11 @@ section.hero.is-info .hero-body a.button:hover {
   color: #0168b5;
 }
 
-.account-address-edit input, .account-address-edit select {
-  border-color: #35ace7;
-  color: #0168b5;
-}
-
 .account-address-create p, .account-address-create h1 {
   color: #0168b5;
 }
 
-.account-address-create input, .account-address-create select {
-  border-color: #35ace7;
-  color: #0168b5;
-}
-
 .account-password p, .account-password h1 {
-  color: #0168b5;
-}
-
-.account-password input {
-  border-color: #35ace7;
   color: #0168b5;
 }
 
@@ -17553,12 +17524,6 @@ section.account-container .column.is-8.is-offset-2, .section.account-container .
   background-color: #216eb4;
   border: 1px solid #216eb4;
   color: #fff;
-}
-
-.menu-list a:hover {
-  background-color: #fff;
-  border: 1px solid #216eb4;
-  color: #216eb4;
 }
 
 .menu-list a {

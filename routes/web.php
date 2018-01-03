@@ -31,12 +31,17 @@ Route::group(['namespace' => 'App'], function () {
         Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
         Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
 
-        Route::post('/account/order', 'Account\OrdersController@show')->name('account.order.show');
 
         Route::get('/account', function () {
             return redirect()->route('account.orders');
         })->name('account');
+
+
         Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
+        Route::get('/account/orders/{id}', 'Account\OrdersController@show')->name('account.orders.show');
+
+
+
         Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
         Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
         Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');
@@ -86,6 +91,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('customers/{id}', 'CustomersController@edit')->name('admin.customers.show');
         Route::put('customers/{id}', 'CustomersController@update')->name('admin.customers.update');
         Route::delete('customers/{id}', 'CustomersController@destroy')->name('admin.customers.delete');
+
+
+        Route::get('files', 'AttachmentsController@index')->name('admin.files');
 
 
         Route::group(['prefix' => 'settings'], function () {

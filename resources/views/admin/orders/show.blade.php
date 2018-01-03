@@ -24,6 +24,7 @@
 
             <p>Order Date:  {{ isset($order->created_at) ? $order->created_at : '' }}</p>
             <p>Status: {{ isset($order->status) ? $order->status : '' }} </p>
+            <p>Order Via: {{ isset($order->payment_type) ? $order->payment_type : '' }} </p>
         </div>
 
         <div class="column">

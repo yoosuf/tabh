@@ -79,7 +79,42 @@
             <div class="card-content">
                 <div class="content">
                     <p class="title is-4">Address</p>
-                    @include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])
+
+
+
+
+
+
+
+                    @if( isset($addresses) && count($addresses) > 0)
+
+                        <div class="tile">
+                            <div class="tile is-ancestor">
+                        @foreach($addresses as $address)
+                            <article class="tile is-child notification {{ isset($address->default) ? 'box' : null }}">
+
+
+
+
+                                    {{ $address->name }}<br />
+                                    {{ $address->phone }}<br />
+                                    {{ $address->address1 }}<br />
+                                    {{ $address->address2 }}<br />
+                                    {{ $address->city }}, {{ $address->province }}, {{ $address->postcode }}<br />
+
+                                    {{ $address->country }}
+
+
+                    </article>
+                        @endforeach
+                            </div>
+                        </div>
+
+                    @else
+                        @include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])
+                    @endif
+
+
                 </div>
             </div>
         </div>

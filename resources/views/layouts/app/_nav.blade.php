@@ -4,8 +4,9 @@
             <div class="navbar-brand">
 
                 <span class="navbar-item Logo">
+                    <!-- {{ config('app.name', 'Laravel') }} -->
                     <a href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="/img/logo.png">
                     </a>
                 </span>
 
@@ -18,7 +19,7 @@
             <div id="navbarMenuHeroA" class="navbar-menu">
                 <div class="navbar-end">
                     @guest
-                    <span class="navbar-item"><a class="button is-link is-inverted" href="{{ route('login') }}">Sign in</a></span>
+                    <span class="navbar-item"><a class="sign-in-btn navbar-link is-link is-inverted" href="{{ route('login') }}">Sign in</a></span>
                     @else
                     <div class="navbar-item has-dropdowna is-hoverablea">
 
@@ -36,7 +37,7 @@
                                             <p>{{ auth()->user()->name }}</p>
 
 
-                                            {{--<a class="button is-small">Settings</a>--}}
+                                            {{-- <a class="button is-small">Settings</a>--}}
 
                                         </div>
                                     </div>

@@ -23,7 +23,9 @@ class PartnersTableSeeder extends Seeder
                 'preferences->api' => 'http://epharma.com.bd/epharma_web/public/api/product-list',
                 'preferences->api_key' => 'TM@The@The@Messenger@ePharma',
                 'preferences->discount_percentage' => 20,
-                'preferences->min_discount_amount' => 2000
+                'preferences->min_discount_amount' => 2000,
+                'preferences->partner_min_delivery_value' => 0,
+                'preferences->partner_delivery_charge' => 2000,
             ]);
 
         $partner  = \App\Entities\Partner::create([
@@ -35,7 +37,9 @@ class PartnersTableSeeder extends Seeder
             'preferences->api' => 'http://epharma.com.bd/epharma_web/public/api/product-list',
             'preferences->api_key' => 'TM@The@The@Messenger@ePharma',
             'preferences->discount_percentage' => 20,
-            'preferences->min_discount_amount' => 2000
+            'preferences->min_discount_amount' => 2000,
+            'preferences->partner_min_delivery_value' => 0,
+            'preferences->partner_delivery_charge' => 2000,
         ]);
 
     }

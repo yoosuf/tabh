@@ -9,12 +9,15 @@ use App\Entities\Order;
 use App\Entities\Partner;
 use App\Entities\Product;
 use App\Http\Controllers\Controller;
-//use Gloudemans\Shoppingcart\Cart;
+use App\Jobs\App\Order\NewOrder;
+
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+
 
 class OrderController extends Controller
 {
@@ -51,6 +54,9 @@ class OrderController extends Controller
      */
     public function placeOrder(Request $request)
     {
+
+        $user = $request->user();
+
         $request->validate([
             'total_amount' => 'required',
             'prescription' => 'required',
@@ -177,6 +183,12 @@ class OrderController extends Controller
         }
         Cart::destroy();
 
+        // $user->notify(new NewOrder($order));
+
+        // Mail::to($request->user()->email)->send(new NewOrder($order));
+
+
+        NewOrder::dispatch($user, $order);
         return redirect()->route('account.orders');
 
     }

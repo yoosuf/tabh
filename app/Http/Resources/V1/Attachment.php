@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class Category extends Resource
+class Attachment extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,8 @@ class Category extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'image' => (string) url($this->path)
+        ];
     }
 }
