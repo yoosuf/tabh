@@ -50,22 +50,57 @@
                                             <!-- <p class="my-order-item-item-title">Status</p> -->
                                             <!-- <span>{{$order->status}}</span> -->
                                             <div class="status-icons">
-                                                <div class="status-icon status-icon-ordered">
-                                                    <p class="my-order-item-item-title">Ordered</p>
+
+
+                                                @if ($order->status == 'Approved' || $order->status == 'Packed' || $order->status == 'Shipped' || $order->status ==  'Completed')
+                                                    <div class="status-icon status-icon-ordered is-active">
+                                                        <p class="my-order-item-item-title">Ordered</p>
+                                                        <span class="status-icon-container"></span>
+                                                    </div>
+                                                @else
+                                                    <div class="status-icon status-icon-ordered">
+                                                        <p class="my-order-item-item-title">Ordered</p>
+                                                        <span class="status-icon-container"></span>
+                                                    </div>
+                                                @endif
+
+
+                                                @if ($order->status == 'Packed' || $order->status == 'Shipped' || $order->status ==  'Completed')
+                                                <div class="status-icon status-icon-packed is-active">
+                                                    <p class="my-order-item-item-title">Packed</p>
                                                     <span class="status-icon-container"></span>
                                                 </div>
+                                                @else
                                                 <div class="status-icon status-icon-packed">
                                                     <p class="my-order-item-item-title">Packed</p>
                                                     <span class="status-icon-container"></span>
                                                 </div>
+                                                @endif
+
+
+                                                @if ($order->status == 'Shipped' || $order->status ==  'Completed') 
+                                                <div class="status-icon status-icon-shipped is-active">
+                                                    <p class="my-order-item-item-title">Shipped</p>
+                                                    <span class="status-icon-container"></span>
+                                                </div>
+                                                @else
                                                 <div class="status-icon status-icon-shipped">
                                                     <p class="my-order-item-item-title">Shipped</p>
                                                     <span class="status-icon-container"></span>
                                                 </div>
+                                                @endif
+
+                                                @if ($order->status ==  'Completed') 
+                                                <div class="status-icon status-icon-delivered is-active">
+                                                    <p class="my-order-item-item-title">Delivered</p>
+                                                    <span class="status-icon-container"></span>
+                                                </div>
+                                                @else
                                                 <div class="status-icon status-icon-delivered">
                                                     <p class="my-order-item-item-title">Delivered</p>
                                                     <span class="status-icon-container"></span>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="action">

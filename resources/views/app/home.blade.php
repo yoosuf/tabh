@@ -40,7 +40,9 @@
             <div class="column home-tab-item groceries">
                 <div>
                     <h2>Grocery</h2>
-                    <a href="{{ route('search', ['type' => 'groceries']) }}">Shop Now</a>
+                    <a href="{{ route('search', ['type' => 'groceries']) }}" id="shop_groceries">Shop Now</a>
+
+                    
                 </div>
             </div>
         </div>

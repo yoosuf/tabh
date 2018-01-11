@@ -34,5 +34,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+    $(function() {
+        $('#shop_groceries').on('click', function (e) {
+            e.preventDefault();
+            $(this).replaceWith( "<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>" );
+        });
+    })
+    </script>
 </body>
 </html>
