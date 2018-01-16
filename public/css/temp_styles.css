@@ -1206,6 +1206,11 @@ table.mobile-card-ui td:before {
 }
 
 @media screen and (max-width: 768px) {
+
+  .home-body .main-desc.main-desc2 {
+  top: 200px;
+}
+
   .section.search-results .card-content .media-content .level .level-left{
     float: left;
     margin-top: 10px;
@@ -1307,7 +1312,7 @@ table.mobile-card-ui td:before {
     top: 80px;
   }
   .home-body .main-desc.main-desc2 {
-    top: 136px;
+    top: 186px;
   }
 }
 
@@ -1316,6 +1321,6 @@ table.mobile-card-ui td:before {
     line-height: 38px;
   }
   .home-body .main-desc.main-desc2 {
-    top: 160px;
+    top: 200px;
   }
 }

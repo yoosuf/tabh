@@ -29,8 +29,8 @@
     <!-- <div class="nav-container-space"></div> -->
     <!-- <div class="container has-text-centered"> -->
         <div class="columns">
-            <h2 class="main-desc main-desc1">Digital health hub for you and your family</h2>
-            <h2 class="main-desc main-desc2">Easy order. Quick delivery. Great offers.</h2>
+            <h2 class="main-desc main-desc1">Easy order. Quick delivery. Great offers</h2>
+            <h2 class="main-desc main-desc2">Digital health hub for you and your family.</h2>
             <div class="column home-tab-item pharmaceutical">
                 <div>
                     <h2>Pharmacy</h2>
