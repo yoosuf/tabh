@@ -23,7 +23,9 @@
     <div class="card">
         <div class="card-content">
 
+            {{-- 
             @include('admin.customers._filter')
+            --}}
 
             <table class="table is-fullwidth is-hoverable is-striped">
                 <thead>

@@ -14,7 +14,9 @@
         <div class="card">
             <div class="card-content">
 
+            {{-- 
                 @include('admin.orders._filter')
+            --}}
 
 
                 <table class="table is-fullwidth is-hoverable is-striped">

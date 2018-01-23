@@ -29,8 +29,8 @@
     <!-- <div class="nav-container-space"></div> -->
     <!-- <div class="container has-text-centered"> -->
         <div class="columns">
-            <h2 class="main-desc main-desc1">Shopping the way you like it!</h2>
-            <h2 class="main-desc main-desc2">Order online. Delivered to your doorstep.</h2>
+            <h2 class="main-desc main-desc1">Easy order. Quick delivery. Great offers</h2>
+            <h2 class="main-desc main-desc2">Digital health hub for you and your family.</h2>
             <div class="column home-tab-item pharmaceutical">
                 <div>
                     <h2>Pharmacy</h2>
@@ -40,7 +40,9 @@
             <div class="column home-tab-item groceries">
                 <div>
                     <h2>Grocery</h2>
-                    <a href="{{ route('search', ['type' => 'groceries']) }}">Shop Now</a>
+                    <a href="{{ route('search', ['type' => 'groceries']) }}" id="shop_groceries">Shop Now</a>
+
+                    
                 </div>
             </div>
         </div>

@@ -94,12 +94,12 @@ class PartnersController extends Controller
         ]);
 
         $partnerData = [
-            'api' => $request->get('partner_api'),
-            'api_key' => $request->get('partner_api_key'),
-            'min_discount_amount' => $request->get('partner_min_discount_amount'),
-            'discount_percentage' => $request->get('partner_discount_percentage'),
-            'min_delivery_amount' => $request->get('partner_min_delivery_amount'),
-            'delivery_charge' => $request->get('partner_delivery_charge'),
+            'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
+            'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
+            'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : 0,
+            'discount_percentage' => $request->has('partner_discount_percentage') ? $request->get('partner_discount_percentage') : 0,
+            'min_delivery_amount' => $request->has('partner_min_delivery_amount') ? $request->get('partner_min_delivery_amount') : 0,
+            'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : 0,
         ];
 
 
@@ -186,12 +186,12 @@ class PartnersController extends Controller
 
 
         $partnerData = [
-            'api' => $request->get('partner_api'),
-            'api_key' => $request->get('partner_api_key'),
-            'min_discount_amount' => $request->get('partner_min_discount_amount'),
-            'discount_percentage' => $request->get('partner_discount_percentage'),
-            'min_delivery_value' => $request->get('partner_min_delivery_value'),
-            'delivery_charge' => $request->get('partner_delivery_charge'),
+            'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
+            'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
+            'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : 0,
+            'discount_percentage' => $request->has('partner_discount_percentage') ? $request->get('partner_discount_percentage') : 0,
+            'min_delivery_amount' => $request->has('partner_min_delivery_amount') ? $request->get('partner_min_delivery_amount') : 0,
+            'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : 0,
         ];
 
 
