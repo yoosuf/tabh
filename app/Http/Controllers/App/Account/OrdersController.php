@@ -26,7 +26,7 @@ class OrdersController extends Controller
 
         $limit = $request->has('limit') ? $request->get('limit') : 10;
 
-        $orders = $this->order->where('user_id', $user->id)->paginate($limit);
+        $orders = $this->order->mine()->paginate($limit);
 
         return view('app.account.orders.index', get_defined_vars());
     }
@@ -37,7 +37,7 @@ class OrdersController extends Controller
     {
         $user = $request->user();
 
-        $order = $this->order->where('user_id', $user->id)->find($request->id);
+        $order = $this->order->mine()->find($request->id);
 
 //        dd($order);
 

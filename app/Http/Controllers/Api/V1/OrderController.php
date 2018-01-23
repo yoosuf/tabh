@@ -17,7 +17,8 @@ class OrderController extends ApiController
         $this->middleware('auth:api');
     }
 
-    public function index(Request $request) {
+    public function index(Request $request) 
+    {
 
     }
 

@@ -53,4 +53,11 @@ class Order extends Model
 
 
 
+
+    public function scopeMine($query)
+    {
+        return $query->whereUserId(auth()->user()->id);
+    }
+
+
 }
