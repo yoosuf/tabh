@@ -15,13 +15,11 @@ class AddressesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
 
 
     public function index(Request $request)
     {
-
         $data = auth()->user()->addresses;
         return view('app.account.addresses.index', get_defined_vars());
     }
@@ -35,7 +33,6 @@ class AddressesController extends Controller
 
     public function edit($id, Request $request)
     {
-
         $data = auth()->user()->addresses->find($id);
         return view('app.account.addresses.edit', get_defined_vars());
     }
@@ -51,18 +48,18 @@ class AddressesController extends Controller
             'address_phone' => 'required',
             'address_line_1' => 'required|string|max:255',
             'address_line_2' => 'nullable|string|max:255',
-            'address_city' => 'required|string|max:255',
+            'address_district' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
             'address_country' => 'required|string|max:255',
-            'address_province' => 'required|string|max:255',
+            'address_area' => 'required|string|max:255',
         ], [
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
             'address_line_1.required' => 'Line 1 is required',
 //            'address_line_2.required' => 'Line 2 is required',
-            'address_city.required' => 'City is required',
+            'address_district.required' => 'District is required',
             'address_postcode.required' => 'Postcode is required',
-            'address_province.required' => 'Province is required',
+            'address_area.required' => 'Area is required',
             'address_country.required' => 'Country is required',
         ]);
 
@@ -73,9 +70,9 @@ class AddressesController extends Controller
             'phone' => $request->get('address_phone'),
             'address1' => $request->get('address_line_1'),
             'address2' => $request->get('address_line_2'),
-            'city' => $request->get('address_city'),
+            'district' => $request->get('address_district'),
             'postcode' => $request->get('address_postcode'),
-            'province' => $request->get('address_province'),
+            'area' => $request->get('address_area'),
             'country' => $request->get('address_country'),
         ];
 
@@ -98,18 +95,18 @@ class AddressesController extends Controller
             'address_phone' => 'required',
             'address_line_1' => 'required|string|max:255',
             'address_line_2' => 'nullable|string|max:255',
-            'address_city' => 'required|string|max:255',
+            'address_district' => 'required|string|max:255',
             'address_postcode' => 'required|string|max:255',
             'address_country' => 'required|string|max:255',
-            'address_province' => 'required|string|max:255',
+            'address_area' => 'required|string|max:255',
         ], [
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
             'address_line_1.required' => 'Line 1 is required',
 //            'address_line_2.required' => 'Line 2 is required',
-            'address_city.required' => 'City is required',
+            'address_district.required' => 'District is required',
             'address_postcode.required' => 'Postcode is required',
-            'address_province.required' => 'Province is required',
+            'address_area.required' => 'Area is required',
             'address_country.required' => 'Country is required',
         ]);
 
@@ -118,9 +115,9 @@ class AddressesController extends Controller
             'phone' => $request->get('address_phone'),
             'address1' => $request->get('address_line_1'),
             'address2' => $request->get('address_line_2'),
-            'city' => $request->get('address_city'),
-            'province' => $request->get('address_province'),
+            'district' => $request->get('address_district'),
             'postcode' => $request->get('address_postcode'),
+            'area' => $request->get('address_area'),
             'country' => $request->get('address_country'),
         ]);
 
