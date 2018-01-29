@@ -14,10 +14,10 @@ class ChangeColumnsOnAddresses extends Migration
     public function up()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->renameColumn('city', 'district');
-            $table->renameColumn('province', 'area');
-            $table->integer('district_id')->unsigned();
-            $table->integer('area_id')->unsigned();
+            $table->renameColumn('city', 'district')->nullable();
+            $table->renameColumn('province', 'area')->nullable();
+            $table->integer('district_id')->unsigned()->nullable();
+            $table->integer('area_id')->unsigned()->nullable();
         });
     }
 

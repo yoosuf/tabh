@@ -18,14 +18,13 @@ class CouponCode extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'reward', 'is_disposable', 'expires_at'];
+    protected $fillable = ['code', 'reward', 'expires_at'];
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'is_disposable' => 'boolean',
         'data' => 'array',
     ];
     /**
@@ -44,16 +43,7 @@ class CouponCode extends Model
         parent::__construct($attributes);
         $this->table = 'coupon_codes';
     }
-    /**
-     * Get the users who is related promocode.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'coupon_code_user')
-            ->withPivot('used_at');
-    }
+
     /**
      * Query builder to find promocode using code.
      *
@@ -66,26 +56,8 @@ class CouponCode extends Model
     {
         return $query->where('code', $code);
     }
-    /**
-     * Query builder to get disposable codes.
-     *
-     * @param $query
-     * @return mixed
-     */
-    public function scopeIsDisposable($query)
-    {
-        return $query->where('is_disposable', true);
-    }
-    /**
-     * Query builder to get non-disposable codes.
-     *
-     * @param $query
-     * @return mixed
-     */
-    public function scopeIsNotDisposable($query)
-    {
-        return $query->where('is_disposable', false);
-    }
+
+
     /**
      * Query builder to get expired promotion codes.
      *
@@ -96,15 +68,7 @@ class CouponCode extends Model
     {
         return $query->whereNotNull('expires_at')->whereDate('expires_at', '<=', Carbon::now());
     }
-    /**
-     * Check if code is disposable (ont-time).
-     *
-     * @return bool
-     */
-    public function isDisposable()
-    {
-        return $this->is_disposable;
-    }
+
     /**
      * Check if code is expired.
      *

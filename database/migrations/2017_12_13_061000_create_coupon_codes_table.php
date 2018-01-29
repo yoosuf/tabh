@@ -16,10 +16,12 @@ class CreateCouponCodesTable extends Migration
         Schema::create('coupon_codes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code', 32)->unique();
-            $table->double('reward', 10, 2)->nullable();
+            $table->enum('reward_type', ['fixed', 'percent'])->default('fixed');
+            $table->string('reward')->nullable();
             $table->text('data')->nullable();
-            $table->boolean('is_disposable')->default(false);
             $table->timestamp('expires_at')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
 
 
@@ -27,7 +29,7 @@ class CreateCouponCodesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('coupon_code_id');
 
-            $table->timestamp('used_at');
+            $table->timestamp('used_at')->nullable();
             $table->primary(['user_id', 'coupon_code_id']);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('coupon_code_id')->references('id')->on('coupon_codes');
