@@ -52,15 +52,13 @@ if (!function_exists('render_countries')) {
 if (!function_exists('render_districts')) {
     function render_districts($district_id = null, $fieldName = null) {
 
-        $listing = new \App\Utils\EPharma\Listing();
-        $districts = $listing->districts();
-//        dd($listing);
+        $districts =  \App\Entities\District::all();
         $html = "<select name='$fieldName' id='$fieldName'>";
 
         if($district_id == null)
             $html .= "<option value='' selected>Select your district</option>";
 
-        foreach ($districts['result'] as $district)
+        foreach ($districts as $district)
         {
             if($district->id == $district_id)
             {
@@ -87,30 +85,12 @@ if (!function_exists('render_districts')) {
 if (!function_exists('render_areas')) {
     function render_areas($area_id = null, $fieldName = null, $district_id = null) {
 
-        $listing = new \App\Utils\EPharma\Listing();
-        $areas = $listing->areas($district_id);
 
         $html = "<select name='$fieldName' id='$fieldName'>";
 
         if($area_id == null)
             $html .= "<option value='' selected>Select your area</option>";
 
-        foreach ($areas['result'] as $area)
-        {
-            if($area->id == $area_id)
-            {
-                $html .= "<option value='". $area->id ."' selected>". $area->name ."</option>";
-
-            }
-            else if($area->iso == 'BD')
-            {
-                $html .= "<option value='". $area->id ."' selected>". $area->name ."</option>";
-            }
-            else
-            {
-                $html .= "<option value='". $area->id ."'>". $area->name ."</option>";
-            }
-        }
 
         $html .= "</select>";
 
