@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Attachment;
+use App\Entities\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -56,16 +57,17 @@ class AttachmentsController extends Controller
             'address_line_1' => 'nullable|string|max:255',
             'address_line_2' => 'nullable|string|max:255',
             'address_city' => 'nullable|string|max:255',
+            'address_city_id' => 'nullable|integer',
             'address_postcode' => 'nullable|string|max:255',
             'address_country' => 'nullable|string|max:255',
+            'address_country_id' => 'nullable|integer',
             'address_province' => 'nullable|string|max:255',
+            'address_province_id' => 'nullable|integer',
         ], [
             'customer_name.required' => 'Name is required',
             'customer_email.required' => 'Email is required',
             'customer_email.email' => 'Email must be a valid email address.',
             'customer_phone.required' => 'Phone is required',
-
-
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
             'address_line_1.required' => 'Line 1 is required',
@@ -90,9 +92,12 @@ class AttachmentsController extends Controller
             'address1' => $request->get('address_address_1'),
             'address2' => $request->get('address_address_2'),
             'city' => $request->get('address_city'),
-            'province' => $request->get('address_province'),
+            'city_id' => $request->get('address_city_id'),
+            'district' => $request->get('address_province'),
+            'district_id' => $request->get('address_province_id'),
             'postcode' => $request->get('address_postcode'),
             'country' => $request->get('address_country'),
+            'country_id' => $request->get('address_country_id'),
             'default' => 1,
         ];
 

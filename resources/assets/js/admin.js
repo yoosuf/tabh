@@ -61,6 +61,7 @@ $(function () {
 
         addressCities.parent().parent('div').addClass('is-loading');
         addressCities.attr('disabled','disabled');
+        addressPostcode.attr('disabled','disabled');
 
         axios.get(`/api/v1/districts/${currentDistrict}/areas`)
             .then(function (res) {
@@ -68,7 +69,7 @@ $(function () {
                 $.each(res.data.data, function(key, value) {
                     addressCities
                         .append($("<option></option>")
-                            .attr("value",key)
+                            .attr("value",value.id)
                             .text(value.name));
                 });
                 addressCities.parent().parent('div').removeClass('is-loading');

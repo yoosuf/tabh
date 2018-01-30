@@ -69,14 +69,17 @@ class OrderController extends Controller
 
         if ($request->get('address') == "-1") {
              $request->validate([
-                 'address_name' => 'required|string|max:255',
-                 'address_phone' => 'required',
-                 'address_line_1' => 'required|string|max:255',
+                 'address_name' => 'nullable|string|max:255',
+                 'address_phone' => 'nullable',
+                 'address_line_1' => 'nullable|string|max:255',
                  'address_line_2' => 'nullable|string|max:255',
-                 'address_city' => 'required|string|max:255',
-                 'address_postcode' => 'required|string|max:255',
-                 'address_country' => 'required|string|max:255',
-                 'address_province' => 'required|string|max:255',
+                 'address_city' => 'nullable|string|max:255',
+                 'address_city_id' => 'nullable|integer',
+                 'address_postcode' => 'nullable|string|max:255',
+                 'address_country' => 'nullable|string|max:255',
+                 'address_country_id' => 'nullable|integer',
+                 'address_province' => 'nullable|string|max:255',
+                 'address_province_id' => 'nullable|integer',
              ], [
                  'address_name.required' => 'Name is required',
                  'address_phone.required' => 'Phone is required',
@@ -94,9 +97,12 @@ class OrderController extends Controller
                 'address1' => $request->get('address_line_1'),
                 'address2' => $request->get('address_line_2'),
                 'city' => $request->get('address_city'),
-                'province' => $request->get('address_province'),
+                'city_id' => $request->get('address_city_id'),
+                'district' => $request->get('address_province'),
+                'district_id' => $request->get('address_province_id'),
                 'postcode' => $request->get('address_postcode'),
                 'country' => $request->get('address_country'),
+                'country_id' => $request->get('address_country_id'),
                 'default' => true,
             ]);
 

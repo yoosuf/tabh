@@ -213,7 +213,7 @@ class PartnersController extends Controller
             'address2' => $request->get('address_line2'),
             'city' => $request->get('address_city'),
             'postcode' => $request->get('address_postcode'),
-            'province' => $request->get('address_province'),
+            'district' => $request->get('address_province'),
             'country' => $request->get('address_country'),
             'default' => true,
         ];

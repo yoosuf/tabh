@@ -75,9 +75,12 @@ class CreateUsersTable extends Migration
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('city')->nullable();
-            $table->string('province')->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
+            $table->string('district')->nullable();
+            $table->integer('district_id')->unsigned()->nullable();
             $table->string('postcode')->nullable();
             $table->string('country')->nullable();
+            $table->integer('country_id')->unsigned()->nullable();
             $table->float('lat')->nullable();
             $table->float('lng')->nullable();
             $table->boolean('default')->default(false);

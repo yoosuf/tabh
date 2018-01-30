@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./address');
 
 // var FB = require('fb');
 

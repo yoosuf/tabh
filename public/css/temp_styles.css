@@ -97,33 +97,33 @@ section.hero.is-info .hero-body a.button:hover {
   background-color: #79a6c5;
 }
 
-// .card {
-  // 	-webkit-box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);
-  // 	box-shadow: 0 2px 3px hsl(196, 72%, 68%), 0 0 0 1px hsl(196, 72%, 68%);
-  // 	color: #395990;
-  // }
+/*// .card {*/
+  /*// 	-webkit-box-shadow: 0 2px 3px hsla(0,0%,4%,.1), 0 0 0 1px hsla(0,0%,4%,.1);*/
+  /*// 	box-shadow: 0 2px 3px hsl(196, 72%, 68%), 0 0 0 1px hsl(196, 72%, 68%);*/
+  /*// 	color: #395990;*/
+  /*// }*/
 
-  // .card .media-content p strong {
-    // 	color: #395990;
-    // }
+  /*// .card .media-content p strong {*/
+    /*// 	color: #395990;*/
+    /*// }*/
 
-    // .card .button.is-info.is-outlined:hover {
-      // 	background-color: transparent;
-      // 	border-color: #35ace7;
-      // 	color: #35ace7;
-      // }
+    /*// .card .button.is-info.is-outlined:hover {*/
+      /*// 	background-color: transparent;*/
+      /*// 	border-color: #35ace7;*/
+      /*// 	color: #35ace7;*/
+      /*// }*/
 
-      // .card .button.is-info.is-outlined {
-        // 	background-color: #35ace7;
-        // 	border-color: #35ace7;
-        // 	color: #fff;
-        // }
+      /*// .card .button.is-info.is-outlined {*/
+        /*// 	background-color: #35ace7;*/
+        /*// 	border-color: #35ace7;*/
+        /*// 	color: #fff;*/
+        /*// }*/
 
-        // .cart-added .button.is-info.is-outlined{
-          // 	background-color: transparent;
-          // 	border-color: #35ace7;
-          // 	color: #35ace7;
-          // }
+        /*// .cart-added .button.is-info.is-outlined{*/
+          /*// 	background-color: transparent;*/
+          /*// 	border-color: #35ace7;*/
+          /*// 	color: #35ace7;*/
+          /*// }*/
 
           .cart-added .button.is-info.is-outlined:hover {
             background-color: rgba(32, 156, 238, 0.12941176470588237);
@@ -217,10 +217,10 @@ section.hero.is-info .hero-body a.button:hover {
             color: #0168b5;
           }
 
-          // .account-profile-card input {
-            //   border-color: #35ace7;
-            //   color: #0168b5;
-            // }
+          /*// .account-profile-card input {*/
+            /*//   border-color: #35ace7;*/
+            /*//   color: #0168b5;*/
+            /*// }*/
 
             .my-orders p, .my-orders h1, .my-orders td, .my-orders td strong {
               color: #0168b5;
@@ -240,63 +240,63 @@ section.hero.is-info .hero-body a.button:hover {
               padding: 10px;
             }
 
-            //.account-address #addressList .media .dropdown-menu .dropdown-content a{
-              //	padding: 2px;
-              //	background-color: #36ea75;
-              //	color: #fff;
-              //	border: 1px solid #36ea75;
-              //	width: 100%;
-              //	text-align: center;
-              //}
-              //
-              //.account-address #addressList .media .dropdown-menu .dropdown-content a:hover{
-                //	background-color: #32d069;
-                //	color: #fff;
-                //	border: 1px solid #32d069;
-                //}
+            /*//.account-address #addressList .media .dropdown-menu .dropdown-content a{*/
+              /*//	padding: 2px;*/
+              /*//	background-color: #36ea75;*/
+              /*//	color: #fff;*/
+              /*//	border: 1px solid #36ea75;*/
+              /*//	width: 100%;*/
+              /*//	text-align: center;*/
+              /*//}*/
+              /*//*/
+              /*//.account-address #addressList .media .dropdown-menu .dropdown-content a:hover{*/
+                /*//	background-color: #32d069;*/
+                /*//	color: #fff;*/
+                /*//	border: 1px solid #32d069;*/
+                /*//}*/
 
-                //.account-address #addressList .media .dropdown-menu .dropdown-content form button{
-                  //	padding: 2px;
-                  //	background-color: #ec1b4d;
-                  //	color: #fff;
-                  //	border: 1px solid #ec1b4d;
-                  //	width: 100%;
-                  //}
-                  //
-                  //.account-address #addressList .media .dropdown-menu .dropdown-content form button:hover{
-                    //	padding: 2px;
-                    //	background-color: #bf1b42;
-                    //	color: #fff;
-                    //	border: 1px solid #bf1b42;
-                    //	width: 100%;
-                    //}
+                /*//.account-address #addressList .media .dropdown-menu .dropdown-content form button{*/
+                  /*//	padding: 2px;*/
+                  /*//	background-color: #ec1b4d;*/
+                  /*//	color: #fff;*/
+                  /*//	border: 1px solid #ec1b4d;*/
+                  /*//	width: 100%;*/
+                  /*//}*/
+                  /*//*/
+                  /*//.account-address #addressList .media .dropdown-menu .dropdown-content form button:hover{*/
+                    /*//	padding: 2px;*/
+                    /*//	background-color: #bf1b42;*/
+                    /*//	color: #fff;*/
+                    /*//	border: 1px solid #bf1b42;*/
+                    /*//	width: 100%;*/
+                    /*//}*/
 
                     .account-address-edit p, .account-address-edit h1 {
                       color: #0168b5;
                     }
 
-                    .account-address-edit input, .account-address-edit select {
-                      border-color: #35ace7;
-                      color: #0168b5;
-                    }
+                    /*.account-address-edit input, .account-address-edit select {*/
+                      /*border-color: #35ace7;*/
+                      /*color: #0168b5;*/
+                    /*}*/
 
                     .account-address-create p, .account-address-create h1 {
                       color: #0168b5;
                     }
 
-                    .account-address-create input, .account-address-create select {
-                      border-color: #35ace7;
-                      color: #0168b5;
-                    }
+                    /*.account-address-create input, .account-address-create select {*/
+                      /*border-color: #35ace7;*/
+                      /*color: #0168b5;*/
+                    /*}*/
 
                     .account-password p, .account-password h1 {
                       color: #0168b5;
                     }
 
-                    .account-password input {
-                      border-color: #35ace7;
-                      color: #0168b5;
-                    }
+                    /*.account-password input {*/
+                      /*border-color: #35ace7;*/
+                      /*color: #0168b5;*/
+                    /*}*/
 
                     .checkouts-order-details-card .item-description {
                       font-size: 14px;
@@ -430,21 +430,21 @@ Typehead
   width: 100%;
 }
 
-body::-webkit-scrollbar {
-  background-color: #465458;
-  width: 10px;
-}
+/*body::-webkit-scrollbar {*/
+  /*background-color: #465458;*/
+  /*width: 10px;*/
+/*}*/
 
-body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
+/*body::-webkit-scrollbar-track {*/
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);*/
+/*}*/
 
-body::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  outline: 1px solid slategrey;
-  border-radius: 5px;
-  box-shadow: 0px 0px 3px 0px #000 inset;
-}
+/*body::-webkit-scrollbar-thumb {*/
+  /*background-color: #ffffff;*/
+  /*outline: 1px solid slategrey;*/
+  /*border-radius: 5px;*/
+  /*box-shadow: 0px 0px 3px 0px #000 inset;*/
+/*}*/
 
 .position-fixed {
   position: fixed;
@@ -488,11 +488,9 @@ section.hero.is-info .hero-head {
   display: block;
   width: 21px;
   height: 20px;
-  background-image: url('/img/logout_icons.png');
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: top;
-  transition: background 0.3s ease;
+    background-size: 20px;
+    background: url('/img/logout_icons.png') no-repeat top;
+    transition: background 0.3s ease;
 }
 
 .navbar-item.Logo a {
