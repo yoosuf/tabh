@@ -1,3 +1,4 @@
+
 <div class="card" id="cart">
     <div class="card-content">
 
@@ -83,4 +84,13 @@
         @endif
     </div>
 
+</div>
+<div class="card" id="cart_progress_bar" style="visibility: hidden">
+    <div class="card-content">
+        <center>
+        <a class="button is-loading">
+            -------
+        </a>
+        </center>
+    </div>
 </div>

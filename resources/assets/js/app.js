@@ -68,7 +68,7 @@ $(function () {
 
     const cart = $('#cart');
     const cartMini = $('#cart_mini');
-// const product_list = $('#product_list');
+    const cart_progress_bar = $('#cart_progress_bar');
 
 
     $('.item-form').on('submit', function (e) {
@@ -77,13 +77,17 @@ $(function () {
         const id = $(this).find('.item-id').val();
         button.addClass('is-loading');
         // console.log(id);
+        cart_progress_bar.css('visibility', 'visible');
 
         axios.post('/cart/add', {
             id: id
         }).then(function (response) {
-            cart.load(document.URL + ' #cart');
-            cartMini.load(document.URL + ' #cart_mini');
-            button.removeClass('is-loading');
+            cart.load(document.URL + ' #cart', function() {
+                cart_progress_bar.css('visibility', 'hidden');
+            });
+            cartMini.load(document.URL + ' #cart_mini', function() {
+                button.removeClass('is-loading');
+            });
         }).catch(function (error) {
             button.removeClass('is-loading');
             // console.log(error);
@@ -101,8 +105,9 @@ $(function () {
             id: id
         }).then(function (response) {
             cart.load(document.URL + ' #cart');
-            cartMini.load(document.URL + ' #cart_mini');
-            button.removeClass('is-loading');
+            cartMini.load(document.URL + ' #cart_mini', function() {
+                button.removeClass('is-loading');
+            });
         }).catch(function (error) {
             button.removeClass('is-loading');
             // console.log(error);
@@ -120,8 +125,9 @@ $(function () {
             id: id
         }).then(function (response) {
             cart.load(document.URL + ' #cart');
-            cartMini.load(document.URL + ' #cart_mini');
-            button.removeClass('is-loading');
+            cartMini.load(document.URL + ' #cart_mini', function() {
+                button.removeClass('is-loading');
+            });
         }).catch(function (error) {
             button.removeClass('is-loading');
             // console.log(error);
