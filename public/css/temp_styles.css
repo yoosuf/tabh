@@ -1187,13 +1187,13 @@ table.mobile-card-ui td:before {
 
   .home-body .main-desc.main-desc1 {
     font-size: 40px;
-    top: 80px;
+    top: 120px;
     line-height: 46px;
   }
 
   .home-body .main-desc.main-desc2 {
     font-size: 26px;
-    top: 140px;
+    top: 220px;
     line-height: 27px;
   }
 
@@ -1207,9 +1207,14 @@ table.mobile-card-ui td:before {
 
 @media screen and (max-width: 768px) {
 
+
+    .home-body .main-desc.main-desc1 {
+    top: 120px;
+  }
+
   .home-body .main-desc.main-desc2 {
-  top: 200px;
-}
+    top: 220px;
+  }
 
   .section.search-results .card-content .media-content .level .level-left{
     float: left;
@@ -1309,10 +1314,10 @@ table.mobile-card-ui td:before {
 @media screen and (max-width: 532px) {
   .home-body .main-desc.main-desc1 {
     font-size: 30px;
-    top: 80px;
+    top: 120px;
   }
   .home-body .main-desc.main-desc2 {
-    top: 186px;
+    top: 220px;
   }
 }
 

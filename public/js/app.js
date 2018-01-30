@@ -40150,7 +40150,7 @@ function toggleModalClasses(event) {
 // });
 
 
-$(function () {
+$(function ($) {
 
     var cart = $('#cart');
     var cartMini = $('#cart_mini');

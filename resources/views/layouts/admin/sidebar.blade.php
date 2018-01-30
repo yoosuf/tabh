@@ -15,6 +15,7 @@
     </p>
     <ul class="menu-list">
         <li><a href="{{ route('admin.partners') }}" class="{{ Request::is('admin/settings/partners*') ? 'is-active' : null }}">Partners</a></li>
+        <li><a href="{{ route('admin.coupons') }}" class="{{ Request::is('admin/settings/coupons*') ? 'is-active' : null }}">Coupons</a></li>
         <li><a href="{{ route('admin.users') }}" class="{{ Request::is('admin/settings/users*') ? 'is-active' : null }}">Users</a></li>
     </ul>
 

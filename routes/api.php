@@ -53,6 +53,10 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function ($route) {
 
 
 
+
+    $route->get('districts', 'LocationController@getDistricts');
+    $route->get('districts/{id}/areas', 'LocationController@getAreas');
+
     $route->get('search/suggestions', 'SearchController@suggestion');
 });
 

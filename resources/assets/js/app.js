@@ -63,7 +63,7 @@ function toggleModalClasses(event) {
 // });
 
 
-$(function () {
+$(function ($) {
 
 
     const cart = $('#cart');

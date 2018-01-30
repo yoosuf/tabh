@@ -10699,6 +10699,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+$(function () {
+
+    var addressCities = $("#address_city");
+    var addressPostcode = $('#address_postcode');
+
+    addressCities.attr('disabled', 'disabled');
+    addressPostcode.attr('disabled', 'disabled');
+
+    $('#address_province').change(function () {
+
+        var currentDistrict = $(this).val();
+
+        addressCities.parent().parent('div').addClass('is-loading');
+        addressCities.attr('disabled', 'disabled');
+
+        axios.get('/api/v1/districts/' + currentDistrict + '/areas').then(function (res) {
+            addressCities.empty();
+            $.each(res.data.data, function (key, value) {
+                addressCities.append($("<option></option>").attr("value", key).text(value.name));
+            });
+            addressCities.parent().parent('div').removeClass('is-loading');
+            addressCities.removeAttr('disabled');
+            addressPostcode.removeAttr('disabled');
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+});
+
 /***/ }),
 
 /***/ 25:

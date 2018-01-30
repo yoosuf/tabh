@@ -52,11 +52,9 @@ class AddToDB extends Command
             $this->info($partner);
             $this->info("\n");
 
-
             $partner_api = $partner['preferences']['api'] . '/api/product-list';
 
             $partner_api_key =$partner['preferences']['api_key'];
-
 
             $res = $client->request('GET', $partner_api . '?page=' . $index,
                 ['headers' => ['api-key' => $partner_api_key]]);

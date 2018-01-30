@@ -39,7 +39,6 @@
             <div class="level-right">
                 <div class="level-item">
                     <button type="submit" class="button is-info is-outlined item-button">Add to Cart</button>
-
                 </div>
             </div>
         </nav>

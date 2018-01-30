@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPaymentTypeToOrders extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddPaymentTypeToOrders extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function($table) {
-            $table->enum('payment_type',['cash','card'])->default('cash')->nullable();
+        Schema::create('cities', function (Blueprint $table) {
+            $table->integer('id');
+            $table->integer('district_id');
+            $table->string('name');
         });
     }
 
@@ -25,8 +27,6 @@ class AddPaymentTypeToOrders extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function($table) {
-            $table->dropColumn('payment_type');
-        });
+        Schema::dropIfExists('cities');
     }
 }

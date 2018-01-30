@@ -23,7 +23,6 @@ Route::group(['namespace' => 'App'], function () {
 
     Route::get('/products', 'SearchController@titles');
 
-
     Route::group(['middleware' => ['auth']], function () {
 //        Route::get('/account/setup', 'Account\AccountController@create')->name('account.create');
 //        Route::put('/account/setup', 'Account\AccountController@update')->name('account.update');
@@ -31,16 +30,12 @@ Route::group(['namespace' => 'App'], function () {
         Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
         Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
 
-
         Route::get('/account', function () {
             return redirect()->route('account.orders');
         })->name('account');
 
-
         Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
         Route::get('/account/orders/{id}', 'Account\OrdersController@show')->name('account.orders.show');
-
-
 
         Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
         Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
@@ -58,7 +53,6 @@ Route::group(['namespace' => 'App'], function () {
 
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
     Route::get('login', 'Auth\LoginController@getLoginForm');
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
 
@@ -83,7 +77,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::put('products/{id}', 'ProductsController@update')->name('admin.products.update');
         Route::delete('products/{id}', 'ProductsController@destroy')->name('admin.products.delete');
 
-
         Route::get('customers', 'CustomersController@index')->name('admin.customers');
         Route::post('customers', 'CustomersController@store')->name('admin.customers.store');
         Route::get('customers/create', 'CustomersController@create')->name('admin.customers.create');
@@ -92,9 +85,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::put('customers/{id}', 'CustomersController@update')->name('admin.customers.update');
         Route::delete('customers/{id}', 'CustomersController@destroy')->name('admin.customers.delete');
 
-
         Route::get('files', 'AttachmentsController@index')->name('admin.files');
-
 
         Route::group(['prefix' => 'settings'], function () {
 
@@ -105,7 +96,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
             Route::put('partners/{id}', 'PartnersController@update')->name('admin.partners.update');
             Route::delete('partners/{id}', 'PartnersController@destroy')->name('admin.partners.delete');
 
-
             Route::get('users', 'UsersController@index')->name('admin.users');
             Route::post('users', 'UsersController@store')->name('admin.users.store');
             Route::get('users/create', 'UsersController@create')->name('admin.users.create');
@@ -113,6 +103,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
             Route::put('users/{id}', 'UsersController@update')->name('admin.users.update');
             Route::delete('users/{id}', 'UsersController@destroy')->name('admin.users.delete');
 
+            Route::get('coupons', 'CouponsController@index')->name('admin.coupons');
+            Route::post('coupons', 'CouponsController@store')->name('admin.coupons.store');
+            Route::get('coupons/create', 'CouponsController@create')->name('admin.coupons.create');
+            Route::get('coupons/{id}', 'CouponsController@edit')->name('admin.coupons.edit');
+            Route::put('coupons/{id}', 'UsersContCouponsControllerroller@update')->name('admin.coupons.update');
+            Route::delete('coupons/{id}', 'CouponsController@destroy')->name('admin.coupons.delete');
 
             Route::get('account/profile', 'ProfileController@edit')->name('admin.account.profile');
             Route::put('account/profile', 'ProfileController@update')->name('admin.account.profile.update');
