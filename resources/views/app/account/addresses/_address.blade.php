@@ -83,21 +83,19 @@
 <div class="field is-horizontal">
     <div class="field-body">
         <div class="field">
+            <label for="address_city">{{ trans('quicksilver.account.address.input_city')}}</label>
 
-            <label for="address_district">{{ trans('quicksilver.account.address.input_district')}}</label>
             <div class="control is-expanded">
-
-
-                <div class="select is-fullwidth {{ $errors->has('address_district') ? ' is-danger' : '' }}" >
-
-                    {!! render_districts(isset($item->district_id) ? $item->district_id : old('address_district'), 'address_district') !!}
-
-                </div>
-
+                <input
+                        id="address_city"
+                        type="text"
+                        name="address_city"
+                        class="input {{ $errors->has('address_city') ? ' is-danger' : '' }}"
+                        value="{{ isset($item->city)? $item->city : old('address_city') }}"/>
             </div>
-            @if ($errors->has('address_district'))
+            @if ($errors->has('address_city'))
                 <span class="help is-danger">
-                    {{ $errors->first('address_district') }}
+                    {{ $errors->first('address_city') }}
                 </span>
             @endif
         </div>
@@ -145,21 +143,21 @@
             {{--@endif--}}
         {{--</div>--}}
         <div class="field">
+            <label for="address_province">{{ trans('quicksilver.account.address.input_state')}}</label>
 
-            <label for="address_area">{{ trans('quicksilver.account.address.input_area')}}</label>
             <div class="control is-expanded">
-
-
-                <div class="select is-fullwidth {{ $errors->has('address_area') ? ' is-danger' : '' }}" >
-
-                    {!! render_areas(isset($item->area_id) ? $item->area_id : old('address_area'), 'address_area') !!}
-
-                </div>
+                <input
+                        id="address_province"
+                        type="text"
+                        name="address_province"
+                        class="input {{ $errors->has('address_province') ? ' is-danger' : '' }}"
+                        value="{{ isset($item->province)? $item->province : old('address_province') }}"/>
 
             </div>
-            @if ($errors->has('address_area'))
+
+            @if ($errors->has('address_province'))
                 <span class="help is-danger">
-                    {{ $errors->first('address_area') }}
+                    {{ $errors->first('address_province') }}
                 </span>
             @endif
         </div>
@@ -186,6 +184,3 @@
         </div>
     </div>
 </div>
-
-
-
