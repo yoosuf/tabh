@@ -31,6 +31,7 @@
         "bloodhound-js": "^1.2.2",
         "dropzone": "^5.3.0",
         "fb": "^2.0.0",
+        "jquery-confirm": "^3.3.2",
         "react-places-autocomplete": "^5.4.3",
         "selectize": "^0.12.4",
         "typeahead.js": "^0.11.1",

@@ -1,4 +1,8 @@
 @if (auth()->check())
+
+
+<form role="form" method="POST" action="{{ route('code.validate') }}">
+    {{ csrf_field() }}
     <div class="card checkouts-order-details-card">
         <div class="card-content">
 
@@ -15,11 +19,11 @@
             type="text"
             name="order_discunt_code"
             class="input {{ $errors->has('order_discunt_code') ? ' is-danger' : '' }}"
-            value="{{ isset($item->order_discunt_code)? $item->order_discunt_code : old('order_discunt_code') }}" />
+            value="{{ old('order_discunt_code') }}" />
   </div>
   
   <div class="control">
-    <button class="button is-info" type="button" id="applyDiscuntCode">
+    <button class="button is-info" type="submit" id="applyDiscuntCode">
       Apply
     </button>
   </div>
@@ -27,4 +31,5 @@
 
 </div>
 </div>
+</form>
 @endif

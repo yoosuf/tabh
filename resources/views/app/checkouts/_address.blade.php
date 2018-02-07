@@ -256,7 +256,14 @@
 
         @endif
 
+
+
+
+                                <button type="submit" class="button is-success">Place order</button>
+
+
     </div>
+
 </div>
 
 @endif

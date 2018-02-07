@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Entities\CouponCode;
+use \Carbon\Carbon;
 
 class CouponController extends ApiController
 {
@@ -24,27 +25,21 @@ class CouponController extends ApiController
 
     public function validateCouponCode(Request $request) {
 
-        $request->validate(
-            [
-                'order_discunt_code' => 'required|exists:coupon_codes,code',
-            ]
-        );
+        
+        $request->validate([
+            'order_discunt_code' => 'required|exists:coupon_codes,code',
+        ]);
 
-        // $discuntCode = $request->get('order_discunt_code');
-        // $data = $this->couponcode
-        //     ->whereCode($discuntCode)
-        //     ->whereNotNull('expires_at')
-        //     ->whereDate('expires_at', '<=', Carbon::now())
-        //     ->first();
+        $discuntCode = $request->get('order_discunt_code');
+        $data = $this->couponcode
+            ->whereCode($discuntCode)
+            ->first();
 
-        // if(count($data)) {
+        $payload = [
+            "data" => $data
+        ];
 
-        //     $payload = [
-
-        //     ];
-
-        //     return response()->json($payload);
-        // }
+        return response()->json($payload, 200);
     }
 
 }

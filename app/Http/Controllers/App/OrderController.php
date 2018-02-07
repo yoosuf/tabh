@@ -48,6 +48,11 @@ class OrderController extends Controller
         $this->cart = $cart;
     }
 
+
+
+
+
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -134,13 +139,14 @@ class OrderController extends Controller
         }
 
         $identifier = $request->session()->getId() . '/' . Carbon::now();
+
         try {
             Cart::store($identifier);
         } catch (\Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException $e) {
-
         }
 
         $deliveryDataArray = collect([]);
+
         if($request->has('delivery'))
         {
             foreach ($request->get('delivery') as $item)
@@ -163,7 +169,12 @@ class OrderController extends Controller
             'meta' => $deliveryDataArray,
         ]);
 
-        $order->address()->updateOrCreate(['addressable_id' => $order->id, 'addressable_type' => 'App\Entities\Order'], $addressData);
+        $order->address()->updateOrCreate(
+            [
+                'addressable_id' => $order->id, 
+                'addressable_type' => 'App\Entities\Order'], 
+            $addressData
+        );
 
         if ($request->hasFile('prescription')) {
             $path = Storage::putFile('attachments', $request->file('prescription'));

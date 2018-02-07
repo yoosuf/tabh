@@ -4,8 +4,13 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
+
+
 require('./bootstrap');
-require('./coupon');
+require('jquery-confirm');
+// require('./coupon');
+
+
 // require('./address');
 
 // var FB = require('fb');

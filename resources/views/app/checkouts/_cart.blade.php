@@ -46,6 +46,9 @@
                     </div>
                 @endforeach
                 <?php $discount_amount = 0 ?>
+
+
+                <?php if (!isset($data)): ?>
                 @if($min_discount_amount <= $partner_total)
                     <?php $discount_amount = ($partner_total / 100) * $discount_percentage ?>
                     <?php $partner_total = $partner_total - $discount_amount ?>
@@ -71,7 +74,9 @@
                         </table>
                     </div>
                 @endif
-                        <?php $delivery_charges_for_partners->put(\App\Entities\Partner::where('name', $key)->first()->id, $delivery_charge); ?>
+                <?php endif; ?>
+
+                <?php $delivery_charges_for_partners->put(\App\Entities\Partner::where('name', $key)->first()->id, $delivery_charge); ?>
                 @if($delivery_charge != 0)
                     <?php $partner_total = $partner_total + $delivery_charge ?>
                     <div class="media item-discount" style="">
@@ -107,10 +112,30 @@
                         </tr>
                     </table>
                 </div>
-                <?php $grand_total = $grand_total + $partner_total ?>
-                <?php $grand_discount = $grand_discount + $discount_amount ?>
+
+                <?php if (!isset($data)): ?>
+                    <?php $grand_total = $grand_total + $partner_total ?>
+                    <?php $grand_discount = $grand_discount + $discount_amount ?>
+                <?php else: ?>
+
+                    <?php if ($data['reward_type'] == "fixed"):  ?> 
+                        <?php $grand_total = ($grand_total + $partner_total) - ($data['reward']) ?>
+                        <?php $grand_discount = $grand_discount + $data['reward'] ?>
+                    <?php elseif($data['reward_type'] == "percent"): ?>
+
+
+                        <?php $grand_discount = ($partner_total / 100) * ($data['reward']) ?>
+
+                        <?php $grand_total = ($partner_total -  $grand_discount) ?>
+
+                    <?php endif; ?>
+
+                <?php endif; ?>
 
             @endforeach
+
+
+{{-- isset($data) ?  dd($data) : null --}}
 
 
 
@@ -120,16 +145,39 @@
             <div class="card order-total">
                 <div class="card-content">
                     <table style="width: 100%;">
-                        @if($grand_discount > 0)
-                            <tr>
-                                <td style="text-align: left">
-                                    <p class="subtitle is-6">Total Discount</p>
-                                </td>
-                                <td style="text-align: right">
-                                    <p class="subtitle is-6">-&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
-                                </td>
-                            </tr>
-                        @endif
+
+                        
+                            @if($grand_discount > 0 )
+                                <tr>
+                                    <td style="text-align: left">
+                                        <p class="subtitle is-6">Total Discount
+                                        
+                                        <?php if (isset($data)):  ?>
+                                            <?php if ($data['reward_type'] == "percent"):  ?> 
+
+                                                ({{ $data['reward'] }} %)
+                                                    
+
+                                            <?php endif;  ?>
+
+                                        <?php else: ?>
+
+                                        <?php endif;  ?>
+                                        </p>
+                                    </td>
+                                    <td style="text-align: right">
+                                        <p class="subtitle is-6">
+                          
+
+                                            -&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
+
+                                        
+                                        
+                                    </td>
+                                </tr>
+                            @endif
+                  
+
                         <tr>
                             <td style="text-align: left">
                                 <h1 class="title is-4 is-spaced">Total Payable Amount</h1>
@@ -141,7 +189,7 @@
                         <tr class="action-buttons">
                             <td style="text-align: left">
                                 {{--<form role="form" method="POST" action="{{ route('order.discard') }}">--}}
-                                {{ csrf_field() }}
+                                {{--  {{ csrf_field() }} --}}
                                 <br>
                                 {{--<input type="hidden" name="id" id="id" value="">--}}
                                 {{--<a href="{{ route('order.discard') }}" class="button is-danger">- Discard Order -</a>--}}
@@ -151,7 +199,7 @@
                                 {{--<form role="form" method="POST" action="{{ route('order.add') }}">--}}
                                 {{--{{ csrf_field() }}--}}
                                 <br>
-                                <input type="hidden" name="total_amount" id="total_amount" value="{{$grand_total}}">
+                                <input type="hidden" name="total_amount" id="total_amount" value="{{ $grand_total }}">
                                 <input type="hidden" name="total_discount" id="total_discount"
                                        value="{{$grand_discount}}">
                                 <input type="hidden" name="tax" id="tax" value="0">
@@ -162,7 +210,6 @@
                                           <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
                                 @endforeach
                                 {{--<input type="hidden" name="delivery" id="delivery" value="{{$delivery_charges_for_partners}}">--}}
-                                <button type="submit" class="button is-success">Place order</button>
                                 {{--</form>--}}
                             </td>
                         </tr>

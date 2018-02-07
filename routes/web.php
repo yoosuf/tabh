@@ -17,6 +17,7 @@ Route::group(['namespace' => 'App'], function () {
     Route::get('login', 'Auth\LoginController@getLoginForm');
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
 
+
     Route::post('/cart/add', 'CartController@add')->name('cart.add');
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
@@ -24,6 +25,10 @@ Route::group(['namespace' => 'App'], function () {
     Route::get('/products', 'SearchController@titles');
 
     Route::group(['middleware' => ['auth']], function () {
+
+        Route::post('coupon-code', 'CouponController@validateCouponCode')->name('code.validate');
+
+
         Route::post('/order/prescription', 'OrderController@placeOrder')->name('order.prescription.upload');
         Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
         Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
@@ -59,6 +64,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('logout', 'Auth\LoginController@getLogout')->name('admin.logout');
         Route::get('/', 'DashboardController@index')->name('admin.dashboard');
 
+
+
+        
+        
+        
+        
+        
         Route::get('orders', 'OrdersController@index')->name('admin.orders');
         Route::post('orders', 'OrdersController@save');
         Route::get('orders/{id}/approve', 'OrdersController@approve')->name('admin.orders.approve');
