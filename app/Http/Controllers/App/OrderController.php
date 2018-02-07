@@ -132,7 +132,7 @@ class OrderController extends Controller
                 'address2' => $address->line2,
                 'city' => $address->city,
                 'postcode' => $address->postcode,
-                'province' => $address->province,
+                'district' => $address->province,
                 'country' => $address->country,
                 'default' => true,
             ];
