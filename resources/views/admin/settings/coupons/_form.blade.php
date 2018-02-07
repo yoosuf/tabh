@@ -14,7 +14,7 @@
             <div class="card-content">
 
                 <div class="field">
-                    <label for="customer_name">Full name</label>
+                    <label for="customer_name">Discount code</label>
 
                     <div class="control is-expanded">
                         <input
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="customer_email">Email</label>
+                    <label for="customer_email">Discount</label>
                     <div class="control is-expanded">
                         <input
                                 id="customer_email"
@@ -50,6 +50,24 @@
                 </div>
 
 
+                <div class="field">
+                    <label for="customer_email">Expiry date</label>
+                    <div class="control is-expanded">
+                        <input
+                                id="customer_email"
+                                type="email"
+                                name="customer_email"
+                                class="input {{ $errors->has('customer_email') ? ' is-danger' : '' }}"
+                                value="{{ isset($item->email)? $item->email : old('customer_email') }}"  />
+
+                    </div>
+                    @if ($errors->has('customer_email'))
+                        <span class="help is-danger">
+                        {{ $errors->first('customer_email') }}
+                    </span>
+                    @endif
+                </div>
+
                 <div class="content">
                     <div class="field is-grouped">
                         <div class="control">
@@ -57,11 +75,7 @@
                                 Save changes
                             </button>
                         </div>
-                        <div class="control">
-                            <a class="button is-text" href="{{ route('admin.users') }}">
-                                Discard
-                            </a>
-                        </div>
+
                     </div>
 
         </div>

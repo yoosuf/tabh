@@ -5,9 +5,7 @@
             <p class="title">Coupons</p>
         </div>
         <div class="column">
-            <div class="buttons has-addons is-right">
-                <a href="{{ route('admin.coupons.create') }}" class="button is-link">Add New Coupon</a>
-            </div>
+
         </div>
     </div>
 

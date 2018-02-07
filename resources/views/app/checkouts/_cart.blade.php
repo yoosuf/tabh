@@ -112,6 +112,30 @@
 
             @endforeach
 
+
+
+             
+
+
+            <div class="field">
+                <div class="control is-expanded">
+                    <label for="order_discunt_code">Discount code</label>
+                    <input
+                    id="order_discunt_code"
+                    type="text"
+                    name="order_discunt_code"
+                    class="input {{ $errors->has('order_discunt_code') ? ' is-danger' : '' }}"
+                    value="{{ isset($item->order_discunt_code)? $item->order_discunt_code : old('order_discunt_code') }}"/>
+                </div>
+                @if ($errors->has('order_discunt_code'))
+                <span class="help is-danger">
+                    {{ $errors->first('order_discunt_code') }}
+                </span>
+                @endif
+            </div>
+
+
+
             <div class="card order-total">
                 <div class="card-content">
                     <table style="width: 100%;">
@@ -134,23 +158,23 @@
                             </td>
                         </tr>
                         <tr class="action-buttons">
-                            <td style="text-align: left">
+                            {{-- <td style="text-align: left"> --}}
                                 {{--<form role="form" method="POST" action="{{ route('order.discard') }}">--}}
-                                {{ csrf_field() }}
-                                <br>
+                                {{--  {{ csrf_field() }} --}}
+                                {{-- <br> --}}
                                 {{--<input type="hidden" name="id" id="id" value="">--}}
                                 {{--<a href="{{ route('order.discard') }}" class="button is-danger">- Discard Order -</a>--}}
                                 {{--</form>--}}
-                            </td>
+                            {{-- </td> --}}
                             <td style="text-align: right">
                                 {{--<form role="form" method="POST" action="{{ route('order.add') }}">--}}
                                 {{--{{ csrf_field() }}--}}
-                                <br>
+                                {{--<br>--}}
                                 <input type="hidden" name="total_amount" id="total_amount" value="{{$grand_total}}">
                                 <input type="hidden" name="total_discount" id="total_discount"
                                        value="{{$grand_discount}}">
                                 <input type="hidden" name="tax" id="tax" value="0">
-{{--{{dd($delivery_charges_for_partners->toArray())}}--}}
+                                {{--{{dd($delivery_charges_for_partners->toArray())}}--}}
 
 
                                 @foreach($delivery_charges_for_partners as $key => $value)

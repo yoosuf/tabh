@@ -36,8 +36,8 @@
 
                     @include('app.checkouts._login')
 
-                    <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('order.add') }}">
-                    {{ csrf_field() }}
+                    {{--<form role="form" method="POST" enctype="multipart/form-data" action="{{ route('order.add') }}">--}}
+                    {{--{{ csrf_field() }}--}}
                         @include('app.checkouts._prescription')
 
                         @include('app.checkouts._address')
@@ -45,7 +45,7 @@
                         @include('app.checkouts._payment')
 
                         @include('app.checkouts._cart')
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
         </div>
