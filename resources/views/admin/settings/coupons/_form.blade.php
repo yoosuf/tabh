@@ -23,7 +23,7 @@
                                 name="code"
                                 class="input {{ $errors->has('code') ? ' is-danger' : '' }}"
                                 value="{{ isset($item->code)? $item->code : old('code') }}"
-                                {{ isset($item->code) ? 'disabled' : "" }} />
+                                 />
                     </div>
                     @if ($errors->has('code'))
                         <span class="help is-danger">

@@ -29,7 +29,7 @@ class CouponsController extends Controller
         $limit = $request->has('limit') ? $request->get('limit') : 10;
         $data = $this->couponcode->orderBy('id', 'desc')->paginate($limit);
 
-        return view('admin.settings.coupons.index', get_defined_vars());
+        return view('admin.settings.coupons.index', compact('data'));
     }
 
     /**
