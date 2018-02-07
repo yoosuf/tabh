@@ -31,9 +31,9 @@
                         {{--<input type="hidden" name="id" value="{{$row->id}}">--}}
                         <p>
                             <strong>{{$row->name}}</strong>
-                            <small>{{ $row->model->generic_name }}</small>
+                            <small>{{ isset($row->model->generic_name) ? $row->model->generic_name : "" }}</small>
                             <br>
-                            by {{ $row->model->partner->name }}
+                            by {{ isset($row->model->partner->name) ? $row->model->partner->name : "" }}
                             <br>
 
                         </p>
