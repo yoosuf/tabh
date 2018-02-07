@@ -36,15 +36,15 @@
                                 <div class="media-content order-address">
                                     <div class="content">
                                         <p>
-                                            <strong>{{ $order->address()->first()->name }}</strong>
+                                            <strong>{{ isset($order->address()->first()->name) ? $order->address()->first()->name : "" }}</strong>
                                             <br>
-                                            <strong>{{ $order->address()->first()->phone }}</strong>
+                                            <strong>{{ isset($order->address()->first()->phone) ? $order->address()->first()->phone : "" }}</strong>
 
                                             <address>
-                                                {{ $order->address()->first()->address1 }}
-                                                {{ $order->address()->first()->address2 }}
+                                                {{ isset($order->address()->first()->address1) ?  $order->address()->first()->address1 : "" }}
+                                                {{ isset($order->address()->first()->address2) ? $order->address()->first()->address2 : "" }}
 
-                                                {{ $order->address()->first()->city }}, {{ $order->address()->first()->province }}, {{ $order->address()->first()->postcode }}, {{ $order->address()->first()->country }}
+                                                {{ isset($order->address()->first()->city) ? $order->address()->first()->city : "" }}, {{ isset($order->address()->first()->district) ? $order->address()->first()->district : "" }}, {{ isset($order->address()->first()->postcode) ? $order->address()->first()->postcode : "" }}, {{ isset($order->address()->first()->country) ? $order->address()->first()->country : "" }}
                                             </address>
 
                                         </p>
