@@ -18,7 +18,7 @@ class CouponCode extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'reward', 'expires_at'];
+    protected $fillable = ['code', 'reward_type', 'reward', 'expires_at', 'data'];
     /**
      * The attributes that should be cast to native types.
      *

@@ -105,7 +105,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
             Route::post('coupons', 'CouponsController@store')->name('admin.coupons.store');
             Route::get('coupons/create', 'CouponsController@create')->name('admin.coupons.create');
             Route::get('coupons/{id}', 'CouponsController@edit')->name('admin.coupons.edit');
-            Route::put('coupons/{id}', 'UsersContCouponsControllerroller@update')->name('admin.coupons.update');
+            Route::put('coupons/{id}', 'CouponsController@update')->name('admin.coupons.update');
             Route::delete('coupons/{id}', 'CouponsController@destroy')->name('admin.coupons.delete');
 
             Route::get('account/profile', 'ProfileController@edit')->name('admin.account.profile');

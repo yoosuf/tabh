@@ -43,8 +43,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function ($route) {
 
     $route->get('search', 'SearchController@index');
 
-
-
+    $route->get('coupon', 'CouponController@validateCouponCode');
 
     $route->get('districts', 'LocationController@getDistricts');
     $route->get('districts/{id}/areas', 'LocationController@getAreas');

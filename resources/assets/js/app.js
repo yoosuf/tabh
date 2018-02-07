@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./coupon');
 // require('./address');
 
 // var FB = require('fb');

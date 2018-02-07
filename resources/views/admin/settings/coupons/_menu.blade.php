@@ -1,6 +1,6 @@
 <div class="field is-grouped">
     <div class="control">
-        <a class="button" href="{{ route('admin.users.edit', [$item->id]) }}">
+        <a class="button" href="{{ route('admin.coupons.edit', [$item->id]) }}">
             Edit
         </a>
     </div>

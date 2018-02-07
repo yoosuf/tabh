@@ -44,6 +44,8 @@
 
                         @include('app.checkouts._payment')
 
+                        @include('app.checkouts.coupon_codes')
+
                         @include('app.checkouts._cart')
                     </form>
                 </div>

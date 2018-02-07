@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\City;
 use Illuminate\Http\Request;
 use App\Entities\CouponCode;
 use App\Http\Controllers\Controller;
@@ -51,7 +50,21 @@ class CouponsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $request->validate([
+            'code' => 'required|unique:coupon_codes|min:6|max:255',
+            'reward_type'   => 'required|in:fixed,percent',
+            'reward' => 'required',
+            'expires_at' => 'required|date'
+        ]);
+
+        $this->couponcode->create([
+            'code' => $request->get('code'),
+            'reward_type'   => $request->get('reward_type'),
+            'reward' => $request->get('reward'),
+            'expires_at' => $request->get('expires_at'),
+        ]);
+        
+        return redirect()->back();
     }
 
     /**
@@ -60,9 +73,9 @@ class CouponsController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show(CouponCode $couponcode)
     {
-        //
+
     }
 
     /**
@@ -71,9 +84,11 @@ class CouponsController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit(CouponCode $couponcode, $id)
     {
-        //
+        $item = $couponcode->find($id);
+
+        return view('admin.settings.coupons.edit', get_defined_vars());
     }
 
     /**
@@ -83,9 +98,18 @@ class CouponsController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, CouponCode $couponcode, $id)
     {
-        //
+        $data = $couponcode->find($id);
+
+        $data->update([
+            'code' => $request->get('code'),
+            'reward_type'   => $request->get('reward_type'),
+            'reward' => $request->get('reward'),
+            'expires_at' => $request->get('expires_at'),
+        ]);
+        return redirect()->back();
+        
     }
 
     /**
@@ -94,7 +118,7 @@ class CouponsController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(CouponCode $couponcode)
     {
         //
     }

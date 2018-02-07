@@ -116,7 +116,6 @@
 
 
 
-            @include('app.checkouts.coupon_codes')
 
             <div class="card order-total">
                 <div class="card-content">
