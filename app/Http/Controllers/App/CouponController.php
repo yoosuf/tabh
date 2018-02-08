@@ -39,7 +39,7 @@ class CouponController extends Controller
 
 
         if (empty($data)){
-            $validator->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
+             $this->validate()->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
         }
 
 
