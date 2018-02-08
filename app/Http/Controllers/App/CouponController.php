@@ -33,8 +33,15 @@ class CouponController extends Controller
 
         $discuntCode = $request->get('order_discunt_code');
         $data = $this->couponcode
+            ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
             ->whereCode($discuntCode)
             ->first();
+
+
+        if (empty($data)){
+            $validator->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
+        }
+
 
         $grouped = $this->group_by_partner();
 
