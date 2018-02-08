@@ -38,9 +38,9 @@ class CouponController extends Controller
             ->first();
 
 
-        if (empty($data)){
-             $this->validate()->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
-        }
+        // if (empty($data)){
+        //      $this->validate()->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
+        // }
 
 
         $grouped = $this->group_by_partner();
