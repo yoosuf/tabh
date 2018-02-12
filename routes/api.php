@@ -55,4 +55,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function ($route) {
 
 
 
+//Route::get('/', function () {
+//    return App\Entities\User::class;
+//});
+
 

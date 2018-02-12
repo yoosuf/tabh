@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Entities\Address;
 use App\Entities\Country;
+use App\Entities\CouponCode;
 use App\Entities\LineItem;
 use App\Entities\Order;
 use App\Entities\Partner;
@@ -16,7 +17,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
 
 
 class OrderController extends Controller
@@ -29,6 +29,8 @@ class OrderController extends Controller
 
     private $cart;
 
+    private $couponcode;
+
     /**
      * OrderController constructor.
      * @param Product $product
@@ -38,7 +40,7 @@ class OrderController extends Controller
      * @param Address $address
      * @param Cart $cart
      */
-    public function __construct(Product $product, Partner $partner, Order $order, LineItem $line_item, Address $address, Cart $cart)
+    public function __construct(Product $product, Partner $partner, Order $order, LineItem $line_item, Address $address, Cart $cart, CouponCode $couponcode)
     {
         $this->product = $product;
         $this->partner = $partner;
@@ -46,11 +48,76 @@ class OrderController extends Controller
         $this->line_item = $line_item;
         $this->address = $address;
         $this->cart = $cart;
+        $this->couponcode = $couponcode;
     }
 
 
+    public function summery(Request $request)
+    {
+
+        $grand_total = 0;
+        $grand_discount = 0;
+        $delivery_charges_for_partners = collect([]);
+        $grouped = $this->group_by_partner();
 
 
+        $request->validate([
+            'order_discount_code' => 'nullable|exists:coupon_codes,code',
+        ]);
+
+
+        if ($request->has('order_discount_code')) {
+
+            $validCode = $this->couponcode
+                ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
+                ->whereCode($request->get('order_discount_code'))
+                ->first();
+
+
+            return [
+                'type' => $validCode->reward_type == "percent" ? '%' : null,
+                'amount' => $validCode->reward
+            ];
+
+        }
+
+        foreach ($grouped as $key => $partner) {
+            $partner_total = 0;
+            $discount_percentage = $this->partner->where('name', $key)->first()['preferences']['discount_percentage'];
+            $min_discount_amount = $this->partner->where('name', $key)->first()['preferences']['min_discount_amount'];
+            $delivery_charge = (float)$this->partner->where('name', $key)->first()['preferences']['delivery_charge'];
+            $discount_amount = 0;
+
+            foreach ($partner as $item) {
+                $partner_total = $partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', ''));
+                $item_name = $item['item']->name;
+                $iten_price = number_format(((float)$item['item']->price), 2, '.', '');
+                $item_qty = $item['item']->qty;
+                $total = number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '');
+            }
+
+
+            $delivery_charges_for_partners->put($this->partner->where('name', $key)->first()->id, $delivery_charge);
+
+            if ($delivery_charge != 0) {
+                $partner_total = $partner_total + $delivery_charge;
+
+            }
+
+
+            if ($min_discount_amount <= $partner_total) {
+                $discount_amount = ($partner_total / 100) * $discount_percentage;
+                $partner_total = $partner_total - $discount_amount;
+            }
+        }
+
+        return [
+            'grouped' => $partner,
+            'partner_total' => $partner_total,
+            'delivery_charge' => $delivery_charge,
+            'discount_amount' => $discount_amount
+        ];
+    }
 
 
     /**
@@ -73,28 +140,28 @@ class OrderController extends Controller
         ]);
 
         if ($request->get('address') == "-1") {
-             $request->validate([
-                 'address_name' => 'nullable|string|max:255',
-                 'address_phone' => 'nullable',
-                 'address_line_1' => 'nullable|string|max:255',
-                 'address_line_2' => 'nullable|string|max:255',
-                 'address_city' => 'nullable|string|max:255',
+            $request->validate([
+                'address_name' => 'nullable|string|max:255',
+                'address_phone' => 'nullable',
+                'address_line_1' => 'nullable|string|max:255',
+                'address_line_2' => 'nullable|string|max:255',
+                'address_city' => 'nullable|string|max:255',
                 //  'address_city_id' => 'nullable|integer',
-                 'address_postcode' => 'nullable|string|max:255',
-                 'address_country' => 'nullable|string|max:255',
+                'address_postcode' => 'nullable|string|max:255',
+                'address_country' => 'nullable|string|max:255',
                 //  'address_country_id' => 'nullable|integer',
-                 'address_province' => 'nullable|string|max:255',
+                'address_province' => 'nullable|string|max:255',
                 //  'address_province_id' => 'nullable|integer',
-             ], [
-                 'address_name.required' => 'Name is required',
-                 'address_phone.required' => 'Phone is required',
-                 'address_line_1.required' => 'Line 1 is required',
-                 //'address_line_2.required' => 'Line 2 is required',
-                 'address_city.required' => 'City is required',
-                 'address_postcode.required' => 'Postcode is required',
-                 'address_province.required' => 'Province is required',
-                 'address_country.required' => 'Country is required',
-             ]);
+            ], [
+                'address_name.required' => 'Name is required',
+                'address_phone.required' => 'Phone is required',
+                'address_line_1.required' => 'Line 1 is required',
+                //'address_line_2.required' => 'Line 2 is required',
+                'address_city.required' => 'City is required',
+                'address_postcode.required' => 'Postcode is required',
+                'address_province.required' => 'Province is required',
+                'address_country.required' => 'Country is required',
+            ]);
 
             $address = Auth::user()->addresses()->create([
                 'name' => $request->get('address_name'),
@@ -111,17 +178,17 @@ class OrderController extends Controller
                 'default' => true,
             ]);
 
-            $addressData = [
-                'name' => $request->get('address_name'),
-                'phone' => $request->get('address_phone'),
-                'address1' => $request->get('address_line_1'),
-                'address2' => $request->get('address_line_2'),
-                'city' => $request->get('address_city'),
-                'postcode' => $request->get('address_postcode'),
-                'district' => $request->get('address_province'),
-                'country' => $request->get('address_country'),
-                'default' => true,
-            ];
+//            $addressData = [
+//                'name' => $request->get('address_name'),
+//                'phone' => $request->get('address_phone'),
+//                'address1' => $request->get('address_line_1'),
+//                'address2' => $request->get('address_line_2'),
+//                'city' => $request->get('address_city'),
+//                'postcode' => $request->get('address_postcode'),
+//                'district' => $request->get('address_province'),
+//                'country' => $request->get('address_country'),
+//                'default' => true,
+//            ];
         } else {
             $address = $this->address->find($request->get('address'));
 
@@ -147,14 +214,12 @@ class OrderController extends Controller
 
         $deliveryDataArray = collect([]);
 
-        if($request->has('delivery'))
-        {
-            foreach ($request->get('delivery') as $item)
-            {
+        if ($request->has('delivery')) {
+            foreach ($request->get('delivery') as $item) {
                 $deliveryData = collect([]);
                 $pieces = explode("-", $item);
-                $deliveryData->put('partner_id',$pieces[0]);
-                $deliveryData->put('delivery_amount',$pieces[1]);
+                $deliveryData->put('partner_id', $pieces[0]);
+                $deliveryData->put('delivery_amount', $pieces[1]);
 
                 $deliveryDataArray->push($deliveryData);
             }
@@ -171,8 +236,8 @@ class OrderController extends Controller
 
         $order->address()->updateOrCreate(
             [
-                'addressable_id' => $order->id, 
-                'addressable_type' => 'App\Entities\Order'], 
+                'addressable_id' => $order->id,
+                'addressable_type' => 'App\Entities\Order'],
             $addressData
         );
 
@@ -204,7 +269,6 @@ class OrderController extends Controller
 
         // Mail::to($request->user()->email)->send(new NewOrder($order));
 
-
         NewOrder::dispatch($user, $order);
         return redirect()->route('account.orders');
 
@@ -218,4 +282,20 @@ class OrderController extends Controller
     }
 
 
+    private function group_by_partner()
+    {
+        $collection = collect([]);
+        $items = Cart::content();
+
+//        dd($items);
+
+        foreach ($items as $item) {
+            $product = $this->product->find($item->id);
+            $collection->push(['partner' => $product->partner()->first()->name,
+                'item' => $item
+            ]);
+        }
+
+        return $collection->groupBy('partner');
+    }
 }

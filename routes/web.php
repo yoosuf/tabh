@@ -22,6 +22,8 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
 
+    Route::get('checkouts', 'OrderController@summery');
+
     Route::get('/products', 'SearchController@titles');
 
     Route::group(['middleware' => ['auth']], function () {

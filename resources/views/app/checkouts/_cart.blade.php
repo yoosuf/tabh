@@ -29,7 +29,7 @@
                             <div class="content">
                                 <p>{{$item['item']->name}} |
                                     &#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}}
-                                    | {{$item['item']->qty}} unit(s)</p>
+                                    | { { $item['item']->qty}} unit(s)</p>
                             </div>
                         </div>
                         <table>
