@@ -11,7 +11,7 @@ require('jquery-confirm');
 // require('./coupon');
 
 
-// require('./address');
+require('./address');
 
 // var FB = require('fb');
 

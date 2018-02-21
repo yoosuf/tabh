@@ -164,7 +164,6 @@ class AddressesController extends Controller
                 continue;
             }
 
-
             $addressData = [
                 'default' => false,
             ];
