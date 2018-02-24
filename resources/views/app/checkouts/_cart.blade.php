@@ -15,10 +15,10 @@
 
                 <h3 class="is-success"><strong>By {{$key}}</strong></h3>
                 <?php $partner_total = 0 ?>
-                <?php $discount_percentage  = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
-                <?php $min_discount_amount  = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
+                <?php $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
+                <?php $min_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
 
-                <?php $delivery_charge      = \App\Entities\Partner::where('name', $key)->first()['preferences']['delivery_charge'] ?>
+                <?php $delivery_charge = \App\Entities\Partner::where('name', $key)->first()['preferences']['delivery_charge'] ?>
 
                 @foreach($partner as $item)
 
@@ -29,7 +29,7 @@
                             <div class="content">
                                 <p>{{$item['item']->name}} |
                                     &#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}}
-                                    | { { $item['item']->qty}} unit(s)</p>
+                                    | {{ $item['item']->qty}} unit(s)</p>
                             </div>
                         </div>
                         <table>
@@ -118,15 +118,15 @@
                     <?php $grand_discount = $grand_discount + $discount_amount ?>
                 <?php else: ?>
 
-                    <?php if ($data['reward_type'] == "fixed"):  ?> 
+                    <?php if ($data['reward_type'] == "fixed"): ?>
                         <?php $grand_total = ($grand_total + $partner_total) - ($data['reward']) ?>
                         <?php $grand_discount = $grand_discount + $data['reward'] ?>
-                    <?php elseif($data['reward_type'] == "percent"): ?>
+                    <?php elseif ($data['reward_type'] == "percent"): ?>
 
 
                         <?php $grand_discount = ($partner_total / 100) * ($data['reward']) ?>
 
-                        <?php $grand_total = ($partner_total -  $grand_discount) ?>
+                        <?php $grand_total = ($partner_total - $grand_discount) ?>
 
                     <?php endif; ?>
 
@@ -135,55 +135,51 @@
             @endforeach
 
 
-{{-- isset($data) ?  dd($data) : null --}}
-
-
-
-
+            {{-- isset($data) ?  dd($data) : null --}}
 
 
             <div class="card order-total">
                 <div class="card-content">
                     <table style="width: 100%;">
 
-                        
-                            @if($grand_discount > 0 )
-                                <tr>
-                                    <td style="text-align: left">
-                                        <p class="subtitle is-6">Total Discount
-                                        
+
+                        @if($grand_discount > 0 )
+                            <tr>
+                                <td style="text-align: left">
+                                    <p class="subtitle is-6">Total Discount
+
                                         <?php if (isset($data)):  ?>
-                                            <?php if ($data['reward_type'] == "percent"):  ?> 
+                                        <?php if ($data['reward_type'] == "percent"):  ?>
 
-                                                ({{ $data['reward'] }} %)
-                                                    
+                                        ({{ $data['reward'] }} %)
 
-                                            <?php endif;  ?>
+
+                                        <?php endif;  ?>
 
                                         <?php else: ?>
 
                                         <?php endif;  ?>
-                                        </p>
-                                    </td>
-                                    <td style="text-align: right">
-                                        <p class="subtitle is-6">
-                          
+                                    </p>
+                                </td>
+                                <td style="text-align: right">
+                                    <p class="subtitle is-6">
 
-                                            -&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
 
-                                        
-                                        
-                                    </td>
-                                </tr>
-                            @endif
-                  
+                                        -&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</p>
+
+
+                                </td>
+                            </tr>
+                        @endif
+
 
                         <tr>
                             <td style="text-align: left">
                                 <h1 class="title is-4 is-spaced">Total Payable Amount</h1>
                             </td>
                             <td style="text-align: right">
-                                <h1 class="title is-4 is-spaced">&#2547; {{number_format(((float)$grand_total), 2, '.', '')}}</h1>
+                                <h1 class="title is-4 is-spaced">
+                                    &#2547; {{number_format(((float)$grand_total), 2, '.', '')}}</h1>
                             </td>
                         </tr>
                         <tr class="action-buttons">
@@ -203,11 +199,11 @@
                                 <input type="hidden" name="total_discount" id="total_discount"
                                        value="{{$grand_discount}}">
                                 <input type="hidden" name="tax" id="tax" value="0">
-{{--{{dd($delivery_charges_for_partners->toArray())}}--}}
+                                {{--{{dd($delivery_charges_for_partners->toArray())}}--}}
 
 
                                 @foreach($delivery_charges_for_partners as $key => $value)
-                                          <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
+                                    <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
                                 @endforeach
                                 {{--<input type="hidden" name="delivery" id="delivery" value="{{$delivery_charges_for_partners}}">--}}
                                 {{--</form>--}}
