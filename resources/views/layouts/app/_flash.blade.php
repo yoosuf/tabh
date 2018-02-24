@@ -16,11 +16,13 @@
             <div class="message-header">
                 <p>There is {{ $errors->count()  }} error (s) performing this action.</p>
             </div>
+            <div class="message-body">
+                <ul>
             @foreach($errors->all() as $error)
-                <div class="message-body">
-                    <p>{{ $error }}.</p>
-                </div>
+                    <li>{{ $error }}.</li>
             @endforeach
+                </ul>
+            </div>
         </article>
     @endif
 @endif
