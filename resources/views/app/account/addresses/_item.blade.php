@@ -35,20 +35,8 @@
                     </a>
 
 
-                    {{--@if(!$item->default)--}}
-
-                        {{--<a class="dropdown-item" href="{{ route('account.address.default', $item->id) }}"--}}
-                           {{--onclick="event.preventDefault();--}}
-                                       {{--document.getElementById('mark-default').submit();">--}}
-                            {{--Set as Default--}}
-                        {{--</a>--}}
-                        {{--<form id="mark-default" action="{{ route('account.address.default', $item->id) }}" method="POST"--}}
-                              {{--style="display: none;">--}}
-                            {{--{{ csrf_field() }}--}}
-                        {{--</form>--}}
 
 
-                    {{--@endif--}}
                     @if(count($data) != 1)
                         <hr class="dropdown-divider">
                         <form id="mark-default" action="{{route('account.address.destroy', $item->id)}}" method="POST">

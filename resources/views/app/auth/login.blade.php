@@ -77,7 +77,8 @@
                             <div class="is-divider" data-content="OR"></div>
 
 
-                            <a class="button is-block" href="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signin'])}}">
+                            <a class="button is-block"
+                               href="{{ route('provider.redirect', ['provider' => 'facebook', 'action' => 'signin'])}}">
                     <span class="icon">
                       <i class="fa fa-github"></i>
                     </span>
@@ -93,7 +94,6 @@
                 </div>
 
             </div>
-
 
 
         </div>

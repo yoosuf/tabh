@@ -1,4 +1,3 @@
-
 <div class="card">
     <div id="product_list" class="card-content">
         @if(isset($products) && count($products) > 0)

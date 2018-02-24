@@ -3,11 +3,7 @@
         <div class="card-content">
 
             <h1 class="title is-4 is-spaced">Your Order Details</h1>
-            <p class="subtitle is-5"></p>
 
-            <!-- <h2 class="is-success">Order Summary</h2> -->
-            <!-- <br> -->
-            <!-- <br> -->
             <?php $grand_total = 0 ?>
             <?php $grand_discount = 0 ?>
             <?php $delivery_charges_for_partners = collect([]) ?>
@@ -135,9 +131,6 @@
             @endforeach
 
 
-            {{-- isset($data) ?  dd($data) : null --}}
-
-
             <div class="card order-total">
                 <div class="card-content">
                     <table style="width: 100%;">
@@ -184,29 +177,22 @@
                         </tr>
                         <tr class="action-buttons">
                             <td style="text-align: left">
-                                {{--<form role="form" method="POST" action="{{ route('order.discard') }}">--}}
-                                {{--  {{ csrf_field() }} --}}
+
                                 <br>
-                                {{--<input type="hidden" name="id" id="id" value="">--}}
-                                {{--<a href="{{ route('order.discard') }}" class="button is-danger">- Discard Order -</a>--}}
-                                {{--</form>--}}
+
                             </td>
                             <td style="text-align: right">
-                                {{--<form role="form" method="POST" action="{{ route('order.add') }}">--}}
-                                {{--{{ csrf_field() }}--}}
+
                                 <br>
                                 <input type="hidden" name="total_amount" id="total_amount" value="{{ $grand_total }}">
                                 <input type="hidden" name="total_discount" id="total_discount"
                                        value="{{$grand_discount}}">
                                 <input type="hidden" name="tax" id="tax" value="0">
-                                {{--{{dd($delivery_charges_for_partners->toArray())}}--}}
-
 
                                 @foreach($delivery_charges_for_partners as $key => $value)
                                     <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
                                 @endforeach
-                                {{--<input type="hidden" name="delivery" id="delivery" value="{{$delivery_charges_for_partners}}">--}}
-                                {{--</form>--}}
+
                             </td>
                         </tr>
                     </table>

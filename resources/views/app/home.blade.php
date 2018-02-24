@@ -2,32 +2,12 @@
 
 @section('content')
 
-<section class="hero is-transparent nav-container position-fixed">
-    @include('layouts.app._nav')
-    <!-- <div class="hero-body home-header">
-    </div> -->
-</section>
-<!-- <section class="section is-fullheight home-body">
-    <div class="container has-text-centered">
-        <div class="columns">
-            <div class="column home-tab-item">
-                <a href="{{ route('search', ['type' => 'pharmaceutical']) }}">
-                    <h2>Pharmaceutical</h2>
-                    <img style="width: 256px; height: 256px" src="{{ asset('/img/pharma.svg') }}">
-                </a>
-            </div>
-            <div class="column home-tab-item">
-                <a href="{{ route('search', ['type' => 'groceries']) }}">
-                    <h2>Groceries</h2>
-                    <img style="width: 256px; height: 256px" src="{{ asset('/img/groceries.svg') }}">
-                </a>
-            </div>
-        </div>
-    </div>
-</section> -->
-<section class="hero section is-fullheight home-body">
-    <!-- <div class="nav-container-space"></div> -->
-    <!-- <div class="container has-text-centered"> -->
+    <section class="hero is-transparent nav-container position-fixed">
+        @include('layouts.app._nav')
+    </section>
+
+    <section class="hero section is-fullheight home-body">
+
         <div class="columns">
             <h2 class="main-desc main-desc1">Easy order. Quick delivery. Great offers</h2>
             <h2 class="main-desc main-desc2">Digital health hub for you and your family.</h2>
@@ -41,11 +21,8 @@
                 <div>
                     <h2>Grocery</h2>
                     <a href="{{ route('search', ['type' => 'groceries']) }}" id="shop_groceries">Shop Now</a>
-
-                    
                 </div>
             </div>
         </div>
-        <!-- </div> -->
     </section>
-    @endsection
+@endsection

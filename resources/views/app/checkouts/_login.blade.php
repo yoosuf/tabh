@@ -39,14 +39,7 @@
                 <div class="form-group">
 
                     <div class="columns is-gapless">
-                    <!-- <div class="column">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"
-                                                       name="remember" {{ old('remember') ? 'checked' : '' }}> {{ trans('quicksilver.login.remember_txt')}}
-                            </label>
-                        </div>
-                    </div> -->
+
 
                         <div class="column">
                             <a class="btn btn-link" href="{{ route('password.request') }}">

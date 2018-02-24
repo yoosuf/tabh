@@ -16,19 +16,16 @@
                 <div class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                        {{--}}
                             @if($row->model->attachment()->first() != null)
                                 <img src="{{asset('attachments/' . get_attachment($row->model->attachment()->first() )) }}">
                             @else
                                 <img src="{{ asset('/img/DefaultImage.png') }}">
                             @endif
-                            --}}
-                                                            <img src="{{ asset('/img/DefaultImage.png') }}">
 
                         </p>
                     </figure>
                     <div class="media-content">
-                        {{--<input type="hidden" name="id" value="{{$row->id}}">--}}
+                        <input type="hidden" name="id" value="{{$row->id}}">
                         <p>
                             <strong>{{$row->name}}</strong>
                             <small>{{ isset($row->model->generic_name) ? $row->model->generic_name : "" }}</small>

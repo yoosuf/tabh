@@ -8,11 +8,10 @@
             <div class="address-item">
 
                 <div class="field">
-                    {{--<label>{{ trans('quicksilver.account.address.input_full_name')}}</label>--}}
                     <div class="control is-expanded">
                         <label class="radio">
-                                <input type="radio" value="cash" checked="checked" name="payment_type">
-                                Cash On Delivery
+                            <input type="radio" value="cash" checked="checked" name="payment_type">
+                            Cash On Delivery
                         </label>
 
                     </div>
@@ -22,7 +21,6 @@
             <div class="address-item">
 
                 <div class="field">
-                    {{--<label>{{ trans('quicksilver.account.address.input_full_name')}}</label>--}}
                     <div class="control is-expanded">
                         <label class="radio">
                             <input type="radio" value="card" name="payment_type" disabled>

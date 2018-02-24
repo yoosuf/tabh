@@ -28,19 +28,21 @@ class CouponController extends Controller
 
         
         $request->validate([
-            'order_discunt_code' => 'nullable|exists:coupon_codes,code',
+            'order_discount_code' => 'nullable|exists:coupon_codes,code',
         ]);
 
-        $discuntCode = $request->get('order_discunt_code');
+        $discountCode = $request->get('order_discount_code');
         $data = $this->couponcode
             ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
-            ->whereCode($discuntCode)
+            ->whereCode($discountCode)
             ->first();
 
 
-        // if (empty($data)){
-        //      $this->validate()->getMessageBag()->add('order_discunt_code', 'Coupon code is expired');
-        // }
+         if (empty($data)){
+             return redirect()->back()->with('danger', 'Coupon code is expired!');
+         }
+
+
 
 
         $grouped = $this->group_by_partner();
@@ -52,7 +54,7 @@ class CouponController extends Controller
         }
         
 
-        return view('app.checkouts.index', compact('grouped', 'addresses', 'data'));
+        return view('app.checkouts.index', compact('grouped', 'addresses', 'data', 'discountCode'));
 
     }
 
@@ -61,7 +63,6 @@ class CouponController extends Controller
         $collection = collect([]);
         $items = \Cart::content();
 
-//        dd($items);
 
         foreach ($items as $item)
         {
