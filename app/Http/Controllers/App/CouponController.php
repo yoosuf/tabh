@@ -15,7 +15,7 @@ class CouponController extends Controller
     /**
      * Create a new CouponController instance.
      *
-     * @return void
+     * @param CouponCode $couponcode
      */
     public function __construct(CouponCode $couponcode)
     {
@@ -24,9 +24,10 @@ class CouponController extends Controller
     }
 
 
-    public function validateCouponCode(Request $request) {
+    public function validateCouponCode(Request $request)
+    {
 
-        
+
         $request->validate([
             'order_discount_code' => 'nullable|exists:coupon_codes,code',
         ]);
@@ -37,33 +38,30 @@ class CouponController extends Controller
             ->whereCode($discountCode)
             ->get();
 
-         if (count($data) > 0) {
-             return redirect()->back()->with('danger', 'Coupon code is expired!');
-         }
-
+        if (count($data) > 0) {
+            return redirect()->back()->with('danger', 'Coupon code is expired!');
+        }
 
 
         $grouped = $this->group_by_partner();
 
         $addresses = [];
-        if (\Auth::check())
-        {
+        if (\Auth::check()) {
             $addresses = \Auth::user()->addresses()->get();
         }
-        
+
 
         return view('app.checkouts.index', compact('grouped', 'addresses', 'data', 'discountCode'));
 
     }
 
-     private function group_by_partner()
+    private function group_by_partner()
     {
         $collection = collect([]);
         $items = \Cart::content();
 
 
-        foreach ($items as $item)
-        {
+        foreach ($items as $item) {
             $product = \App\Entities\Product::find($item->id);
             $collection->push(['partner' => $product->partner()->first()->name,
                 'item' => $item

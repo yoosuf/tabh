@@ -114,10 +114,10 @@
                     <?php $grand_discount = $grand_discount + $discount_amount ?>
                 <?php else: ?>
 
-                    <?php if ($data['reward_type'] == "fixed"): ?>
+                    <?php if (isset($data['reward_type']) && $data['reward_type'] == "fixed"): ?>
                         <?php $grand_total = ($grand_total + $partner_total) - ($data['reward']) ?>
                         <?php $grand_discount = $grand_discount + $data['reward'] ?>
-                    <?php elseif ($data['reward_type'] == "percent"): ?>
+                    <?php elseif (isset($data['reward_type']) && $data['reward_type'] == "percent"): ?>
 
 
                         <?php $grand_discount = ($partner_total / 100) * ($data['reward']) ?>
@@ -142,7 +142,7 @@
                                     <p class="subtitle is-6">Total Discount
 
                                         <?php if (isset($data)):  ?>
-                                        <?php if ($data['reward_type'] == "percent"):  ?>
+                                        <?php if (isset($data['reward_type']) && $data['reward_type'] == "percent"):  ?>
 
                                         ({{ $data['reward'] }} %)
 
