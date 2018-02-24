@@ -6,6 +6,9 @@
     </article>
 @elseif(session('danger'))
     <article class="message is-danger">
+        <div class="message-header">
+            <p>There is an error performing this action.</p>
+        </div>
         <div class="message-body">
             {{ session('danger') }}
         </div>

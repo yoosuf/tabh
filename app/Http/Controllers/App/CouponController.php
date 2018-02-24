@@ -37,11 +37,9 @@ class CouponController extends Controller
             ->whereCode($discountCode)
             ->first();
 
-
-         if (empty($data)){
+         if (count($data) > 0) {
              return redirect()->back()->with('danger', 'Coupon code is expired!');
          }
-
 
 
 
