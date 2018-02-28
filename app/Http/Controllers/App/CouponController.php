@@ -36,7 +36,7 @@ class CouponController extends Controller
         $data = $this->couponcode
             ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
             ->whereCode($discountCode)
-            ->first();
+            ->get();
 
         if (count($data) == 0) {
             return redirect()->back()->with('danger', 'Coupon code is expired!');
