@@ -22,6 +22,7 @@ class CouponsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,12 +30,13 @@ class CouponsController extends Controller
         $limit = $request->has('limit') ? $request->get('limit') : 10;
         $data = $this->couponcode->orderBy('id', 'desc')->paginate($limit);
 
-        return view('admin.settings.coupons.index', compact('data'));
+        return view('admin.settings.coupons.index', get_defined_vars());
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -45,43 +47,34 @@ class CouponsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
             'code' => 'required|unique:coupon_codes|min:6|max:255',
-            'reward_type'   => 'required|in:fixed,percent',
+            'reward_type' => 'required|in:fixed,percent',
             'reward' => 'required',
             'expires_at' => 'required|date'
         ]);
 
         $this->couponcode->create([
             'code' => $request->get('code'),
-            'reward_type'   => $request->get('reward_type'),
+            'reward_type' => $request->get('reward_type'),
             'reward' => $request->get('reward'),
             'expires_at' => $request->get('expires_at'),
         ]);
-        
-        return redirect()->back();
+
+        return redirect()->to('/admin/settings/coupons');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CouponCode $couponcode)
-    {
-
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\City  $city
+     * @param CouponCode $couponcode
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function edit(CouponCode $couponcode, $id)
@@ -94,8 +87,9 @@ class CouponsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
+     * @param  \Illuminate\Http\Request $request
+     * @param CouponCode $couponcode
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CouponCode $couponcode, $id)
@@ -104,22 +98,12 @@ class CouponsController extends Controller
 
         $data->update([
             'code' => $request->get('code'),
-            'reward_type'   => $request->get('reward_type'),
+            'reward_type' => $request->get('reward_type'),
             'reward' => $request->get('reward'),
             'expires_at' => $request->get('expires_at'),
         ]);
-        return redirect()->back();
-        
+        return redirect()->to('/admin/settings/coupons');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CouponCode $couponcode)
-    {
-        //
-    }
 }

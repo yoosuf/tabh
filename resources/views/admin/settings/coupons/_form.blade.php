@@ -46,18 +46,18 @@
                                 <input type="radio" name="reward_type" value="percent" {{ isset($item) && $item->reward_type == "percent" || old('reward_type') == "percent" ? "checked" : "" }} />
                                 Percent
                             </label>
-                        
+
                         </div>
 
 
-                   {{-- 
+                   {{--
                         <input
                                 id="reward_type"
                                 type="email"
                                 name="reward_type"
                                 class="input {{ $errors->has('reward_type') ? ' is-danger' : '' }}"
                                 value="{{ isset($item->email)? $item->email : old('reward_type') }}"  />
-                    --}} 
+                    --}}
                     </div>
                     @if ($errors->has('reward_type'))
                         <span class="help is-danger">
@@ -94,7 +94,7 @@
                                 type="date"
                                 name="expires_at"
                                 class="input {{ $errors->has('expires_at') ? ' is-danger' : '' }}"
-                                value="{{ isset($item->expires_at)? $item->expires_at : old('expires_at') }}"  />
+                                value="{{ isset($item->expires_at)? $item->expires_at->format('Y-m-d') : old('expires_at') }}"  />
 
                     </div>
                     @if ($errors->has('expires_at'))

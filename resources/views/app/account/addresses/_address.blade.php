@@ -82,30 +82,13 @@
 
 <div class="field is-horizontal">
     <div class="field-body">
-        <div class="field">
 
-            <label for="address_country">Country</label>
-            <div class="control is-expanded">
-
-                <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">
-
-                    {!! render_countries(isset($item->country)? $item->country : old('address_country'), 'address_country') !!}
-
-                </div>
-
-            </div>
-            @if ($errors->has('address_country'))
-                <span class="help is-danger">
-                    {{ $errors->first('address_country') }}
-                </span>
-            @endif
-        </div>
         <div class="field">
             <label for="address_province">State</label>
             <div class="control is-expanded">
                 <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">
 
-                    {!! render_districts(isset($item->province)? $item->country : old('address_province'), 'address_province') !!}
+                    {!! render_districts(isset($item->district_id)? $item->district_id : old('address_province'), 'address_province') !!}
                 </div>
             </div>
 
@@ -115,12 +98,9 @@
                 </span>
             @endif
         </div>
-    </div>
-</div>
 
 
-<div class="field is-horizontal">
-    <div class="field-body">
+
         <div class="field">
             <label for="address_city">City</label>
 
@@ -128,7 +108,7 @@
                 <div class="select is-fullwidth {{ $errors->has('address_city') ? ' is-danger' : '' }}">
 
 
-                    {!! render_areas(isset($item->city)? $item->city : old('address_city'), 'address_city') !!}
+                    {!! render_areas(isset($item->city_id)? $item->city_id : old('address_city'), 'address_city') !!}
 
 
                 </div>
@@ -139,6 +119,13 @@
                 </span>
             @endif
         </div>
+    </div>
+</div>
+
+
+<div class="field">
+    <div class="field-body">
+
         <div class="field">
             <label for="address_postcode">Zip/postal code</label>
 
@@ -159,4 +146,3 @@
         </div>
     </div>
 </div>
-

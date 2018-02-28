@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\App\Account;
 
-
 use App\Entities\Country;
 use App\Entities\User;
 use App\Http\Controllers\Controller;
@@ -10,13 +9,9 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-
-
     public function __construct()
     {
         $this->middleware('auth');
-
-
     }
 
     public function index()
@@ -24,24 +19,10 @@ class AccountController extends Controller
         return view('app.account.index');
     }
 
-
     public function create(Request $request)
     {
-
         return view('app.account.setup.create');
     }
-
-
-    public function store(Request $request)
-    {
-
-    }
-
-    public function edit(Request $request)
-    {
-
-    }
-
 
     public function update(Request $request)
     {
@@ -58,16 +39,13 @@ class AccountController extends Controller
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
             'address_line_1.required' => 'Line 1 is required',
-//            'address_line_2.required' => 'Line 2 is required',
+           'address_line_2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
             'address_country.required' => 'Country is required',
         ]);
-
-
-
-
+        
         $auth = auth()->user();
         $addressData = [
             'name' => $request->get('address_name'),
@@ -80,17 +58,11 @@ class AccountController extends Controller
             'country' => $request->get('address_country'),
             'default' => true,
         ];
-
-
-
         $auth->addresses()->updateOrCreate(['addressable_id' => $auth->id, 'addressable_type' => 'App\Entities\User'], $addressData);
 
         $auth->is_complete = true;
         $auth->save();
-
         flash('Successfully updated')->success();
         return redirect()->route('account');
-
-        
     }
 }

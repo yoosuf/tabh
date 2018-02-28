@@ -6,6 +6,7 @@
 
 // Bootstrap
 @import "~bulma/bulma";
+@import "admin/styles";
 
 
 .app-canvas {
@@ -24,6 +25,6 @@
 
 
 
-.field-body > .field:not(.is-narrow) {
-  flex: 1 !important;
-}
+//.field-body > .field:not(.is-narrow) {
+//  flex: 1 !important;
+//}

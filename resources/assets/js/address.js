@@ -4,8 +4,8 @@ $(function () {
     let addressCities = $("#address_city");
     let addressPostcode = $('#address_postcode');
 
-    addressCities.attr('disabled','disabled');
-    addressPostcode.attr('disabled','disabled');
+    addressCities.attr('disabled', 'disabled');
+    addressPostcode.attr('disabled', 'disabled');
 
     addressCities.change(function () {
         addressPostcode.val("");
@@ -17,16 +17,16 @@ $(function () {
         let currentDistrict = $(this).val();
 
         addressCities.parent().parent('div').addClass('is-loading');
-        addressCities.attr('disabled','disabled');
-        addressPostcode.attr('disabled','disabled');
+        addressCities.attr('disabled', 'disabled');
+        addressPostcode.attr('disabled', 'disabled');
 
-        axios.get(`/api/v1/districts/${currentDistrict}/areas`)
+        axios.get(`/districts/${currentDistrict}/areas`)
             .then(function (res) {
                 addressCities.empty();
-                $.each(res.data.data, function(key, value) {
+                $.each(res.data.data, function (key, value) {
                     addressCities
                         .append($("<option></option>")
-                            .attr("value",value.id)
+                            .attr("value", value.id)
                             .text(value.name));
                 });
                 addressCities.parent().parent('div').removeClass('is-loading');

@@ -29,16 +29,16 @@ if (!function_exists('render_countries')) {
         {
             if($country->nice_name == $nice_name)
             {
-                $html .= "<option value='". $country->nice_name ."' selected>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->id ."' selected>". $country->nice_name ."</option>";
 
             }
             else if($country->iso == 'BD')
             {
-                $html .= "<option value='". $country->nice_name ."' selected>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->id ."' selected>". $country->nice_name ."</option>";
             }
             else
             {
-                $html .= "<option value='". $country->nice_name ."'>". $country->nice_name ."</option>";
+                $html .= "<option value='". $country->id ."'>". $country->nice_name ."</option>";
             }
         }
 

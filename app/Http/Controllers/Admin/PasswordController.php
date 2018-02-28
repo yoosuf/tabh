@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -11,13 +12,10 @@ class PasswordController extends Controller
         $this->middleware('admin');
     }
 
-
-
     public function edit(Request $request)
     {
         return view('admin.account.password.edit');
     }
-
 
     public function update(Request $request)
     {

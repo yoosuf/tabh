@@ -16,18 +16,14 @@ class ProfileController extends Controller
 
     public function edit(Request $request)
     {
-
         $item = auth()->guard('admin')->user();
-
         return view('admin.account.profile.edit', get_defined_vars());
     }
 
 
     public function update(Request $request)
     {
-
         $user = auth()->guard('admin')->user();
-
         $request->validate([
             'name' => 'required|max:256',
             'email' => 'required|string|email|max:255|unique:admins,email,'.$user->id,
@@ -38,7 +34,6 @@ class ProfileController extends Controller
         $user->save();
 
         flash('Successfully created')->success();
-
         return redirect()->route('admin.account.profile');
 
     }

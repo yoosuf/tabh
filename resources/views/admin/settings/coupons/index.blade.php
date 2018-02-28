@@ -15,20 +15,13 @@
                     <table class="table is-fullwidth is-striped">
                         <thead>
                             <tr>
-                                <th><abbr title="Played">Code</abbr></th>
-                                <th><abbr title="Won">Reward type</abbr></th>
-                                <th><abbr title="Won">Expires at</abbr></th>
-                                <th width="160"><abbr title="Goals for">Actions</abbr></th>
+                                <th>Code</th>
+                                <th>Reward type</th>
+                                <th>Expires at</th>
+                                <th width="160">Actions</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th><abbr title="Played">Code</abbr></th>
-                                <th><abbr title="Won">Reward type</abbr></th>
-                                <th><abbr title="Won">Expires at</abbr></th>
-                                <th width="160"><abbr title="Goals for">Actions</abbr></th>
-                            </tr>
-                        </tfoot>
+
                         <tbody>
 
                         @if(count($data) > 0)
@@ -36,7 +29,7 @@
                             <tr>
                                 <td><a href="{{ route('admin.coupons.edit', [$item->id]) }}">{{ $item->code  }}</a></td>
                                 <td>{{ $item->reward_type }} {{ $item->reward }}</td>
-                                <td>{{ $item->expires_at }}</td>
+                                <td>{{ $item->expires_at->format('Y-m-d') }}</td>
                                 <td>@include('admin.settings.coupons._menu')</td>
                             </tr>
                             @endforeach
@@ -53,10 +46,10 @@
         </div>
 
         <div class="column is-4">
-   
+
             @include('flash::message')
             <form action="{{ route('admin.coupons.store')  }}" method="POST" accept-charset="UTF-8">
-                @include('admin.settings.coupons._form')
+                @include('admin.settings.coupons._form', ['item' => null])
             </form>
 
         </div>

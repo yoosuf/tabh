@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/temp_styles.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </head>
 <body>
     <div id="app">
@@ -42,7 +43,5 @@
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Entities\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-
     protected $user;
 
     public function __construct(Admin $user)
     {
-
         $this->middleware('admin');
-
         $this->user = $user;
     }
-
 
     public function index(Request $request)
     {
@@ -35,21 +30,11 @@ class UsersController extends Controller
 
     }
 
-
-    public function show($id, Request $request)
-    {
-
-    }
-
-
     public function store(Request $request)
     {
-
         flash('Successfully updated')->success();
         return redirect()->back();
-
     }
-
 
     public function edit($id)
     {
@@ -59,16 +44,10 @@ class UsersController extends Controller
 
     public function update($id, Request $request)
     {
-
-
         flash('Successfully updated')->success();
         return redirect()->back();
 
     }
 
-    public function destroy($id, Request $request)
-    {
-
-    }
 
 }

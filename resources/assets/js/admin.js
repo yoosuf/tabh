@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -6,7 +5,7 @@
  */
 
 require('./bootstrap');
-
+require('./address');
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -14,8 +13,6 @@ require('./bootstrap');
  */
 
 // require('./components/Example');
-
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,39 +42,38 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-$(function () {
-
-    let addressCities = $("#address_city");
-    let addressPostcode = $('#address_postcode');
-
-    addressCities.attr('disabled','disabled');
-    addressPostcode.attr('disabled','disabled');
-
-    $('#address_province').change(function () {
-
-        let currentDistrict = $(this).val();
-
-        addressCities.parent().parent('div').addClass('is-loading');
-        addressCities.attr('disabled','disabled');
-        addressPostcode.attr('disabled','disabled');
-
-        axios.get(`/api/v1/districts/${currentDistrict}/areas`)
-            .then(function (res) {
-                addressCities.empty();
-                $.each(res.data.data, function(key, value) {
-                    addressCities
-                        .append($("<option></option>")
-                            .attr("value",value.id)
-                            .text(value.name));
-                });
-                addressCities.parent().parent('div').removeClass('is-loading');
-                addressCities.removeAttr('disabled');
-                addressPostcode.removeAttr('disabled');
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-});
+//
+// $(function () {
+//
+//     let addressCities = $("#address_city");
+//     let addressPostcode = $('#address_postcode');
+//
+//     addressCities.attr('disabled','disabled');
+//     addressPostcode.attr('disabled','disabled');
+//
+//     $('#address_province').change(function () {
+//
+//         let currentDistrict = $(this).val();
+//
+//         addressCities.parent().parent('div').addClass('is-loading');
+//         addressCities.attr('disabled','disabled');
+//         addressPostcode.attr('disabled','disabled');
+//
+//         axios.get(`/districts/${currentDistrict}/areas`)
+//             .then(function (res) {
+//                 addressCities.empty();
+//                 $.each(res.data.data, function(key, value) {
+//                     addressCities
+//                         .append($("<option></option>")
+//                             .attr("value",value.id)
+//                             .text(value.name));
+//                 });
+//                 addressCities.parent().parent('div').removeClass('is-loading');
+//                 addressCities.removeAttr('disabled');
+//                 addressPostcode.removeAttr('disabled');
+//             })
+//             .catch(function (error) {
+//                 console.log(error);
+//             });
+//     });
+// });

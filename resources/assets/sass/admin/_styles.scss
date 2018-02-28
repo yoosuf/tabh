@@ -1,0 +1,133 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding: 0;
+}
+
+
+.app-canvas {
+  position: relative;
+  min-height: 100%;
+}
+
+.app-content-wrap {
+  min-height: 100%;
+
+}
+
+.app-sidebar {
+  position: fixed;
+  top: 54px;
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  z-index: 1000;
+  padding: 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-content {
+  padding: 10px 10px 20px 250px;
+  width: 100%;
+  position: relative;
+}
+
+.navbar-item.Logo {
+  padding: 0 0 0 5px;
+}
+
+.navbar-item.Logo img {
+  height: 42px;
+  max-height: initial;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.section.admin-body-container {
+  padding: 0;
+}
+
+.section.admin-body-container .app-sidebar.column.is-2.is-hidden-tablet-only:before {
+  content: "";
+  background-color: #111;
+}
+
+.canvas {
+  position: relative;
+  min-height: 100%;
+}
+
+.admin-navbar {
+}
+
+//.admin-navbar .navbar-item.has-dropdown.is-hoverable a {
+//  text-align: right;
+//  padding: 15px 10px;
+//}
+
+.admin-navbar .navbar-link:after {
+  display: none !important;
+}
+
+.admin-side-menu {
+  /* background-color: #fff; */
+  padding: 15px;
+}
+
+.admin-side-menu p {
+  //color: #fff;
+  margin: -15px -15px 0px -15px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.admin-side-menu a {
+  //color: #fff;
+}
+
+.admin-side-menu .menu-list a.is-active {
+  //background-color: #a9a9a9;
+  //color: #fff;
+  font-weight: bold
+}
+
+.column.dashboard-top-card:nth-child(1) .card {
+  background-color: #1bbf89 !important
+}
+
+.column.dashboard-top-card:nth-child(2) .card {
+  background-color: #0f83c9 !important
+}
+
+.column.dashboard-top-card:nth-child(3) .card {
+  background-color: #db524b !important
+}
+
+.column.dashboard-top-card:nth-child(4) .card {
+  background-color: #f6a821 !important
+}
+
+.column.dashboard-top-card .card .card-content {
+  text-align: center;
+  padding: 30px 5px;
+  color: #fff;
+}
+
+.column.dashboard-top-card .card .card-content h1.title.is-1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .app-sidebar {
+    display: none;
+  }
+  .app-content {
+    padding: 10px !important;
+  }
+}

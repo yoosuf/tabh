@@ -44,15 +44,11 @@ class OrdersController extends Controller
 
         // }
 
-
         $orders = $this->order->orderBy('id', 'desc')->paginate($limit);
-
         $querystringArray = ['customer_id' => $request->get('customer_id'), 'status' => $request->get('status')];
-
         $customers = $this->customer->orderBy('id', 'desc')->get();
 
         $orders->appends($querystringArray);
-
         $request_status = DB::table('orders')
             ->select('status')
             ->groupBy('status')
@@ -61,10 +57,7 @@ class OrdersController extends Controller
         return view('admin.orders.index', get_defined_vars());
     }
 
-    public function create(Request $request)
-    {
 
-    }
 
     public function approve($id, Request $request)
     {
@@ -125,26 +118,4 @@ class OrdersController extends Controller
 
         return view('admin.orders.show', get_defined_vars());
     }
-
-    public function store(Request $request)
-    {
-
-    }
-
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update($id, Request $request)
-    {
-
-    }
-
-    public function destroy($id, Request $request)
-    {
-
-    }
-
 }

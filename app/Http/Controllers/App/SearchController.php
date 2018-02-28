@@ -21,7 +21,6 @@ class SearchController extends Controller
     public function __construct(Product $product, Cart $cart)
     {
         $this->product = $product;
-
         $this->cart = $cart;
     }
 
@@ -48,19 +47,10 @@ class SearchController extends Controller
                 })->take(10);
         } else if ($type == "groceries") {
             $products = [];
-        }
-        else
-        {
+        } else {
             $products = [];
         }
-
-
-
         $cart = $this->cart->content();
-
-
-
-
 
 //        if($request->ajax()){
 //            return response()->json(['message' => 'Searched', 'statusText'=> 'OK'], 200);
@@ -87,12 +77,9 @@ class SearchController extends Controller
                 ->pluck('generic_name')->toArray();
         } else if ($type == "groceries") {
             $products = [];
-        }
-        else
-        {
+        } else {
             $products = [];
         }
-
         return $products;
     }
 }

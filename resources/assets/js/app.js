@@ -8,9 +8,6 @@
 
 require('./bootstrap');
 require('jquery-confirm');
-// require('./coupon');
-
-
 require('./address');
 
 // var FB = require('fb');
@@ -20,9 +17,6 @@ require('./address');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-require('./components/Search');
-
 require('typeahead.js');
 
 let Bloodhound = require('bloodhound-js');
@@ -63,8 +57,6 @@ function toggleModalClasses(event) {
 };
 
 
-
-
 Dropzone.options.uploadWidget = {
     paramName: 'file',
     maxFilesize: 2, // MB
@@ -74,23 +66,23 @@ Dropzone.options.uploadWidget = {
         'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
     },
     acceptedFiles: 'image/*',
-    init: function() {
+    init: function () {
         this.hiddenFileInput.removeAttribute('multiple');
 
-        this.on('success', function( file, resp ){
-            console.log( file );
-            console.log( resp );
+        this.on('success', function (file, resp) {
+            console.log(file);
+            console.log(resp);
         });
 
-        this.on('addedfile', function(file) {
+        this.on('addedfile', function (file) {
             if (this.files.length > 1) {
                 this.removeFile(this.files[0]);
             }
         });
     },
-    accept: function(file, done) {
+    accept: function (file, done) {
         file.acceptDimensions = done;
-        file.rejectDimensions = function() {
+        file.rejectDimensions = function () {
             done('The image must be at least 640 x 480px')
         };
     }
@@ -125,14 +117,6 @@ Dropzone.options.uploadWidget = {
 //
 
 
-
-// FB.init({
-//     appId      : '1917322048296717',
-//     cookie     : true,
-//     version    : 'v2.10'
-// });
-
-
 $(function ($) {
 
 
@@ -152,10 +136,10 @@ $(function ($) {
         axios.post('/cart/add', {
             id: id
         }).then(function (response) {
-            cart.load(document.URL + ' #cart', function() {
+            cart.load(document.URL + ' #cart', function () {
                 cart_progress_bar.css('visibility', 'hidden');
             });
-            cartMini.load(document.URL + ' #cart_mini', function() {
+            cartMini.load(document.URL + ' #cart_mini', function () {
                 button.removeClass('is-loading');
             });
         }).catch(function (error) {
@@ -175,7 +159,7 @@ $(function ($) {
             id: id
         }).then(function (response) {
             cart.load(document.URL + ' #cart');
-            cartMini.load(document.URL + ' #cart_mini', function() {
+            cartMini.load(document.URL + ' #cart_mini', function () {
                 button.removeClass('is-loading');
             });
         }).catch(function (error) {
@@ -195,7 +179,7 @@ $(function ($) {
             id: id
         }).then(function (response) {
             cart.load(document.URL + ' #cart');
-            cartMini.load(document.URL + ' #cart_mini', function() {
+            cartMini.load(document.URL + ' #cart_mini', function () {
                 button.removeClass('is-loading');
             });
         }).catch(function (error) {
@@ -232,7 +216,7 @@ $(function ($) {
         console.log('/search?type=pharmaceutical&q=' + datum);
 
         $('#cart-search-form').submit();
-        
+
         // axios.get('/search?type=pharmaceutical',
         //     {
         //         params: {
@@ -250,12 +234,4 @@ $(function ($) {
     });
 
 
-
-
-
-
 });
-
-
-
-

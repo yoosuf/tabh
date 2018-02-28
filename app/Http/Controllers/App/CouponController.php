@@ -30,6 +30,8 @@ class CouponController extends Controller
 
         $request->validate([
             'order_discount_code' => 'nullable|exists:coupon_codes,code',
+        ],[
+          'order_discount_code.exists' => 'The discount code is invalid.'
         ]);
 
         $discountCode = $request->get('order_discount_code');
@@ -39,7 +41,7 @@ class CouponController extends Controller
             ->get();
 
         if (count($data) == 0) {
-            return redirect()->back()->withInput($request->input())->with('danger', 'Coupon code is expired!');
+            return redirect()->back()->withInput($request->input())->with('danger', 'The discount code is expired.');
         }
 
 
