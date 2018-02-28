@@ -39,7 +39,7 @@ class CouponController extends Controller
             ->get();
 
         if (count($data) == 0) {
-            return redirect()->withInput(Input::all())->back()->with('danger', 'Coupon code is expired!');
+            return redirect()->withInput($request->input())->back()->with('danger', 'Coupon code is expired!');
         }
 
 
