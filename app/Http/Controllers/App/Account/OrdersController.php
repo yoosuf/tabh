@@ -23,7 +23,7 @@ class OrdersController extends Controller
     {
         $user = $request->user();
         $limit = $request->has('limit') ? $request->get('limit') : 10;
-        $orders = $this->order->mine()->paginate($limit);
+        $orders = $this->order->mine()->orderBy('created_at')->paginate($limit);
         return view('app.account.orders.index', get_defined_vars());
     }
 
