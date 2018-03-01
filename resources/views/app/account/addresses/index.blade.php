@@ -10,7 +10,8 @@
         <div class="container">
             <div class="columns">
 
-                <div class="column is-12 fullwidth">
+                <div class="column is-three-fifths is-offset-one-fifth">
+                    <div class="card-container">
                     <div class="columns">
                         @if ($errors->any())
                             <div class="column is-6 is-offset-3">
@@ -67,6 +68,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

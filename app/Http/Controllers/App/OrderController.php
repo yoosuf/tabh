@@ -157,8 +157,8 @@ class OrderController extends Controller
         ]);
 
         if ($request->get('address') == "-1") {
-          $this->addressRequestValidate($request);
-          $addressData = $this->addressCreateOrUpdate($user, $order = null,  $request);
+            $this->addressRequestValidate($request);
+            $addressData = $this->addressCreateOrUpdate($user, $order = null, $request);
         } else {
             $address = $this->address->find($request->get('address'));
         }
@@ -193,7 +193,7 @@ class OrderController extends Controller
 
         $this->addressRequestValidate($request);
 
-        $this->addressCreateOrUpdate($user = null, $order,  $request);
+        $this->addressCreateOrUpdate($user = null, $order, $request);
 
         //
         // $order->address()->updateOrCreate(
@@ -245,60 +245,58 @@ class OrderController extends Controller
     }
 
 
-
-
     private function addressRequestValidate($request)
     {
-      return $request->validate([
-          'address_name' => 'required|string|max:255',
-          'address_phone' => 'nullable',
-          'address_line_1' => 'required|string|max:255',
-          'address_line_2' => 'nullable|string|max:255',
-          'address_city' => 'required|string|max:255',
-          'address_postcode' => 'required|string|max:255',
-          'address_province' => 'required|string|max:255',
-      ], [
-          'address_name.required' => 'Name is required',
-          'address_phone.required' => 'Phone is required',
-          'address_line_1.required' => 'Line 1 is required',
-          'address_city.required' => 'City is required',
-          'address_postcode.required' => 'Postcode is required',
-          'address_province.required' => 'Province is required',
-      ]);
+        return $request->validate([
+            'address_name' => 'required|string|max:255',
+            'address_phone' => 'nullable',
+            'address_line_1' => 'required|string|max:255',
+            'address_line_2' => 'nullable|string|max:255',
+            'address_city' => 'required|string|max:255',
+            'address_postcode' => 'required|string|max:255',
+            'address_province' => 'required|string|max:255',
+        ], [
+            'address_name.required' => 'Name is required',
+            'address_phone.required' => 'Phone is required',
+            'address_line_1.required' => 'Line 1 is required',
+            'address_city.required' => 'City is required',
+            'address_postcode.required' => 'Postcode is required',
+            'address_province.required' => 'Province is required',
+        ]);
     }
 
     private function addressCreateOrUpdate($user, $order, $request)
     {
-      $cityData = $this->city->find($request->get('address_city'));
-      $provinceData = $this->province->find($request->get('address_province'));
-      $countryData = $this->country->find(18);
+        $cityData = $this->city->find($request->get('address_city'));
+        $provinceData = $this->province->find($request->get('address_province'));
+        $countryData = $this->country->find(18);
 
-      if ($user == null) {
-        $addressableId = $user->id;
-        $addressableType = App\Entities\User::class;
-      } else {
+        if ($user == null) {
+            $addressableId = $user->id;
+            $addressableType = App\Entities\User::class;
+        } else {
 
-        $addressableId = $order->id;
-        $addressableType = App\Entities\Order::class;
-      }
+            $addressableId = $order->id;
+            $addressableType = App\Entities\Order::class;
+        }
 
-      return $this->address->updateOrCreate([
-        'addressable_id' => $addressableId->id,
-        'addressable_type' => $addressableType
-        ],[
-          'name' => $request->get('address_name'),
-          'phone' => $request->get('address_phone'),
-          'address1' => $request->get('address_line_1'),
-          'address2' => $request->get('address_line_2'),
-          'city' => $cityData->name,
-          'city_id' => $cityData->id,
-          'district' => $provinceData->name,
-          'district_id' => $provinceData->id,
-          'postcode' => $request->get('address_postcode'),
-          'country' => $countryData->nice_name,
-          'country_id' => $countryData->id,
-          'default' => true,
-      ]);
+        return $this->address->updateOrCreate([
+            'addressable_id' => $addressableId->id,
+            'addressable_type' => $addressableType
+        ], [
+            'name' => $request->get('address_name'),
+            'phone' => $request->get('address_phone'),
+            'address1' => $request->get('address_line_1'),
+            'address2' => $request->get('address_line_2'),
+            'city' => $cityData->name,
+            'city_id' => $cityData->id,
+            'district' => $provinceData->name,
+            'district_id' => $provinceData->id,
+            'postcode' => $request->get('address_postcode'),
+            'country' => $countryData->nice_name,
+            'country_id' => $countryData->id,
+            'default' => true,
+        ]);
     }
 
     private function group_by_partner()

@@ -5,23 +5,26 @@
             <div class="field">
                 <h1 class="title is-4 is-spaced">Add Prescription</h1>
                 <div class="control">
-                    <div class="file has-name is-fullwidth">
-                        <label class="file-label">
-                            <input class="file-input" name="prescription" id="prescription" type="file"
-                                   accept='image/*'>
-                            <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fa fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Choose a file…
-                            </span>
-                        </span>
-                            <span id="imagename" class="file-name">
-                        </span>
-                        </label>
 
-                    </div>
+
+
+                  <div class="file has-name is-boxed is-centered">
+                    <label class="file-label">
+                      <input class="file-input" name="prescription" id="prescription" type="file"
+                             accept='image/*'>
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          Choose a file…
+                        </span>
+                      </span>
+                      <span class="file-name" id="imagename">
+                      </span>
+                    </label>
+                  </div>
+
                     <p class="help">The prescription must be upload to make an order.</p>
 
                 </div>

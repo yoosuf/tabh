@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\V1\City as CityResource;
 use App\Http\Resources\V1\District as DistrictResource;
 
-class LocationController  extends Controller
+class LocationController extends Controller
 {
     protected $district;
     protected $city;
@@ -24,28 +24,28 @@ class LocationController  extends Controller
     public function __construct(District $district, City $city)
     {
         $this->district = $district;
-        $this->city  = $city;
+        $this->city = $city;
     }
 
 
     public function getDistricts(Request $request)
     {
-      if($request->ajax()){
-        $districts = $this->district->get();
-        return DistrictResource::collection($districts);
-      } else {
-        return redirect()->to('/');
-      }
+        if ($request->ajax()) {
+            $districts = $this->district->get();
+            return DistrictResource::collection($districts);
+        } else {
+            return redirect()->to('/');
+        }
     }
 
     public function getAreas($districtId, Request $request)
     {
-      if($request->ajax()){
-        $areas = $this->city->whereDistrictId($districtId)->get();
-        return CityResource::collection($areas);
-      } else {
-        return redirect()->to('/');
-      }
+        if ($request->ajax()) {
+            $areas = $this->city->whereDistrictId($districtId)->get();
+            return CityResource::collection($areas);
+        } else {
+            return redirect()->to('/');
+        }
     }
 
 }

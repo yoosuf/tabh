@@ -23,6 +23,7 @@
                     @else
                     <div class="navbar-item has-dropdowna is-hoverablea">
 
+                        <a class="navbar-link" href="{{ url('search?type=pharmaceutical') }}">Search</a>
                         <a class="navbar-link" href="{{ route('account.orders') }}">My Orders</a>
                         <a class="navbar-link" href="{{ route('account.profile') }}" role="button" aria-expanded="false" aria-haspopup="true">{{ auth()->user()->name }}</a>
                         <!-- <a class="navbar-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> -->

@@ -5,7 +5,7 @@
             <h1 class="title is-4 is-spaced">Pay By</h1>
             <p class="subtitle is-5"></p>
 
-            <div class="address-item">
+            <div class="payment-item">
 
                 <div class="field">
                     <div class="control is-expanded">
@@ -16,9 +16,7 @@
 
                     </div>
                 </div>
-            </div>
 
-            <div class="address-item">
 
                 <div class="field">
                     <div class="control is-expanded">

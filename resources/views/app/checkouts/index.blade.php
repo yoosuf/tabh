@@ -29,12 +29,14 @@
                         @include('app.checkouts._payment')
                         @include('app.checkouts._prescription')
                         @include('app.checkouts._address')
+                        @if (auth()->check())
 
                         <div class="card checkouts-order-details-card">
                             <div class="card-content">
                               <button type="submit" class="button is-success">Place order</button>
                           </div>
                         </div>
+                        @endif
 
                     </form>
                 </div>

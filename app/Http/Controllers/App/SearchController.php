@@ -35,14 +35,13 @@ class SearchController extends Controller
         $search_query = $request->get('q');
         $type = $request->get('type');
 
-        if($type == 'pharmaceutical') {
+        if ($type == 'pharmaceutical') {
             $products = $this->product->inRandomOrder()->where('published', true)
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
-                ->filter(function ($item, $key)
-                {
+                ->filter(function ($item, $key) {
                     return $item->partner()->first()->is_active == true;
                 })->take(10);
         } else if ($type == "groceries") {
@@ -64,14 +63,13 @@ class SearchController extends Controller
         $search_query = $request->get('q');
         $type = $request->get('type');
 
-        if($type == 'pharmaceutical') {
+        if ($type == 'pharmaceutical') {
             $products = $this->product->where('published', true)
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
-                ->filter(function ($item, $key)
-                {
+                ->filter(function ($item, $key) {
                     return $item->partner()->first()->is_active == true;
                 })
                 ->pluck('generic_name')->toArray();
