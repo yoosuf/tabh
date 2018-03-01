@@ -19,12 +19,18 @@ class PasswordController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate(['password' => 'required|string|min:6|confirmed']);
 
-        $validator = $request->validate([
-            'current_password' => 'required|max:20',
-            'password' => 'required|string|min:6|max:20',
-            'password_confirmation' => 'required|same:password'
-        ]);
+        $requestData = $request->only('current_password', 'password', 'password_confirmation');
+        $current_password = auth()->guard('admin')->user()->password;
+        if(Hash::check($requestData['current_password'], $current_password)) {
+            $obj_user = auth()->guard('admin')->user();
+            $obj_user->password = Hash::make($requestData['password']);;
+            $obj_user->save();
+            return redirect()->back()->with('status', 'Password has been changed');
+        } else {
+            return redirect()->back()->with('danger', 'Please enter correct current password');
+        }
     }
 
 }
