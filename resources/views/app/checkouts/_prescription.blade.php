@@ -32,14 +32,4 @@
 
         </div>
     </div>
-
-    <script type="text/javascript">
-        var file = document.getElementById("prescription");
-        file.onchange = function () {
-            if (file.files.length > 0) {
-                document.getElementById('imagename').innerHTML = file.files[0].name;
-            }
-        };
-    </script>
-
 @endif

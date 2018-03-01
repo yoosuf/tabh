@@ -21,6 +21,16 @@ $(function() {
             $(this).replaceWith("<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>");
         });
     }
+
+
+    if (document.getElementById("prescription")) {
+        const file = document.getElementById("prescription");
+        file.onchange = function () {
+            if (file.files.length > 0) {
+                document.getElementById('imagename').innerHTML = file.files[0].name;
+            }
+        };
+    }
 });
 
 // var FB = require('fb');
