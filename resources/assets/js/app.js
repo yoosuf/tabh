@@ -15,7 +15,7 @@ require('./components/type-ahead');
 
 $(function() {
 
-    if (document.getElementById("shop_groceries")) {
+    if ($("#shop_groceries").length) {
         $('#shop_groceries').on('click', function (e) {
             e.preventDefault();
             $(this).replaceWith("<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>");
@@ -23,7 +23,7 @@ $(function() {
     }
 
 
-    if (document.getElementById("prescription")) {
+    if ($("#prescription").length) {
         const file = document.getElementById("prescription");
         file.onchange = function () {
             if (file.files.length > 0) {
