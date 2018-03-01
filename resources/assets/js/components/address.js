@@ -1,11 +1,12 @@
+
 $(function () {
 
     let addressProvince = $('#address_province');
     let addressCities = $("#address_city");
     let addressPostcode = $('#address_postcode');
 
-    addressCities.attr('disabled', 'disabled');
-    addressPostcode.attr('disabled', 'disabled');
+    // addressCities.attr('disabled', 'disabled');
+    // addressPostcode.attr('disabled', 'disabled');
 
     addressCities.change(function () {
         addressPostcode.val("");
@@ -35,7 +36,19 @@ $(function () {
                 addressPostcode.val("");
             })
             .catch(function (error) {
-                console.log(error);
+                console.error(error);
             });
     });
+
+
+
+    // if (addressProvince.val()) {
+    //     console.log( "Demo " + addressProvince.val());
+    // } else {
+    //
+    //
+    // }
+
+
+
 });

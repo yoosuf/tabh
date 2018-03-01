@@ -85,11 +85,23 @@ if (!function_exists('render_districts')) {
 if (!function_exists('render_areas')) {
     function render_areas($area_id = null, $fieldName = null, $district_id = null) {
 
+        $areas =  \App\Entities\City::all();
 
         $html = "<select name='$fieldName' id='$fieldName'>";
 
-        if($area_id == null)
+        if($area_id == null) {
             $html .= "<option value='' selected>Select your area</option>";
+        }
+
+        foreach ($areas as $area)
+        {
+            if($area->id == $area_id)  {
+                $html .= "<option value='". $area->id ."' selected>". $area->name ."</option>";
+
+            } else {
+                $html .= "<option value='". $area->id ."'>". $area->name ."</option>";
+            }
+        }
 
 
         $html .= "</select>";
