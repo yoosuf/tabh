@@ -107,7 +107,7 @@
                 <div class="select is-fullwidth {{ $errors->has('address_city') ? ' is-danger' : '' }}">
 
 
-                    {!! render_areas(isset($item->city_id)? $item->city_id : old('address_city'), 'address_city') !!}
+                    {!! render_areas(isset($item->city_id)? $item->city_id : old('address_city'), isset($item->district_id)? $item->district_id : old('address_province'), 'address_city') !!}
 
 
                 </div>

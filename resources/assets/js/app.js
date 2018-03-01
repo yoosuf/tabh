@@ -31,6 +31,23 @@ $(function() {
             }
         };
     }
+
+    /**
+     *                             <a href="#" onclick="" class="">Delete</a>
+
+     */
+
+    $('.droppable').on("click", function (e) {
+        // e.preventDefault();
+
+        let choice = confirm($(this).attr('data-confirm'));
+
+        if (choice) {
+            // window.location.href = $(this).attr('href');
+            $(this).closest('form').submit();
+        }
+    });
+
 });
 
 // var FB = require('fb');

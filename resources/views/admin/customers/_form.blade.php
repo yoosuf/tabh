@@ -63,7 +63,7 @@
                                         type="tel"
                                         name="customer_phone"
                                         class="input {{ $errors->has('customer_phone') ? ' is-danger' : '' }}"
-                                        value="{{ isset($item->phone)? $item->phone : old('customer_phone') }}" />
+                                        value="{{ isset($item->phone)? $item->phone : old('customer_phone') }}"/>
                             </div>
                             @if ($errors->has('customer_phone'))
                                 <span class="help is-danger">
@@ -82,32 +82,26 @@
                     <p class="title is-4">Address</p>
 
 
-
-
-
-
-
                     @if( isset($addresses) && count($addresses) > 0)
 
                         <div class="tile">
                             <div class="tile is-ancestor">
-                        @foreach($addresses as $address)
-                            <article class="tile is-child notification {{ isset($address->default) ? 'box' : null }}">
+                                @foreach($addresses as $address)
+                                    <article
+                                            class="tile is-child notification {{ isset($address->default) ? 'box' : null }}">
 
 
+                                        {{ $address->name }}<br/>
+                                        {{ $address->phone }}<br/>
+                                        {{ $address->address1 }}<br/>
+                                        {{ $address->address2 }}<br/>
+                                        {{ $address->city }}, {{ $address->province }}, {{ $address->postcode }}<br/>
+
+                                        {{ $address->country }}
 
 
-                                    {{ $address->name }}<br />
-                                    {{ $address->phone }}<br />
-                                    {{ $address->address1 }}<br />
-                                    {{ $address->address2 }}<br />
-                                    {{ $address->city }}, {{ $address->province }}, {{ $address->postcode }}<br />
-
-                                    {{ $address->country }}
-
-
-                    </article>
-                        @endforeach
+                                    </article>
+                                @endforeach
                             </div>
                         </div>
 

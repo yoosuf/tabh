@@ -45,6 +45,10 @@ class OrderController extends Controller
      * @param LineItem $line_item
      * @param Address $address
      * @param Cart $cart
+     * @param CouponCode $couponcode
+     * @param City $city
+     * @param District $province
+     * @param Country $country
      */
     public function __construct(Product $product,
                                 Partner $partner,
@@ -158,7 +162,7 @@ class OrderController extends Controller
 
         if ($request->get('address') == "-1") {
             $this->addressRequestValidate($request);
-            $addressData = $this->addressCreateOrUpdate($user, $order = null, $request);
+            $this->addressCreateOrUpdate($user, $order = null, $address = null, $request);
         } else {
             $address = $this->address->find($request->get('address'));
         }
@@ -191,28 +195,10 @@ class OrderController extends Controller
             'meta' => $deliveryDataArray,
         ]);
 
-        $this->addressRequestValidate($request);
+        $this->addressCreateOrUpdate($user = null, $order, $address, $request);
 
-        $this->addressCreateOrUpdate($user = null, $order, $request);
+        $this->uploadPrescription($request, $order);
 
-        //
-        // $order->address()->updateOrCreate(
-        //   [
-        //     'addressable_id' => $order->id,
-        //     'addressable_type' => App\Entities\Order::class
-        //   ],
-        //   $addressData
-        // );
-
-        if ($request->hasFile('prescription')) {
-            $path = Storage::putFile('attachments', $request->file('prescription'));
-            $order->attachment()->updateOrCreate([
-                'attachable_id' => $order->id,
-                'attachable_type' => App\Entities\Order::class],
-                ['attachable_category' => 'prescription',
-                    'path' => $path,
-                    'file_name' => $request->prescription->getClientOriginalName()]);
-        }
 
         foreach (Cart::content() as $item) {
             $product = $this->product->find($item->id);
@@ -240,8 +226,7 @@ class OrderController extends Controller
     public function discard(Request $request)
     {
         Cart::destroy();
-
-        return redirect('/');
+        return redirect()->to('search?type=pharmaceutical');
     }
 
 
@@ -265,39 +250,57 @@ class OrderController extends Controller
         ]);
     }
 
-    private function addressCreateOrUpdate($user, $order, $request)
+    private function addressCreateOrUpdate($user, $order, $address, $request)
     {
+
+        if (isset($user)) {
+            $addressableId = $user->id;
+            $addressableType = \App\Entities\User::class;
+        } else {
+            $addressableId = $order->id;
+            $addressableType = \App\Entities\Order::class;
+        }
+
+
         $cityData = $this->city->find($request->get('address_city'));
         $provinceData = $this->province->find($request->get('address_province'));
         $countryData = $this->country->find(18);
 
-        if ($user == null) {
-            $addressableId = $user->id;
-            $addressableType = App\Entities\User::class;
-        } else {
-
-            $addressableId = $order->id;
-            $addressableType = App\Entities\Order::class;
-        }
-
         return $this->address->updateOrCreate([
-            'addressable_id' => $addressableId->id,
+            'addressable_id' => $addressableId,
             'addressable_type' => $addressableType
         ], [
-            'name' => $request->get('address_name'),
-            'phone' => $request->get('address_phone'),
-            'address1' => $request->get('address_line_1'),
-            'address2' => $request->get('address_line_2'),
-            'city' => $cityData->name,
-            'city_id' => $cityData->id,
-            'district' => $provinceData->name,
-            'district_id' => $provinceData->id,
-            'postcode' => $request->get('address_postcode'),
-            'country' => $countryData->nice_name,
-            'country_id' => $countryData->id,
+            'name' => isset($address['name']) ? $address['name'] : $request->get('address_name'),
+            'phone' => isset($address['phone']) ? $address['phone'] : $request->get('address_phone'),
+            'address1' => isset($address['address1']) ? $address['address1'] : $request->get('address_line_1'),
+            'address2' => isset($address['address2']) ? $address['address2'] : $request->get('address_line_2'),
+            'city' => isset($address['city']) ? $address['city'] : $cityData->name,
+            'city_id' => isset($address['city_id']) ? $address['city_id'] : $cityData->id,
+            'district' => isset($address['district']) ? $address['district'] : $provinceData->name,
+            'district_id' => isset($address['district_id']) ? $address['district_id'] : $provinceData->id,
+            'postcode' => isset($address['district_id']) ? $address['district_id'] : $request->get('address_postcode'),
+            'country' => isset($address['country']) ? $address['country'] : $countryData->nice_name,
+            'country_id' => isset($address['country_id']) ? $address['country_id'] : $countryData->id,
             'default' => true,
         ]);
+
+
     }
+
+
+    private function uploadPrescription($request, $order)
+    {
+        if ($request->hasFile('prescription')) {
+            $path = Storage::putFile('attachments', $request->file('prescription'));
+            $order->attachment()->updateOrCreate([
+                'attachable_id' => $order->id,
+                'attachable_type' => \App\Entities\Order::class],
+                ['attachable_category' => 'prescription',
+                    'path' => $path,
+                    'file_name' => $request->prescription->getClientOriginalName()]);
+        }
+    }
+
 
     private function group_by_partner()
     {

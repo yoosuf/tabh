@@ -42,9 +42,11 @@
                         <form id="mark-default" action="{{route('account.address.destroy', $item->id)}}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button class="dropdown-item">
-                                Delete
-                            </button>
+
+
+                            <a href="#" class="dropdown-item droppable" data-confirm="Are you sure to delete this item?">Delete</a>
+
+
                         </form>
                     @endif
                 </div>

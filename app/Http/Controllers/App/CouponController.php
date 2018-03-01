@@ -49,7 +49,7 @@ class CouponController extends Controller
 
         $addresses = [];
         if (\Auth::check()) {
-            $addresses = \Auth::user()->addresses()->get();
+            $addresses = $request->user()->addresses()->get();
         }
 
 
