@@ -57,6 +57,11 @@ class CouponsController extends Controller
             'reward_type' => 'required|in:fixed,percent',
             'reward' => 'required',
             'expires_at' => 'required|date'
+        ], [
+            'code.required' => 'Discount code field is required.',
+            'code.unique' => 'Discount code already taken.',
+            'expires_at.required' => 'Expiry date is required.',
+
         ]);
 
         $this->couponcode->create([
@@ -96,13 +101,26 @@ class CouponsController extends Controller
     {
         $data = $couponcode->find($id);
 
+        $request->validate([
+            'code' => 'required|min:6|max:255|unique:coupon_codes,code,'.$id,
+            'reward_type' => 'required|in:fixed,percent',
+            'reward' => 'required',
+            'expires_at' => 'required|date'
+        ], [
+            'code.required' => 'Discount code field is required.',
+            'code.unique' => 'Discount code already taken.',
+            'expires_at.required' => 'Expiry date is required.',
+
+        ]);
+
+
         $data->update([
             'code' => $request->get('code'),
             'reward_type' => $request->get('reward_type'),
             'reward' => $request->get('reward'),
             'expires_at' => $request->get('expires_at'),
         ]);
-        return redirect()->to('/admin/settings/coupons');
+        return redirect()->to('/admin/settings/coupons')->with('status', 'Successfully updated');
 
     }
 

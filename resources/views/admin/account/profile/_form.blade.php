@@ -29,19 +29,19 @@
 
 
 <div class="field">
-    <label for="customer_email">Email</label>
+    <label for="email">Email</label>
     <div class="control is-expanded">
         <input
-                id="customer_email"
+                id="email"
                 type="email"
-                name="customer_email"
-                class="input {{ $errors->has('customer_email') ? ' is-danger' : '' }}"
-                value="{{ isset($item->email)? $item->email : old('customer_email') }}"/>
+                name="email"
+                class="input {{ $errors->has('email') ? ' is-danger' : '' }}"
+                value="{{ isset($item->email)? $item->email : old('email') }}"/>
 
     </div>
-    @if ($errors->has('customer_email'))
+    @if ($errors->has('email'))
         <span class="help is-danger">
-                        {{ $errors->first('customer_email') }}
+                        {{ $errors->first('email') }}
                     </span>
     @endif
 </div>

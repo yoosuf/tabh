@@ -27,6 +27,8 @@
                     @include('layouts.admin.sidebar')
                 </div>
                 <div class="app-content">
+
+                    @include('layouts.app._flash')
                     @yield('content')
                 </div>
             </div>

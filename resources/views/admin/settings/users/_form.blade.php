@@ -54,37 +54,23 @@
                         </div>
 
 
-
-            </div>
-        </div>
-
-    </div>
-    <div class="column">
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <p class="title is-6">Contact</p>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-link" type="submit">
-                                Save changes
-                            </button>
-                        </div>
-                        <div class="control">
-                            <a class="button is-text" href="{{ route('admin.users') }}">
-                                Discard
-                            </a>
-                        </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" type="submit">
+                            Save changes
+                        </button>
+                    </div>
+                    <div class="control">
+                        <a class="button is-text" href="{{ route('admin.users') }}">
+                            Discard
+                        </a>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
+
 </div>
 

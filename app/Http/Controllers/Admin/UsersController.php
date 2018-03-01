@@ -44,8 +44,7 @@ class UsersController extends Controller
 
     public function update($id, Request $request)
     {
-        flash('Successfully updated')->success();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Successfully updated');
 
     }
 

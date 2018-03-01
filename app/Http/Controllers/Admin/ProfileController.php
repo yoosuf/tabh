@@ -25,16 +25,14 @@ class ProfileController extends Controller
     {
         $user = auth()->guard('admin')->user();
         $request->validate([
-            'name' => 'required|max:256',
+            'full_name' => 'required|max:256',
             'email' => 'required|string|email|max:255|unique:admins,email,'.$user->id,
         ]);
 
-        $user->name = $request->get('name');
-        $user->name = $request->get('email');
+        $user->name = $request->get('full_name');
+        $user->email = $request->get('email');
         $user->save();
-
-        flash('Successfully created')->success();
-        return redirect()->route('admin.account.profile');
+        return redirect()->route('admin.account.profile')->with('status', 'Successfully updated');
 
     }
 
