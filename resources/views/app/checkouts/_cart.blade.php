@@ -1,5 +1,5 @@
 @if (auth()->check())
-    <div class="card checkouts-order-details-card">
+    <div class="card checkouts-order-details-card ">
         <div class="card-content">
 
             <h1 class="title is-4 is-spaced">Your Order Details</h1>
@@ -11,7 +11,7 @@
             <?php $grand_discount = 0 ?>
             <?php $delivery_charges_for_partners = collect([]) ?>
 
-            <table width="100%" class="table is-bordered">
+            <table class="table is-bordered is-striped is-narrow is-fullwidth is-hoverable">
 
                 <thead>
                 <tr>
@@ -29,8 +29,8 @@
 
 
                 <tr>
-                    <th colspan="4">
-                        <strong>Items form {{$key}}</strong>
+                    <th colspan="4" class="is-selected">
+                        <strong>Items from {{$key}}</strong>
                     </th>
                 </tr>
 
