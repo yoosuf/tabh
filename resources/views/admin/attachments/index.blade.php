@@ -13,8 +13,8 @@
 
     <div class="card">
         <div class="card-content">
-            <table class="table is-fullwidth is-hoverable is-striped">
-              <thead>
+            <table class="table is-striped is-narrow is-fullwidth is-hoverable">
+                <thead>
                 <tr>
                     <th><abbr title="Played">Name</abbr></th>
                     <th width="200"><abbr title="Won">Image</abbr></th>

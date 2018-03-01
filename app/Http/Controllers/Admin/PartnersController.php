@@ -77,43 +77,85 @@ class PartnersController extends Controller
 
     private function partnerValidateRequest($request)
     {
-      $request->validate([
-          'partner_name' => 'required|string|max:255',
-          'partner_email' => 'required|email|max:255|unique:partners,email',
-          'partner_phone' => 'nullable|max:255|unique:partners,phone',
-          'partner_website' => 'nullable|url|max:255',
-          'partner_status' => 'required|boolean',
-          'partner_api' => 'nullable|url|max:255',
-          'partner_api_key' => 'nullable|string|max:255',
-          'partner_min_discount_amount' => 'nullable|numeric',
-          'partner_discount_percentage' => 'nullable|numeric',
 
-          'address_name' => 'nullable|string|max:255',
-          'address_phone' => 'nullable',
-          'address_line_1' => 'nullable|string|max:255',
-          'address_line_2' => 'nullable|string|max:255',
-          'address_city' => 'nullable|string|max:255',
-          'address_postcode' => 'nullable|string|max:255',
-          'address_country' => 'nullable|string|max:255',
-          'address_province' => 'nullable|string|max:255',
+        if (!isset($request->id)) {
+            $request->validate([
+                'partner_name' => 'required|string|max:255',
+                'partner_email' => 'required|email|max:255|unique:partners,email',
+                'partner_phone' => 'nullable|max:255|unique:partners,phone',
+                'partner_website' => 'nullable|url|max:255',
+                'partner_status' => 'required|boolean',
+                'partner_api' => 'nullable|url|max:255',
+                'partner_api_key' => 'nullable|string|max:255',
+                'partner_min_discount_amount' => 'nullable|numeric',
+                'partner_discount_percentage' => 'nullable|numeric',
+
+                'address_name' => 'nullable|string|max:255',
+                'address_phone' => 'nullable',
+                'address_line_1' => 'nullable|string|max:255',
+                'address_line_2' => 'nullable|string|max:255',
+                'address_city' => 'nullable|string|max:255',
+                'address_postcode' => 'nullable|string|max:255',
+                'address_country' => 'nullable|string|max:255',
+                'address_province' => 'nullable|string|max:255',
 
 
-      ], [
-          'partner_name.required' => 'Partner name is required',
-          'partner_email.required' => 'Email is required',
-          'partner_email.email' => 'Email must be a valid email address.',
-          'partner_phone.required' => 'Phone is required',
-          'partner_website.required' => 'Phone is required',
-          'address_first_name.required' => 'First name is required',
-          'address_last_name.required' => 'Last name is required',
-          'address_phone.required' => 'Phone is required',
-          'address_line1.required' => 'Line 1 is required',
-          'address_line2.required' => 'Line 2 is required',
-          'address_city.required' => 'City is required',
-          'address_postcode.required' => 'Postcode is required',
-          'address_province.required' => 'Province is required',
-          'address_country.required' => 'Country is required',
-      ]);
+            ], [
+                'partner_name.required' => 'Partner name is required',
+                'partner_email.required' => 'Email is required',
+                'partner_email.email' => 'Email must be a valid email address.',
+                'partner_phone.required' => 'Phone is required',
+                'partner_website.required' => 'Phone is required',
+                'address_first_name.required' => 'First name is required',
+                'address_last_name.required' => 'Last name is required',
+                'address_phone.required' => 'Phone is required',
+                'address_line1.required' => 'Line 1 is required',
+                'address_line2.required' => 'Line 2 is required',
+                'address_city.required' => 'City is required',
+                'address_postcode.required' => 'Postcode is required',
+                'address_province.required' => 'Province is required',
+                'address_country.required' => 'Country is required',
+            ]);
+        } else {
+            $request->validate([
+                'partner_name' => 'required|string|max:255',
+                'partner_email' => 'required|email|max:255|unique:partners,email,'. $request->id,
+                'partner_phone' => 'nullable|max:255|unique:partners,phone,'. $request->id,
+                'partner_website' => 'nullable|url|max:255',
+                'partner_status' => 'required|boolean',
+                'partner_api' => 'nullable|url|max:255',
+                'partner_api_key' => 'nullable|string|max:255',
+                'partner_min_discount_amount' => 'nullable|numeric',
+                'partner_discount_percentage' => 'nullable|numeric',
+
+                'address_name' => 'nullable|string|max:255',
+                'address_phone' => 'nullable',
+                'address_line_1' => 'nullable|string|max:255',
+                'address_line_2' => 'nullable|string|max:255',
+                'address_city' => 'nullable|string|max:255',
+                'address_postcode' => 'nullable|string|max:255',
+                'address_country' => 'nullable|string|max:255',
+                'address_province' => 'nullable|string|max:255',
+
+
+            ], [
+                'partner_name.required' => 'Partner name is required',
+                'partner_email.required' => 'Email is required',
+                'partner_email.email' => 'Email must be a valid email address.',
+                'partner_phone.required' => 'Phone is required',
+                'partner_website.required' => 'Phone is required',
+                'address_first_name.required' => 'First name is required',
+                'address_last_name.required' => 'Last name is required',
+                'address_phone.required' => 'Phone is required',
+                'address_line1.required' => 'Line 1 is required',
+                'address_line2.required' => 'Line 2 is required',
+                'address_city.required' => 'City is required',
+                'address_postcode.required' => 'Postcode is required',
+                'address_province.required' => 'Province is required',
+                'address_country.required' => 'Country is required',
+            ]);
+        }
+
     }
 
 

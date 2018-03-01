@@ -27,7 +27,7 @@
                 @include('admin.products._filter')
                 --}}
 
-                <table class="table is-fullwidth is-hoverable is-striped">
+                <table class="table is-striped is-narrow is-fullwidth is-hoverable">
                     <thead>
                     <tr>
                         <th>ID</th>

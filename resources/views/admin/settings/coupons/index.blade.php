@@ -12,7 +12,7 @@
         <div class="column is-8">
             <div class="card">
                 <div class="card-content">
-                    <table class="table is-fullwidth is-striped">
+                    <table class="table is-striped is-narrow is-fullwidth is-hoverable">
                         <thead>
                             <tr>
                                 <th>Code</th>
