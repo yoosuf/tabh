@@ -194,13 +194,18 @@
                         <label for="product_partner">Partner</label>
                         <div class="control is-expanded">
                             <div class="select is-fullwidth {{ $errors->has('product_partner') ? ' is-danger' : '' }}">
-                                <select name="product_partner" id="product_partner">
 
-                                    <option value="">Select Partner</option>
-                                    @foreach ($partners as $partner)
-                                        <option value="{{$partner->id}}">{{$partner->name}}</option>
-                                    @endforeach
-                                </select>
+
+
+
+                                {!!   render_partners(isset($item) ? $item->partner_id : old('product_partner') , 'product_partner') !!}
+                                {{--<select name="product_partner" id="product_partner">--}}
+
+                                    {{--<option value="">Select Partner</option>--}}
+                                    {{--@foreach ($partners as $partner)--}}
+                                        {{--<option value="{{$partner->id}}">{{$partner->name}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
                             </div>
                         </div>
 

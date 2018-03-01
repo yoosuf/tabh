@@ -24,14 +24,16 @@ class CouponController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function validateCouponCode(Request $request)
     {
-
-
         $request->validate([
             'order_discount_code' => 'nullable|exists:coupon_codes,code',
-        ],[
-          'order_discount_code.exists' => 'The discount code is invalid.'
+        ], [
+            'order_discount_code.exists' => 'The discount code is invalid.'
         ]);
 
         $discountCode = $request->get('order_discount_code');
@@ -41,41 +43,27 @@ class CouponController extends Controller
             ->first();
 
         if (!isset($data)) {
+            $request->session()->forget('discount');
             return redirect()->back()->withInput($request->input())->with('danger', 'The discount code is expired.');
         } else {
 
 
-
             if ($data->reward_type == "percent") {
-                $discountVal = $data->reward . '%' ;
+                $discountVal = $data->reward . '%';
             } else {
-                $discountVal = '৳ '. $data->reward;
+                $discountVal = '৳ ' . $data->reward;
             }
 
+            $discountData = [
+                'type' => $data->reward_type,
+                'amount' => $data->reward,
+                'formatted' => $discountVal
+            ];
 
-            $request->session()->put('discount.type', $data->reward_type);
-            $request->session()->put('discount.amount', $data->reward);
-            $request->session()->put('discount.formatted', $discountVal);
+            $request->session()->put('discount', $discountData);
 
             return redirect()->back()->withInput($request->input())->with('status', "That's a valid discount code  and enjoy " . $discountVal);
-
         }
-    }
-
-    private function group_by_partner()
-    {
-        $collection = collect([]);
-        $items = \Cart::content();
-
-
-        foreach ($items as $item) {
-            $product = \App\Entities\Product::find($item->id);
-            $collection->push(['partner' => $product->partner()->first()->name,
-                'item' => $item
-            ]);
-        }
-
-        return $collection->groupBy('partner');
     }
 
 }

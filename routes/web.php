@@ -19,8 +19,13 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('/cart/add', 'CartController@add')->name('cart.add');
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
     Route::any('checkouts', 'OrderController@getCheckout')->name('checkouts');
-//    Route::get('checkouts', 'OrderController@summery');
     Route::get('/products', 'SearchController@titles');
+
+
+
+    Route::get('/democart', 'OrderController@getOrderSummery');
+
+
     Route::group(['middleware' => ['auth']], function () {
         Route::post('coupon-code', 'CouponController@validateCouponCode')->name('code.validate');
         Route::get('districts', 'LocationController@getDistricts');

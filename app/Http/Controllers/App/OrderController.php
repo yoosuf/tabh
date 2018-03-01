@@ -3,24 +3,21 @@
 namespace App\Http\Controllers\App;
 
 use Carbon\Carbon;
-use App\Entities\Address;
 use App\Entities\City;
-use App\Entities\District;
-use App\Entities\Country;
-
-use App\Entities\CouponCode;
-use App\Entities\LineItem;
 use App\Entities\Order;
+use App\Entities\Country;
+use App\Entities\Address;
 use App\Entities\Partner;
 use App\Entities\Product;
-use App\Http\Controllers\Controller;
-use App\Jobs\App\Order\NewOrder;
-
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Entities\District;
+use App\Entities\LineItem;
+use App\Entities\CouponCode;
 use Illuminate\Http\Request;
+use App\Jobs\App\Order\NewOrder;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrderController extends Controller
 {
@@ -32,9 +29,7 @@ class OrderController extends Controller
     private $city;
     private $province;
     private $country;
-
     private $cart;
-
     private $couponcode;
 
     /**
@@ -72,91 +67,20 @@ class OrderController extends Controller
         $this->couponcode = $couponcode;
     }
 
-
-
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCheckout(Request $request)
     {
-        $grouped = $this->group_by_partner();
         $addresses = [];
-        if (Auth::check()) {
-            $addresses = Auth::user()->addresses()->get();
+        $grouped = $this->group_by_partner();
+
+        if (auth()->check()) {
+            $addresses = $request->user()->addresses()->get();
         }
         return view('app.checkouts.index', compact('grouped', 'addresses'));
     }
-
-
-
-    public function summery(Request $request)
-    {
-
-        $grand_total = 0;
-        $grand_discount = 0;
-        $delivery_charges_for_partners = collect([]);
-        $grouped = $this->group_by_partner();
-
-
-        $request->validate([
-            'order_discount_code' => 'nullable|exists:coupon_codes,code',
-        ]);
-
-
-        if ($request->has('order_discount_code')) {
-
-            $validCode = $this->couponcode
-                ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
-                ->whereCode($request->get('order_discount_code'))
-                ->first();
-
-
-            return [
-                'type' => $validCode->reward_type == "percent" ? '%' : null,
-                'amount' => $validCode->reward
-            ];
-
-        }
-
-        foreach ($grouped as $key => $partner) {
-            $partner_total = 0;
-            $discount_percentage = $this->partner->where('name', $key)->first()['preferences']['discount_percentage'];
-            $min_discount_amount = $this->partner->where('name', $key)->first()['preferences']['min_discount_amount'];
-            $delivery_charge = (float)$this->partner->where('name', $key)->first()['preferences']['delivery_charge'];
-            $discount_amount = 0;
-
-            foreach ($partner as $item) {
-                $partner_total = $partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', ''));
-                $item_name = $item['item']->name;
-                $iten_price = number_format(((float)$item['item']->price), 2, '.', '');
-                $item_qty = $item['item']->qty;
-                $total = number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '');
-            }
-
-
-            $delivery_charges_for_partners->put($this->partner->where('name', $key)->first()->id, $delivery_charge);
-
-            if ($delivery_charge != 0) {
-                $partner_total = $partner_total + $delivery_charge;
-
-            }
-
-
-            if ($min_discount_amount <= $partner_total) {
-                $discount_amount = ($partner_total / 100) * $discount_percentage;
-                $partner_total = $partner_total - $discount_amount;
-            }
-        }
-
-
-        return [
-            'grouped' => $partner,
-            'partner_total' => $partner_total,
-            'delivery_charge' => $delivery_charge,
-            'discount_amount' => $discount_amount
-        ];
-    }
-
-
-
 
     /**
      * @param Request $request
@@ -232,6 +156,7 @@ class OrderController extends Controller
         }
         Cart::destroy();
 
+
         // $user->notify(new NewOrder($order));
 
         // Mail::to($request->user()->email)->send(new NewOrder($order));
@@ -241,13 +166,20 @@ class OrderController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function discard(Request $request)
     {
         Cart::destroy();
         return redirect()->to('search?type=pharmaceutical');
     }
 
-
+    /**
+     * @param $request
+     * @return mixed
+     */
     private function addressRequestValidate($request)
     {
         return $request->validate([
@@ -268,6 +200,13 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * @param $user
+     * @param $order
+     * @param $address
+     * @param $request
+     * @return mixed
+     */
     private function addressCreateOrUpdate($user, $order, $address, $request)
     {
 
@@ -305,7 +244,10 @@ class OrderController extends Controller
 
     }
 
-
+    /**
+     * @param $request
+     * @param $order
+     */
     private function uploadPrescription($request, $order)
     {
         if ($request->hasFile('prescription')) {
@@ -320,6 +262,60 @@ class OrderController extends Controller
     }
 
 
+    public function getOrderSummery()
+    {
+        $grand_total = 0;
+        $grand_discount = 0;
+        $delivery_charges_for_partners = collect([]);
+        $grouped = $this->group_by_partner();
+
+
+        $partnerCollection = [];
+        foreach ($grouped as $key => $partner) {
+
+
+            $partnerCollection = $partner;
+
+
+//            $partner_products = [];
+//            foreach ($partner as $item) {
+//
+//
+//
+//                $partner_products['partners'] = $item;
+//
+//            }
+
+            $partner_total = 0;
+//            $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'];
+//            $min_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'];
+//            $delivery_charge = \App\Entities\Partner::where('name', $key)->first()['preferences']['delivery_charge'];
+
+//            $partnerProducts = [];
+//            foreach ($partner as $item) {
+
+//                $item['partner'] = $partner;
+//                $partner_total = $partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', ''));
+//                number_format(((float)$item['item']->price), 2, '.', '');
+//                number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '');
+//
+//                $partnerProducts = $item;
+//            }
+
+        }
+
+
+
+        return $partnerCollection;
+
+    }
+
+
+
+
+    /**
+     * @return static
+     */
     private function group_by_partner()
     {
         $collection = collect([]);

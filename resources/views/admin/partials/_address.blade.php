@@ -70,13 +70,14 @@
 
 
 
+
 <div class="field is-horizontal">
     <div class="field-body">
 
         <div class="field">
             <label for="address_province">State</label>
             <div class="control is-expanded">
-                <div class="select is-fullwidth {{ $errors->has('address_country') ? ' is-danger' : '' }}">
+                <div class="select is-fullwidth {{ $errors->has('address_province') ? ' is-danger' : '' }}">
 
                     {!! render_districts(isset($item->district_id)? $item->district_id : old('address_province'), 'address_province') !!}
                 </div>
@@ -110,6 +111,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div class="field">

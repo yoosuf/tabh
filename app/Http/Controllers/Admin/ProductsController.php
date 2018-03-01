@@ -31,12 +31,12 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-      $limit = $request->has('limit') ? $request->get('limit') : 10;
-      $products = $this->product->orderBy('id', 'desc')->paginate($limit);
-      $querystringArray = ['partner_id' => $request->get('partner_id'), 'status' => $request->get('status')];
-      $partners = $this->partner->get();
-      $products->appends($querystringArray);
-      return view('admin.products.index', get_defined_vars());
+        $limit = $request->has('limit') ? $request->get('limit') : 10;
+        $products = $this->product->orderBy('id', 'desc')->paginate($limit);
+        $querystringArray = ['partner_id' => $request->get('partner_id'), 'status' => $request->get('status')];
+        $partners = $this->partner->get();
+        $products->appends($querystringArray);
+        return view('admin.products.index', get_defined_vars());
     }
 
     /**
@@ -47,8 +47,8 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-      $partners = $this->partner->all();
-      return view('admin.products.create', get_defined_vars());
+        $partners = $this->partner->all();
+        return view('admin.products.create', get_defined_vars());
     }
 
     /***
@@ -59,10 +59,11 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-      $this->productValidateRequest($request);
-      $this->productImageUpload($request);
-      flash('Successfully created')->success();
-      return redirect()->route('admin.products.edit', ['id' => $product->id]);
+        $this->productValidateRequest($request);
+        $product = $this->productUpdateOrCreate($request);
+        $this->productImageUpload($request, $product);
+        flash('Successfully created')->success();
+        return redirect()->route('admin.products.edit', ['id' => $product->id]);
 
     }
 
@@ -91,102 +92,110 @@ class ProductsController extends Controller
     public function update($id, Request $request)
     {
         $this->productValidateRequest($request);
-        $this->productImageUpload($request);
+        $product = $this->productUpdateOrCreate($request);
+        $this->productImageUpload($request, $product);
         flash('Successfully updated')->success();
-        return redirect()->route('admin.products.edit', ['id' => $product->id]);
+        return redirect()->route('admin.products.edit', ['id' => $request->id]);
     }
-
-
 
 
     private function productValidateRequest($request)
     {
-      $request->validate([
-          'product_name' => 'required|max:255',
-          'product_body' => 'max:2500',
-          'product_vendor' => 'required|max:255',
-          'product_generic_name' => 'required',
-          'product_type' => 'required|max:255',
-          'product_size' => 'required|max:255',
-          'product_price' => 'required|max:255',
-          'product_kind' => 'required',
-          'product_partner' => 'required',
-          'product_published' => 'required|boolean',
+        $request->validate([
+            'product_name' => 'required|max:255',
+            'product_body' => 'max:2500',
+            'product_vendor' => 'required|max:255',
+            'product_generic_name' => 'required',
+            'product_type' => 'required|max:255',
+            'product_size' => 'required|max:255',
+            'product_price' => 'required|max:255',
+            'product_kind' => 'required',
+            'product_partner' => 'required',
+            'product_published' => 'required|boolean',
 
-      ]);
+        ]);
     }
 
 
     private function productUpdateOrCreate($request)
     {
 
-      /**
-      $partner = $this->partner->where('id', $request->get('product_partner'))->first();
-      if (!isset($partner)) {
-          $errors = [
-              'Partner Not Found'
-          ];
-          $partners = $this->partner->all();
-          return view('admin.products.create', get_defined_vars());
-      }
+        /**
+         * $partner = $this->partner->where('id', $request->get('product_partner'))->first();
+         * if (!isset($partner)) {
+         * $errors = [
+         * 'Partner Not Found'
+         * ];
+         * $partners = $this->partner->all();
+         * return view('admin.products.create', get_defined_vars());
+         * }
+         *
+         * $productData = [
+         * 'title' => $request->get('product_name'),
+         * 'body_html' => $request->get('product_body'),
+         * 'vendor' => $request->get('product_vendor'),
+         * 'generic_name' => $request->get('product_generic_name'),
+         * 'product_type' => $request->get('product_type'),
+         * 'packsize' => $request->get('product_size'),
+         * 'price' => $request->get('product_price'),
+         * 'kind' => $request->get('product_kind'),
+         * 'published' => $request->has('product_published') ? $request->get('product_published') : false,
+         * ];
+         *
+         * $product = $partner->products()->create($productData);
+         **/
+        $productData = [
+            'title' => $request->get('product_name'),
+            'body_html' => $request->get('product_body'),
+            'vendor' => $request->get('product_vendor'),
+            'product_type' => $request->get('product_type'),
+            'generic_name' => $request->get('product_generic_name'),
+            'packsize' => $request->get('product_size'),
+            'price' => $request->get('product_price'),
+            'kind' => $request->get('product_kind'),
+            'partner_id' => $request->has('product_partner') ? $request->get('product_partner') : $request->product_partner,
+            'published' => $request->has('product_published') ? $request->get('product_published') : false,
+        ];
 
-      $productData = [
-        'title' => $request->get('product_name'),
-        'body_html' => $request->get('product_body'),
-        'vendor' => $request->get('product_vendor'),
-        'generic_name' => $request->get('product_generic_name'),
-        'product_type' => $request->get('product_type'),
-        'packsize' => $request->get('product_size'),
-        'price' => $request->get('product_price'),
-        'kind' => $request->get('product_kind'),
-        'published' => $request->has('product_published') ? $request->get('product_published') : false,
-      ];
+//      $product = $this->product->find($request->id);
 
-      $product = $partner->products()->create($productData);
-      **/
-      $productData = [
-          'title' => $request->get('product_name'),
-          'body_html' => $request->get('product_body'),
-          'vendor' => $request->get('product_vendor'),
-          'product_type' => $request->get('product_type'),
-          'generic_name' => $request->get('product_generic_name'),
-          'packsize' => $request->get('product_size'),
-          'price' => $request->get('product_price'),
-          'kind' => $request->get('product_kind'),
-          'published' => $request->has('product_published') ? $request->get('product_published') : false,
-      ];
+//      $product->update($productData);
 
-      $product = $this->product->find($id);
+        return $this->product->updateOrCreate(['id' => $request->id], $productData);
 
-      $product->update($productData);
-
-      if ($request->has('image')) {
-          $product->attachment()->delete();
-
-          $path = Storage::putFile('attachments', $request->file('image'));
-          $product->attachment()->updateOrCreate([
-              'attachable_id' => $product->id,
-              'attachable_type' => 'App\Product'],
-              ['attachable_category' => 'product',
-                  'path' => $path,
-                  'file_name' => $request->image->getClientOriginalName()]);
-      }
     }
 
 
-    private function productImageUpload($request)
+    private function productImageUpload($request, $product)
     {
-      if ($request->hasFile('image')) {
-        $path = Storage::putFile('attachments', $request->file('image'));
-        $product->attachment()->updateOrCreate([
-          'attachable_id' => $product->id,
-          'attachable_type' => 'App\Entities\Product'
-        ],[
-          'attachable_category' => 'medicine',
-          'path' => $path,
-          'file_name' => $request->image->getClientOriginalName()
-        ]);
-      }
+
+        /**
+         *       if ($request->has('image')) {
+         * $product->attachment()->delete();
+         *
+         * $path = Storage::putFile('attachments', $request->file('image'));
+         * $product->attachment()->updateOrCreate([
+         * 'attachable_id' => $product->id,
+         * 'attachable_type' => \App\Entities\Product::class,
+         * ['attachable_category' => 'product',
+         * 'path' => $path,
+         * 'file_name' => $request->image->getClientOriginalName()]);
+         * }
+         */
+
+
+        if ($request->hasFile('image')) {
+            $path = Storage::putFile('attachments', $request->file('image'));
+
+            $product->attachment()->updateOrCreate([
+                'attachable_id' => $product->id,
+                'attachable_type' => 'App\Entities\Product'
+            ], [
+                'attachable_category' => 'product',
+                'path' => $path,
+                'file_name' => $request->image->getClientOriginalName()
+            ]);
+        }
     }
 
 }

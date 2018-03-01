@@ -102,6 +102,33 @@ if (!function_exists('render_areas')) {
     }
 }
 
+
+if (!function_exists('render_partners')) {
+    function render_partners($partnerId = null, $fieldName = null)
+    {
+
+        $partners = \App\Entities\Partner::all();
+
+        $html = "<select name='$fieldName' id='$fieldName'>";
+
+        if ($partnerId == null)
+            $html .= "<option value='' selected>Select a partner</option>";
+
+        foreach ($partners as $partner) {
+            if ($partner->id == $partnerId) {
+                $html .= "<option value='" . $partner->id . "' selected>" . $partner->name . "</option>";
+            } else {
+                $html .= "<option value='" . $partner->id . "'>" . $partner->name . "</option>";
+            }
+        }
+
+        $html .= "</select>";
+
+        return $html;
+
+    }
+}
+
 if (!function_exists('get_attachment')) {
 
     function getAttachmentURL($attachment)

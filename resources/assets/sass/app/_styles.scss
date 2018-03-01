@@ -180,9 +180,9 @@ section.hero.is-info .hero-body a.button:hover {
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar-link:after {
-    border-color: #ffffff;
-  }
+  //.navbar-link:after {
+  //  border-color: #ffffff;
+  //}
 }
 
 .login-page .auth.card .card-content .card-title.has-text-centered {
@@ -997,9 +997,9 @@ section.hero.is-info .hero-body a.button:hover {
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar-link:after {
-    border-color: #ffffff;
-  }
+  //.navbar-link:after {
+  //  border-color: #ffffff;
+  //}
 }
 
 .is-facebook:hover {
@@ -1703,16 +1703,6 @@ table.mobile-card-ui td:before {
   background-color: rgba(0, 0, 0, 0.54) !important;
 }
 
-.admin-navbar .navbar-link:after {
-  display: none !important;
-}
-
-.admin-side-menu {
-  background-color: #fff;
-  padding: 15px;
-  -webkit-box-shadow: 0 2px 3px hsla(0, 0%, 4%, .1), 0 0 0 1px hsla(0, 0%, 4%, .1);
-  box-shadow: 0 2px 3px hsla(0, 0%, 4%, .1), 0 0 0 1px hsla(0, 0%, 4%, .1);
-}
 
 .column.dashboard-top-card:nth-child(1) .card {
   background-color: #1bbf89 !important

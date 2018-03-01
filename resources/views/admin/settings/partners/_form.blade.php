@@ -104,7 +104,6 @@
                 <div class="content">
                     <p class="title is-4">Address</p>
 
-
                     @include('admin.partials._address', ['item' => isset($address) ? $address : []])
 
                 </div>

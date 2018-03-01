@@ -3,13 +3,10 @@
         <div class="card-content">
 
             <h1 class="title is-4 is-spaced">Your Order Details</h1>
+            
 
-            @if(session()->has('discount'))
-            {{ session()->get('discount.formatted') }}
-            @endif
-
-
-        <?php $grand_total = 0 ?>
+            <?php $grand_total = 0 ?>
+            <?php $grand_total_without_delivery = 0 ?>
             <?php $grand_discount = 0 ?>
             <?php $delivery_charges_for_partners = collect([]) ?>
             @foreach($grouped as $key => $partner)
@@ -18,14 +15,13 @@
                 <?php $partner_total = 0 ?>
                 <?php $discount_percentage = \App\Entities\Partner::where('name', $key)->first()['preferences']['discount_percentage'] ?>
                 <?php $min_discount_amount = \App\Entities\Partner::where('name', $key)->first()['preferences']['min_discount_amount'] ?>
-
                 <?php $delivery_charge = \App\Entities\Partner::where('name', $key)->first()['preferences']['delivery_charge'] ?>
 
                 @foreach($partner as $item)
 
                     <?php $partner_total = $partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')) ?>
 
-                    <div class="media item-description" style="">
+                    <div class="media item-description">
                         <div class="media-content">
                             <div class="content">
                                 <p>{{$item['item']->name}} |
@@ -46,41 +42,89 @@
                         </table>
                     </div>
                 @endforeach
+
+
+
+
+
+                {{-- Partner total --}}
+                <div class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong class="is-dark">Total Amount</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="media-right">
+                        <strong class="is-dark">&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</strong>
+                        <?php $grand_total_without_delivery = $grand_total_without_delivery; ?>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                {{-- Partner Discount --}}
                 <?php $discount_amount = 0 ?>
 
-
-                <?php if (!isset($data)): ?>
-                @if($min_discount_amount <= $partner_total)
-                    <?php $discount_amount = ($partner_total / 100) * $discount_percentage ?>
-                    <?php $partner_total = $partner_total - $discount_amount ?>
-                    <div class="media item-discount" style="">
-                        <div class="media-content">
-                            <div class="content">
-                                <p>
-                                    <strong>Discount ({{$discount_percentage}} %)</strong>
-                                </p>
-                            </div>
-                        </div>
-                        <table>
-                            <tr>
-                                <div class="media-right">
-                                    <td>
-                            <span class="">
-                                <strong class="is-success"
-                                        style="color: #1dca59;">-&#2547; {{number_format(((float)$discount_amount), 2, '.', '')}}</strong>
-                            </span>
-                                    </td>
+                @if (!session()->has('discount'))
+                    @if($min_discount_amount <= $partner_total)
+                        <?php $discount_amount = ($partner_total / 100) * $discount_percentage ?>
+                        <?php $partner_total_discounted = $partner_total - $discount_amount ?>
+                        <div class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>Discount ({{$discount_percentage}} %)</strong>
+                                    </p>
                                 </div>
-                            </tr>
-                        </table>
-                    </div>
-                @endif
-                <?php endif; ?>
+                            </div>
 
+                            <div class="media-right">
+                                <span class="">
+                                    <strong class="is-success"
+                                            style="color: #1dca59;">-&#2547; {{number_format(((float)$discount_amount), 2, '.', '')}}</strong>
+                                </span>
+                            </div>
+
+                        </div>
+                    @endif
+                @endif
+
+
+
+
+                {{-- Partner total after discount --}}
+
+                <div class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong class="is-dark">Payable Amount</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="media-right">
+                        <strong class="is-dark">&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</strong>
+                    </div>
+
+                </div>
+
+
+
+                {{-- Delivery charges --}}
                 <?php $delivery_charges_for_partners->put(\App\Entities\Partner::where('name', $key)->first()->id, $delivery_charge); ?>
                 @if($delivery_charge != 0)
-                    <?php $partner_total = $partner_total + $delivery_charge ?>
-                    <div class="media item-discount" style="">
+                    <?php $partner_total_with_delivery_charge = $partner_total + $delivery_charge ?>
+                    <?php # $partner_total = $partner_total + $delivery_charge ?>
+                    <div class="media">
                         <div class="media-content">
                             <div class="content">
                                 <p>
@@ -88,53 +132,64 @@
                                 </p>
                             </div>
                         </div>
-                        <table>
-                            <tr>
-                                <div class="media-right">
-                                    <td>
+
+                        <div class="media-right">
+
                                         <span class="">
                                             <strong class="is-dark"
                                                     style="color: #ca8c27;">&#2547; {{number_format(((float)$delivery_charge), 2, '.', '')}}</strong>
                                         </span>
-                                    </td>
-                                </div>
-                            </tr>
-                        </table>
+
+                        </div>
+
                     </div>
                 @endif
-                <div class="media" style="padding-left: 100px;">
-                    <table style="width: 100%;">
-                        <tr>
-                            <td style="text-align: right">
-                        <span class="">
-                            <strong class="is-success">&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</strong>
-                        </span>
-                            </td>
-                        </tr>
-                    </table>
+
+
+
+                {{-- Total product + delivery (afrer discount)--}}
+
+                <div class="media">
+                    <div class="media-content">
+                        <div class="content">
+
+                        </div>
+                    </div>
+
+                    <div class="media-right">
+                        <strong class="is-dark">&#2547; {{number_format(((float)$partner_total_with_delivery_charge), 2, '.', '')}}</strong>
+                    </div>
+
                 </div>
 
-                <?php if (!isset($data)): ?>
-                    <?php $grand_total = $grand_total + $partner_total ?>
+
+
+
+                {{-- Discount Calc--}}
+                @if (!session()->has('discount'))
                     <?php $grand_discount = $grand_discount + $discount_amount ?>
-                <?php else: ?>
 
-                    <?php if (isset($data['reward_type']) && $data['reward_type'] == "fixed"): ?>
-                        <?php $grand_total = ($grand_total + $partner_total) - ($data['reward']) ?>
-                        <?php $grand_discount = $grand_discount + $data['reward'] ?>
-                    <?php elseif (isset($data['reward_type']) && $data['reward_type'] == "percent"): ?>
+                @endif
+                {{-- end of discount calc --}}
 
 
-                        <?php $grand_discount = ($partner_total / 100) * ($data['reward']) ?>
+                <?php $grand_total_without_delivery = $grand_total_without_delivery + $partner_total ?>
 
-                        <?php $grand_total = ($partner_total - $grand_discount) ?>
-
-                    <?php endif; ?>
-
-                <?php endif; ?>
 
             @endforeach
 
+            {{-- couon code --}}
+
+            @if (session()->has('discount'))
+                <?php if (session()->get('discount.type') == "fixed"): ?>
+                <?php $grand_total = $grand_total_without_delivery - session()->get('discount.amount') ?>
+                <?php elseif (session()->get('discount.type') == "percent"): ?>
+                <?php $grand_discount = ($grand_total_without_delivery / 100) * session()->get('discount.amount') ?>
+                <?php $grand_total = ($grand_total_without_delivery - $grand_discount) ?>
+                <?php endif; ?>
+            @endif
+
+            {{-- coupon code --}}
 
             <div class="card order-total">
                 <div class="card-content">
@@ -145,18 +200,9 @@
                             <tr>
                                 <td style="text-align: left">
                                     <p class="subtitle is-6">Total Discount
-
-                                        <?php if (isset($data)):  ?>
-                                        <?php if (isset($data['reward_type']) && $data['reward_type'] == "percent"):  ?>
-
-                                        ({{ $data['reward'] }} %)
-
-
-                                        <?php endif;  ?>
-
-                                        <?php else: ?>
-
-                                        <?php endif;  ?>
+                                        @if (session()->has('discount'))
+                                            {!!   session()->get('discount.formatted')  !!}
+                                        @endif
                                     </p>
                                 </td>
                                 <td style="text-align: right">

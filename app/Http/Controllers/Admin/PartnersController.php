@@ -36,84 +36,15 @@ class PartnersController extends Controller
      */
     public function create(Request $request)
     {
-        $countries = [];
-        $address = [];
         return view('admin.settings.partners.create', get_defined_vars());
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'partner_name' => 'required|string|max:255',
-            'partner_email' => 'required|email|max:255|unique:partners,email',
-            'partner_phone' => 'required|max:255|unique:partners,phone',
-            'partner_website' => 'nullable|url|max:255',
-            'partner_status' => 'required|boolean',
 
-            'partner_api' => 'nullable|url|max:255',
-            'partner_api_key' => 'nullable|string|max:255',
-            'partner_min_discount_amount' => 'nullable|numeric',
-            'partner_discount_percentage' => 'nullable|numeric',
-
-
-            'address_name' => 'nullable|string|max:255',
-            'address_phone' => 'nullable|required',
-            'address_line_1' => 'nullable|string|max:255',
-            'address_line_2' => 'nullable|string|max:255',
-            'address_city' => 'nullable|string|max:255',
-            'address_postcode' => 'nullable|string|max:255',
-            'address_country' => 'nullable|string|max:255',
-            'address_province' => 'nullable|string|max:255',
-
-
-        ], [
-            'partner_name.required' => 'Partner name is required',
-            'partner_email.required' => 'Email is required',
-            'partner_email.email' => 'Email must be a valid email address.',
-            'partner_phone.required' => 'Phone is required',
-            'partner_website.required' => 'website is required',
-
-            'address_name.required' => 'Name is required',
-            'address_phone.required' => 'Phone is required',
-            'address_line_1.required' => 'Line 1 is required',
-            'address_line_2.required' => 'Line 2 is required',
-            'address_city.required' => 'City is required',
-            'address_postcode.required' => 'Postcode is required',
-            'address_province.required' => 'Province is required',
-            'address_country.required' => 'Country is required',
-        ]);
-
-        $partnerData = [
-            'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
-            'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
-            'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : "0",
-            'discount_percentage' => $request->has('partner_discount_percentage') ? $request->get('partner_discount_percentage') : "0",
-            'min_delivery_amount' => $request->has('partner_min_delivery_amount') ? $request->get('partner_min_delivery_amount') : "0",
-            'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : "0",
-        ];
-
-
-        $partner = Partner::create([
-            'name' => $request->get('partner_name'),
-            'email' => $request->get('partner_email'),
-            'phone' => $request->get('partner_phone'),
-            'website' => $request->get('partner_website'),
-            'preferences' => $partnerData,
-            'is_active' => $request->get('partner_status')
-
-        ]);
-        $addressData = [
-            'name' => $request->get('address_name'),
-            'phone' => $request->get('address_phone'),
-            'address1' => $request->get('address_line1'),
-            'address2' => $request->get('address_line2'),
-            'city' => $request->get('address_city'),
-            'postcode' => $request->get('address_postcode'),
-            'province' => $request->get('address_province'),
-            'country' => $request->get('address_country'),
-        ];
-
-        $partner->address()->updateOrCreate(['addressable_id' => $partner->id, 'addressable_type' => 'App\Entities\Partner'], $addressData);
+        $this->partnerValidateRequest($request);
+        $partner = $this->partnerUpdateOrCreate($request);
+        $this->partnerAddress($partner, $request);
 
         flash('Successfully created')->success();
         return redirect()->route('admin.partners.edit', ['id' => $partner->id]);
@@ -132,9 +63,9 @@ class PartnersController extends Controller
 
     public function update($id, Request $request)
     {
-
-        $item = Partner::findOrFail($id);
-
+        $this->partnerValidateRequest($request);
+        $partner = $this->partnerUpdateOrCreate($request);
+        $this->partnerAddress($partner, $request);
 
         flash('Successfully updated')->success();
         return redirect()->back();
@@ -148,8 +79,8 @@ class PartnersController extends Controller
     {
       $request->validate([
           'partner_name' => 'required|string|max:255',
-          'partner_email' => 'required|email|max:255|unique:partners,email,' . $id,
-          'partner_phone' => 'nullable|max:255|unique:partners,phone,' . $id,
+          'partner_email' => 'required|email|max:255|unique:partners,email',
+          'partner_phone' => 'nullable|max:255|unique:partners,phone',
           'partner_website' => 'nullable|url|max:255',
           'partner_status' => 'required|boolean',
           'partner_api' => 'nullable|url|max:255',
@@ -189,7 +120,8 @@ class PartnersController extends Controller
 
     private function partnerUpdateOrCreate($request)
     {
-      $partnerData = [
+
+      $partnerSettingsData = [
           'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
           'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
           'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : "0",
@@ -198,26 +130,40 @@ class PartnersController extends Controller
           'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : "0",
       ];
 
-      $item->name = $request->get('partner_name');
-      $item->email = $request->get('partner_email');
-      $item->phone = $request->get('partner_phone');
-      $item->website = $request->get('partner_website');
-      $item->preferences = $partnerData;
-      $item->is_active = $request->get('partner_status');
-      $item->update();
+        $partnerData = [
+            'name' => $request->get('partner_name'),
+            'email' => $request->get('partner_email'),
+            'phone' => $request->get('partner_phone'),
+            'website' => $request->get('partner_website'),
+            'preferences' => $partnerSettingsData,
+            'is_active' => $request->get('partner_status')
+        ];
 
-      $addressData = [
-          'name' => $request->get('address_name'),
-          'phone' => $request->get('address_phone'),
-          'address1' => $request->get('address_line1'),
-          'address2' => $request->get('address_line2'),
-          'city' => $request->get('address_city'),
-          'postcode' => $request->get('address_postcode'),
-          'district' => $request->get('address_province'),
-          'country' => $request->get('address_country'),
-          'default' => true,
-      ];
-      $item->address()->updateOrCreate(['addressable_id' => $item->id, 'addressable_type' => 'App\Entities\Partner'], $addressData);
+        if (isset($request->id)) {
+            return $this->partner->updateOrCreate(['id' => $request->id], $partnerData);
+        }
+        return $this->partner->create($partnerData);
+
+    }
+
+
+    private  function partnerAddress($partner, $request)
+    {
+
+        $addressData = [
+            'name' => $request->get('address_name'),
+            'phone' => $request->get('address_phone'),
+            'address1' => $request->get('address_line1'),
+            'address2' => $request->get('address_line2'),
+            'city' => $request->get('address_city'),
+            'postcode' => $request->get('address_postcode'),
+            'district' => $request->get('address_province'),
+            'country' => $request->get('address_country'),
+            'default' => true,
+        ];
+
+        $partner->address()->updateOrCreate(['addressable_id' => $partner->id, 'addressable_type' => \App\Entities\Partner::class], $addressData);
+
     }
 
 
