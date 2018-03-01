@@ -31,8 +31,10 @@ class CouponController extends Controller
     public function validateCouponCode(Request $request)
     {
         $request->validate([
-            'order_discount_code' => 'nullable|exists:coupon_codes,code',
+            'order_discount_code' => 'required|exists:coupon_codes,code',
         ], [
+            'order_discount_code.required' => 'A discount code should be enterd.',
+
             'order_discount_code.exists' => 'The discount code is invalid.'
         ]);
 
