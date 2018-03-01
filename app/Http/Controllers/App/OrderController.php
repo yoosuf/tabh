@@ -73,6 +73,20 @@ class OrderController extends Controller
     }
 
 
+
+
+    public function getCheckout(Request $request)
+    {
+        $grouped = $this->group_by_partner();
+        $addresses = [];
+        if (Auth::check()) {
+            $addresses = Auth::user()->addresses()->get();
+        }
+        return view('app.checkouts.index', compact('grouped', 'addresses'));
+    }
+
+
+
     public function summery(Request $request)
     {
 
@@ -132,6 +146,7 @@ class OrderController extends Controller
             }
         }
 
+
         return [
             'grouped' => $partner,
             'partner_total' => $partner_total,
@@ -141,12 +156,15 @@ class OrderController extends Controller
     }
 
 
+
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function placeOrder(Request $request)
     {
+
 
         $user = $request->user();
 

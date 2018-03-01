@@ -18,8 +18,8 @@ Route::group(['namespace' => 'App'], function () {
     Route::post('login', 'Auth\LoginController@authenticate')->name('admin.login');
     Route::post('/cart/add', 'CartController@add')->name('cart.add');
     Route::post('/cart/remove', 'CartController@remove')->name('cart.remove');
-    Route::get('/cart/checkout', 'CartController@show')->name('cart.show');
-    Route::get('checkouts', 'OrderController@summery');
+    Route::any('checkouts', 'OrderController@getCheckout')->name('checkouts');
+//    Route::get('checkouts', 'OrderController@summery');
     Route::get('/products', 'SearchController@titles');
     Route::group(['middleware' => ['auth']], function () {
         Route::post('coupon-code', 'CouponController@validateCouponCode')->name('code.validate');

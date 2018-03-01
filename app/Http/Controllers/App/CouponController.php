@@ -38,23 +38,28 @@ class CouponController extends Controller
         $data = $this->couponcode
             ->whereDate('expires_at', '>=', Carbon::today()->toDateString())
             ->whereCode($discountCode)
-            ->get();
+            ->first();
 
-        if (count($data) == 0) {
+        if (!isset($data)) {
             return redirect()->back()->withInput($request->input())->with('danger', 'The discount code is expired.');
+        } else {
+
+
+
+            if ($data->reward_type == "percent") {
+                $discountVal = $data->reward . '%' ;
+            } else {
+                $discountVal = '৳ '. $data->reward;
+            }
+
+
+            $request->session()->put('discount.type', $data->reward_type);
+            $request->session()->put('discount.amount', $data->reward);
+            $request->session()->put('discount.formatted', $discountVal);
+
+            return redirect()->back()->withInput($request->input())->with('status', "That's a valid discount code  and enjoy " . $discountVal);
+
         }
-
-
-        $grouped = $this->group_by_partner();
-
-        $addresses = [];
-        if (\Auth::check()) {
-            $addresses = $request->user()->addresses()->get();
-        }
-
-
-        return view('app.checkouts.index', compact('grouped', 'addresses', 'data', 'discountCode'));
-
     }
 
     private function group_by_partner()

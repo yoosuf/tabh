@@ -4,7 +4,12 @@
 
             <h1 class="title is-4 is-spaced">Your Order Details</h1>
 
-            <?php $grand_total = 0 ?>
+            @if(session()->has('discount'))
+            {{ session()->get('discount.formatted') }}
+            @endif
+
+
+        <?php $grand_total = 0 ?>
             <?php $grand_discount = 0 ?>
             <?php $delivery_charges_for_partners = collect([]) ?>
             @foreach($grouped as $key => $partner)

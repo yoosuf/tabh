@@ -1,5 +1,6 @@
-<form role="form" id="cart_mini" method="GET" action="{{ route('cart.show') }}">
+<form role="form" id="cart_mini" method="POST" action="{{ route('checkouts') }}">
 
+    {{ csrf_field() }}
 
     <div class="field">
         <label class="label is-pulled-left">{{ count($cart) }} Items</label>

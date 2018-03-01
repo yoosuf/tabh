@@ -49,15 +49,7 @@ class CartController extends Controller
         return back()->withInput();
     }
 
-    public function show(Request $request)
-    {
-        $grouped = $this->group_by_partner();
-        $addresses = [];
-        if (Auth::check()) {
-            $addresses = Auth::user()->addresses()->get();
-        }
-        return view('app.checkouts.index', compact('grouped', 'addresses'));
-    }
+
 
     private function group_by_partner()
     {

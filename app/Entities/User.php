@@ -138,5 +138,5 @@ class User extends Authenticatable
     {
         return $this->is_complete = 1;
     }
-    
+
 }
