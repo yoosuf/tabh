@@ -11,7 +11,7 @@
                 {{ $item->address1 }} <br />
                 {{ $item->address2 }} <br />
 
-                {{ $item->city }}, {{ $item->province }}, {{ $item->postcode }}, {{ $item->country }}
+                {{ $item->city }}, {{ $item->district }}, {{ $item->postcode }}, {{ $item->country }}
             </address>
 
             </p>

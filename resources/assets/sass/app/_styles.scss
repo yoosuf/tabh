@@ -1937,3 +1937,25 @@ table.mobile-card-ui td:before {
 .is-selected {
   background: #232323;
 }
+
+
+
+@media only screen and (max-width: 768px) {
+  .section {
+
+    padding: 0 0;
+
+  }
+
+  .account-container .card {
+    border-left: 0;
+
+  }
+
+  .card-content {
+    padding: 0;
+
+  }
+}
+
+

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="columns">
 
-            <div class="column is-three-fifths is-offset-one-fifth">
+            <div class="column">
 
                 <div class="card-container">
 
@@ -133,7 +133,11 @@
 
                             @else
 
-                            There is no orders placed yet, <a href="{{ url('/') }}">start shopping now with {{ config('app.name', 'Laravel') }}</a>.
+
+
+
+
+                                    There are no orders placed, <a href="{{ url('/') }}">start shopping now with {{ config('app.name', 'Laravel') }}</a>.
 
 
                             @endif
