@@ -21,15 +21,13 @@ Route::group(['namespace' => 'App'], function () {
     Route::any('checkouts', 'OrderController@getCheckout')->name('checkouts');
     Route::get('/products', 'SearchController@titles');
 
-
-
-    Route::get('/democart', 'OrderController@getOrderSummery');
+    Route::get('districts', 'LocationController@getDistricts');
+    Route::get('districts/{id}/areas', 'LocationController@getAreas');
 
 
     Route::group(['middleware' => ['auth']], function () {
         Route::post('coupon-code', 'CouponController@validateCouponCode')->name('code.validate');
-        Route::get('districts', 'LocationController@getDistricts');
-        Route::get('districts/{id}/areas', 'LocationController@getAreas');
+
         Route::post('/order/prescription', 'OrderController@placeOrder')->name('order.prescription.upload');
         Route::post('/order/add', 'OrderController@placeOrder')->name('order.add');
         Route::get('/order/discard', 'OrderController@discard')->name('order.discard');
