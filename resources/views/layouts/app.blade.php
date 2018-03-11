@@ -21,5 +21,10 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+
+
+
+    @yield('js-content')
+
 </body>
 </html>

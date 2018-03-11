@@ -26,3 +26,18 @@
         </div>
     </section>
 @endsection
+
+
+
+@section('js-content')
+<script>
+$(function () {
+    if ($("#shop_groceries").length) {
+        $('#shop_groceries').on('click', function (e) {
+            e.preventDefault();
+            $(this).replaceWith("<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>");
+        });
+    }
+});
+</script>
+@endsection
