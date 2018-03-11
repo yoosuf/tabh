@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Entities\Attachment;
 use App\Entities\Order;
-use App\Http\Controllers\Controller;
+use App\Entities\Attachment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AttachmentsController extends Controller
 {
@@ -17,7 +17,6 @@ class AttachmentsController extends Controller
         $this->middleware('admin');
         $this->attachment = $attachment;
     }
-
 
 
     public function index(Request $request)
@@ -79,9 +78,9 @@ class AttachmentsController extends Controller
         ]);
 
 
-        $user  = $this->user->create([
+        $user = $this->user->create([
             'name' => $request->get('customer_name'),
-            'phone' =>$request->get('customer_phone'),
+            'phone' => $request->get('customer_phone'),
             'email' => $request->get('customer_email'),
         ]);
 
@@ -148,8 +147,8 @@ class AttachmentsController extends Controller
 
         $request->validate([
             'customer_name' => 'required|string|max:255',
-            'customer_email' => 'required|string|email|max:255|unique:users,email,'.$request->id,
-            'customer_phone' => 'nullable|max:255|unique:users,phone,'.$request->id,
+            'customer_email' => 'required|string|email|max:255|unique:users,email,' . $request->id,
+            'customer_phone' => 'nullable|max:255|unique:users,phone,' . $request->id,
 
 
             'address_name' => 'nullable|string|max:255',

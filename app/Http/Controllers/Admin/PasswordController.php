@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {
@@ -23,7 +23,7 @@ class PasswordController extends Controller
 
         $requestData = $request->only('current_password', 'password', 'password_confirmation');
         $current_password = auth()->guard('admin')->user()->password;
-        if(Hash::check($requestData['current_password'], $current_password)) {
+        if (Hash::check($requestData['current_password'], $current_password)) {
             $obj_user = auth()->guard('admin')->user();
             $obj_user->password = Hash::make($requestData['password']);;
             $obj_user->save();

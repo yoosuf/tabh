@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Entities\Order;
 use App\Entities\User;
-use App\Http\Controllers\Controller;
+use App\Entities\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
 {
@@ -58,7 +58,6 @@ class OrdersController extends Controller
     }
 
 
-
     public function approve($id, Request $request)
     {
         $order = $this->order->find($id);
@@ -95,9 +94,7 @@ class OrdersController extends Controller
             $order->save();
 
             flash('Status Changed to ' . $request->get('status'))->success();
-        }
-        else
-        {
+        } else {
             flash('Something went wrong')->success();
         }
 
@@ -109,8 +106,7 @@ class OrdersController extends Controller
         $order = $this->order->find($id);
 
         $delivery_charges = 0;
-        foreach ($order->meta as $meta)
-        {
+        foreach ($order->meta as $meta) {
             $delivery_charges += $meta['delivery_amount'];
         }
 

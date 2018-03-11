@@ -4,11 +4,9 @@ namespace App\Http\Controllers\App;
 
 use App\Entities\Partner;
 use App\Entities\Product;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Mockery\Exception;
 
 class CartController extends Controller
 {
@@ -33,8 +31,8 @@ class CartController extends Controller
     {
         $product = $this->product->find($request->id);
         Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price])->associate(Product::class);
-        if($request->ajax()){
-            return response()->json(['message' => $product->title . ' added to cart', 'statusText'=> 'OK'], 200);
+        if ($request->ajax()) {
+            return response()->json(['message' => $product->title . ' added to cart', 'statusText' => 'OK'], 200);
         }
         return back()->withInput();
     }
@@ -42,13 +40,12 @@ class CartController extends Controller
     public function remove(Request $request)
     {
         $item = Cart::get($request->id);
-        Cart::update($request->id, $item->qty-1);
-        if($request->ajax()){
-            return response()->json(['message' => 'Item removed from the cart', 'statusText'=> 'OK'], 200);
+        Cart::update($request->id, $item->qty - 1);
+        if ($request->ajax()) {
+            return response()->json(['message' => 'Item removed from the cart', 'statusText' => 'OK'], 200);
         }
         return back()->withInput();
     }
-
 
 
     private function group_by_partner()

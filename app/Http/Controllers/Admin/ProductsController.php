@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Product;
-use App\Http\Controllers\Controller;
 use App\Entities\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Tests\DependencyInjection\RendererService;
 
 class ProductsController extends Controller
 {

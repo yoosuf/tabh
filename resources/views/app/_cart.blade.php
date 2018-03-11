@@ -10,9 +10,6 @@
         @if(count($cart) > 0)
             @foreach($cart as $row)
 
-
-
-
                 <div class="media">
                     <figure class="media-left">
                         <p class="image is-64x64">
@@ -86,12 +83,3 @@
     </div>
 
 </div>
-{{--<div class="card" id="cart_progress_bar" style="visibility: hidden">--}}
-    {{--<div class="card-content">--}}
-        {{--<center>--}}
-        {{--<a class="button is-loading">--}}
-            {{-----------}}
-        {{--</a>--}}
-        {{--</center>--}}
-    {{--</div>--}}
-{{--</div>--}}

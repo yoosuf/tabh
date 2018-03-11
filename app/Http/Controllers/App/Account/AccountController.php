@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\App\Account;
 
-use App\Entities\Country;
-use App\Entities\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
@@ -39,13 +37,13 @@ class AccountController extends Controller
             'address_name.required' => 'Name is required',
             'address_phone.required' => 'Phone is required',
             'address_line_1.required' => 'Line 1 is required',
-           'address_line_2.required' => 'Line 2 is required',
+            'address_line_2.required' => 'Line 2 is required',
             'address_city.required' => 'City is required',
             'address_postcode.required' => 'Postcode is required',
             'address_province.required' => 'Province is required',
             'address_country.required' => 'Country is required',
         ]);
-        
+
         $auth = auth()->user();
         $addressData = [
             'name' => $request->get('address_name'),

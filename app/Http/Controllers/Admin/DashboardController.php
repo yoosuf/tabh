@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\User;
 use App\Entities\Order;
 use App\Entities\Partner;
 use App\Entities\Product;
-use App\Entities\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class DashboardController extends Controller
 {

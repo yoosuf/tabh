@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Http\Controllers\Controller;
 use App\Entities\City;
 use App\Entities\District;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\City as CityResource;
 use App\Http\Resources\V1\District as DistrictResource;
 

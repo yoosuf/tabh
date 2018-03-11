@@ -3,14 +3,12 @@
 
 namespace App\Http\Controllers\App\Account;
 
-
-use App\Entities\Address;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\MessageBag;
 use App\Entities\City;
-use App\Entities\District;
 use App\Entities\Country;
+use App\Entities\Address;
+use App\Entities\District;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AddressesController extends Controller
 {
@@ -18,7 +16,7 @@ class AddressesController extends Controller
     private $city;
     private $province;
     private $country;
-    private  $address;
+    private $address;
 
     public function __construct(City $city,
                                 District $province,
@@ -67,7 +65,7 @@ class AddressesController extends Controller
     {
         $user = auth()->user();
         $this->validateAddressRequest($request);
-        $this->addressUpdateOrCreate($user,$newAddress = true,  $request);
+        $this->addressUpdateOrCreate($user, $newAddress = true, $request);
         flash('Successfully added')->success();
         return redirect()->to('/account/address');
     }
@@ -85,7 +83,7 @@ class AddressesController extends Controller
     {
 
         $user = auth()->user();
-        $this->addressUpdateOrCreate($user, $newAddress = null,  $request);
+        $this->addressUpdateOrCreate($user, $newAddress = null, $request);
 
         foreach ($user->addresses as $data) {
             if ($data->id !== $id) {
@@ -122,8 +120,6 @@ class AddressesController extends Controller
 
     protected function addressUpdateOrCreate($user, $newAddress, $request)
     {
-
-
 
 
         $cityData = $this->city->find($request->get('address_city'));

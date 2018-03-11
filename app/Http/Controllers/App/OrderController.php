@@ -15,7 +15,6 @@ use App\Entities\CouponCode;
 use Illuminate\Http\Request;
 use App\Jobs\App\Order\NewOrder;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -88,8 +87,6 @@ class OrderController extends Controller
      */
     public function placeOrder(Request $request)
     {
-
-
         $user = $request->user();
 
         $request->validate([
@@ -141,7 +138,6 @@ class OrderController extends Controller
 
         $this->uploadPrescription($request, $order);
 
-
         foreach (Cart::content() as $item) {
             $product = $this->product->find($item->id);
             $partner = $product->partner()->first();
@@ -170,7 +166,7 @@ class OrderController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function discard(Request $request)
+    public function discard()
     {
         Cart::destroy();
         return redirect()->to('search?type=pharmaceutical');
@@ -305,12 +301,9 @@ class OrderController extends Controller
         }
 
 
-
         return $partnerCollection;
 
     }
-
-
 
 
     /**

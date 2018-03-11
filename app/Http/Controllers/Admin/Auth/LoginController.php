@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Entities\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -41,12 +40,10 @@ class LoginController extends Controller
     }
 
 
-
     public function getLoginForm()
     {
         return view('admin.auth.login');
     }
-
 
 
     public function authenticate(Request $request)
@@ -54,7 +51,7 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password ])) {
+        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password])) {
             return redirect()->intended('admin');
         } else {
             return redirect()->intended('admin/login')->with('status', 'Invalid Login Credentials !');

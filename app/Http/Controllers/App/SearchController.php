@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\App;
 
 use App\Entities\Product;
-use App\Http\Controllers\Controller;
-use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Gloudemans\Shoppingcart\Cart;
+use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
@@ -41,7 +40,7 @@ class SearchController extends Controller
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
-                ->filter(function ($item, $key) {
+                ->filter(function ($item) {
                     return $item->partner()->first()->is_active == true;
                 })->take(10);
         } else if ($type == "groceries") {
@@ -50,10 +49,6 @@ class SearchController extends Controller
             $products = [];
         }
         $cart = $this->cart->content();
-
-//        if($request->ajax()){
-//            return response()->json(['message' => 'Searched', 'statusText'=> 'OK'], 200);
-//        }
 
         return view('app.results', get_defined_vars());
     }
@@ -69,7 +64,7 @@ class SearchController extends Controller
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
-                ->filter(function ($item, $key) {
+                ->filter(function ($item) {
                     return $item->partner()->first()->is_active == true;
                 })
                 ->pluck('generic_name')->toArray();

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -26,7 +26,7 @@ class ProfileController extends Controller
         $user = auth()->guard('admin')->user();
         $request->validate([
             'full_name' => 'required|max:256',
-            'email' => 'required|string|email|max:255|unique:admins,email,'.$user->id,
+            'email' => 'required|string|email|max:255|unique:admins,email,' . $user->id,
         ]);
 
         $user->name = $request->get('full_name');

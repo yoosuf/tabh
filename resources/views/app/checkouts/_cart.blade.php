@@ -42,7 +42,7 @@
                             <td class="has-text-right">
                                 <span>{{ $item['item']->qty}}</span>
                             </td>
-                            <td>{!!  $item['item']->name !!}</td>
+                            <td>{!! $item['item']->name !!}</td>
                             <td class="has-text-right">
                                 <span>&#2547; {{number_format(((float)$item['item']->price), 2, '.', '')}}</span>
                             </td>
@@ -51,7 +51,6 @@
                                 <span>&#2547; {{number_format(((float)$item['item']->qty * (float)$item['item']->price), 2, '.', '')}}</span>
                             </td>
                         </tr>
-
                         {{-- Assign Partner total --}}
                         <?php $partner_total = $partner_total + ($item['item']->qty * number_format(((float)$item['item']->price), 2, '.', '')) ?>
                     @endforeach
@@ -62,35 +61,25 @@
                             Amount
                         </td>
                         <td class="has-text-right">
-                            <span>&#2547; {{number_format(((float)$partner_total), 2, '.', '')}}</span>
+                            <span>&#2547; {{ number_format(( (float)$partner_total ), 2, '.', '') }}</span>
                         </td>
                     </tr>
 
-
-
                     {{-- Partner Discount --}}
                     @if (!session()->has('discount'))
-
                         @if($min_discount_amount <= $partner_total)
-
                             <?php $partner_discount = ($partner_total / 100) * $discount_percentage ?>
                             <?php $partner_total = $partner_total - $partner_discount ?>
                             <tr>
                                 <td colspan="3" class="has-text-right">
-                                    <span>Discount ({{$discount_percentage}} %)</span>
+                                    <span>Discount ({{ $discount_percentage }} %)</span>
                                 </td>
                                 <td class="has-text-right">
-                                    <span>-&#2547; {{number_format(((float)$partner_discount), 2, '.', '')}}</span>
+                                    <span>-&#2547; {{ number_format(((float)$partner_discount), 2, '.', '') }}</span>
                                 </td>
                             </tr>
-
-
-
-
                         @endif
                     @endif
-
-
 
 
                     {{-- Delivery charges --}}
@@ -98,14 +87,14 @@
                     @if($delivery_charge != 0)
 
                         <?php $partner_total_with_delivery_charge = $partner_total + $delivery_charge ?>
-                        <?php  $total_delivery_charge = $total_delivery_charge + $delivery_charge ?>
+                        <?php $total_delivery_charge = $total_delivery_charge + $delivery_charge ?>
 
                         <tr>
                             <td colspan="3" class="has-text-right">
                                 Delivery Charge
                             </td>
                             <td class="has-text-right">
-                                <span>&#2547; {{number_format(((float)$delivery_charge), 2, '.', '')}}</span>
+                                <span>&#2547; {{ number_format(((float)$delivery_charge), 2, '.', '') }}</span>
                             </td>
                         </tr>
 
@@ -118,7 +107,6 @@
                             <span>Total Amount for {{$key}}</span>
 
 
-
                         </td>
                         <td class="has-text-right">
                             <span>&#2547; {{number_format(((float)$partner_total_with_delivery_charge), 2, '.', '')}}</span>
@@ -126,13 +114,11 @@
                     </tr>
 
 
-
                     {{-- Discount Calc--}}
                     @if (!session()->has('discount'))
                         <?php $grand_discount = $grand_discount + $partner_discount ?>
                     @endif
                     {{-- end of discount calc --}}
-
 
 
                     @if (session()->has('discount'))
@@ -149,7 +135,6 @@
                 @if (session()->has('discount'))
                     @if (session()->get('discount.type') == "fixed")
                         <?php $grand_total = $grand_total_without_delivery - session()->get('discount.amount') ?>
-
                     @elseif (session()->get('discount.type') == "percent")
                         <?php $grand_discount = ($grand_total_without_delivery / 100) * session()->get('discount.amount') ?>
                         <?php $grand_total = ($grand_total_without_delivery - $grand_discount) ?>
@@ -166,21 +151,24 @@
                         <th colspan="3" class="has-text-right">
                         <span>Total Discount
                             @if (session()->has('discount'))
-                                {!!   session()->get('discount.formatted')  !!}
+                                {!! session()->get('discount.formatted') !!}
                             @endif</span>
                         </th>
                         <th class="has-text-right">
-                            <span>-&#2547; {{number_format(((float)$grand_discount), 2, '.', '')}}</span>
+                            <span>-&#2547; {{ number_format(((float)$grand_discount), 2, '.', '') }}</span>
                         </th>
                     </tr>
                 @endif
+
 
                 <tr>
                     <th colspan="3" class="has-text-right">
                         <span>Total Amount</span>
                     </th>
                     <th class="has-text-right">
-                        <span>&#2547; {{number_format(((float)$grand_total), 2, '.', '')}}</span>
+
+                        <?php $grand_total = $grand_total + $total_delivery_charge; ?>
+                        <span>&#2547; {{ number_format(((float)$grand_total ), 2, '.', '') }}</span>
                     </th>
                 </tr>
 
@@ -192,7 +180,7 @@
                    value="{{$grand_discount}}">
             <input type="hidden" name="tax" id="tax" value="0">
 
-            @foreach($delivery_charges_for_partners as $key => $value)
+            @foreach( $delivery_charges_for_partners as $key => $value )
                 <input type="hidden" name="delivery[]" value="{{$key}}-{{$value}}">
             @endforeach
         </div>

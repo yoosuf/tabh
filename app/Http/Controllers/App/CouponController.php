@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\App;
 
+use \Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Entities\CouponCode;
-use \Carbon\Carbon;
 use App\Http\Controllers\Controller;
-
 
 class CouponController extends Controller
 {

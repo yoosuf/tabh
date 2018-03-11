@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Entities\CouponCode;
 use App\Http\Controllers\Controller;
 
-
 class CouponsController extends Controller
 {
-
     protected $couponcode;
 
     public function __construct(CouponCode $couponcode)
@@ -102,7 +100,7 @@ class CouponsController extends Controller
         $data = $couponcode->find($id);
 
         $request->validate([
-            'code' => 'required|min:6|max:255|unique:coupon_codes,code,'.$id,
+            'code' => 'required|min:6|max:255|unique:coupon_codes,code,' . $id,
             'reward_type' => 'required|in:fixed,percent',
             'reward' => 'required',
             'expires_at' => 'required|date'

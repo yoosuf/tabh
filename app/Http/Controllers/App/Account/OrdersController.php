@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\App\Account;
 
-use App\Entities\LineItem;
 use App\Entities\Order;
-use App\Http\Controllers\Controller;
+use App\Entities\LineItem;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
 {

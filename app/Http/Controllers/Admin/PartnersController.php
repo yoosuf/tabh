@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Entities\Country;
 use App\Entities\Partner;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PartnersController extends Controller
 {
@@ -13,8 +13,8 @@ class PartnersController extends Controller
 
     public function __construct(Partner $partner)
     {
-      $this->middleware('admin');
-      $this->partner = $partner;
+        $this->middleware('admin');
+        $this->partner = $partner;
     }
 
 
@@ -73,8 +73,6 @@ class PartnersController extends Controller
     }
 
 
-
-
     private function partnerValidateRequest($request)
     {
 
@@ -119,8 +117,8 @@ class PartnersController extends Controller
         } else {
             $request->validate([
                 'partner_name' => 'required|string|max:255',
-                'partner_email' => 'required|email|max:255|unique:partners,email,'. $request->id,
-                'partner_phone' => 'nullable|max:255|unique:partners,phone,'. $request->id,
+                'partner_email' => 'required|email|max:255|unique:partners,email,' . $request->id,
+                'partner_phone' => 'nullable|max:255|unique:partners,phone,' . $request->id,
                 'partner_website' => 'nullable|url|max:255',
                 'partner_status' => 'required|boolean',
                 'partner_api' => 'nullable|url|max:255',
@@ -159,18 +157,17 @@ class PartnersController extends Controller
     }
 
 
-
     private function partnerUpdateOrCreate($request)
     {
 
-      $partnerSettingsData = [
-          'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
-          'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
-          'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : "0",
-          'discount_percentage' => $request->has('partner_discount_percentage') ? $request->get('partner_discount_percentage') : "0",
-          'min_delivery_amount' => $request->has('partner_min_delivery_amount') ? $request->get('partner_min_delivery_amount') : "0",
-          'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : "0",
-      ];
+        $partnerSettingsData = [
+            'api' => $request->has('partner_api') ? $request->get('partner_api') : "",
+            'api_key' => $request->has('partner_api_key') ? $request->get('partner_api_key') : "",
+            'min_discount_amount' => $request->has('partner_min_discount_amount') ? $request->get('partner_min_discount_amount') : "0",
+            'discount_percentage' => $request->has('partner_discount_percentage') ? $request->get('partner_discount_percentage') : "0",
+            'min_delivery_amount' => $request->has('partner_min_delivery_amount') ? $request->get('partner_min_delivery_amount') : "0",
+            'delivery_charge' => $request->has('partner_delivery_charge') ? $request->get('partner_delivery_charge') : "0",
+        ];
 
         $partnerData = [
             'name' => $request->get('partner_name'),
@@ -189,7 +186,7 @@ class PartnersController extends Controller
     }
 
 
-    private  function partnerAddress($partner, $request)
+    private function partnerAddress($partner, $request)
     {
 
         $addressData = [
@@ -207,9 +204,6 @@ class PartnersController extends Controller
         $partner->address()->updateOrCreate(['addressable_id' => $partner->id, 'addressable_type' => \App\Entities\Partner::class], $addressData);
 
     }
-
-
-
 
 
 }
