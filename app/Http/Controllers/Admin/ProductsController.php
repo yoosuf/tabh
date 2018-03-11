@@ -117,31 +117,6 @@ class ProductsController extends Controller
 
     private function productUpdateOrCreate($request)
     {
-
-        /**
-         * $partner = $this->partner->where('id', $request->get('product_partner'))->first();
-         * if (!isset($partner)) {
-         * $errors = [
-         * 'Partner Not Found'
-         * ];
-         * $partners = $this->partner->all();
-         * return view('admin.products.create', get_defined_vars());
-         * }
-         *
-         * $productData = [
-         * 'title' => $request->get('product_name'),
-         * 'body_html' => $request->get('product_body'),
-         * 'vendor' => $request->get('product_vendor'),
-         * 'generic_name' => $request->get('product_generic_name'),
-         * 'product_type' => $request->get('product_type'),
-         * 'packsize' => $request->get('product_size'),
-         * 'price' => $request->get('product_price'),
-         * 'kind' => $request->get('product_kind'),
-         * 'published' => $request->has('product_published') ? $request->get('product_published') : false,
-         * ];
-         *
-         * $product = $partner->products()->create($productData);
-         **/
         $productData = [
             'title' => $request->get('product_name'),
             'body_html' => $request->get('product_body'),
@@ -155,32 +130,16 @@ class ProductsController extends Controller
             'published' => $request->has('product_published') ? $request->get('product_published') : false,
         ];
 
-//      $product = $this->product->find($request->id);
-
-//      $product->update($productData);
-
-        return $this->product->updateOrCreate(['id' => $request->id], $productData);
-
+        if (isset($request->id)) {
+            return $this->product->updateOrCreate(['id' => $request->id], $productData);
+        } else {
+            return $this->product->create($productData);
+        }
     }
 
 
     private function productImageUpload($request, $product)
     {
-
-        /**
-         *       if ($request->has('image')) {
-         * $product->attachment()->delete();
-         *
-         * $path = Storage::putFile('attachments', $request->file('image'));
-         * $product->attachment()->updateOrCreate([
-         * 'attachable_id' => $product->id,
-         * 'attachable_type' => \App\Entities\Product::class,
-         * ['attachable_category' => 'product',
-         * 'path' => $path,
-         * 'file_name' => $request->image->getClientOriginalName()]);
-         * }
-         */
-
 
         if ($request->hasFile('image')) {
             $path = Storage::putFile('attachments', $request->file('image'));

@@ -39,7 +39,8 @@ class SearchController extends Controller
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->where('published', true)->get()
                 ->filter(function ($item) {
                     return $item->partner()->first()->is_active == true;
                 })->take(10);
@@ -63,7 +64,8 @@ class SearchController extends Controller
                 ->where('title', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('generic_name', 'ILIKE', '%' . $search_query . '%')
                 ->orWhere('product_type', 'ILIKE', '%' . $search_query . '%')
-                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')->get()
+                ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
+                ->where('published', true)->get()
                 ->filter(function ($item) {
                     return $item->partner()->first()->is_active == true;
                 })

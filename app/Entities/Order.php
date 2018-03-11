@@ -60,4 +60,17 @@ class Order extends Model
     }
 
 
+
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null|string|static
+     */
+    public function primaryAddress()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
+
+
+
 }

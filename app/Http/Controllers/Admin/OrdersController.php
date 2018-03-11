@@ -105,6 +105,9 @@ class OrdersController extends Controller
     {
         $order = $this->order->find($id);
 
+        $prescription = get_attachment($order->attachment()->first());
+
+
         $delivery_charges = 0;
         foreach ($order->meta as $meta) {
             $delivery_charges += $meta['delivery_amount'];
