@@ -6,7 +6,8 @@
                 <span class="navbar-item Logo">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     <a href="{{ url('/') }}">
-                        <img src="/img/logo.png">
+                        <img class="logo logo-white" src="/img/logo_white.png">
+                        <img class="logo logo-color" src="/img/logo_color1.png">
                     </a>
                 </span>
 

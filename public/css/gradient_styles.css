@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900');
+
+body, h1, h2, h3, h4, h5, h6, p, a, div, span, button, input, select, textarea{
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #00d8f3;
+  outline: 1px solid slategrey;
+}
+
+.hero-head img.logo{
+  display: none;
+}
+
+.hero.is-transparent .hero-head img.logo.logo-color{
+  display: block;
+}
+
+.hero.is-transparent .hero-head img.logo.logo-color{
+  display: block;
+}
+
+.hero.is-info .hero-head img.logo.logo-white{
+  display: block;
+}
+
+.navbar-item.Logo a{
+  padding-top: 0px;
+}
+
+.hero.is-info .hero-head {
+  background : -webkit-linear-gradient(-45deg,#00ffcc,#00d8f3);
+}
+
+.hero.is-transparent .hero-head .navbar-item a.sign-in-btn {
+  color: #00fbd0 !important;
+}
+
+.hero.is-transparent .hero-head .navbar-item a.sign-in-btn:hover {
+  color: #fff !important;
+}
+
+.hero.is-transparent .hero-head .navbar-item a{
+  color: #00fbd0 !important;
+}
+
+.hero.is-transparent .hero-head .navbar-item a:hover{
+  color: #fff !important;
+}
+
+.hero-head .navbar-item a:hover{
+  color: #216eb4 !important;
+}
+
+.checkouts-order-details-card .title {
+  color: #00aec3;
+}
+
+.checkouts-order-details-card .order-total {
+  background-color: #209cee;
+}
+
+.menu-list a.is-active {
+  background-color: #00d8f3;
+  border: 1px solid #00d8f3;
+  color: #fff;
+}
+
+.account-profile-card p, .account-profile-card h1 {
+  color: #00aec3;
+}
+
+.my-orders p, .my-orders h1, .my-orders td, .my-orders td strong {
+  color: #00aec3;
+}
+
+.account-address p, .account-address h1 {
+  color: #00aec3;
+}
+
+.account-password p, .account-password h1 {
+  color: #00aec3;
+}
+
+.view-order, .view-order h1, .view-order h2, .view-order h3, .view-order strong, .view-order label {
+  color: #00aec3;
+}
+
+.view-order .order-total {
+  background-color: #00d8f3;
+  margin-top: 10px;
+}
+
+.account-address-create p, .account-address-create h1 {
+  color: #00aec3;
+}
+
+
+.account-address-edit p, .account-address-edit h1 {
+  color: #00aec3;
+}
+
+.home-body h2.main-desc.main-desc1 {
+  background: -webkit-linear-gradient(left, #00d8f3, #00ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.home-body .columns .column.home-tab-item div a:hover {
+  border-color: #00d8f3;
+  color: #00d8f3;
+}
+
+.button.is-link {
+  background-color: #00d8f3 !important;
+  border-color: #00d8f3;
+  color: #fff;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; 
+}
+
+.button.is-link:hover, .button.is-link:active {
+  background-color: #fff !important;
+  border-color: #00d8f3;
+  color: #00d8f3;
+}
+
+.button.is-info {
+  background-color: #00d8f3 !important;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-info:hover {
+  background-color: #fff !important;
+  border-color: #00d8f3;
+  color: #00d8f3;
+}
+
+.checkouts-prescription-card .file-cta {
+  background-color: #00d8f3;
+  border-color: #00d8f3;
+}
+
+.checkouts-prescription-card .file-cta:hover {
+  background-color: #ffffff;
+  color: #00d8f3;
+}
+
+.checkouts-prescription-card .file-name{
+  border: 1px solid transparent;
+  background-color: white;
+  border-color: #dbdbdb;
+}
+
+.checkouts-order-details-card strong {
+  color: #00aec3;
+}
+
+#product_list button.item-button {
+  background-color: #00d8f3;
+  border-color: #00d8f3;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; 
+}
+
+#product_list button.item-button:hover {
+  background-color: #fff;
+  border-color: #00d8f3;
+  color: #00d8f3;
+}
+
+.btn-cart-empty {
+  background-color: #e74c3c !important;
+  border-color: #e74c3c !important;
+  color: #fff !important;
+}
+
+#cart span.button.is-info {
+  background-color: #00d8f3 !important;
+  border-color: #00d8f3;
+  color: #fff;
+}
+
+#cart button.button.is-info.is-outlined.item-button {
+  background-color: #fff !important;
+  border-color: #00d8f3;
+  color: #00d8f3;
+}
+
+#cart button.button.is-info.is-outlined.item-button:hover {
+  background-color: #00d8f3 !important;
+  border-color: #00d8f2;
+  color: #fff;
+}
