@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/temp_styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/gradient_styles.css') }}" rel="stylesheet" />
+    <!-- <link href="{{ asset('css/dark_styles.css') }}" rel="stylesheet" /> -->
 
 </head>
 <body>
@@ -34,14 +36,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/temp.js') }}"></script>
 
     <script>
-    $(function() {
-        $('#shop_groceries').on('click', function (e) {
-            e.preventDefault();
-            $(this).replaceWith( "<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>" );
-        });
-    })
+        $(function() {
+            $('#shop_groceries').on('click', function (e) {
+                e.preventDefault();
+                $(this).replaceWith( "<p style=\"padding-top: 24px; line-height: 2\">Coming soon.</p>" );
+            });
+        })
     </script>
 </body>
 </html>
