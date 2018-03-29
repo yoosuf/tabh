@@ -20,7 +20,7 @@ class CreatePartnersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('website')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->jsonb('preferences')->default("{}");
+            $table->json('preferences')->default("{}");
             $table->timestamps();
             $table->softDeletes();
         });

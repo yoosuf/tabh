@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('total_amount');
             $table->string('total_discount');
             $table->string('tax');
-            $table->jsonb('meta')->default("{}");
+            $table->json('meta')->default("{}");
             $table->string('status')->default('initiated');
             $table->boolean('is_approved_by_admin')->default(false);
             $table->timestamps();

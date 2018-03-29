@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->char('user_type', 1)->default('W');
             $table->rememberToken();
-            $table->jsonb('preferences')->default("{}");
+            $table->json('preferences')->default("{}");
             $table->boolean('activated')->default(false);
             $table->boolean('banned')->default(false);
             $table->timestamps();
@@ -50,7 +50,7 @@ class CreateUsersTable extends Migration
             $table->boolean('verified_phone')->default(false);
             $table->boolean('is_complete')->default(false);
             $table->boolean('banned')->default(false);
-            $table->jsonb('preferences')->default("{}");
+            $table->json('preferences')->default("{}");
             $table->timestamps();
         });
 
