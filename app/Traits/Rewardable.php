@@ -12,7 +12,7 @@ use App\Exceptions\CouponCode\InvalidPromocodeExceprion;
 trait Rewardable
 {
     /**
-     * Get the promocodes that are related to user.
+     * Get the promo_codes that are related to user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

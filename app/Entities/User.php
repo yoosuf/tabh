@@ -65,7 +65,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-
     public function fullName()
     {
         return "{$this->name}";
@@ -92,23 +91,24 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
-    public function  email()
+    public function email()
     {
         return isset($this->email) ? $this->email : "No email provided";
     }
 
 
-    public function  phone()
+    /**
+     *
+     */
+    public function phone()
     {
         return isset($this->phone) ? $this->phone : "No phone provided";
     }
 
-    public function  hasAccount()
+    public function hasAccount()
     {
         return isset($this->password) ? true : "No account";
     }
-
-
 
 
     /**
@@ -120,12 +120,10 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-
     public function invites()
     {
         return $this->hasMany(Invite::class);
     }
-
 
 
     /**

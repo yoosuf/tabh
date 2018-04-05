@@ -42,6 +42,13 @@ Route::group(['namespace' => 'App'], function () {
         Route::get('/account/orders', 'Account\OrdersController@index')->name('account.orders');
         Route::get('/account/orders/{id}', 'Account\OrdersController@show')->name('account.orders.show');
 
+
+
+
+        Route::get('/account/promos', 'Account\PromoController@index')->name('account.promos');
+        Route::post('/account/promos', 'Account\PromoController@index')->name('account.promos.invite');
+
+
         Route::get('/account/profile', 'Account\ProfileController@edit')->name('account.profile');
         Route::put('/account/profile', 'Account\ProfileController@update')->name('account.profile.update');
         Route::get('/account/address', 'Account\AddressesController@index')->name('account.address');

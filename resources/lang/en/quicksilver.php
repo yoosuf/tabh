@@ -110,5 +110,14 @@ return [
             'input_confirm_password' => 'Confirm Password',
         ],
 
+        'promos' => [
+            'txt_title' => 'Invite Friend or Family',
+            'txt_heading' => 'Promos',
+            'txt_sub_title' => 'Invite Friend or Family.',
+            'input_current_password' => 'Current Password',
+            'input_new_password' => 'New Password',
+            'input_confirm_password' => 'Confirm Password',
+        ]
+
     ]
 ];
