@@ -6,7 +6,9 @@
     <div class="columns">
         <div class="column is-4 is-offset-4">
             <div class="logo text-center">
-                <h1>TAB-H</h1>
+                <a href="{{ url('/') }}">
+                    <img class="logo logo-color" src="/img/logo_color2.png" style=" width: 150px; margin-top: 20px;">
+                </a>
             </div>
             <div class="auth card login-box">
                 <div class="card-content">
