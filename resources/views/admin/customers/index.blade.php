@@ -8,9 +8,9 @@
             <p class="title">Customers</p>
         </div>
         <div class="column">
-            <div class="buttons has-addons is-right">
-                <a href="{{ route('admin.customers.create') }}" class="button is-link">Add New Customer</a>
-            </div>
+            {{--<div class="buttons has-addons is-right">--}}
+                {{--<a href="{{ route('admin.customers.create') }}" class="button is-link">Add New Customer</a>--}}
+            {{--</div>--}}
 
         </div>
     </div>

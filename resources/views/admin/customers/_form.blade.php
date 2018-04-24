@@ -79,10 +79,8 @@
         <div class="card">
             <div class="card-content">
                 <div class="content">
-                    <p class="title is-4">Address</p>
-
-
                     @if( isset($addresses) && count($addresses) > 0)
+                    <p class="title is-4">Address</p>
 
                         <div class="tile">
                             <div class="tile is-ancestor">
@@ -106,7 +104,7 @@
                         </div>
 
                     @else
-                        @include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])
+                        {{--@include('admin.partials._address', ['item' => isset($address) ? $address->first() : null])--}}
                     @endif
 
 

@@ -23,7 +23,7 @@ Route::group(['namespace' => 'App'], function () {
 
     Route::get('districts', 'LocationController@getDistricts');
     Route::get('districts/{id}/areas', 'LocationController@getAreas');
-
+    Route::get('coupon-code/clear', 'CouponController@clearCouponCode');
 
     Route::group(['middleware' => ['auth']], function () {
         Route::post('coupon-code', 'CouponController@validateCouponCode')->name('code.validate');

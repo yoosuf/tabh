@@ -124,7 +124,7 @@ class AddressesController extends Controller
 
         $cityData = $this->city->find($request->get('address_city'));
         $provinceData = $this->province->find($request->get('address_province'));
-        $countryData = $this->country->find(18);
+        $countryData = $this->country->where('name','Bangladesh')->first();
 
 
         if (isset($newAddress)) {

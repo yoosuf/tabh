@@ -29,14 +29,14 @@
 
             <div id="navcontainer">
                 <ul>
-                    @if(request()->is('login'))
-                        <li><a href="{{ url('/register')  }}">Sign up</a></li>
+                    {{--@if(request()->is('login'))--}}
+                        {{--<li><a href="{{ url('/register')  }}">Sign up</a></li>--}}
 
-                    @elseif(request()->is('register'))
-                        <li><a href="{{ url('/login')  }}">Sign in</a></li>
-                    @elseif(request()->is('password*'))
-                        <li><a href="{{ url('/login')  }}">Sign in</a></li>
-                    @endif
+                    {{--@elseif(request()->is('register'))--}}
+                        {{--<li><a href="{{ url('/login')  }}">Sign in</a></li>--}}
+                    {{--@elseif(request()->is('password*'))--}}
+                        {{--<li><a href="{{ url('/login')  }}">Sign in</a></li>--}}
+                    {{--@endif--}}
                     <li>Copyright &copy; {{ config('app.name') }}</li>
                 </ul>
             </div>

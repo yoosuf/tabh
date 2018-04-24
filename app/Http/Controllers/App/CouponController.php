@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
-use \Carbon\Carbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Entities\CouponCode;
 use App\Http\Controllers\Controller;
@@ -65,6 +65,12 @@ class CouponController extends Controller
 
             return redirect()->back()->withInput($request->input())->with('status', "That's a valid discount code  and enjoy " . $discountVal);
         }
+    }
+
+    public function clearCouponCode(Request $request)
+    {
+        $request->session()->forget('discount');
+        return "Done ";
     }
 
 }

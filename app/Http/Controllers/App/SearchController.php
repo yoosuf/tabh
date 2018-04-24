@@ -42,7 +42,7 @@ class SearchController extends Controller
                 ->orWhere('packsize', 'ILIKE', '%' . $search_query . '%')
                 ->where('published', true)->get()
                 ->filter(function ($item) {
-                    return $item->partner()->first()->is_active == true;
+                    return $item->published && $item->partner()->first()->is_active == true;
                 })->take(10);
         } else if ($type == "groceries") {
             $products = [];
